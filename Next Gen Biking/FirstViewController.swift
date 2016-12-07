@@ -27,8 +27,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     // Used for zooming into the "right" height
-    var latDelta = 0.05
-    var longDelta = 0.05
+    var latDelta = 0.02
+    var longDelta = 0.02
     
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -53,8 +53,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         //treshold for movement
-        //self.locationManager.distanceFilter = 10.0
-        centerButton.layer.cornerRadius = 10
+        self.locationManager.distanceFilter = 3.0
+        centerButton.layer.cornerRadius = 42.0
         
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
@@ -74,18 +74,17 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let center = locations.last?.coordinate
-        
+        print("\(center!.latitude), \(center!.longitude)")
         let timestamp = Date().timeIntervalSince1970 * 1000
         let currentTrackPoint = TrackPoint(point: center!, timestamp: Int64(timestamp))
         
         trackPointsArray.append(currentTrackPoint!)
 
         
-//        coords.append(center!)
-//        if trackPointsArray.count > 1 {
-//            //mapView.add(polyline())
-//            saveGPS()
-//        }
+        if trackPointsArray.count > 3 {
+            //mapView.add(polyline())
+            saveCollectedDataLocally()
+        }
 //        if trackPointsArray.count > 4{
 //            loadGPS()
 //        }
@@ -93,7 +92,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     
     func dropPin() {
-        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "Zuletzt getrackter Punkt", subtitle: "")
+        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "🚲")
         mapView.addAnnotation(pin)
     }
     
@@ -161,9 +160,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
             statusBtn.backgroundColor = UIColor(red:1.0, green:0.4, blue:0.4, alpha:1.0)
             isTracking = true
-            mapView.removeAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+            mapView.removeAnnotation(mapView.annotations.last!)
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
+            mapView.showsUserLocation = true
         }
     }
     @IBAction func centerMapEvent(_ sender: UIButton) {
@@ -176,6 +176,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     func saveCollectedDataLocally(){
         
         if UploadHelper.storeLocally(trackPointsArray: trackPointsArray) {
+            print("Successful save")
             trackPointsArray.removeAll() // in order to dispose used memory
         }
         

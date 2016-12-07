@@ -41,6 +41,7 @@ class SecondViewController: UIViewController {
     
     @IBAction func uploadBtnEvent(_ sender: UIButton) {
         
+        
         if let loadedData = UploadHelper.loadGPS() {
             let alertController = UIAlertController(title: "Next Gen Biking", message:
                 "Erfolgreich \(loadedData.count) Wegpunkte hochgeladen.", preferredStyle: UIAlertControllerStyle.alert)

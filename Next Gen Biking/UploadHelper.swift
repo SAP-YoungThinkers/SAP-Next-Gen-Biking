@@ -13,9 +13,36 @@ class UploadHelper : NSObject {
 
     // MARK: Local Storage
     
+    static func loadGPS() -> [TrackPoint]? {
+        
+        let firstVC = FirstViewController()
+        
+        if var loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.ArchiveURL.path) as? [TrackPoint]
+        {
+            loadedGPS.append(contentsOf: firstVC.getTrackPoints())
+            
+            if loadedGPS.count < 1 {
+                return nil
+            }
+            return loadedGPS
+        }
+        
+        return nil
+    }
+    
+    
     static func storeLocally(trackPointsArray: [TrackPoint]) -> Bool {
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(trackPointsArray, toFile: TrackPoint.ArchiveURL.path)
+        print("Storing \(trackPointsArray.count) points")
+        
+        var concatenatedData = trackPointsArray
+        
+        if let localData = loadGPS() {
+            concatenatedData.append(contentsOf: localData)
+        }
+        
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(concatenatedData , toFile: TrackPoint.ArchiveURL.path)
         
         if !isSuccessfulSave {
             return false
@@ -24,18 +51,7 @@ class UploadHelper : NSObject {
         }
     }
     
-    static func loadGPS() -> [TrackPoint]? {
-        
-        let firstVC = FirstViewController()
-        
-        if var loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.ArchiveURL.absoluteString) as? [TrackPoint]
-        {
-            loadedGPS.append(contentsOf: firstVC.getTrackPoints())
-            return loadedGPS
-        }
-        
-        return nil
-    }
+
     
     //MARK: Cloud Storage
     
