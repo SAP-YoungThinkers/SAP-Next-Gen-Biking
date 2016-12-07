@@ -13,7 +13,9 @@
 		491EC50D1DE421950077BF82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491EC50B1DE421950077BF82 /* Main.storyboard */; };
 		491EC5121DE421950077BF82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491EC5101DE421950077BF82 /* LaunchScreen.storyboard */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
-		498774701DE5D7A600DB80B8 /* trackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4987746F1DE5D7A600DB80B8 /* trackPoint.swift */; };
+		498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */; };
+		4999AF681DF6FFCF006D6DC7 /* UploadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4999AF671DF6FFCF006D6DC7 /* UploadHelper.swift */; };
+		49C116711DF714EE0059C56F /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C116701DF714EE0059C56F /* CustomPin.swift */; };
 		49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E0622D1DE85B86004FB4C0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +30,9 @@
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		4987746F1DE5D7A600DB80B8 /* trackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = trackPoint.swift; sourceTree = "<group>"; };
+		4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
+		4999AF671DF6FFCF006D6DC7 /* UploadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadHelper.swift; sourceTree = "<group>"; };
+		49C116701DF714EE0059C56F /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		49E0622D1DE85B86004FB4C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +75,9 @@
 				491EC50B1DE421950077BF82 /* Main.storyboard */,
 				491EC5101DE421950077BF82 /* LaunchScreen.storyboard */,
 				491EC5131DE421950077BF82 /* Info.plist */,
-				4987746F1DE5D7A600DB80B8 /* trackPoint.swift */,
+				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
+				4999AF671DF6FFCF006D6DC7 /* UploadHelper.swift */,
+				49C116701DF714EE0059C56F /* CustomPin.swift */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -165,9 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				498774701DE5D7A600DB80B8 /* trackPoint.swift in Sources */,
+				498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */,
 				491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */,
+				4999AF681DF6FFCF006D6DC7 /* UploadHelper.swift in Sources */,
 				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
+				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

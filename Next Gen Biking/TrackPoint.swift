@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class trackPoint: NSObject, NSCoding {
+class TrackPoint: NSObject, NSCoding {
     
     //MARK: Properties
     var latitude : Double

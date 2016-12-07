@@ -14,11 +14,14 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var trackingTimer = Timer()
+    @IBOutlet weak var centerButton: MKMapView!
+    
+    //var trackingTimer = Timer()
     
     var locationManager = CLLocationManager()
-    var trackPointsArray = [trackPoint]()
-    var coords = [CLLocationCoordinate2D]() //needed for drawing the cyclist's path
+    
+    var trackPointsArray = [TrackPoint]()
+//  var coords = [CLLocationCoordinate2D]() //needed for drawing the cyclist's path
     
     var isTracking: Bool = true //used for the timer-function
     
@@ -38,12 +41,12 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let directories: [String]?
-        directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         
-        print(directories!.first!)
+//        let directories: [String]?
+//        directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+//        print(directories!.first!)
         
-        trackingTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+//        trackingTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         
         self.locationManager.delegate = self
         self.mapView.delegate = self
@@ -51,10 +54,12 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         //treshold for movement
         //self.locationManager.distanceFilter = 10.0
-        
-        
+        centerButton.layer.cornerRadius = 10
         
         self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
         self.mapView.showsUserLocation = true
         let center = getPosition()
         centerMap(centerPoint: center)
@@ -63,26 +68,33 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        self.saveGPS() // stores collected data in local storage
+        self.saveCollectedDataLocally() // stores collected data in local storage
     }
     
-    func runTimedCode() {
-        if isTracking {
-            let center = getPosition() // could be found under //MARK: helper
-            
-            let timestamp = Date().timeIntervalSince1970 * 1000
-            let currentTrackPoint = trackPoint(point: center, timestamp: Int64(timestamp))
-            
-            trackPointsArray.append(currentTrackPoint!)
-            coords.append(center)
-            if trackPointsArray.count > 3 {
-                mapView.add(polyline())
-                saveGPS()
-            }
-            if trackPointsArray.count > 4{
-                loadGPS()
-            }
-        }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let center = locations.last?.coordinate
+        
+        let timestamp = Date().timeIntervalSince1970 * 1000
+        let currentTrackPoint = TrackPoint(point: center!, timestamp: Int64(timestamp))
+        
+        trackPointsArray.append(currentTrackPoint!)
+
+        
+//        coords.append(center!)
+//        if trackPointsArray.count > 1 {
+//            //mapView.add(polyline())
+//            saveGPS()
+//        }
+//        if trackPointsArray.count > 4{
+//            loadGPS()
+//        }
+        
+    }
+    
+    func dropPin() {
+        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "Zuletzt getrackter Punkt", subtitle: "")
+        mapView.addAnnotation(pin)
     }
     
     // MARK: Print out error
@@ -98,12 +110,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     
     func getPosition() -> CLLocationCoordinate2D {
-        self.locationManager.startUpdatingLocation()
         
         let location = locationManager.location
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-        
-        self.locationManager.stopUpdatingLocation()
         
         return center
     }
@@ -113,27 +122,25 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         self.mapView.setRegion(region, animated: true)
     }
+    
+    func getTrackPoints() -> [TrackPoint] { return trackPointsArray }
 
-    func polyline() -> MKPolyline {
-        var testcoords = [CLLocationCoordinate2D]()
-        let lastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-1].latitude, longitude: trackPointsArray[trackPointsArray.count-1].longitude)
+//    func polyline() -> MKPolyline {
+        //var testcoords = [CLLocationCoordinate2D]()
+        //let lastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-1].latitude, longitude: trackPointsArray[trackPointsArray.count-1].longitude)
         
         
-        let preLastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-2].latitude, longitude: trackPointsArray[trackPointsArray.count-2].longitude)
+       // let preLastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-2].latitude, longitude: trackPointsArray[trackPointsArray.count-2].longitude)
         
 //        let preLastPoint = CLLocationCoordinate2D(latitude: lastPoint.latitude, longitude: lastPoint.longitude + 0.004)
 //        
-        testcoords.append(lastPoint)
-        testcoords.append(preLastPoint)
-//        
-//        return MKPolyline(coordinates: &coords, count: coords.count)
-        return MKPolyline(coordinates: &testcoords, count: coords.count)
+        //testcoords.append(lastPoint)
+        //testcoords.append(preLastPoint)
         
-    }
-    
-    func setTimerValue(timeInt: Int) {
-        Timer.scheduledTimer(timeInterval: TimeInterval(timeInt), target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-    }
+//        return MKPolyline(coordinates: &coords, count: coords.count)
+        //return MKPolyline(coordinates: &testcoords, count: coords.count)
+        
+    //}
     
     
     // MARK: Actions
@@ -144,37 +151,35 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             statusBtn.setTitle("Start Tracking", for: UIControlState.normal)
             statusBtn.backgroundColor = UIColor(red:0.14, green:0.45, blue:0.19, alpha:1.0)
             stopTracking()
+            
             isTracking = false
+            dropPin()
+            locationManager.delegate = nil
+            mapView.showsUserLocation = false
+            
         }else {
             statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
             statusBtn.backgroundColor = UIColor(red:1.0, green:0.4, blue:0.4, alpha:1.0)
             isTracking = true
+            mapView.removeAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
         }
     }
     @IBAction func centerMapEvent(_ sender: UIButton) {
-        centerMap(centerPoint: CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-1].latitude, longitude: trackPointsArray[trackPointsArray.count-1].longitude))
+        if trackPointsArray.count > 0 {
+            centerMap(centerPoint: getPosition())
+        }
     }
     
     // MARK: NSCoding
-    func saveGPS(){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(trackPointsArray, toFile: trackPoint.ArchiveURL.path)
+    func saveCollectedDataLocally(){
         
-        if !isSuccessfulSave {
-            print("Failed saving trackPoint")
-        } else {
-            print("Successful save!")
+        if UploadHelper.storeLocally(trackPointsArray: trackPointsArray) {
+            trackPointsArray.removeAll() // in order to dispose used memory
         }
         
-        trackPointsArray.removeAll() // in order to dispose used memory
-    }
-    
-    func loadGPS() {
-        if let loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: trackPoint.ArchiveURL.absoluteString) as? [trackPoint]
-        {
-            //trackPointsArray += loadedGPS
-            print(loadedGPS)
-        }
-        
+
     }
     
 }

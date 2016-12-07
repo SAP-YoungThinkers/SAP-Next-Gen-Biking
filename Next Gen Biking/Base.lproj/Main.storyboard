@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,6 +56,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="centerButton" destination="YqA-ih-LMg" id="Xwn-Wv-OHn"/>
                         <outlet property="mapView" destination="YqA-ih-LMg" id="37h-wL-pnf"/>
                         <outlet property="statusBtn" destination="SRI-y7-zPS" id="1zR-Kr-snY"/>
                     </connections>
@@ -91,40 +91,8 @@
                                     <action selector="uploadBtnEvent:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="195-pt-Svd"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="5wa-6q-SJK" userLabel="Intervall">
-                                <rect key="frame" x="87" y="237" width="228" height="71"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ortungsintervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYl-PZ-i93">
-                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-A0-VSK">
-                                        <rect key="frame" x="-2" y="20.5" width="232" height="31"/>
-                                        <color key="tintColor" red="0.94117647059999998" green="0.6705882353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="intervalSlider:" destination="8rJ-Kc-sve" eventType="valueChanged" id="to7-iG-5JA"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Sekunden" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92H-Q5-ZmQ">
-                                        <rect key="frame" x="0.0" y="50.5" width="91" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="0d2-A0-VSK" secondAttribute="trailing" id="j2b-Tg-qwf"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="5wa-6q-SJK" secondAttribute="trailing" constant="44" id="Z82-cu-9ni"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="5wa-6q-SJK" secondAttribute="bottom" constant="315" id="bLg-kM-e0k"/>
-                            <constraint firstItem="5wa-6q-SJK" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="71" id="fQI-qK-xhE"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="second" id="cPa-gy-q4n">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -132,14 +100,12 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="intervalSliderOutlet" destination="0d2-A0-VSK" id="hUL-fQ-rvX"/>
-                        <outlet property="intervalValueOutlet" destination="92H-Q5-ZmQ" id="iCy-am-7d2"/>
                         <outlet property="uploadButton" destination="6Vx-bv-2kL" id="dLL-MQ-f7f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000.8" y="357.57121439280365"/>
+            <point key="canvasLocation" x="1233" y="366"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
