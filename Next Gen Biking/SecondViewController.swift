@@ -29,14 +29,19 @@ class SecondViewController: UIViewController {
     
     @IBAction func uploadBtnEvent(_ sender: UIButton) {
         
+        /* At the moment, this button only loads data from local storage
+         * and displays the result in an alert.
+         * After implementing the connection to HANA, call the function
+         * StorageHelper.uploadToHana() and edit the alert's data
+         */
         
         if let loadedData = StorageHelper.loadGPS() {
-            let alertController = UIAlertController(title: "Next Gen Biking", message:
+            let alertController = UIAlertController(title: "Next-Gen Biking", message:
                 "Erfolgreich \(loadedData.count) Wegpunkte hochgeladen.", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: "Next Gen Biking", message:
+            let alertController = UIAlertController(title: "Next-Gen Biking", message:
                 "Keine Punkte zum Hochladen gefunden", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
