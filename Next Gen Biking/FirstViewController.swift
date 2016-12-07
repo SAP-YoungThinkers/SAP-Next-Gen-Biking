@@ -16,12 +16,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     @IBOutlet weak var centerButton: MKMapView!
     
-    //var trackingTimer = Timer()
-    
     var locationManager = CLLocationManager()
     
-    var trackPointsArray = [TrackPoint]()
-//  var coords = [CLLocationCoordinate2D]() //needed for drawing the cyclist's path
+    var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
     
     var isTracking: Bool = true //used for the timer-function
     
@@ -32,6 +29,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // Without this function, a polyline will not be displayed on the map
+        
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.fillColor = UIColor.red
         renderer.strokeColor = UIColor.red
@@ -42,24 +41,19 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let directories: [String]?
-//        directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-//        print(directories!.first!)
-        
-//        trackingTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-        
         self.locationManager.delegate = self
-        self.mapView.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        //treshold for movement
-        self.locationManager.distanceFilter = 3.0
+        
+        self.locationManager.distanceFilter = 3.0 //treshold for movement in meters
         centerButton.layer.cornerRadius = 42.0
         
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
         
+        
+        self.mapView.delegate = self
         self.mapView.showsUserLocation = true
         let center = getPosition()
         centerMap(centerPoint: center)
@@ -75,25 +69,11 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let center = locations.last?.coordinate
         print("\(center!.latitude), \(center!.longitude)")
-        let timestamp = Date().timeIntervalSince1970 * 1000
+        let timestamp = Date().timeIntervalSince1970 * 1000 //this one is for HANA
         let currentTrackPoint = TrackPoint(point: center!, timestamp: Int64(timestamp))
         
         trackPointsArray.append(currentTrackPoint!)
 
-        
-        if trackPointsArray.count > 3 {
-            //mapView.add(polyline())
-            saveCollectedDataLocally()
-        }
-//        if trackPointsArray.count > 4{
-//            loadGPS()
-//        }
-        
-    }
-    
-    func dropPin() {
-        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "🚲")
-        mapView.addAnnotation(pin)
     }
     
     // MARK: Print out error
@@ -123,29 +103,36 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     
     func getTrackPoints() -> [TrackPoint] { return trackPointsArray }
-
-//    func polyline() -> MKPolyline {
-        //var testcoords = [CLLocationCoordinate2D]()
-        //let lastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-1].latitude, longitude: trackPointsArray[trackPointsArray.count-1].longitude)
+    
+    
+    /* Can be used later on to draw a line on the map */
+    func polyline(points: [TrackPoint]) -> MKPolyline {
         
+        var rawrCoords = [CLLocationCoordinate2D]()
         
-       // let preLastPoint = CLLocationCoordinate2D(latitude: trackPointsArray[trackPointsArray.count-2].latitude, longitude: trackPointsArray[trackPointsArray.count-2].longitude)
+        for current in points {
+            rawrCoords.append(CLLocationCoordinate2D(latitude: current.latitude, longitude: current.longitude))
+        }
+    
+        return MKPolyline(coordinates: &rawrCoords, count: rawrCoords.count)
         
-//        let preLastPoint = CLLocationCoordinate2D(latitude: lastPoint.latitude, longitude: lastPoint.longitude + 0.004)
-//        
-        //testcoords.append(lastPoint)
-        //testcoords.append(preLastPoint)
-        
-//        return MKPolyline(coordinates: &coords, count: coords.count)
-        //return MKPolyline(coordinates: &testcoords, count: coords.count)
-        
-    //}
+    }
+    
+    func dropPin() {
+        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "🚲")
+        mapView.addAnnotation(pin)
+    }
     
     
     // MARK: Actions
 
     @IBOutlet weak var statusBtn: UIButton!
+    
     @IBAction func changeStatusEvent(_ sender: UIButton) {
+        /* This function drops a pin on the current user location and removes it
+         * if the user wants to be tracked again
+         */
+        
         if isTracking {
             statusBtn.setTitle("Start Tracking", for: UIControlState.normal)
             statusBtn.backgroundColor = UIColor(red:0.14, green:0.45, blue:0.19, alpha:1.0)
@@ -166,6 +153,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             mapView.showsUserLocation = true
         }
     }
+    
     @IBAction func centerMapEvent(_ sender: UIButton) {
         if trackPointsArray.count > 0 {
             centerMap(centerPoint: getPosition())
@@ -175,8 +163,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     // MARK: NSCoding
     func saveCollectedDataLocally(){
         
-        if UploadHelper.storeLocally(trackPointsArray: trackPointsArray) {
-            print("Successful save")
+        if StorageHelper.storeLocally(trackPointsArray: trackPointsArray) {
             trackPointsArray.removeAll() // in order to dispose used memory
         }
         

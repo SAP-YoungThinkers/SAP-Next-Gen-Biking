@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UploadHelper : NSObject {
+class StorageHelper : NSObject {
 
     // MARK: Local Storage
     
@@ -54,6 +54,28 @@ class UploadHelper : NSObject {
 
     
     //MARK: Cloud Storage
+    
+    func uploadToHana(points: [TrackPoint]) -> Bool {
+        
+        // Preparing HTTP Post
+        
+            /* ToDo: insert code */
+        
+        // Sending Data
+        
+            /* ToDo: insert code */
+        
+        // Exploiting server's response:
+        
+        let response = 201 // ToDo: insert callback
+        if response == 201 /* ToDo: insert condition */{
+            return true
+        } else {
+            return false    /* Ignore this waring. It will disappear, once
+                             * if you have inserted the funtion calls
+                             */
+        }
+    }
     
 
 }
