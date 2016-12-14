@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class TrackPoint: NSObject, NSCoding {
     
     //MARK: Properties
@@ -56,5 +57,20 @@ class TrackPoint: NSObject, NSCoding {
     }
     
     
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
