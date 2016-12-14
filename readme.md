@@ -1,4 +1,4 @@
-# Sending tracetories to HANA
+# Sending trajetories to HANA
 ## JSON Format
 Collected data should be formatted in JSON like in the following scheme:
 ```json
@@ -14,4 +14,4 @@ Collected data should be formatted in JSON like in the following scheme:
 ## Accessing the backend
 
 You can find the backendscript under 
-https://h04-d00.ucc.ovgu.de/gbi-student-042/bringItToHana.xsjs
+* https://h04-d00.ucc.ovgu.de/gbi-student-042/bringItToHana.xsjs
