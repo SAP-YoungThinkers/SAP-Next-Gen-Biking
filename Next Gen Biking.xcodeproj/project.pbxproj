@@ -15,6 +15,7 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */; };
 		4999AF681DF6FFCF006D6DC7 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */; };
+		49BE6E701E03D85F00DEDCF6 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */; };
 		49C116711DF714EE0059C56F /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C116701DF714EE0059C56F /* CustomPin.swift */; };
 		49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E0622D1DE85B86004FB4C0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
+		49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		49C116701DF714EE0059C56F /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		49E0622D1DE85B86004FB4C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
 				4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */,
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
+				49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */,
 				491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */,
 				4999AF681DF6FFCF006D6DC7 /* StorageHelper.swift in Sources */,
+				49BE6E701E03D85F00DEDCF6 /* ThirdViewController.swift in Sources */,
 				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
 				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,

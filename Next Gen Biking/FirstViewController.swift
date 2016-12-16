@@ -74,6 +74,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         trackPointsArray.append(currentTrackPoint!)
 
+        if trackPointsArray.count > 5 {
+            saveCollectedDataLocally()
+        }
     }
     
     // MARK: Print out error
