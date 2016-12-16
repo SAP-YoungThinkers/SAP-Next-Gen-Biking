@@ -106,6 +106,8 @@ class StorageHelper : NSObject {
     }
     
     
+    // TODO: implement SSL
+    
     func upload_request(scriptName: String, paramDict: [String: String]) {
         
         let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/"
@@ -120,28 +122,13 @@ class StorageHelper : NSObject {
         }
         
         let url:URL = URL(string: fullUrl)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         let session = URLSession.shared
         
-        let request = NSMutableURLRequest(url: url)
-        
-        
-        request.httpMethod = "POST"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        let data = "data=Hi".data(using: String.Encoding.utf8)
-        
-        let task = session.uploadTask(with: request as URLRequest, from: data, completionHandler: {(data, response, error) in
-        
-            guard let _:Data = data, let _:URLResponse = response, error == nil else {
-                print (error)
-                return
-            }
-            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print(dataString)
-        });
-        
-        
-        task.resume()
+        session.dataTask(with: request) {data, response, err in
+            //Insert completion handler code
+            }.resume()
         
         
     
