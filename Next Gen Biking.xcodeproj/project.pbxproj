@@ -74,13 +74,13 @@
 				491EC5051DE421940077BF82 /* AppDelegate.swift */,
 				491EC5071DE421940077BF82 /* FirstViewController.swift */,
 				491EC5091DE421940077BF82 /* SecondViewController.swift */,
+				49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */,
 				491EC50B1DE421950077BF82 /* Main.storyboard */,
 				491EC5101DE421950077BF82 /* LaunchScreen.storyboard */,
 				491EC5131DE421950077BF82 /* Info.plist */,
 				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
 				4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */,
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
-				49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";

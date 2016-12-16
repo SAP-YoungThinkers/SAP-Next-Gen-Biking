@@ -106,9 +106,20 @@ class StorageHelper : NSObject {
     }
     
     
-    func upload_request() {
+    func upload_request(scriptName: String, paramDict: [String: String]) {
         
-        let url:URL = URL(string: "https://h04-d00.ucc.ovgu.de/gbi-student-042/bringItToHana.xsjs")!
+        let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/"
+        
+        // building the full URL for the REST call
+        var fullUrl: String = baseUrl + scriptName + "?"
+        for (key, value) in paramDict {
+            if fullUrl.characters.last != "?" {
+                fullUrl.append("&")
+            }
+            fullUrl += key + "=" + value
+        }
+        
+        let url:URL = URL(string: fullUrl)!
         let session = URLSession.shared
         
         let request = NSMutableURLRequest(url: url)
