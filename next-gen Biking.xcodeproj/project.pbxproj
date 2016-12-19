@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		491EC5021DE421940077BF82 /* Next Gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		491EC5021DE421940077BF82 /* next-gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "next-gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC5051DE421940077BF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		491EC5071DE421940077BF82 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		491EC5091DE421940077BF82 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		491EC4F91DE421940077BF82 = {
 			isa = PBXGroup;
 			children = (
-				491EC5041DE421940077BF82 /* Next Gen Biking */,
+				491EC5041DE421940077BF82 /* next-gen Biking */,
 				491EC5031DE421940077BF82 /* Products */,
 				491EC5191DE441430077BF82 /* Frameworks */,
 			);
@@ -62,12 +62,12 @@
 		491EC5031DE421940077BF82 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				491EC5021DE421940077BF82 /* Next Gen Biking.app */,
+				491EC5021DE421940077BF82 /* next-gen Biking.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		491EC5041DE421940077BF82 /* Next Gen Biking */ = {
+		491EC5041DE421940077BF82 /* next-gen Biking */ = {
 			isa = PBXGroup;
 			children = (
 				49E0622D1DE85B86004FB4C0 /* Assets.xcassets */,
@@ -82,6 +82,7 @@
 				4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */,
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
 			);
+			name = "next-gen Biking";
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
 		};
@@ -98,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		491EC5011DE421940077BF82 /* Next Gen Biking */ = {
+		491EC5011DE421940077BF82 /* next-gen Biking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "Next Gen Biking" */;
+			buildConfigurationList = 491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "next-gen Biking" */;
 			buildPhases = (
 				491EC4FE1DE421940077BF82 /* Sources */,
 				491EC4FF1DE421940077BF82 /* Frameworks */,
@@ -110,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = "Next Gen Biking";
+			name = "next-gen Biking";
 			productName = "Next Gen Biking";
-			productReference = 491EC5021DE421940077BF82 /* Next Gen Biking.app */;
+			productReference = 491EC5021DE421940077BF82 /* next-gen Biking.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -138,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "Next Gen Biking" */;
+			buildConfigurationList = 491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "next-gen Biking" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -151,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				491EC5011DE421940077BF82 /* Next Gen Biking */,
+				491EC5011DE421940077BF82 /* next-gen Biking */,
 			);
 		};
 /* End PBXProject section */
@@ -331,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "Next Gen Biking" */ = {
+		491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "next-gen Biking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				491EC5141DE421950077BF82 /* Debug */,
@@ -340,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "Next Gen Biking" */ = {
+		491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "next-gen Biking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				491EC5171DE421950077BF82 /* Debug */,
