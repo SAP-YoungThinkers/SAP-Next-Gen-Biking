@@ -133,5 +133,40 @@ class StorageHelper : NSObject {
         
     
     }
+    
+    static func restTest() {
+        let link: String = "https://jsonplaceholder.typicode.com/todos/1"
+        
+        
+        let url = URL(string: link)!
+        
+        let request = URLRequest(url: url)
+        
+        let session = URLSession.shared
+        
+        _ = session.dataTask(with: request) {data, response, err in
+            
+            guard err == nil else {
+                print(err!)
+                return
+            }
+            guard let responseData = data else{
+                print("did not receive data")
+                return
+            }
+            do {
+                guard let todo = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                        print("error jsoning")
+                    return
+                    }
+                print(todo)
+                
+            } catch {
+                print("error converting")
+                return
+            }
+            
+            }.resume()
+    }
 
 }
