@@ -24,9 +24,17 @@ If you want to to push your collected data to our backend via REST, append **?da
 
 ## Return codes:
 
+The server response's body consists of a stringified JSON object:
+```json
+{
+    "code": 42,
+    "message": "verbose description"
+}
+```
+
 |  Code | Description  |
 |---|---|
-| 42 | Marc is the best  |
-|   |   |
-|   |   |
-|   |   |
+| 0 | No paramaters given  |
+| 2  | SQL-Error(verbose description in the returned object) |
+| 107  | JSON parse error  |
+| 201  | Success |
