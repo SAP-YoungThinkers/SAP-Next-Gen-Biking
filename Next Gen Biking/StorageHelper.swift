@@ -83,69 +83,36 @@ class StorageHelper : NSObject {
     
     //MARK: Cloud Storage
     
-    func uploadToHana(points: [TrackPoint]) -> Bool {
-        
-        // Preparing HTTP Post
-        
-            /* ToDo: insert code */
-        
-        // Sending Data
-        
-            /* ToDo: insert code */
-        
-        // Exploiting server's response:
-        
-        let response = 201 // ToDo: insert callback
-        if response == 201 /* ToDo: insert condition */{
-            return true
-        } else {
-            return false    /* Ignore this waring. It will disappear, once
-                             * if you have inserted the funtion calls
-                             */
-        }
-    }
-    
-    
-    // TODO: implement SSL
-    
-    func upload_request(scriptName: String, paramDict: [String: String]) {
+    func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
         let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/"
+        var fullUrl: String = baseUrl + scriptName
         
         // building the full URL for the REST call
-        var fullUrl: String = baseUrl + scriptName + "?"
-        for (key, value) in paramDict {
-            if fullUrl.characters.last != "?" {
-                fullUrl.append("&")
+        if paramDict != nil {
+            fullUrl += "?"
+            for (key, value) in paramDict! {
+                if fullUrl.characters.last != "?" {
+                    fullUrl.append("&")
+                }
+                fullUrl += key + "=" + value
             }
-            fullUrl += key + "=" + value
         }
         
         let url:URL = URL(string: fullUrl)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        if jsonData != nil {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: jsonData!)
+            } catch {
+                print("invalid JSON")
+            }
+        }
+        
         let session = URLSession.shared
         
         session.dataTask(with: request) {data, response, err in
-            //Insert completion handler code
-            }.resume()
-        
-        
-    
-    }
-    
-    static func restTest() {
-        let link: String = "https://jsonplaceholder.typicode.com/todos/1"
-        
-        
-        let url = URL(string: link)!
-        
-        let request = URLRequest(url: url)
-        
-        let session = URLSession.shared
-        
-        _ = session.dataTask(with: request) {data, response, err in
-            
             guard err == nil else {
                 print(err!)
                 return
@@ -154,19 +121,19 @@ class StorageHelper : NSObject {
                 print("did not receive data")
                 return
             }
+            print(response ?? "no response")
             do {
                 guard let todo = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
-                        print("error jsoning")
+                    print("error jsoning")
                     return
-                    }
+                }
                 print(todo)
                 
             } catch {
                 print("error converting")
                 return
             }
-            
             }.resume()
+        
     }
-
 }
