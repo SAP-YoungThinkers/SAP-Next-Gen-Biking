@@ -15,7 +15,7 @@ As you can see, a trackpoint consists of latitude, longitude and a timestamp in 
 ## Accessing the backend
 
 You can find the backendscript under: 
-* https://h04-d00.ucc.ovgu.de/gbi-student-042/bringItToHana.xsjs
+* https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/bringItToHana.xsjs
 ```diff
 We will have another backend once we have finished the first development phase! 
 ```
