@@ -54,7 +54,7 @@ class StorageHelper : NSObject {
 
     //MARK: Helper functions for working with JSON
     
-    func generateJSON(points: [TrackPoint]) -> [String: Any] {
+    static func generateJSON(points: [TrackPoint]) -> [String: Any] {
         
         var jsonObject: [String: Array] = [
             "trackPoints" : [
@@ -68,7 +68,7 @@ class StorageHelper : NSObject {
         
     }
     
-    func generateJSONString(JSONObj: [String: Any]) -> NSString {
+    static func generateJSONString(JSONObj: [String: Any]) -> NSString {
         
         do {
             let data = try JSONSerialization.data(withJSONObject: JSONObj)
@@ -81,11 +81,54 @@ class StorageHelper : NSObject {
     }
     
     
+    static func sendRequest(request: URLRequest) -> [String: Any] {
+        let session = URLSession.shared
+        var ret: [String: Any] = [:]
+        let sem = DispatchSemaphore(value: 0)
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil{
+                print("Error -> \(error)")
+                return
+            }
+            
+            ret["data"] = data!
+            ret["response"] = response!
+            sem.signal()
+        }
+        
+        task.resume()
+        
+        // This line will wait until the semaphore has been signaled
+        // which will be once the data task has completed
+        sem.wait(timeout: .distantFuture)
+        
+        return ret
+    }
+    
     //MARK: Cloud Storage
     
-    func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
+    static func getToken(destination: String) -> String? {
         
-        let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/"
+        var token: String?
+        
+        let url: URL = URL(string: destination)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("Fetch", forHTTPHeaderField: "X-CSRF-Token")
+        
+        let ret = sendRequest(request: request)
+        let header = ret["response"] as! HTTPURLResponse
+        token = header.allHeaderFields["x-csrf-token"] as? String
+        
+        print("token")
+        print(token!)
+        return token
+    }
+    
+    static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
+        
+        let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/"
         var fullUrl: String = baseUrl + scriptName
         
         // building the full URL for the REST call
@@ -102,6 +145,12 @@ class StorageHelper : NSObject {
         let url:URL = URL(string: fullUrl)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        
+        let x_csrf_token = getToken(destination: baseUrl + "xsrf.xsjs")
+        if x_csrf_token != nil {
+            request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
+        }
+        
         if jsonData != nil {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: jsonData!)
@@ -121,13 +170,17 @@ class StorageHelper : NSObject {
                 print("did not receive data")
                 return
             }
-            print(response ?? "no response")
+            //print("Data:")
+            //print(String(data: data!, encoding: String.Encoding.utf8) ?? "no data")
+            //print("Response: ")
+            //print(response ?? "no response")
             do {
-                guard let todo = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                guard let responseBody = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
                     print("error jsoning")
                     return
                 }
-                print(todo)
+                //print("Body of response: ")
+                //print(responseBody)
                 
             } catch {
                 print("error converting")
