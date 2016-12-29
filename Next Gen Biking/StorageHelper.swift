@@ -115,14 +115,17 @@ class StorageHelper : NSObject {
         let url: URL = URL(string: destination)!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.addValue("Fetch", forHTTPHeaderField: "X-CSRF-Token")
+        request.addValue("fetch", forHTTPHeaderField: "x-csrf-token")
         
         let ret = sendRequest(request: request)
         let header = ret["response"] as! HTTPURLResponse
         token = header.allHeaderFields["x-csrf-token"] as? String
         
         print("token")
-        print(token!)
+        print(header)
+        if token != nil {
+            print(token!)
+        }
         return token
     }
     
@@ -146,7 +149,7 @@ class StorageHelper : NSObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let x_csrf_token = getToken(destination: baseUrl + "xsrf.xsjs")
+        let x_csrf_token = getToken(destination: baseUrl + scriptName)
         if x_csrf_token != nil {
             request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
         }
