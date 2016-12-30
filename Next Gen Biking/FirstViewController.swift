@@ -42,14 +42,20 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         super.viewDidLoad()
         
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        
-        self.locationManager.distanceFilter = 3.0 //treshold for movement in meters
-        centerButton.layer.cornerRadius = 42.0
-        
+        //get authorization
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
+        
+        //settings
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.distanceFilter = 3.0 //treshold for movement in meters
+        
+        self.locationManager.allowsBackgroundLocationUpdates = true
+        self.locationManager.pausesLocationUpdatesAutomatically = true
+        //pauses only, when the user does not move a significant distance over a period of time
+        self.locationManager.activityType = CLActivityType.automotiveNavigation
+        self.locationManager.disallowDeferredLocationUpdates()
         self.locationManager.startUpdatingLocation()
         
         
