@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
+		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
 		491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5051DE421940077BF82 /* AppDelegate.swift */; };
 		491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5071DE421940077BF82 /* FirstViewController.swift */; };
 		491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5091DE421940077BF82 /* SecondViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0141E25B1E165962008C0DAC /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		0141E25D1E165B0B008C0DAC /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* Next Gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC5051DE421940077BF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		491EC5071DE421940077BF82 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
 				4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */,
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
+				0141E25B1E165962008C0DAC /* Configurator.swift */,
+				0141E25D1E165B0B008C0DAC /* ConfigList.plist */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -162,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				491EC5121DE421950077BF82 /* LaunchScreen.storyboard in Resources */,
+				0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */,
 				49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */,
 				491EC50D1DE421950077BF82 /* Main.storyboard in Resources */,
 			);
@@ -174,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0141E25C1E165962008C0DAC /* Configurator.swift in Sources */,
 				498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */,
 				491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */,
 				4999AF681DF6FFCF006D6DC7 /* StorageHelper.swift in Sources */,

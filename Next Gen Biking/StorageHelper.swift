@@ -117,6 +117,8 @@ class StorageHelper : NSObject {
         request.httpMethod = "GET"
         request.addValue("fetch", forHTTPHeaderField: "x-csrf-token")
         
+        print("request: \(request.allHTTPHeaderFields)")
+        
         let ret = sendRequest(request: request)
         let header = ret["response"] as! HTTPURLResponse
         token = header.allHeaderFields["x-csrf-token"] as? String
