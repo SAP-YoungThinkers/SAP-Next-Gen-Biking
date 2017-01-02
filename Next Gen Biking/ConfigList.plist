@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>backend base url</key>
-	<string>https://</string>
+	<string>https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/</string>
 	<key>allow location pause</key>
 	<true/>
 	<key>zoom level</key>

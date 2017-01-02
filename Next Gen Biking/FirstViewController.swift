@@ -12,6 +12,8 @@ import CoreLocation
 
 class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    let config = Configurator()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var centerButton: MKMapView!
@@ -21,12 +23,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
     
     var isTracking: Bool = true //used for the timer-function
-    
-    
-    // Used for zooming into the "right" height
-    var latDelta = 0.02
-    var longDelta = 0.02
-    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // Without this function, a polyline will not be displayed on the map
@@ -40,7 +36,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.locationManager.delegate = self
         
         //get authorization
@@ -49,10 +44,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         //settings
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = 3.0 //treshold for movement in meters
-        
+        self.locationManager.distanceFilter = config.distanceFilter //treshold for movement
         self.locationManager.allowsBackgroundLocationUpdates = true
-        self.locationManager.pausesLocationUpdatesAutomatically = true
+        self.locationManager.pausesLocationUpdatesAutomatically = config.allowAutoLocationPause
         //pauses only, when the user does not move a significant distance over a period of time
         self.locationManager.activityType = CLActivityType.automotiveNavigation
         self.locationManager.disallowDeferredLocationUpdates()
@@ -106,7 +100,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     
     func centerMap(centerPoint: CLLocationCoordinate2D){
-        let region = MKCoordinateRegion(center: centerPoint, span: MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta))
+        let region = MKCoordinateRegion(center: centerPoint, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
         
         self.mapView.setRegion(region, animated: true)
     }

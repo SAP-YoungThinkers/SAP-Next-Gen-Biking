@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class StorageHelper : NSObject {
+    
+    static let config = Configurator()
 
     // MARK: Local Storage
     
@@ -133,7 +135,7 @@ class StorageHelper : NSObject {
     
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
-        let baseUrl = "https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/"
+        let baseUrl = config.backendBaseURL
         var fullUrl: String = baseUrl + scriptName
         
         // building the full URL for the REST call

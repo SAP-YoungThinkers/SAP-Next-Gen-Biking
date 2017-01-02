@@ -30,11 +30,10 @@ class Configurator : NSObject {
                 print(error)
             }
         }
-        
-        self.distanceFilter = list["distance filter"] as! Double
+        self.distanceFilter = (list["distance filter"] as! NSString).doubleValue
         self.allowAutoLocationPause = list["allow location pause"] as! Bool
         self.backendBaseURL = list["backend base url"] as! String
-        self.zoomLevel = list["zoom level"] as! Double
+        self.zoomLevel = (list["zoom level"] as! NSString).doubleValue
         
         super.init()
         
