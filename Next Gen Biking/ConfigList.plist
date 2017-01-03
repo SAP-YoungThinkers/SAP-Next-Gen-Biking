@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>yellow</key>
+	<string>#efaa00</string>
+	<key>red</key>
+	<string>#FF6666</string>
+	<key>green</key>
+	<string>#237230</string>
 	<key>backend base url</key>
 	<string>https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/</string>
 	<key>allow location pause</key>

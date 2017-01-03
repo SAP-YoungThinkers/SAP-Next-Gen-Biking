@@ -138,7 +138,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         if isTracking {
             statusBtn.setTitle("Start Tracking", for: UIControlState.normal)
-            statusBtn.backgroundColor = UIColor(red:0.14, green:0.45, blue:0.19, alpha:1.0)
+            statusBtn.backgroundColor = config.greenColor
             stopTracking()
             
             isTracking = false
@@ -148,7 +148,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             
         }else {
             statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
-            statusBtn.backgroundColor = UIColor(red:1.0, green:0.4, blue:0.4, alpha:1.0)
+            statusBtn.backgroundColor = config.redColor
             isTracking = true
             mapView.removeAnnotation(mapView.annotations.last!)
             locationManager.delegate = self

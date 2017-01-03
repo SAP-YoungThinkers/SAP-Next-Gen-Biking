@@ -13,12 +13,13 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var uploadButton: UIButton!
     
     let firstVC = FirstViewController()
+    let config = Configurator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         uploadButton.layer.cornerRadius = 10
         uploadButton.layer.borderWidth = 2
-        uploadButton.layer.borderColor = UIColor(red:0.94, green:0.67, blue:0.0, alpha:1.0).cgColor
+        uploadButton.layer.borderColor = config.yellowColor.cgColor
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Configurator : NSObject {
 
@@ -15,7 +16,35 @@ class Configurator : NSObject {
     public var allowAutoLocationPause : Bool
     public var backendBaseURL : String
     
+    public var greenColor: UIColor
+    public var redColor: UIColor
+    public var yellowColor: UIColor
+    
 
+    /* e.g.: FF6666 returns a red UIColor */
+    static func createColor(hex: String) -> UIColor {
+        //snippet from StackOverflow -- Thanks dude!
+        
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.characters.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
     
     override init() {
 
@@ -34,8 +63,11 @@ class Configurator : NSObject {
         self.allowAutoLocationPause = list["allow location pause"] as! Bool
         self.backendBaseURL = list["backend base url"] as! String
         self.zoomLevel = (list["zoom level"] as! NSString).doubleValue
-        
+        self.redColor = Configurator.createColor(hex: list["red"] as! String)
+        self.greenColor = Configurator.createColor(hex: list["green"] as! String)
+        self.yellowColor = Configurator.createColor(hex: list["yellow"] as! String)
         super.init()
+        
         
     }
     
