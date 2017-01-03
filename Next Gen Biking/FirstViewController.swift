@@ -22,7 +22,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
     
-    var isTracking: Bool = true //used for the timer-function
+    var isTracking: Bool = false
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // Without this function, a polyline will not be displayed on the map
@@ -50,13 +50,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         //pauses only, when the user does not move a significant distance over a period of time
         self.locationManager.activityType = CLActivityType.automotiveNavigation
         self.locationManager.disallowDeferredLocationUpdates()
-        self.locationManager.startUpdatingLocation()
         
         
         self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
-        let center = getPosition()
-        centerMap(centerPoint: center)
+        self.mapView.showsUserLocation = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,8 +118,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
     }
     
-    func dropPin() {
-        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: "🚲")
+    func dropPin(title: String) {
+        let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: title)
         mapView.addAnnotation(pin)
     }
     
@@ -142,7 +139,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             stopTracking()
             
             isTracking = false
-            dropPin()
+            dropPin(title: "🚲")
             locationManager.delegate = nil
             mapView.showsUserLocation = false
             
@@ -150,10 +147,15 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
-            mapView.removeAnnotation(mapView.annotations.last!)
+            if mapView.annotations.count != 0 {
+                mapView.removeAnnotation(mapView.annotations.last!)
+            }
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
             mapView.showsUserLocation = true
+            
+            let centerPoint = getPosition()
+            centerMap(centerPoint: centerPoint)
         }
     }
     

@@ -7,7 +7,7 @@
 	<key>red</key>
 	<string>#FF6666</string>
 	<key>green</key>
-	<string>#237230</string>
+	<string>#336600</string>
 	<key>backend base url</key>
 	<string>https://h04-d00.ucc.ovgu.de/gbi-student-042/importData/</string>
 	<key>allow location pause</key>
