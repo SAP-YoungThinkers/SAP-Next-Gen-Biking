@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController {
-
+class ThirdViewController: UITableViewController {
+    
+    @IBOutlet var tView: UITableView!
+    @IBOutlet weak var languageCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,5 +23,9 @@ class ThirdViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }
