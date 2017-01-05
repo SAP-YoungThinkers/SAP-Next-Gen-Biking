@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
 		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
-		01A001751E1E4C8A00EB8FF0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */; };
+		01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFA2E71E1E9503003C297E /* Localizer.swift */; };
+		01DFA2EB1E1E997F003C297E /* Localizable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01DFA2ED1E1E997F003C297E /* Localizable.plist */; };
 		491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5051DE421940077BF82 /* AppDelegate.swift */; };
 		491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5071DE421940077BF82 /* FirstViewController.swift */; };
 		491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5091DE421940077BF82 /* SecondViewController.swift */; };
@@ -26,9 +27,11 @@
 /* Begin PBXFileReference section */
 		0141E25B1E165962008C0DAC /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		0141E25D1E165B0B008C0DAC /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
-		01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		01A001761E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		01A001771E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		01DFA2E71E1E9503003C297E /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
+		01DFA2EC1E1E997F003C297E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.plist; sourceTree = "<group>"; };
+		01DFA2EE1E1E9985003C297E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Localizable.plist; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* Next Gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC5051DE421940077BF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		491EC5071DE421940077BF82 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +94,8 @@
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
 				0141E25B1E165962008C0DAC /* Configurator.swift */,
 				0141E25D1E165B0B008C0DAC /* ConfigList.plist */,
-				01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */,
+				01DFA2E71E1E9503003C297E /* Localizer.swift */,
+				01DFA2ED1E1E997F003C297E /* Localizable.plist */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -156,6 +160,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 491EC4F91DE421940077BF82;
 			productRefGroup = 491EC5031DE421940077BF82 /* Products */;
@@ -174,6 +179,7 @@
 			files = (
 				491EC5121DE421950077BF82 /* LaunchScreen.storyboard in Resources */,
 				0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */,
+				01DFA2EB1E1E997F003C297E /* Localizable.plist in Resources */,
 				49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */,
 				491EC50D1DE421950077BF82 /* Main.storyboard in Resources */,
 			);
@@ -193,14 +199,23 @@
 				49BE6E701E03D85F00DEDCF6 /* ThirdViewController.swift in Sources */,
 				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
 				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
+				01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
-				01A001751E1E4C8A00EB8FF0 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		01DFA2ED1E1E997F003C297E /* Localizable.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01DFA2EC1E1E997F003C297E /* Base */,
+				01DFA2EE1E1E9985003C297E /* de */,
+			);
+			name = Localizable.plist;
+			sourceTree = "<group>";
+		};
 		491EC50B1DE421950077BF82 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

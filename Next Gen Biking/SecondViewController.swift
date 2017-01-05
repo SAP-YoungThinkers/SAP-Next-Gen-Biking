@@ -15,17 +15,14 @@ class SecondViewController: UIViewController {
     let firstVC = FirstViewController()
     let config = Configurator()
     
-    
-    let uploadString = NSLocalizedString("Upload data", comment: "uploadButton")
-    let alertString = NSLocalizedString("Number of uploaded trackpoints: ", comment: "Upload success")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         uploadButton.layer.cornerRadius = 10
         uploadButton.layer.borderWidth = 2
         uploadButton.layer.borderColor = config.yellowColor.cgColor
         
-        uploadButton.setTitle(uploadString, for: UIControlState.normal)
+        print("center".localized)
+        uploadButton.setTitle("upload_button_text".localized, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +49,7 @@ class SecondViewController: UIViewController {
     
     func presentAlert(numberOfPoints: Int) {
         
-        let alertController = UIAlertController(title: "Next-Gen Biking", message: alertString.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Next-Gen Biking", message: "upload_Info".localized.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
         self.present(alertController, animated: true, completion: nil)
     

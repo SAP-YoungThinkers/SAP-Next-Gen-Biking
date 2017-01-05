@@ -24,12 +24,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     var isTracking: Bool = false
     
-    
-    // MARK: Localized Strings
-    let startString = NSLocalizedString("Start Tracking", comment: "Button tracking")
-    let stopString = NSLocalizedString("Stop Tracking", comment: "Button tracking")
-    let centerString = NSLocalizedString("Center map", comment: "Button center map")
-    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // Without this function, a polyline will not be displayed on the map
         
@@ -62,8 +56,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         self.mapView.showsUserLocation = false
         
         
-        statusBtn.setTitle(startString, for: UIControlState.normal)
-        centerButton.setTitle(centerString, for: UIControlState.normal)
+        statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
+        centerButton.setTitle("center".localized, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,7 +136,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
          */
         
         if isTracking {
-            statusBtn.setTitle(startString, for: UIControlState.normal)
+            statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
             statusBtn.backgroundColor = config.greenColor
             stopTracking()
             
@@ -152,7 +146,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             mapView.showsUserLocation = false
             
         }else {
-            statusBtn.setTitle(stopString, for: UIControlState.normal)
+            statusBtn.setTitle("Stop_Tracking".localized, for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
             if mapView.annotations.count != 0 {
