@@ -13,9 +13,12 @@ class ThirdViewController: UITableViewController {
     @IBOutlet var tView: UITableView!
     @IBOutlet weak var languageCell: UITableViewCell!
     
+    let languageString = NSLocalizedString("Language", comment: "languageTableCell")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //langText.text = languageString
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +30,6 @@ class ThirdViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     
 }

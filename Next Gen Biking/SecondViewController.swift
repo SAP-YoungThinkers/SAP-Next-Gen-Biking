@@ -15,11 +15,17 @@ class SecondViewController: UIViewController {
     let firstVC = FirstViewController()
     let config = Configurator()
     
+    
+    let uploadString = NSLocalizedString("Upload data", comment: "uploadButton")
+    let alertString = NSLocalizedString("Number of uploaded trackpoints: ", comment: "Upload success")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uploadButton.layer.cornerRadius = 10
         uploadButton.layer.borderWidth = 2
         uploadButton.layer.borderColor = config.yellowColor.cgColor
+        
+        uploadButton.setTitle(uploadString, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,18 +42,20 @@ class SecondViewController: UIViewController {
             
             StorageHelper.uploadToHana(scriptName: "bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
             
-            let alertController = UIAlertController(title: "Next-Gen Biking", message:
-                "Erfolgreich \(loadedData.count) Wegpunkte hochgeladen.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            presentAlert(numberOfPoints: loadedData.count)
+            
         } else {
-            let alertController = UIAlertController(title: "Next-Gen Biking", message:
-                "Keine Punkte zum Hochladen gefunden", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            presentAlert(numberOfPoints: 0)
         }
         
+    }
+    
+    func presentAlert(numberOfPoints: Int) {
         
+        let alertController = UIAlertController(title: "Next-Gen Biking", message: alertString.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    
     }
 
 }

@@ -15,14 +15,20 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     let config = Configurator()
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    @IBOutlet weak var centerButton: MKMapView!
+    @IBOutlet weak var centerButton: UIButton!
+    @IBOutlet weak var statusBtn: UIButton!
     
     var locationManager = CLLocationManager()
     
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
     
     var isTracking: Bool = false
+    
+    
+    // MARK: Localized Strings
+    let startString = NSLocalizedString("Start Tracking", comment: "Button tracking")
+    let stopString = NSLocalizedString("Stop Tracking", comment: "Button tracking")
+    let centerString = NSLocalizedString("Center map", comment: "Button center map")
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // Without this function, a polyline will not be displayed on the map
@@ -54,6 +60,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = false
+        
+        
+        statusBtn.setTitle(startString, for: UIControlState.normal)
+        centerButton.setTitle(centerString, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,8 +135,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     // MARK: Actions
-
-    @IBOutlet weak var statusBtn: UIButton!
     
     @IBAction func changeStatusEvent(_ sender: UIButton) {
         /* This function drops a pin on the current user location and removes it
@@ -134,7 +142,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
          */
         
         if isTracking {
-            statusBtn.setTitle("Start Tracking", for: UIControlState.normal)
+            statusBtn.setTitle(startString, for: UIControlState.normal)
             statusBtn.backgroundColor = config.greenColor
             stopTracking()
             
@@ -144,7 +152,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             mapView.showsUserLocation = false
             
         }else {
-            statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
+            statusBtn.setTitle(stopString, for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
             if mapView.annotations.count != 0 {
