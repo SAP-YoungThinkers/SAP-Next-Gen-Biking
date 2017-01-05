@@ -15,8 +15,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     let config = Configurator()
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    @IBOutlet weak var centerButton: MKMapView!
+    @IBOutlet weak var centerButton: UIButton!
+    @IBOutlet weak var statusBtn: UIButton!
     
     var locationManager = CLLocationManager()
     
@@ -54,6 +54,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = false
+        
+        
+        statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
+        centerButton.setTitle("center".localized, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,8 +129,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     // MARK: Actions
-
-    @IBOutlet weak var statusBtn: UIButton!
     
     @IBAction func changeStatusEvent(_ sender: UIButton) {
         /* This function drops a pin on the current user location and removes it
@@ -134,7 +136,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
          */
         
         if isTracking {
-            statusBtn.setTitle("Start Tracking", for: UIControlState.normal)
+            statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
             statusBtn.backgroundColor = config.greenColor
             stopTracking()
             
@@ -144,7 +146,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             mapView.showsUserLocation = false
             
         }else {
-            statusBtn.setTitle("Stop Tracking", for: UIControlState.normal)
+            statusBtn.setTitle("Stop_Tracking".localized, for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
             if mapView.annotations.count != 0 {

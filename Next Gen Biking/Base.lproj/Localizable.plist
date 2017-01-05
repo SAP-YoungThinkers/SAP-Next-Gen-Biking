@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>upload_button_text</key>
+	<dict>
+		<key>value</key>
+		<string>Upload data</string>
+		<key>comment</key>
+		<string>Upload button title</string>
+	</dict>
+	<key>upload_Info</key>
+	<dict>
+		<key>value</key>
+		<string>Number of uploaded trackpoints: </string>
+		<key>comment</key>
+		<string>Info after uploading data</string>
+	</dict>
+	<key>Stop_Tracking</key>
+	<dict>
+		<key>value</key>
+		<string>Stop tracking</string>
+		<key>comment</key>
+		<string>Stop updating location</string>
+	</dict>
+	<key>Start_Tracking</key>
+	<dict>
+		<key>value</key>
+		<string>Start tracking</string>
+		<key>comment</key>
+		<string>Start updating location</string>
+	</dict>
+	<key>center</key>
+	<dict>
+		<key>value</key>
+		<string>Center map</string>
+		<key>comment</key>
+		<string>Generic String for center button</string>
+	</dict>
+</dict>
+</plist>

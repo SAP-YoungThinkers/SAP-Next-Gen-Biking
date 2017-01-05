@@ -20,6 +20,9 @@ class SecondViewController: UIViewController {
         uploadButton.layer.cornerRadius = 10
         uploadButton.layer.borderWidth = 2
         uploadButton.layer.borderColor = config.yellowColor.cgColor
+        
+        print("center".localized)
+        uploadButton.setTitle("upload_button_text".localized, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,18 +39,20 @@ class SecondViewController: UIViewController {
             
             StorageHelper.uploadToHana(scriptName: "bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
             
-            let alertController = UIAlertController(title: "Next-Gen Biking", message:
-                "Erfolgreich \(loadedData.count) Wegpunkte hochgeladen.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            presentAlert(numberOfPoints: loadedData.count)
+            
         } else {
-            let alertController = UIAlertController(title: "Next-Gen Biking", message:
-                "Keine Punkte zum Hochladen gefunden", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Weiter geht's", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            presentAlert(numberOfPoints: 0)
         }
         
+    }
+    
+    func presentAlert(numberOfPoints: Int) {
         
+        let alertController = UIAlertController(title: "Next-Gen Biking", message: "upload_Info".localized.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    
     }
 
 }

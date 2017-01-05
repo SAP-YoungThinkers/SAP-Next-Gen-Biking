@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension String {
+    var localized: String {
+        return Localizator.sharedInstance.localize(string: self)
+    }
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

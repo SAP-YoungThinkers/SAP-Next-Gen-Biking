@@ -15,7 +15,6 @@ class ThirdViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +26,6 @@ class ThirdViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     
 }
