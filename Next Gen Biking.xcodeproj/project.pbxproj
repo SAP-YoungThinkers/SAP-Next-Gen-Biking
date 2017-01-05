@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
 		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
+		01A001751E1E4C8A00EB8FF0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */; };
 		491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5051DE421940077BF82 /* AppDelegate.swift */; };
 		491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5071DE421940077BF82 /* FirstViewController.swift */; };
 		491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5091DE421940077BF82 /* SecondViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		0141E25B1E165962008C0DAC /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		0141E25D1E165B0B008C0DAC /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
+		01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* Next Gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC5051DE421940077BF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		491EC5071DE421940077BF82 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				49C116701DF714EE0059C56F /* CustomPin.swift */,
 				0141E25B1E165962008C0DAC /* Configurator.swift */,
 				0141E25D1E165B0B008C0DAC /* ConfigList.plist */,
+				01A001741E1E4C8A00EB8FF0 /* SettingsTableViewController.swift */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
 				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
+				01A001751E1E4C8A00EB8FF0 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
