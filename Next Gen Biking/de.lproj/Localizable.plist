@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>noLogin</key>
+	<dict>
+		<key>comment</key>
+		<string>Keine Logindaten</string>
+		<key>value</key>
+		<string>Bitte zuerst einloggen</string>
+	</dict>
 	<key>upload_button_text</key>
 	<dict>
 		<key>value</key>

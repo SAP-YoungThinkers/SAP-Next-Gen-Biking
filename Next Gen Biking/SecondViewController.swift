@@ -33,6 +33,14 @@ class SecondViewController: UIViewController {
     
     @IBAction func uploadBtnEvent(_ sender: UIButton) {
         
+        if User.accountName == nil || User.accountPassword == nil {
+            
+            let alertController = UIAlertController(title: "Next-Gen Biking", message: "noLogin".localized, preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         if let loadedData = StorageHelper.loadGPS() {
             
             let jsonObj = StorageHelper.generateJSON(points: loadedData)
