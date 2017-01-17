@@ -13,7 +13,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTF: UITextField!
     @IBOutlet weak var userPWTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var rememberSwitch: UISwitch!
     let config = Configurator()
+    var defaults = UserDefaults.standard
+    
+    var passwordWasStored: Bool = false //just a value to satisfy XCode
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginBtn.layer.cornerRadius = 10
         loginBtn.layer.borderWidth = 2
         loginBtn.layer.borderColor = config.yellowColor.cgColor
+        
+        if defaults.object(forKey: "userName") != nil {
+            passwordWasStored = true
+        }
+        rememberSwitch.isOn = passwordWasStored
+        
+        if passwordWasStored {
+            userNameTF.text = defaults.object(forKey: "userName") as! String?
+            userPWTF.text = defaults.object(forKey: "userPassword") as! String?
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,10 +62,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         User.accountName = userNameTF.text
         User.accountPassword = userPWTF.text
         
+        if passwordWasStored && rememberSwitch.isOn == false {
+            defaults.removeObject(forKey: "userName")
+            defaults.removeObject(forKey: "userPassword")
+        } else if rememberSwitch.isOn {
+            if userNameTF != nil && userPWTF != nil {
+                defaults.set(userNameTF.text, forKey: "userName")
+                defaults.set(userPWTF.text, forKey: "userPassword")
+            }
+        }
+        
         userNameTF.text = nil
         userPWTF.text = nil
         self.view.endEditing(true)
-        
         
         let appDelagate = UIApplication.shared.delegate! as! AppDelegate
         let initialViewController = self.storyboard!.instantiateViewController(withIdentifier: "tabBarID")
