@@ -51,6 +51,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameTF.text = nil
         userPWTF.text = nil
         self.view.endEditing(true)
+        
+        
+        let appDelagate = UIApplication.shared.delegate! as! AppDelegate
+        let initialViewController = self.storyboard!.instantiateViewController(withIdentifier: "tabBarID")
+        appDelagate.window?.rootViewController = initialViewController
+        appDelagate.window?.makeKeyAndVisible()
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
