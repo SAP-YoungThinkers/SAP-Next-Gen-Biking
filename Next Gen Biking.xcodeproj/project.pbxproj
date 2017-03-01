@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
 		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
+		019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FF6B21E67031F00E40AAB /* LocationManager.swift */; };
 		01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */; };
 		01BF49CF1E2CC658006C8237 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF49CE1E2CC658006C8237 /* User.swift */; };
 		01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFA2E71E1E9503003C297E /* Localizer.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		0141E25B1E165962008C0DAC /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		0141E25D1E165B0B008C0DAC /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
+		019FF6B21E67031F00E40AAB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		01A001761E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		01A001771E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				0141E25D1E165B0B008C0DAC /* ConfigList.plist */,
 				01DFA2E71E1E9503003C297E /* Localizer.swift */,
 				01DFA2ED1E1E997F003C297E /* Localizable.plist */,
+				019FF6B21E67031F00E40AAB /* LocationManager.swift */,
 			);
 			path = "Next Gen Biking";
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
 				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
 				01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */,
+				019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */,
 				01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
 				01BF49CF1E2CC658006C8237 /* User.swift in Sources */,
