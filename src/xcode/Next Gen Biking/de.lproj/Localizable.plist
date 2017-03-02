@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>noLogin</key>
+	<dict>
+		<key>comment</key>
+		<string>Keine Logindaten</string>
+		<key>value</key>
+		<string>Bitte zuerst einloggen</string>
+	</dict>
+	<key>upload_button_text</key>
+	<dict>
+		<key>value</key>
+		<string>Daten hochladen</string>
+		<key>comment</key>
+		<string>Upload button Aufschrift</string>
+	</dict>
+	<key>upload_Info</key>
+	<dict>
+		<key>value</key>
+		<string>Anzahl hochgeladener Punkte: </string>
+		<key>comment</key>
+		<string>Info nach dem Hochladen</string>
+	</dict>
+	<key>Stop_Tracking</key>
+	<dict>
+		<key>value</key>
+		<string>Ortung beenden</string>
+		<key>comment</key>
+		<string>Ortung beenden</string>
+	</dict>
+	<key>Start_Tracking</key>
+	<dict>
+		<key>value</key>
+		<string>Ortung starten</string>
+		<key>comment</key>
+		<string>Ortung starten</string>
+	</dict>
+	<key>center</key>
+	<dict>
+		<key>comment</key>
+		<string>generischer String um die Karte zu zentrieren</string>
+		<key>value</key>
+		<string>Karte zentrieren</string>
+	</dict>
+</dict>
+</plist>

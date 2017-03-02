@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
+		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
+		019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FF6B21E67031F00E40AAB /* LocationManager.swift */; };
+		01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */; };
+		01BF49CF1E2CC658006C8237 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF49CE1E2CC658006C8237 /* User.swift */; };
+		01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFA2E71E1E9503003C297E /* Localizer.swift */; };
+		01DFA2EB1E1E997F003C297E /* Localizable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01DFA2ED1E1E997F003C297E /* Localizable.plist */; };
+		491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5051DE421940077BF82 /* AppDelegate.swift */; };
+		491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5071DE421940077BF82 /* FirstViewController.swift */; };
+		491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5091DE421940077BF82 /* SecondViewController.swift */; };
+		491EC50D1DE421950077BF82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491EC50B1DE421950077BF82 /* Main.storyboard */; };
+		491EC5121DE421950077BF82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491EC5101DE421950077BF82 /* LaunchScreen.storyboard */; };
+		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
+		498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */; };
+		4999AF681DF6FFCF006D6DC7 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */; };
+		49BE6E701E03D85F00DEDCF6 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */; };
+		49C116711DF714EE0059C56F /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C116701DF714EE0059C56F /* CustomPin.swift */; };
+		49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E0622D1DE85B86004FB4C0 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0141E25B1E165962008C0DAC /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		0141E25D1E165B0B008C0DAC /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
+		019FF6B21E67031F00E40AAB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		01A001761E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		01A001771E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		01BF49CE1E2CC658006C8237 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		01DFA2E71E1E9503003C297E /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
+		01DFA2EC1E1E997F003C297E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.plist; sourceTree = "<group>"; };
+		01DFA2EE1E1E9985003C297E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Localizable.plist; sourceTree = "<group>"; };
+		491EC5021DE421940077BF82 /* Next Gen Biking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Gen Biking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		491EC5051DE421940077BF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		491EC5071DE421940077BF82 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		491EC5091DE421940077BF82 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		491EC50C1DE421950077BF82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		491EC5111DE421950077BF82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		491EC5131DE421950077BF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
+		4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
+		49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		49C116701DF714EE0059C56F /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
+		49E0622D1DE85B86004FB4C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		491EC4FF1DE421940077BF82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		491EC4F91DE421940077BF82 = {
+			isa = PBXGroup;
+			children = (
+				491EC5041DE421940077BF82 /* Next Gen Biking */,
+				491EC5031DE421940077BF82 /* Products */,
+				491EC5191DE441430077BF82 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		491EC5031DE421940077BF82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				491EC5021DE421940077BF82 /* Next Gen Biking.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		491EC5041DE421940077BF82 /* Next Gen Biking */ = {
+			isa = PBXGroup;
+			children = (
+				49E0622D1DE85B86004FB4C0 /* Assets.xcassets */,
+				491EC5051DE421940077BF82 /* AppDelegate.swift */,
+				01BF49CE1E2CC658006C8237 /* User.swift */,
+				491EC5071DE421940077BF82 /* FirstViewController.swift */,
+				491EC5091DE421940077BF82 /* SecondViewController.swift */,
+				49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */,
+				491EC50B1DE421950077BF82 /* Main.storyboard */,
+				01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */,
+				491EC5101DE421950077BF82 /* LaunchScreen.storyboard */,
+				491EC5131DE421950077BF82 /* Info.plist */,
+				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
+				4999AF671DF6FFCF006D6DC7 /* StorageHelper.swift */,
+				49C116701DF714EE0059C56F /* CustomPin.swift */,
+				0141E25B1E165962008C0DAC /* Configurator.swift */,
+				0141E25D1E165B0B008C0DAC /* ConfigList.plist */,
+				01DFA2E71E1E9503003C297E /* Localizer.swift */,
+				01DFA2ED1E1E997F003C297E /* Localizable.plist */,
+				019FF6B21E67031F00E40AAB /* LocationManager.swift */,
+			);
+			path = "Next Gen Biking";
+			sourceTree = "<group>";
+		};
+		491EC5191DE441430077BF82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */,
+				493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */,
+				491EC51A1DE441430077BF82 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		491EC5011DE421940077BF82 /* Next Gen Biking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "Next Gen Biking" */;
+			buildPhases = (
+				491EC4FE1DE421940077BF82 /* Sources */,
+				491EC4FF1DE421940077BF82 /* Frameworks */,
+				491EC5001DE421940077BF82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Next Gen Biking";
+			productName = "Next Gen Biking";
+			productReference = 491EC5021DE421940077BF82 /* Next Gen Biking.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		491EC4FA1DE421940077BF82 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Marc Bormeth";
+				TargetAttributes = {
+					491EC5011DE421940077BF82 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P77XE64L45;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "Next Gen Biking" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+			);
+			mainGroup = 491EC4F91DE421940077BF82;
+			productRefGroup = 491EC5031DE421940077BF82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				491EC5011DE421940077BF82 /* Next Gen Biking */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		491EC5001DE421940077BF82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				491EC5121DE421950077BF82 /* LaunchScreen.storyboard in Resources */,
+				0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */,
+				01DFA2EB1E1E997F003C297E /* Localizable.plist in Resources */,
+				49E0622E1DE85B86004FB4C0 /* Assets.xcassets in Resources */,
+				491EC50D1DE421950077BF82 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		491EC4FE1DE421940077BF82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0141E25C1E165962008C0DAC /* Configurator.swift in Sources */,
+				498774701DE5D7A600DB80B8 /* TrackPoint.swift in Sources */,
+				491EC50A1DE421940077BF82 /* SecondViewController.swift in Sources */,
+				4999AF681DF6FFCF006D6DC7 /* StorageHelper.swift in Sources */,
+				49BE6E701E03D85F00DEDCF6 /* ThirdViewController.swift in Sources */,
+				491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */,
+				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
+				01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */,
+				019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */,
+				01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */,
+				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
+				01BF49CF1E2CC658006C8237 /* User.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		01DFA2ED1E1E997F003C297E /* Localizable.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01DFA2EC1E1E997F003C297E /* Base */,
+				01DFA2EE1E1E9985003C297E /* de */,
+			);
+			name = Localizable.plist;
+			sourceTree = "<group>";
+		};
+		491EC50B1DE421950077BF82 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				491EC50C1DE421950077BF82 /* Base */,
+				01A001761E1E591A00EB8FF0 /* de */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		491EC5101DE421950077BF82 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				491EC5111DE421950077BF82 /* Base */,
+				01A001771E1E591A00EB8FF0 /* de */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		491EC5141DE421950077BF82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		491EC5151DE421950077BF82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		491EC5171DE421950077BF82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = P77XE64L45;
+				INFOPLIST_FILE = "Next Gen Biking/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sap.Next-Gen-Biking";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		491EC5181DE421950077BF82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = P77XE64L45;
+				INFOPLIST_FILE = "Next Gen Biking/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sap.Next-Gen-Biking";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		491EC4FD1DE421940077BF82 /* Build configuration list for PBXProject "Next Gen Biking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				491EC5141DE421950077BF82 /* Debug */,
+				491EC5151DE421950077BF82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "Next Gen Biking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				491EC5171DE421950077BF82 /* Debug */,
+				491EC5181DE421950077BF82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 491EC4FA1DE421940077BF82 /* Project object */;
+}
