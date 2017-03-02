@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class StorageHelper : NSObject {
     
@@ -57,17 +58,17 @@ class StorageHelper : NSObject {
     //MARK: Helper functions for working with JSON
     
     static func generateJSON(points: [TrackPoint]) -> [String: Any] {
-        
-        var jsonObject: [String: Array] = [
-            "trackPoints" : [
-                // here comes the boom
-            ]
+        var jsonObject = [
+            "trackPoints" : [TrackPoint]()
         ]
         
-        points.forEach { jsonObject["trackPoints"]?.append([$0.latitude, $0.longitude, $0.timestamp]) }
+        points.forEach {
+            let location = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
+            let trackPoint = TrackPoint(point: location, timestamp: $0.timestamp)
+            jsonObject["trackPoints"]?.append(trackPoint)
+        }
         
         return jsonObject
-        
     }
     
     static func generateJSONString(JSONObj: [String: Any]) -> NSString {
@@ -90,7 +91,7 @@ class StorageHelper : NSObject {
         
         let task = session.dataTask(with: request) { data, response, error in
             if error != nil{
-                print("Error -> \(error)")
+                print("Error -> \(error!)")
                 return
             }
             
@@ -103,7 +104,7 @@ class StorageHelper : NSObject {
         
         // This line will wait until the semaphore has been signaled
         // which will be once the data task has completed
-        sem.wait(timeout: .distantFuture)
+        _ = sem.wait(timeout: .distantFuture)
         
         return ret
     }

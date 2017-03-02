@@ -28,7 +28,7 @@ class TrackPoint: NSObject, NSCoding {
         static let timeKey = "timestamp"
     }
     
-    init?(point: CLLocationCoordinate2D, timestamp: Int64) {
+    init(point: CLLocationCoordinate2D, timestamp: Int64) {
         self.latitude = point.latitude
         self.longitude = point.longitude
         self.timestamp = timestamp
