@@ -10,8 +10,6 @@
 		0141E25C1E165962008C0DAC /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0141E25B1E165962008C0DAC /* Configurator.swift */; };
 		0141E25E1E165B0B008C0DAC /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0141E25D1E165B0B008C0DAC /* ConfigList.plist */; };
 		019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FF6B21E67031F00E40AAB /* LocationManager.swift */; };
-		01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */; };
-		01BF49CF1E2CC658006C8237 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF49CE1E2CC658006C8237 /* User.swift */; };
 		01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFA2E71E1E9503003C297E /* Localizer.swift */; };
 		01DFA2EB1E1E997F003C297E /* Localizable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01DFA2ED1E1E997F003C297E /* Localizable.plist */; };
 		491EC5061DE421940077BF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EC5051DE421940077BF82 /* AppDelegate.swift */; };
@@ -33,8 +31,6 @@
 		019FF6B21E67031F00E40AAB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		01A001761E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		01A001771E1E591A00EB8FF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		01BF49CE1E2CC658006C8237 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		01DFA2E71E1E9503003C297E /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		01DFA2EC1E1E997F003C297E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.plist; sourceTree = "<group>"; };
 		01DFA2EE1E1E9985003C297E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Localizable.plist; sourceTree = "<group>"; };
@@ -89,12 +85,10 @@
 			children = (
 				49E0622D1DE85B86004FB4C0 /* Assets.xcassets */,
 				491EC5051DE421940077BF82 /* AppDelegate.swift */,
-				01BF49CE1E2CC658006C8237 /* User.swift */,
 				491EC5071DE421940077BF82 /* FirstViewController.swift */,
 				491EC5091DE421940077BF82 /* SecondViewController.swift */,
 				49BE6E6F1E03D85F00DEDCF6 /* ThirdViewController.swift */,
 				491EC50B1DE421950077BF82 /* Main.storyboard */,
-				01B11DBC1E23962E00CBBAFD /* LoginViewController.swift */,
 				491EC5101DE421950077BF82 /* LaunchScreen.storyboard */,
 				491EC5131DE421950077BF82 /* Info.plist */,
 				4987746F1DE5D7A600DB80B8 /* TrackPoint.swift */,
@@ -151,6 +145,7 @@
 				TargetAttributes = {
 					491EC5011DE421940077BF82 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P77XE64L45;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -209,9 +204,7 @@
 				49C116711DF714EE0059C56F /* CustomPin.swift in Sources */,
 				01DFA2E81E1E9503003C297E /* Localizer.swift in Sources */,
 				019FF6B31E67031F00E40AAB /* LocationManager.swift in Sources */,
-				01B11DBD1E23962E00CBBAFD /* LoginViewController.swift in Sources */,
 				491EC5081DE421940077BF82 /* FirstViewController.swift in Sources */,
-				01BF49CF1E2CC658006C8237 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +341,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MRNBike/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,7 +357,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MRNBike/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

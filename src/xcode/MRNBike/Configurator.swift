@@ -19,6 +19,8 @@ class Configurator : NSObject {
     public var greenColor: UIColor
     public var redColor: UIColor
     public var yellowColor: UIColor
+    public var username: String
+    public var password: String
     
 
     /* e.g.: FF6666 returns a red UIColor */
@@ -66,6 +68,8 @@ class Configurator : NSObject {
         self.redColor = Configurator.createColor(hex: list["red"] as! String)
         self.greenColor = Configurator.createColor(hex: list["green"] as! String)
         self.yellowColor = Configurator.createColor(hex: list["yellow"] as! String)
+        self.username = list["username"] as! String
+        self.password = list["password"] as! String
         super.init()
         
         
