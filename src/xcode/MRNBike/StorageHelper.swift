@@ -16,13 +16,10 @@ class StorageHelper : NSObject {
 
     // MARK: Local Storage
     
-    static func loadGPS() -> [TrackPoint]? {
+    static func loadGPS() -> [[TrackPoint]]? {
         
-        let firstVC = FirstViewController()
-        
-        if var loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.ArchiveURL.path) as? [TrackPoint]
+        if let loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.ArchiveURL.path) as? [[TrackPoint]]
         {
-            loadedGPS.append(contentsOf: firstVC.getTrackPoints())
             
             if loadedGPS.count < 1 {
                 return nil
@@ -36,14 +33,13 @@ class StorageHelper : NSObject {
     
     static func storeLocally(trackPointsArray: [TrackPoint]) -> Bool {
         
-        print("Storing \(trackPointsArray.count) points")
-        
-        var concatenatedData = trackPointsArray
+        var concatenatedData = [[TrackPoint]]()
         
         if let localData = loadGPS() {
             concatenatedData.append(contentsOf: localData)
         }
-        
+        concatenatedData.append(trackPointsArray)
+
         
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(concatenatedData , toFile: TrackPoint.ArchiveURL.path)
         
@@ -57,15 +53,28 @@ class StorageHelper : NSObject {
 
     //MARK: Helper functions for working with JSON
     
-    static func generateJSON(points: [TrackPoint]) -> [String: Any] {
+    static func generateJSON(tracks: [[TrackPoint]]) -> [String: Any] {
+        //tracks is an array consisting of arrays consisting of TrackPoints
+        
         var jsonObject = [
-            "trackPoints" : [TrackPoint]()
+            "tracks" : [[TrackPoint]]()
         ]
         
-        points.forEach {
-            let location = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
-            let trackPoint = TrackPoint(point: location, timestamp: $0.timestamp)
-            jsonObject["trackPoints"]?.append(trackPoint)
+        
+        for currentTrack in 0...tracks.count-1 {
+            
+            jsonObject["tracks"]?.append([TrackPoint]())  //new empty element
+            
+            for currentPoint in 0...tracks[currentTrack].count-1 {
+                let current = tracks[currentTrack][currentPoint]
+                
+                let location = CLLocationCoordinate2D(latitude: current.latitude, longitude: current.longitude)
+                let tp = TrackPoint(point: location, timestamp: current.timestamp)
+                
+                jsonObject["tracks"]?[currentTrack].append(tp)
+                
+            }
+        
         }
         
         return jsonObject
@@ -145,7 +154,7 @@ class StorageHelper : NSObject {
             }
         }
 
-        let loginString = NSString(format: "%@:%@", User.accountName!, User.accountPassword!)
+        let loginString = NSString(format: "%@:%@", config.username, config.password)
         let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
         let base64LoginString = loginData.base64EncodedString()
         print("Basic \(base64LoginString)")
@@ -181,7 +190,7 @@ class StorageHelper : NSObject {
                 return
             }
             print("Data:")
-            print(String(data: data!, encoding: String.Encoding.utf8) ?? "no data")
+            print(String(data: responseData, encoding: String.Encoding.utf8) ?? "no data")
             print("Response: ")
             print(response ?? "no response")
             do {

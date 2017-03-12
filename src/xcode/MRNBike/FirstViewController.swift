@@ -140,5 +140,13 @@ extension FirstViewController: LocationManagerDelegate {
         if trackPointsArray.count > 5 {
             saveCollectedDataLocally()
         }
+        
+        
     }
+    
+    func didStopTracking() {
+        //storing the collected track locally and flushing the array in the heap
+        saveCollectedDataLocally()
+    }
+    
 }

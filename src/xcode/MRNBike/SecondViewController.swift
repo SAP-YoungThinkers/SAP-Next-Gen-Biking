@@ -35,7 +35,7 @@ class SecondViewController: UIViewController {
         
         if let loadedData = StorageHelper.loadGPS() {
             
-            let jsonObj = StorageHelper.generateJSON(points: loadedData)
+            let jsonObj = StorageHelper.generateJSON(tracks: loadedData)
             
             StorageHelper.uploadToHana(scriptName: "bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
             

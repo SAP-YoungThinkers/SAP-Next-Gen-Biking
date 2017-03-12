@@ -11,6 +11,7 @@ import CoreLocation
 
 protocol LocationManagerDelegate {
     func didUpdateLocation(_ location: CLLocationCoordinate2D)
+    func didStopTracking()
 }
 
 class LocationManager: NSObject {
@@ -55,6 +56,7 @@ class LocationManager: NSObject {
     func stopTracking() {
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation() //this one is used in AppDelegate
+        delegate?.didStopTracking()
     }
 }
 
