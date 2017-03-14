@@ -161,8 +161,15 @@ class StorageHelper : NSObject {
         }
         
         if jsonData != nil {
+            let trackPoints = jsonData!["trackPoints"] as! [TrackPoint]
+            var jsonList = [[String: Any]]()
+            for entry in trackPoints {
+                let jsonEntry = entry.dictionary()
+                jsonList.append(jsonEntry)
+            }
+            let jsonBody = ["trackPoints": jsonList]
             do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: jsonData!)
+                request.httpBody = try JSONSerialization.data(withJSONObject: jsonBody)
             } catch {
                 print("invalid JSON")
             }
