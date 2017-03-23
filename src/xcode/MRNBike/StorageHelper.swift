@@ -80,6 +80,8 @@ class StorageHelper : NSObject {
         return jsonObject
     }
     
+    
+    //TODO: make it stable
     static func generateJSONString(JSONObj: [String: Any]) -> NSString {
         
         do {
@@ -93,6 +95,8 @@ class StorageHelper : NSObject {
     }
     
     
+    
+    //TODO: asynch without semaphores
     static func sendRequest(request: URLRequest) -> [String: Any] {
         let session = URLSession.shared
         var ret: [String: Any] = [:]
@@ -179,7 +183,10 @@ class StorageHelper : NSObject {
         
         let session = URLSession.shared
         
-        session.dataTask(with: request) {data, response, err in
+        
+        
+        //basic template of how communication with a server works
+        session.dataTask(with: request) {data, response, err in  //completion handler
             
             guard err == nil else {
                 print(err!)
@@ -205,7 +212,7 @@ class StorageHelper : NSObject {
                 print("error converting")
                 return
             }
-            }.resume()
+            }.resume()   //very important with urlsession
         
     }
 }

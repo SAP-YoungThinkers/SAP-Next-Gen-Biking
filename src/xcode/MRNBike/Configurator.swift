@@ -61,6 +61,9 @@ class Configurator : NSObject {
                 print(error)
             }
         }
+        
+        //TODO: beautify this code
+        
         self.distanceFilter = (list["distance filter"] as! NSString).doubleValue
         self.allowAutoLocationPause = list["allow location pause"] as! Bool
         self.backendBaseURL = list["backend base url"] as! String
@@ -69,7 +72,10 @@ class Configurator : NSObject {
         self.greenColor = Configurator.createColor(hex: list["green"] as! String)
         self.yellowColor = Configurator.createColor(hex: list["yellow"] as! String)
         self.username = list["username"] as! String
-        self.password = list["password"] as! String
+        self.password = list["password"] as? String ?? "" // one example
+        
+        
+        
         super.init()
         
         
