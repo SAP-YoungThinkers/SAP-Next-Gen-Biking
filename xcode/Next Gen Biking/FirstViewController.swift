@@ -31,8 +31,8 @@ class FirstViewController: UIViewController {
         self.mapView.delegate = self
         self.mapView.showsUserLocation = false
         
-        statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
-        centerButton.setTitle("center".localized, for: UIControlState.normal)
+        statusBtn.setTitle(NSLocalizedString("Start_Tracking", comment: "Start updating location"), for: UIControlState.normal)
+        centerButton.setTitle(NSLocalizedString("center", comment: "Generic String for center button"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,7 +79,7 @@ class FirstViewController: UIViewController {
          */
         
         if isTracking {
-            statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
+            statusBtn.setTitle(NSLocalizedString("Start_Tracking", comment: "Start updating location"), for: UIControlState.normal)
             statusBtn.backgroundColor = config.greenColor
             self.locationManager.stopTracking()
             
@@ -88,7 +88,7 @@ class FirstViewController: UIViewController {
             locationManager.delegate = nil
             mapView.showsUserLocation = false
         } else {
-            statusBtn.setTitle("Stop_Tracking".localized, for: UIControlState.normal)
+            statusBtn.setTitle(NSLocalizedString("Stop_Tracking", comment: "Stop updating location"), for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
             if mapView.annotations.count != 0 {
