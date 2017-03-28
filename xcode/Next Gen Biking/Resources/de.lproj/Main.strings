@@ -1,0 +1,36 @@
+
+/* Class = "UIButton"; normalTitle = "Wege hochladen"; ObjectID = "6Vx-bv-2kL"; */
+"6Vx-bv-2kL.normalTitle" = "Wege hochladen";
+
+/* Class = "UILabel"; text = "Automatically start tracking me"; ObjectID = "8lF-nW-MjA"; */
+"8lF-nW-MjA.text" = "Ortung automatisch starten";
+
+/* Class = "UITextField"; placeholder = "Enter a password"; ObjectID = "GJc-9y-swp"; */
+"GJc-9y-swp.placeholder" = "Passwort eingeben";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "I2E-d1-ex6"; */
+"I2E-d1-ex6.normalTitle" = "Anmelden";
+
+/* Class = "UILabel"; text = "Logged in as: afroki1310"; ObjectID = "Lx1-38-EoR"; */
+"Lx1-38-EoR.text" = "Angemeldet als: afroki1310";
+
+/* Class = "UIButton"; normalTitle = "Start Tracking"; ObjectID = "SRI-y7-zPS"; */
+"SRI-y7-zPS.normalTitle" = "Ortung starten";
+
+/* Class = "UILabel"; text = "Automatically start playing Spotify"; ObjectID = "fCG-PD-eaE"; */
+"fCG-PD-eaE.text" = "Spotify automatisch abspielen";
+
+/* Class = "UITableViewController"; title = "ThirdViewController"; ObjectID = "fuQ-3a-MiC"; */
+"fuQ-3a-MiC.title" = "ThirdViewController";
+
+/* Class = "UIButton"; normalTitle = "Zentriere mich"; ObjectID = "g8Z-iW-dg5"; */
+"g8Z-iW-dg5.normalTitle" = "Zentriere mich";
+
+/* Class = "UITextField"; placeholder = "Enter a username"; ObjectID = "nA7-eV-6cR"; */
+"nA7-eV-6cR.placeholder" = "Benutzername eingeben";
+
+/* Class = "UILabel"; text = "Spotify connect"; ObjectID = "oBn-Hm-Swa"; */
+"oBn-Hm-Swa.text" = "Spotify Verbindung";
+
+/* Class = "UILabel"; text = "Remember me"; ObjectID = "v2P-JF-TB9"; */
+"v2P-JF-TB9.text" = "Angemeldet bleiben";

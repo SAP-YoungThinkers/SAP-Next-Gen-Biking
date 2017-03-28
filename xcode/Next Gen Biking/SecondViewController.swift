@@ -21,8 +21,8 @@ class SecondViewController: UIViewController {
         uploadButton.layer.borderWidth = 2
         uploadButton.layer.borderColor = config.yellowColor.cgColor
         
-        print("center".localized)
-        uploadButton.setTitle("upload_button_text".localized, for: UIControlState.normal)
+        print(NSLocalizedString("center", comment: "Generic String for center button"))
+        uploadButton.setTitle(NSLocalizedString("upload_button_text", comment: "Upload button title"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +35,7 @@ class SecondViewController: UIViewController {
         
         if User.accountName == nil || User.accountPassword == nil {
             
-            let alertController = UIAlertController(title: "Next-Gen Biking", message: "noLogin".localized, preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Next-Gen Biking", message: NSLocalizedString("noLogin", comment: "user did not login"), preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
@@ -56,8 +56,9 @@ class SecondViewController: UIViewController {
     }
     
     func presentAlert(numberOfPoints: Int) {
-        
-        let alertController = UIAlertController(title: "Next-Gen Biking", message: "upload_Info".localized.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
+        let infoString = NSLocalizedString("upload_Info", comment: "Info after uploading data")
+        let info = "\(infoString) \(numberOfPoints)"
+        let alertController = UIAlertController(title: "Next-Gen Biking", message: info, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
         self.present(alertController, animated: true, completion: nil)
     

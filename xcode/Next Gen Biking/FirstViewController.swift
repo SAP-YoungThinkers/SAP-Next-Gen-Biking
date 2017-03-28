@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class FirstViewController: UIViewController {
     
     let config = Configurator()
     
@@ -18,46 +18,21 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     @IBOutlet weak var centerButton: UIButton!
     @IBOutlet weak var statusBtn: UIButton!
     
-    var locationManager = CLLocationManager()
+    var locationManager = LocationManager()
     
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
     
     var isTracking: Bool = false
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        // Without this function, a polyline will not be displayed on the map
-        
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.fillColor = UIColor.red
-        renderer.strokeColor = UIColor.red
-        renderer.lineWidth = 2.0
-        return renderer
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.delegate = self
         
-        //get authorization
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.requestAlwaysAuthorization()
-        
-        //settings
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = config.distanceFilter //treshold for movement
-        self.locationManager.allowsBackgroundLocationUpdates = true
-        self.locationManager.pausesLocationUpdatesAutomatically = config.allowAutoLocationPause
-        //pauses only, when the user does not move a significant distance over a period of time
-        self.locationManager.activityType = CLActivityType.automotiveNavigation
-        self.locationManager.disallowDeferredLocationUpdates()
-        
-        
         self.mapView.delegate = self
         self.mapView.showsUserLocation = false
         
-        
-        statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
-        centerButton.setTitle("center".localized, for: UIControlState.normal)
+        statusBtn.setTitle(NSLocalizedString("Start_Tracking", comment: "Start updating location"), for: UIControlState.normal)
+        centerButton.setTitle(NSLocalizedString("center", comment: "Generic String for center button"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,38 +41,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         self.saveCollectedDataLocally() // stores collected data in local storage
     }
     
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let center = locations.last?.coordinate
-        print("\(center!.latitude), \(center!.longitude)")
-        let timestamp = Date().timeIntervalSince1970 * 1000 //this one is for HANA
-        let currentTrackPoint = TrackPoint(point: center!, timestamp: Int64(timestamp))
-        
-        trackPointsArray.append(currentTrackPoint!)
-
-        if trackPointsArray.count > 5 {
-            saveCollectedDataLocally()
-        }
-    }
-    
-    // MARK: Print out error
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Errors: " + error.localizedDescription)
-    }
-    
-    
     // MARK: Helper functions
     
-    func stopTracking() {
-        self.locationManager.stopUpdatingLocation() //this one is used in AppDelegate
-    }
-    
     func getPosition() -> CLLocationCoordinate2D {
-        
-        let location = locationManager.location
-        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-        
-        return center
+        return locationManager.center
     }
     
     func centerMap(centerPoint: CLLocationCoordinate2D){
@@ -108,10 +55,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     func getTrackPoints() -> [TrackPoint] { return trackPointsArray }
     
-    
     /* Can be used later on to draw a line on the map */
     func polyline(points: [TrackPoint]) -> MKPolyline {
-        
         var rawrCoords = [CLLocationCoordinate2D]()
         
         for current in points {
@@ -119,14 +64,12 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         }
     
         return MKPolyline(coordinates: &rawrCoords, count: rawrCoords.count)
-        
     }
     
     func dropPin(title: String) {
         let pin = CustomPin(coordinate: mapView.userLocation.coordinate, title: title)
         mapView.addAnnotation(pin)
     }
-    
     
     // MARK: Actions
     
@@ -136,24 +79,23 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
          */
         
         if isTracking {
-            statusBtn.setTitle("Start_Tracking".localized, for: UIControlState.normal)
+            statusBtn.setTitle(NSLocalizedString("Start_Tracking", comment: "Start updating location"), for: UIControlState.normal)
             statusBtn.backgroundColor = config.greenColor
-            stopTracking()
+            self.locationManager.stopTracking()
             
             isTracking = false
             dropPin(title: "🚲")
             locationManager.delegate = nil
             mapView.showsUserLocation = false
-            
-        }else {
-            statusBtn.setTitle("Stop_Tracking".localized, for: UIControlState.normal)
+        } else {
+            statusBtn.setTitle(NSLocalizedString("Stop_Tracking", comment: "Stop updating location"), for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
             if mapView.annotations.count != 0 {
                 mapView.removeAnnotation(mapView.annotations.last!)
             }
             locationManager.delegate = self
-            locationManager.startUpdatingLocation()
+            locationManager.startTracking()
             mapView.showsUserLocation = true
             
             let centerPoint = getPosition()
@@ -169,13 +111,34 @@ class FirstViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     // MARK: NSCoding
     func saveCollectedDataLocally(){
-        
         if StorageHelper.storeLocally(trackPointsArray: trackPointsArray) {
             trackPointsArray.removeAll() // in order to dispose used memory
         }
-        
-
     }
-    
 }
 
+extension FirstViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // Without this function, a polyline will not be displayed on the map
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.fillColor = UIColor.red
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 2.0
+        return renderer
+    }
+}
+
+extension FirstViewController: LocationManagerDelegate {
+    func didUpdateLocation(_ location: CLLocationCoordinate2D) {
+        print("\(location.latitude), \(location.longitude)")
+        let timestamp = Date().timeIntervalSince1970 * 1000 //this one is for HANA
+        let currentTrackPoint = TrackPoint(point: location, timestamp: Int64(timestamp))
+        
+        trackPointsArray.append(currentTrackPoint)
+        
+        if trackPointsArray.count > 5 {
+            saveCollectedDataLocally()
+        }
+    }
+}

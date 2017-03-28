@@ -28,7 +28,7 @@ class TrackPoint: NSObject, NSCoding {
         static let timeKey = "timestamp"
     }
     
-    init?(point: CLLocationCoordinate2D, timestamp: Int64) {
+    init(point: CLLocationCoordinate2D, timestamp: Int64) {
         self.latitude = point.latitude
         self.longitude = point.longitude
         self.timestamp = timestamp
@@ -45,18 +45,19 @@ class TrackPoint: NSObject, NSCoding {
         
     }
     
-    required convenience init?(coder aDecoder: NSCoder) {
-        let time = aDecoder.decodeInt64(forKey: PropertyKey.timeKey)
-        let latitude = aDecoder.decodeDouble(forKey: PropertyKey.latKey)
-        let longitude = aDecoder.decodeDouble(forKey: PropertyKey.latKey)
-        
-        //in order to leave the constructor as simple as possible
-        let point = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        self.init(point: point, timestamp: time)
+    required init?(coder aDecoder: NSCoder) {
+        self.latitude = aDecoder.decodeDouble(forKey: PropertyKey.latKey)
+        self.longitude = aDecoder.decodeDouble(forKey: PropertyKey.longKey)
+        self.timestamp = aDecoder.decodeInt64(forKey: PropertyKey.timeKey)
     }
     
-    
+    func dictionary() -> [String: Any] {
+        return [
+            PropertyKey.latKey: self.latitude,
+            PropertyKey.longKey: self.longitude,
+            PropertyKey.timeKey: self.timestamp
+        ]
+    }
 }
 
 
