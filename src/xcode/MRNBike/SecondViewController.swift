@@ -20,9 +20,7 @@ class SecondViewController: UIViewController {
         uploadButton.layer.cornerRadius = 10
         uploadButton.layer.borderWidth = 2
         uploadButton.layer.borderColor = config.yellowColor.cgColor
-        
-        print("center".localized)
-        uploadButton.setTitle("upload_button_text".localized, for: UIControlState.normal)
+        uploadButton.setTitle(NSLocalizedString("upload_button_text", comment: "Upload button title"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,11 +31,15 @@ class SecondViewController: UIViewController {
     
     @IBAction func uploadBtnEvent(_ sender: UIButton) {
         
+        //TODO: Better feedback. At the moment it just counts the routes in the local storage (even the empty ones)
+        
+        firstVC.saveCollectedDataLocally()
+        
         if let loadedData = StorageHelper.loadGPS() {
             
             let jsonObj = StorageHelper.generateJSON(tracks: loadedData)
             
-            StorageHelper.uploadToHana(scriptName: "bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
+            StorageHelper.uploadToHana(scriptName: "importData/bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
             
             presentAlert(numberOfPoints: loadedData.count)
             
@@ -48,8 +50,9 @@ class SecondViewController: UIViewController {
     }
     
     func presentAlert(numberOfPoints: Int) {
-        
-        let alertController = UIAlertController(title: "Next-Gen Biking", message: "upload_Info".localized.appending(String(numberOfPoints)), preferredStyle: UIAlertControllerStyle.alert)
+        let infoString = NSLocalizedString("upload_Info", comment: "Info after uploading data")
+        let info = "\(infoString) \(numberOfPoints)"
+        let alertController = UIAlertController(title: "Next-Gen Biking", message: info, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
         self.present(alertController, animated: true, completion: nil)
     
