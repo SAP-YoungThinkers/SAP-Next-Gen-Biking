@@ -33,7 +33,7 @@ class StorageHelper : NSObject {
         return nil
     }
     
-    
+    // Just an test comment to explore git
     static func storeLocally(trackPointsArray: [TrackPoint]) -> Bool {
         
         print("Storing \(trackPointsArray.count) points")
