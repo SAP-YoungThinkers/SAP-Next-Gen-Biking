@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Next Gen Biking
+
+  Created by Riess, Manuel on 27.03.17.
+  Copyright © 2017 Marc Bormeth. All rights reserved.
+*/
+
+"noLogin"="Bitte zuerst einloggen";
+"upload_button_text"="Daten hochladen";
+"upload_Info"="Anzahl hochgeladener Routen:";
+"Stop_Tracking"="Ortung beenden";
+"Start_Tracking"="Ortung starten";
+"center"="Karte zentrieren";
