@@ -30,7 +30,7 @@ class StorageHelper : NSObject {
         return nil
     }
     
-    func clearCollectedGPS() {
+    static func clearCollectedGPS() {
         do {
             try FileManager.default.removeItem(atPath: TrackPoint.ArchiveURL.path)
         } catch {
@@ -56,6 +56,20 @@ class StorageHelper : NSObject {
         } else {
             return true
         }
+    }
+    
+    static func updateLocalRouteKeys(routeIDs: [Int]){
+        var allKeys = routeIDs
+        if let loadedKeys = NSKeyedUnarchiver.unarchiveObject(withFile: RouteKeys.ArchiveURL.path) as? [Int] {
+            allKeys.append(contentsOf: loadedKeys)
+        }
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(allKeys , toFile: RouteKeys.ArchiveURL.path)
+        
+        if !isSuccessfulSave {
+            print("Error while saving keys locally")
+        }
+        
     }
     
     
@@ -199,8 +213,6 @@ class StorageHelper : NSObject {
             }
             
             let jsonBody: [String: Any] = ["tracks": content]
-            print("Request body: ")
-            print(jsonBody)
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: jsonBody)
@@ -215,16 +227,37 @@ class StorageHelper : NSObject {
         //basic template of how communication with a server works
         session.dataTask(with: request) {data, response, err in  //completion handler
             
+            guard let responseText = response else {
+                
+                print("empty response")
+                return
+            }
+            
+            print(responseText)
+            
             guard let responseData = data else{
                 print("nothing")
                 return
             }
            
-            print(String(data: responseData, encoding: String.Encoding.utf8) ?? "no data")
+            print(responseData)
+            
             do {
                 let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                print("This is the body: ")
-                print(jsonBody ?? "mute XCode")
+                
+                if let code = jsonBody?["code"] {
+                    if code as! Int == 201{  //upload successful
+                        
+                        if let keys = jsonBody?["keys"] as? [Int] {
+                            updateLocalRouteKeys(routeIDs: keys)
+                            clearCollectedGPS()
+                        }
+                    }
+                    else {
+                        print("Return code: " + (code as! String))
+                    }
+                }
+                
             } catch {
                 print("The following error occured: ")
                 print(error)

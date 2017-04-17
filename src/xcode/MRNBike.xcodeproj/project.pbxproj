@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01279A2E1EA4D9DF000505AA /* RouteKeys.swift */; };
 		0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14B1EA2778100FCA949 /* AppDelegate.swift */; };
 		0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14C1EA2778100FCA949 /* FirstViewController.swift */; };
 		0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F14D1EA2778100FCA949 /* InfoPlist.strings */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01279A2E1EA4D9DF000505AA /* RouteKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteKeys.swift; sourceTree = "<group>"; };
 		0137F14B1EA2778100FCA949 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0137F14C1EA2778100FCA949 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		0137F14D1EA2778100FCA949 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				0137F1531EA2778100FCA949 /* StorageHelper.swift */,
 				0137F1541EA2778100FCA949 /* TrackPoint.swift */,
 				0137F1551EA2778100FCA949 /* User.swift */,
+				01279A2E1EA4D9DF000505AA /* RouteKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,8 +183,9 @@
 				TargetAttributes = {
 					491EC5011DE421940077BF82 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P77XE64L45;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -234,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
+				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
@@ -395,7 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P77XE64L45;
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -413,7 +418,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P77XE64L45;
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
