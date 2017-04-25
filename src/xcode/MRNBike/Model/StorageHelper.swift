@@ -162,7 +162,11 @@ class StorageHelper : NSObject {
         request.addValue("Basic \(authorization)", forHTTPHeaderField: "Authorization")
         
         let ret = sendRequest(request: request)
-        let header = ret["response"] as! HTTPURLResponse
+        guard let header = ret["response"] as? HTTPURLResponse else {
+            print("Something went wrong")
+            return nil
+        }
+        
         token = header.allHeaderFields["x-csrf-token"] as? String
         
         return token
@@ -246,7 +250,7 @@ class StorageHelper : NSObject {
                 let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
                 
                 if let code = jsonBody?["code"] {
-                    if code as! Int == 201{  //upload successful
+                    if code as? Int == 201{  //upload successful
                         
                         if let keys = jsonBody?["keys"] as? [Int] {
                             updateLocalRouteKeys(routeIDs: keys)

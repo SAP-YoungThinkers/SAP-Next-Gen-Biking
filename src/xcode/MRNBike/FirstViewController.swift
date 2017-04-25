@@ -93,7 +93,7 @@ class FirstViewController: UIViewController {
             statusBtn.setTitle(NSLocalizedString("Stop_Tracking", comment: "Stop updating location"), for: UIControlState.normal)
             statusBtn.backgroundColor = config.redColor
             isTracking = true
-            if mapView.annotations.count != 0 {
+            if mapView.annotations.last != nil {
                 mapView.removeAnnotation(mapView.annotations.last!)
             }
             locationManager.delegate = self

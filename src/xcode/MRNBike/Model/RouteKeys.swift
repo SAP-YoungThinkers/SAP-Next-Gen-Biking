@@ -34,6 +34,11 @@ class RouteKeys: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.keys = aDecoder.decodeObject(forKey: PropertyKey.Key) as! [Int]
+        guard let loadedKeys = aDecoder.decodeObject(forKey: PropertyKey.Key) as? [Int] else {
+            self.keys = [Int]()
+            return
+        }
+        
+        self.keys = loadedKeys
     }
 }
