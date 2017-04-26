@@ -72,15 +72,15 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Black.otf"; sourceTree = "<group>"; };
-		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Bold.otf"; sourceTree = "<group>"; };
-		37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
-		37B601E41EB0B68000870844 /* Montserrat-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLight.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-ExtraLight.otf"; sourceTree = "<group>"; };
-		37B601E51EB0B68000870844 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Light.otf"; sourceTree = "<group>"; };
-		37B601E61EB0B68000870844 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Medium.otf"; sourceTree = "<group>"; };
-		37B601E71EB0B68000870844 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Regular.otf"; sourceTree = "<group>"; };
-		37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
-		37B601E91EB0B68000870844 /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "../../../../../../../../Downloads/montserrat/Montserrat-Thin.otf"; sourceTree = "<group>"; };
+		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.otf"; path = "Fonts/Montserrat-Black.otf"; sourceTree = "<group>"; };
+		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.otf"; path = "Fonts/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
+		37B601E41EB0B68000870844 /* Montserrat-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLight.otf"; path = "Fonts/Montserrat-ExtraLight.otf"; sourceTree = "<group>"; };
+		37B601E51EB0B68000870844 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
+		37B601E61EB0B68000870844 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.otf"; path = "Fonts/Montserrat-Medium.otf"; sourceTree = "<group>"; };
+		37B601E71EB0B68000870844 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "Fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
+		37B601E91EB0B68000870844 /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -183,7 +183,7 @@
 				37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */,
 				37B601E91EB0B68000870844 /* Montserrat-Thin.otf */,
 			);
-			name = Fonts;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		491EC4F91DE421940077BF82 = {

@@ -45,10 +45,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tabBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hhF-Ia-5wh">
+                                <rect key="frame" x="0.0" y="60" width="375" height="543"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hhF-Ia-5wh" firstAttribute="leading" secondItem="OJd-gq-daB" secondAttribute="leading" id="5Wh-lR-7gv"/>
                             <constraint firstItem="OJd-gq-daB" firstAttribute="leading" secondItem="rCE-EH-rhY" secondAttribute="leading" id="TaJ-74-Mmi"/>
+                            <constraint firstItem="hhF-Ia-5wh" firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="g5p-HO-yzf"/>
+                            <constraint firstItem="hhF-Ia-5wh" firstAttribute="bottom" secondItem="2Ms-6E-rzB" secondAttribute="top" id="hRf-n5-hA1"/>
                             <constraint firstItem="OJd-gq-daB" firstAttribute="top" secondItem="6bc-cf-uPY" secondAttribute="bottom" id="yPe-iD-Gzb"/>
                             <constraint firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="z6F-su-cRe"/>
                         </constraints>
@@ -65,14 +71,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoE-Ae-Uox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="1248"/>
+            <point key="canvasLocation" x="109.59999999999999" y="1247.2263868065968"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lBb-rJ-SKY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
