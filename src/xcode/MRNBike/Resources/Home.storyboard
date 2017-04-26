@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tracking-->
+        <scene sceneID="bjp-KN-MRd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tracking" referencedIdentifier="Tracking" id="hCk-Qg-z0U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="anQ-wl-Rm2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="05G-ti-cUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="61"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Je1-Yi-uuU">
+            <objects>
+                <viewController id="LIY-8t-FG2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1f-nV-AyC"/>
+                        <viewControllerLayoutGuide type="bottom" id="fwC-fH-QDv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t8r-ZF-U88">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dashboard" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oxe-1p-jP6">
+                                <rect key="frame" x="135" y="279" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="l2U-vj-ioK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="470"/>
+        </scene>
+        <!--Statistics-->
+        <scene sceneID="lq9-ze-9Vh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Statistics" referencedIdentifier="Statistics" id="BiF-Dv-edH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Qq9-2T-j85"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pb-Wr-USz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="-288"/>
+        </scene>
+        <!--Routes-->
+        <scene sceneID="arI-OD-bzF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Routes" referencedIdentifier="Routes" id="kjg-7h-ahL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ZNA-bL-KdF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3S-8d-r9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="-172"/>
+        </scene>
+        <!--Social-->
+        <scene sceneID="9EH-Kh-m94">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Social" referencedIdentifier="Social" id="cWs-2Y-LmY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Kz4-OP-yFl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5Q-pp-gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="-63"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="3c7-qg-Yzi">
+            <objects>
+                <tabBarController storyboardIdentifier="Home" id="GOE-25-Xjg" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="5nz-bh-bwT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="hCk-Qg-z0U" kind="relationship" relationship="viewControllers" id="SKF-KT-mfZ"/>
+                        <segue destination="cWs-2Y-LmY" kind="relationship" relationship="viewControllers" id="pIe-Si-VN3"/>
+                        <segue destination="kjg-7h-ahL" kind="relationship" relationship="viewControllers" id="a3i-s0-mjN"/>
+                        <segue destination="BiF-Dv-edH" kind="relationship" relationship="viewControllers" id="aRs-2O-eac"/>
+                        <segue destination="LIY-8t-FG2" kind="relationship" relationship="viewControllers" id="dG8-96-j7L"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M5g-fU-lMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783" y="-40"/>
+        </scene>
+    </scenes>
+</document>
