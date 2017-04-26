@@ -13,13 +13,11 @@
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-<<<<<<< Updated upstream
-=======
+
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eYK-Ib-kBf"/>
                         <viewControllerLayoutGuide type="bottom" id="gtc-jm-MnD"/>
                     </layoutGuides>
->>>>>>> Stashed changes
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,13 +70,11 @@
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-<<<<<<< Updated upstream
-=======
+
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h53-P5-6EP"/>
                         <viewControllerLayoutGuide type="bottom" id="tvi-ye-L4S"/>
                     </layoutGuides>
->>>>>>> Stashed changes
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,13 +113,11 @@
         <scene sceneID="OTY-Rh-Gth">
             <objects>
                 <viewController id="LzX-za-qbb" customClass="LoginViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-<<<<<<< Updated upstream
-=======
+
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="niZ-Dj-ah7"/>
                         <viewControllerLayoutGuide type="bottom" id="c7E-ka-O8A"/>
                     </layoutGuides>
->>>>>>> Stashed changes
                     <view key="view" contentMode="scaleToFill" id="IBB-gG-4AB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,11 +196,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFj-jo-Pce" id="avS-0X-kmE">
-<<<<<<< Updated upstream
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
->>>>>>> Stashed changes
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Automatically start tracking me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lF-nW-MjA">
@@ -231,11 +221,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hq2-Bu-ekU" id="QRQ-1l-4SI">
-<<<<<<< Updated upstream
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
->>>>>>> Stashed changes
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spotify connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBn-Hm-Swa">
