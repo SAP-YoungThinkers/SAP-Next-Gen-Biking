@@ -1,40 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="BZF-3y-Nqf">
+        <!--Marks & Routes-->
+        <scene sceneID="otN-V9-PfT">
             <objects>
-                <viewController storyboardIdentifier="Routes" id="czF-6W-wZM" sceneMemberID="viewController">
+                <viewController title="Marks &amp; Routes" id="ZLe-Hw-C3c" customClass="MarksRoutesViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dkW-Mv-Fc7"/>
-                        <viewControllerLayoutGuide type="bottom" id="aGs-4N-x2x"/>
+                        <viewControllerLayoutGuide type="top" id="6bc-cf-uPY"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Ms-6E-rzB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Nrr-Id-RiN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="rCE-EH-rhY">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Routes/Marks" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="085-Dj-xfA">
-                                <rect key="frame" x="109" y="279" width="127" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <tabBar contentMode="center" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJd-gq-daB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="OQD-7h-VgN"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="ROUTE INFO" id="Edq-7N-qUc">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="MY ROUTES" id="PZD-gx-7om">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    </tabBarItem>
+                                </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OJd-gq-daB" firstAttribute="leading" secondItem="rCE-EH-rhY" secondAttribute="leading" id="TaJ-74-Mmi"/>
+                            <constraint firstItem="OJd-gq-daB" firstAttribute="top" secondItem="6bc-cf-uPY" secondAttribute="bottom" id="yPe-iD-Gzb"/>
+                            <constraint firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="z6F-su-cRe"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Marks &amp; Routes" id="xDB-N6-Rkq">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="OVi-3b-s3k"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myRoutes" destination="PZD-gx-7om" id="O6z-5p-SHc"/>
+                        <outlet property="routeInformation" destination="Edq-7N-qUc" id="8fO-g4-nHc"/>
+                        <outlet property="topBar" destination="OJd-gq-daB" id="gyj-BS-I6a"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5kj-ow-hsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JoE-Ae-Uox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="-218"/>
+            <point key="canvasLocation" x="111" y="1248"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lBb-rJ-SKY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a6R-Ad-dlt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZLe-Hw-C3c" kind="relationship" relationship="rootViewController" id="jz8-L2-StS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tHN-ef-Hyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-686.5" y="1248.5"/>
         </scene>
     </scenes>
 </document>

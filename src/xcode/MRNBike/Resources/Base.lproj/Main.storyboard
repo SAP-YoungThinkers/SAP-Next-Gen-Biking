@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="iAi-rH-69v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,6 @@
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eYK-Ib-kBf"/>
                         <viewControllerLayoutGuide type="bottom" id="gtc-jm-MnD"/>
@@ -70,7 +69,6 @@
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h53-P5-6EP"/>
                         <viewControllerLayoutGuide type="bottom" id="tvi-ye-L4S"/>
@@ -113,7 +111,6 @@
         <scene sceneID="OTY-Rh-Gth">
             <objects>
                 <viewController id="LzX-za-qbb" customClass="LoginViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="niZ-Dj-ah7"/>
                         <viewControllerLayoutGuide type="bottom" id="c7E-ka-O8A"/>
@@ -338,84 +335,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFG-6a-GEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="585.5" y="1248.5"/>
-        </scene>
-        <!--Marks & Routes-->
-        <scene sceneID="do0-D2-42D">
-            <objects>
-                <viewController title="Marks &amp; Routes" id="7Pi-mG-mgT" customClass="MarksRoutesViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SiJ-Jv-skB"/>
-                        <viewControllerLayoutGuide type="bottom" id="qHx-U9-Gjt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CsV-3a-M7s">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tabBar contentMode="center" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tn-qM-Nes">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="ce3-V7-hWH"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="ROUTE INFO" id="yLl-Dg-xpx">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                                    </tabBarItem>
-                                    <tabBarItem title="MY ROUTES" id="l6i-79-oNS">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                                    </tabBarItem>
-                                </items>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
-                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </tabBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5tn-qM-Nes" firstAttribute="top" secondItem="SiJ-Jv-skB" secondAttribute="bottom" id="KT9-q6-KFs"/>
-                            <constraint firstItem="5tn-qM-Nes" firstAttribute="leading" secondItem="CsV-3a-M7s" secondAttribute="leading" id="ai9-dg-xRE"/>
-                            <constraint firstAttribute="trailing" secondItem="5tn-qM-Nes" secondAttribute="trailing" id="rEL-Vf-UrG"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Marks &amp; Routes" id="QDC-0h-yPm">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="hAZ-iy-OMe"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="TopBar" destination="5tn-qM-Nes" id="Zzp-aK-S03"/>
-                        <outlet property="myRoutes" destination="l6i-79-oNS" id="wdK-Xa-NTT"/>
-                        <outlet property="routeInformation" destination="yLl-Dg-xpx" id="Csw-fd-c9G"/>
-                        <outlet property="topBar" destination="5tn-qM-Nes" id="wX6-dZ-FNd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eUi-9k-8Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-99.5" y="1248.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vAi-rW-3zj">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iAi-rH-69v" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fod-Tk-DqM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7Pi-mG-mgT" kind="relationship" relationship="rootViewController" id="wuf-03-xs3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qd8-Js-ed6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-686.5" y="1248.5"/>
         </scene>
     </scenes>
     <resources>
