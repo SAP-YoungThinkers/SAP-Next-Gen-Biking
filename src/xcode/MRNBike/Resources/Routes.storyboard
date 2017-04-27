@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a6R-Ad-dlt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="center" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJd-gq-daB">
+                            <tabBar contentMode="center" translucent="NO" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="OJd-gq-daB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -45,7 +45,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tabBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hhF-Ia-5wh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hhF-Ia-5wh">
                                 <rect key="frame" x="0.0" y="60" width="375" height="543"/>
                             </mapView>
                         </subviews>
@@ -53,8 +53,13 @@
                         <constraints>
                             <constraint firstItem="hhF-Ia-5wh" firstAttribute="leading" secondItem="OJd-gq-daB" secondAttribute="leading" id="5Wh-lR-7gv"/>
                             <constraint firstItem="OJd-gq-daB" firstAttribute="leading" secondItem="rCE-EH-rhY" secondAttribute="leading" id="TaJ-74-Mmi"/>
+                            <constraint firstItem="OJd-gq-daB" firstAttribute="top" secondItem="6bc-cf-uPY" secondAttribute="bottom" id="a0g-Iq-BX2"/>
                             <constraint firstItem="hhF-Ia-5wh" firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="g5p-HO-yzf"/>
                             <constraint firstItem="hhF-Ia-5wh" firstAttribute="bottom" secondItem="2Ms-6E-rzB" secondAttribute="top" id="hRf-n5-hA1"/>
+                            <constraint firstItem="hhF-Ia-5wh" firstAttribute="top" secondItem="OJd-gq-daB" secondAttribute="bottom" id="iQe-h4-2VW"/>
+                            <constraint firstItem="hhF-Ia-5wh" firstAttribute="top" secondItem="OJd-gq-daB" secondAttribute="bottom" id="ikO-3z-m69"/>
+                            <constraint firstItem="OJd-gq-daB" firstAttribute="leading" secondItem="rCE-EH-rhY" secondAttribute="leading" id="jMq-hg-IdQ"/>
+                            <constraint firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="t2y-6t-QD8"/>
                             <constraint firstItem="OJd-gq-daB" firstAttribute="top" secondItem="6bc-cf-uPY" secondAttribute="bottom" id="yPe-iD-Gzb"/>
                             <constraint firstAttribute="trailing" secondItem="OJd-gq-daB" secondAttribute="trailing" id="z6F-su-cRe"/>
                         </constraints>
@@ -64,6 +69,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="OVi-3b-s3k"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="hhF-Ia-5wh" id="Goz-CV-66Z"/>
                         <outlet property="myRoutes" destination="PZD-gx-7om" id="O6z-5p-SHc"/>
                         <outlet property="routeInformation" destination="Edq-7N-qUc" id="8fO-g4-nHc"/>
                         <outlet property="topBar" destination="OJd-gq-daB" id="gyj-BS-I6a"/>
@@ -76,9 +82,9 @@
         <!--Navigation Controller-->
         <scene sceneID="lBb-rJ-SKY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a6R-Ad-dlt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RoutesStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,4 +99,5 @@
             <point key="canvasLocation" x="-686.5" y="1248.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -38,6 +38,8 @@
 		37B601FA1EB0B68000870844 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */; };
 		37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E91EB0B68000870844 /* Montserrat-Thin.otf */; };
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
+		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
+		37F2FF3E1EB24AEE00ECF6C6 /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3C1EB24AEE00ECF6C6 /* VCMapView.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
@@ -82,6 +84,8 @@
 		37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		37B601E91EB0B68000870844 /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
+		37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteReport.swift; path = MRNBike/RouteReport.swift; sourceTree = SOURCE_ROOT; };
+		37F2FF3C1EB24AEE00ECF6C6 /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VCMapView.swift; path = MRNBike/VCMapView.swift; sourceTree = SOURCE_ROOT; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -142,6 +146,8 @@
 		0137F1561EA2778100FCA949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
+				37F2FF3C1EB24AEE00ECF6C6 /* VCMapView.swift */,
 				37B601E01EB0B66A00870844 /* Fonts */,
 				0137F1571EA2778100FCA949 /* Assets.xcassets */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
@@ -322,10 +328,12 @@
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
+				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
+				37F2FF3E1EB24AEE00ECF6C6 /* VCMapView.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
 			);
