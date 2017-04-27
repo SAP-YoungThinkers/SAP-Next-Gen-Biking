@@ -53,6 +53,15 @@ class MarksRoutesViewController: UIViewController {
         // center map around position
         let centerPoint = getPosition()
         centerMap(centerPoint: centerPoint)
+        
+        
+        // show artwork on map
+        centerMap(centerPoint: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663))
+        
+        // ANNOTATION!
+        let artwork = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661), type: RouteReport.type.Recommendation)
+        
+        mapView.addAnnotation(artwork)
     }
     
     func getPosition() -> CLLocationCoordinate2D {
