@@ -9,7 +9,7 @@ import UIKit
 import CoreGraphics
 import MapKit
 
-class MarksRoutesViewController: UIViewController {
+class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarDelegate {
     
     @IBOutlet weak var topBar: UITabBar!
     @IBOutlet weak var routeInformation: UITabBarItem!
@@ -18,15 +18,28 @@ class MarksRoutesViewController: UIViewController {
     
     let config = Configurator()
     
-    var locationManager = LocationManager()
     var tempPlaceholder : UIView?
+    var locationManager = CLLocationManager()
+    var currentLocation: MKUserLocation?
+    var annotations : [RouteReport]? = [RouteReport]()
     
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        topBar.delegate = self
         
-        self.mapView.showsUserLocation = false
+        topBar.selectedItem = routeInformation
+        
+        //Mark: - Authorization
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        // Map preperations
+        mapView.delegate = self
+        mapView.mapType = .standard
         
         // Remove Grey Lines by initialising empty Image
         topBar.shadowImage = UIImage()
@@ -50,28 +63,116 @@ class MarksRoutesViewController: UIViewController {
         // add seperator
         tempPlaceholder = setupTabBarSeparators()
         
-        // center map around position
-        let centerPoint = getPosition()
-        centerMap(centerPoint: centerPoint)
         
+        // WHICH TAB SELECTED?
         
-        // show artwork on map
-        centerMap(centerPoint: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663))
-        
-        // ANNOTATION!
-        let artwork = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661), type: RouteReport.type.Recommendation)
-        
-        mapView.addAnnotation(artwork)
+        if(topBar.selectedItem == myRoutes) {
+            
+            // MY ROUTES
+            myRoutesContent()
+            
+            
+        } else {
+            
+            // ROUTES INFORMATION
+            routesInfoContent()
+
+        }
+    
     }
     
-    func getPosition() -> CLLocationCoordinate2D {
-        return locationManager.center
+    func myRoutesContent() {
+        
+        mapView.showsUserLocation = false
+        
+        // remove annotations
+        mapView.removeAnnotations(annotations!)
+        
+        
+        //TODO: Add my Routes
+        
+        
+        //TODO: focus map around routes
     }
     
-    func centerMap(centerPoint: CLLocationCoordinate2D){
-        let region = MKCoordinateRegion(center: centerPoint, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
+    func routesInfoContent() {
+        locationManager.startUpdatingLocation()
+        mapView.showsUserLocation = true
         
-        self.mapView.setRegion(region, animated: true)
+        // ANNOTATIONS!
+        
+        let testPin1 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663), type: RouteReport.Types.Recommendation)
+        let testPin2 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283023, longitude: -157.831003), type: RouteReport.Types.Warning)
+        
+        annotations?.append(testPin1)
+        annotations?.append(testPin2)
+        
+        
+        mapView.addAnnotations(annotations!)
+        
+        // center map around points
+        let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        //This method will be called when user changes tab.
+        
+        if(topBar.selectedItem == myRoutes) {
+            // MY ROUTES
+            myRoutesContent()
+            
+            
+        } else {
+            // ROUTES INFORMATION
+            routesInfoContent()
+            
+        }
+        
+    }
+    
+    
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
+        mapView.setRegion(region, animated: true)
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Don't want to show a custom image if the annotation is the user's location.
+        if !(annotation is RouteReport) {
+            return nil
+        }
+        
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
+        
+        if annotationView == nil{
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        let reportAnnotation = annotation as! RouteReport
+        
+        // Accessory
+        
+        if (reportAnnotation.pinType == RouteReport.Types.Dangerousness.rawValue) {
+            annotationView!.image = UIImage(named: "dangerous")
+        }
+        else if (reportAnnotation.pinType == RouteReport.Types.Recommendation.rawValue) {
+            annotationView!.image = UIImage(named: "recommendation")
+        }
+        else {
+            // Warning
+            annotationView!.image = UIImage(named: "warning")
+        }
+        
+        return annotationView
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
