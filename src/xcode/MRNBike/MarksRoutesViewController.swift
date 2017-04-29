@@ -230,6 +230,15 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         return separator
     }
     
+    
+    //MARK: Actions
+    
+    @IBAction func cancelToMarksRoutesViewController(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveReport(segue:UIStoryboardSegue) {
+    }    
+    
 }
 
 extension UIImage {
