@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="top" id="6bc-cf-uPY"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ms-6E-rzB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="rCE-EH-rhY">
+                    <view key="view" contentMode="scaleToFill" id="rCE-EH-rhY">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -86,7 +86,7 @@
         <!--Add Route Mark-->
         <scene sceneID="1Xd-i8-6k0">
             <objects>
-                <viewController id="xVH-8u-D9r" sceneMemberID="viewController">
+                <viewController id="xVH-8u-D9r" customClass="AddReportViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZoN-Ck-h0I"/>
                         <viewControllerLayoutGuide type="bottom" id="d8d-7g-4JB"/>
@@ -94,6 +94,42 @@
                     <view key="view" contentMode="scaleToFill" id="yI1-gm-obh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hj0-aj-8ZY">
+                                <rect key="frame" x="0.0" y="45" width="375" height="408"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WHAT DID YOU SEE?" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4ss-zy-0rX">
+                                <rect key="frame" x="26" y="475" width="109" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT1-ju-WrU">
+                                <rect key="frame" x="313" y="407" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="refreshLocation:" destination="xVH-8u-D9r" eventType="touchUpInside" id="agl-Qg-ZFJ"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENR-9e-8oX">
+                                <rect key="frame" x="16" y="584" width="250" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jg-g1-t4F">
+                                <rect key="frame" x="279" y="596" width="80" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="HUi-DD-idU" kind="unwind" unwindAction="saveReportWithSegue:" id="zCG-Q7-0EI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Route Mark" id="2ZO-G0-4Wv">
@@ -102,24 +138,22 @@
                                 <segue destination="HUi-DD-idU" kind="unwind" unwindAction="cancelToMarksRoutesViewControllerWithSegue:" id="OzT-uy-Aw4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="icF-XS-i2f">
-                            <connections>
-                                <segue destination="HUi-DD-idU" kind="unwind" unwindAction="saveReportWithSegue:" id="XzJ-cP-nqC"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="hj0-aj-8ZY" id="Lvd-oy-Q7K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fr-36-mVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HUi-DD-idU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1910" y="1248"/>
+            <point key="canvasLocation" x="1909.5999999999999" y="1247.2263868065968"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lBb-rJ-SKY">
             <objects>
                 <navigationController storyboardIdentifier="RoutesStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
