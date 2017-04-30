@@ -23,7 +23,6 @@ class RouteReport : NSObject, MKAnnotation {
     }
     
     init(title: String, message: String, coordinate: CLLocationCoordinate2D, type : Types) {
-        self.title = title
         self.subtitle = message
         self.coordinate = coordinate
         
@@ -31,6 +30,12 @@ class RouteReport : NSObject, MKAnnotation {
         case .Recommendation: pinType = Types.Recommendation.rawValue
         case .Warning: pinType = Types.Warning.rawValue
         case .Dangerousness : pinType = Types.Recommendation.rawValue
+        }
+        
+        switch type {
+        case .Dangerousness: self.title = "Danger"
+        case .Recommendation: self.title = "Recommendation"
+        case .Warning: self.title = "Warning"
         }
         
         super.init()
