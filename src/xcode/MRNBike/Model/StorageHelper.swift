@@ -102,7 +102,6 @@ class StorageHelper : NSObject {
         return jsonObject
     }
     
-    
     //TODO: make it stable
     static func generateJSONString(JSONObj: [String: Any]) -> NSString {
         
@@ -271,4 +270,80 @@ class StorageHelper : NSObject {
             }.resume()   //very important with urlsession
         
     }
+    
+    //Upload a report to Hana
+    static func uploadReportToHana(scriptName: String, paramDict: [String: String]?, data: Data) {
+        
+        let baseUrl = config.backendBaseURL
+        var fullUrl: String = baseUrl + scriptName
+        
+        // building the full URL for the REST call
+        if paramDict != nil {
+            fullUrl += "?"
+            for (key, value) in paramDict! {
+                if fullUrl.characters.last != "?" {
+                    fullUrl.append("&")
+                }
+                fullUrl += key + "=" + value
+            }
+        }
+        
+        let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
+        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
+        let base64LoginString = loginData.base64EncodedString()
+        
+        let url:URL = URL(string: fullUrl)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        let x_csrf_token = getToken(destination: baseUrl + scriptName, authorization: base64LoginString)
+        if x_csrf_token != nil {
+            request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
+        }
+        
+        request.httpBody = data
+        
+        let session = URLSession.shared
+        
+        //basic template of how communication with a server works
+        session.dataTask(with: request) {data, response, err in  //completion handler
+            
+            guard let responseText = response else {
+                
+                print("empty response")
+                return
+            }
+            
+            print(responseText)
+            
+            guard let responseData = data else{
+                print("nothing")
+                return
+            }
+            
+            print(responseData)
+            
+            do {
+                let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
+                
+                if let code = jsonBody?["code"] {
+                    if code as? Int == 201{  //upload successful
+                        
+            
+                    }
+                    else {
+                        print("Return code: " + (code as! String))
+                    }
+                }
+                
+            } catch {
+                print("The following error occured: ")
+                print(error)
+                return
+            }
+            
+            }.resume()   //very important with urlsession
+    }
+    
 }

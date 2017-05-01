@@ -12,10 +12,12 @@ import CoreLocation
 
 class AddReportViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    //MARK: Properties
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var messageBox: UITextView!
     
     var lastUserLocation: MKUserLocation?
     
-    @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
     let manager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
@@ -24,6 +26,7 @@ class AddReportViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     let button2 = RadioButtonClass(frame: CGRect(x: 20, y: 350, width: 50, height: 50))
     let button3 = RadioButtonClass(frame: CGRect(x: 20, y: 450, width: 50, height: 50))
     
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +57,34 @@ class AddReportViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         gestureRecognizer.minimumPressDuration = 2.0
         gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
         mapView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let message: String = String(messageBox.text)
+        var type : String
+        
+        if button1.isSelected {
+            type = "Recommendation"
+        } else if button2.isSelected {
+            type = "Warning"
+        } else {
+            type = "Dangerousness"
+        }
+        
+        var timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+        timestamp += timestamp + 7200
+        
+        let location: MKAnnotation = mapView.annotations.last!
+        let longitude: Double = location.coordinate.latitude
+        let latitude: Double = location.coordinate.longitude
+        
+        let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "long" : longitude, "lat" : latitude]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: data)
+
+        StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
