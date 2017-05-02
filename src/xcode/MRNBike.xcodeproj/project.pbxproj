@@ -37,6 +37,8 @@
 		1012FCBA1EB8E07100C2817B /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB11EB8E07100C2817B /* Montserrat-Regular.otf */; };
 		1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */; };
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
+		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
+		10FD07731EB936D000524F7E /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10FD07721EB936D000524F7E /* Start.storyboard */; };
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
@@ -79,6 +81,8 @@
 		1012FCB11EB8E07100C2817B /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "Fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
+		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
+		10FD07721EB936D000524F7E /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -150,7 +154,9 @@
 				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
 				D25F5AD41EAFF78400850388 /* Tracking.storyboard */,
 				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+				10FD07721EB936D000524F7E /* Start.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
+				108900091EB93D920030DBFB /* CreateProfile.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -287,9 +293,11 @@
 				1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
+				1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
 				1012FCB41EB8E07100C2817B /* Montserrat-Black.otf in Resources */,
+				10FD07731EB936D000524F7E /* Start.storyboard in Resources */,
 				1012FCB81EB8E07100C2817B /* Montserrat-Light.otf in Resources */,
 				1012FCB51EB8E07100C2817B /* Montserrat-Bold.otf in Resources */,
 				1012FCB61EB8E07100C2817B /* Montserrat-ExtraBold.otf in Resources */,
