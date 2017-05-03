@@ -18,7 +18,6 @@
 		0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1531EA2778100FCA949 /* StorageHelper.swift */; };
 		0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1541EA2778100FCA949 /* TrackPoint.swift */; };
 		0137F1711EA2778100FCA949 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1551EA2778100FCA949 /* User.swift */; };
-		0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1571EA2778100FCA949 /* Assets.xcassets */; };
 		0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */; };
 		0137F1741EA2778100FCA949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15A1EA2778100FCA949 /* Localizable.strings */; };
 		0137F1751EA2778100FCA949 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15C1EA2778100FCA949 /* Main.storyboard */; };
@@ -37,6 +36,7 @@
 		1012FCBA1EB8E07100C2817B /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB11EB8E07100C2817B /* Montserrat-Regular.otf */; };
 		1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */; };
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
+		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
 		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
 		10FD07731EB936D000524F7E /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10FD07721EB936D000524F7E /* Start.storyboard */; };
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
@@ -61,7 +61,6 @@
 		0137F1531EA2778100FCA949 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
 		0137F1541EA2778100FCA949 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		0137F1551EA2778100FCA949 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0137F1571EA2778100FCA949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0137F1591EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0137F15B1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0137F15D1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		1012FCB11EB8E07100C2817B /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "Fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
+		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
 		10FD07721EB936D000524F7E /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +142,8 @@
 		0137F1561EA2778100FCA949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */,
 				37B601E01EB0B66A00870844 /* Fonts */,
-				0137F1571EA2778100FCA949 /* Assets.xcassets */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				0137F15C1EA2778100FCA949 /* Main.storyboard */,
@@ -285,6 +285,7 @@
 				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
 				1012FCBA1EB8E07100C2817B /* Montserrat-Regular.otf in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
+				1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */,
 				1012FCB91EB8E07100C2817B /* Montserrat-Medium.otf in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
@@ -303,7 +304,6 @@
 				1012FCB61EB8E07100C2817B /* Montserrat-ExtraBold.otf in Resources */,
 				1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */,
 				D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */,
-				0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
