@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userPWTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
+    
+    
     let config = Configurator()
     var defaults = UserDefaults.standard
     
@@ -24,7 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.userNameTF.delegate = self
         self.userPWTF.delegate = self
-
+        
+        
         loginBtn.layer.cornerRadius = 10
         loginBtn.layer.borderWidth = 2
         loginBtn.layer.borderColor = config.yellowColor.cgColor
