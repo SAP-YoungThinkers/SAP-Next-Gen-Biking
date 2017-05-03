@@ -64,10 +64,10 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-kV-dh7">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-kV-dh7" userLabel="help">
                                 <rect key="frame" x="311" y="327" width="34" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="?" backgroundImage="helpbutton"/>
+                                <state key="normal" backgroundImage="helpbutton"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZx-gG-wNN">
                                 <rect key="frame" x="63" y="582" width="248" height="45"/>
@@ -115,7 +115,7 @@
         <!--View Controller Start-->
         <scene sceneID="LbR-Ki-xdB">
             <objects>
-                <viewController title="View Controller Start" id="Lf7-0r-559" sceneMemberID="viewController">
+                <viewController title="View Controller Start" id="Lf7-0r-559" customClass="StartViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9z-3s-lWq"/>
                         <viewControllerLayoutGuide type="bottom" id="8ms-Rg-VNI"/>
@@ -145,9 +145,38 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="TAKE THE TOUR" backgroundImage="taketour"/>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvK-dp-8Yz">
+                                <rect key="frame" x="105" y="524" width="170" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <state key="normal" title="START RIDING" backgroundImage="startridingbutton">
+                                    <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dyA-bj-nhK" kind="show" id="MWP-Eh-Nbc"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-eZ-ohJ" userLabel="closebutton">
+                                <rect key="frame" x="320" y="94" width="16" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal" backgroundImage="closetourbutton"/>
+                                <connections>
+                                    <action selector="closeTour:" destination="Lf7-0r-559" eventType="touchUpInside" id="VBT-xl-8yE"/>
+                                </connections>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="Sqb-gn-8zE">
+                                <rect key="frame" x="23" y="84" width="329" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="2OT-eZ-ohJ" id="mLC-gt-DHu"/>
+                        <outlet property="openbackImageView" destination="Sqb-gn-8zE" id="BVy-eS-T97"/>
+                        <outlet property="startRidingButton" destination="kvK-dp-8Yz" id="ScZ-19-2sO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJK-MM-RaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,11 +188,17 @@
         <image name="Loginbutton" width="425" height="80"/>
         <image name="Startbutton" width="310" height="80"/>
         <image name="arrowbutton" width="26" height="23"/>
+        <image name="backtour" width="584" height="931"/>
+        <image name="closetourbutton" width="24" height="23"/>
         <image name="facebookbutton" width="425" height="80"/>
         <image name="helpbutton" width="54" height="37"/>
         <image name="logoback" width="640" height="1136"/>
         <image name="messagebox" width="270" height="81"/>
         <image name="registerbutton" width="425" height="80"/>
+        <image name="startridingbutton" width="310" height="80"/>
         <image name="taketour" width="310" height="80"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MWP-Eh-Nbc"/>
+    </inferredMetricsTieBreakers>
 </document>

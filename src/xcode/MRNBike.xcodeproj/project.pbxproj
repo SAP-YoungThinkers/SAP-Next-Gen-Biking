@@ -25,8 +25,8 @@
 		0137F1771EA2778100FCA949 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1611EA2778100FCA949 /* Main.strings */; };
 		0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1631EA2778100FCA949 /* SecondViewController.swift */; };
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
-		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
 		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
+		10054D141EBA729400663ECA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10054D131EBA729400663ECA /* StartViewController.swift */; };
 		1012FCB41EB8E07100C2817B /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAB1EB8E07100C2817B /* Montserrat-Black.otf */; };
 		1012FCB51EB8E07100C2817B /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAC1EB8E07100C2817B /* Montserrat-Bold.otf */; };
 		1012FCB61EB8E07100C2817B /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAD1EB8E07100C2817B /* Montserrat-ExtraBold.otf */; };
@@ -71,6 +71,7 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		10054D131EBA729400663ECA /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1012FCAB1EB8E07100C2817B /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.otf"; path = "Fonts/Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1012FCAC1EB8E07100C2817B /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		1012FCAD1EB8E07100C2817B /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.otf"; path = "Fonts/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
+				10054D131EBA729400663ECA /* StartViewController.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -240,7 +242,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Marc Bormeth";
 				TargetAttributes = {
 					491EC5011DE421940077BF82 = {
@@ -289,7 +291,6 @@
 				1012FCB91EB8E07100C2817B /* Montserrat-Medium.otf in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
-				0137F17A1EA2778100FCA949 /* Info.plist in Resources */,
 				0137F1751EA2778100FCA949 /* Main.storyboard in Resources */,
 				1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
@@ -316,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
+				10054D141EBA729400663ECA /* StartViewController.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
