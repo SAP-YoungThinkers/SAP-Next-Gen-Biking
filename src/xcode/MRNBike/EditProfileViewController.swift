@@ -51,12 +51,17 @@ class EditProfileViewController : UIViewController {
         
         // surname
         if let surnameView : UILabel = userBarViewController?.view.viewWithTag(2) as? UILabel {
-            surnameView.font = UIFont.init(name: "Montserrat-Regular", size: 18)!
+            surnameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
         }
         
         // first name
         if let firstNameView : UILabel = userBarViewController?.view.viewWithTag(3) as? UILabel {
-            firstNameView.font = UIFont.init(name: "Montserrat-Regular", size: 18)!
+            firstNameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
+        }
+        
+        // surname input
+        if let firstNameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
+            firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
         }
     }
     
