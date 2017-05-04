@@ -38,6 +38,7 @@
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
 		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
 		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
+		10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A3189F1EBB088E00E1EE3B /* Home.storyboard */; };
 		10FD07731EB936D000524F7E /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10FD07721EB936D000524F7E /* Start.storyboard */; };
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
@@ -83,6 +84,7 @@
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
+		10A3189F1EBB088E00E1EE3B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		10FD07721EB936D000524F7E /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */,
+				10A3189F1EBB088E00E1EE3B /* Home.storyboard */,
 				37B601E01EB0B66A00870844 /* Fonts */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
@@ -296,6 +299,7 @@
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */,
+				10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
 				1012FCB41EB8E07100C2817B /* Montserrat-Black.otf in Resources */,

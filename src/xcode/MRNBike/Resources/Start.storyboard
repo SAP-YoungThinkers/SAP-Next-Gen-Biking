@@ -49,6 +49,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                 <state key="normal" title="LOG IN" backgroundImage="Loginbutton"/>
+                                <connections>
+                                    <segue destination="avx-za-Ctv" kind="show" id="TQc-sY-nYU"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Tz-xU-Y8F">
                                 <rect key="frame" x="34" y="255" width="309" height="30"/>
@@ -112,6 +115,14 @@
             </objects>
             <point key="canvasLocation" x="1186" y="-1322"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="Kzh-et-Eow">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Home" storyboardName="Home" id="avx-za-Ctv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBy-BE-9Gc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="-1203"/>
+        </scene>
         <!--View Controller Start-->
         <scene sceneID="LbR-Ki-xdB">
             <objects>
@@ -156,15 +167,6 @@
                                     <segue destination="dyA-bj-nhK" kind="show" id="MWP-Eh-Nbc"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-eZ-ohJ" userLabel="closebutton">
-                                <rect key="frame" x="320" y="94" width="16" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                <state key="normal" backgroundImage="closetourbutton"/>
-                                <connections>
-                                    <action selector="closeTour:" destination="Lf7-0r-559" eventType="touchUpInside" id="VBT-xl-8yE"/>
-                                </connections>
-                            </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="Sqb-gn-8zE">
                                 <rect key="frame" x="23" y="84" width="329" height="518"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -173,7 +175,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="2OT-eZ-ohJ" id="mLC-gt-DHu"/>
                         <outlet property="openbackImageView" destination="Sqb-gn-8zE" id="BVy-eS-T97"/>
                         <outlet property="startRidingButton" destination="kvK-dp-8Yz" id="ScZ-19-2sO"/>
                     </connections>
@@ -189,7 +190,6 @@
         <image name="Startbutton" width="310" height="80"/>
         <image name="arrowbutton" width="26" height="23"/>
         <image name="backtour" width="584" height="931"/>
-        <image name="closetourbutton" width="24" height="23"/>
         <image name="facebookbutton" width="425" height="80"/>
         <image name="helpbutton" width="54" height="37"/>
         <image name="logoback" width="640" height="1136"/>
