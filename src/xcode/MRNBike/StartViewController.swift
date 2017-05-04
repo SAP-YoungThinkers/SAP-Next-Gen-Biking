@@ -9,7 +9,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-   /*
+   
     @IBOutlet weak var opentour: UIButton!
     
     @IBOutlet weak var openBackImageView: UIImageView!
@@ -31,7 +31,8 @@ class StartViewController: UIViewController {
         closeButton.isHidden = true
     }
  
- */
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 

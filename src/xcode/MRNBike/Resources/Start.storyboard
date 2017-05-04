@@ -71,6 +71,9 @@
                                 <rect key="frame" x="311" y="327" width="34" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="helpbutton"/>
+                                <connections>
+                                    <action selector="openHelpMessage:" destination="dyA-bj-nhK" eventType="touchUpInside" id="YGN-I0-XEf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZx-gG-wNN">
                                 <rect key="frame" x="63" y="582" width="248" height="45"/>
@@ -81,17 +84,17 @@
                                 </state>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="messagebox" translatesAutoresizingMaskIntoConstraints="NO" id="bvd-z1-r3q">
-                                <rect key="frame" x="246" y="362" width="99" height="31"/>
+                                <rect key="frame" x="248" y="353" width="99" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPC-Ls-RVI">
-                                <rect key="frame" x="256" y="368" width="89" height="21"/>
+                                <rect key="frame" x="256" y="359" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-Nw-Qsd">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-Nw-Qsd" userLabel="arrowBack">
                                 <rect key="frame" x="19" y="59" width="15" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="arrowbutton"/>
@@ -99,6 +102,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="helpButton" destination="v4M-kV-dh7" id="sI5-tx-bd3"/>
+                        <outlet property="helpMessage" destination="bvd-z1-r3q" id="SPo-Xk-S5G"/>
+                        <outlet property="helpMessageBox" destination="MPC-Ls-RVI" id="Sft-eO-wN8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62q-oU-Ljd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -152,6 +160,9 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="TAKE THE TOUR" backgroundImage="taketour"/>
+                                <connections>
+                                    <action selector="openTour:" destination="Lf7-0r-559" eventType="touchUpInside" id="JEB-hu-j0C"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="Sqb-gn-8zE">
                                 <rect key="frame" x="23" y="84" width="329" height="518"/>
@@ -168,14 +179,23 @@
                                     <segue destination="dyA-bj-nhK" kind="show" id="MWP-Eh-Nbc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iye-tP-JfD" userLabel="closeButton">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iye-tP-JfD" userLabel="closeButton">
                                 <rect key="frame" x="323" y="87" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" backgroundImage="closetourbutton"/>
+                                <connections>
+                                    <action selector="closeTour:" destination="Lf7-0r-559" eventType="touchUpInside" id="2uj-8F-Rfl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="Iye-tP-JfD" id="KsC-mv-2Z1"/>
+                        <outlet property="openBackImageView" destination="Sqb-gn-8zE" id="HGn-oe-lBR"/>
+                        <outlet property="opentour" destination="Y75-d3-LFC" id="vht-Xg-W4v"/>
+                        <outlet property="startRidingButton" destination="kvK-dp-8Yz" id="6eP-dL-vXf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJK-MM-RaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

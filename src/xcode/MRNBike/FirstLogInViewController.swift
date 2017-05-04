@@ -10,6 +10,19 @@ import UIKit
 
 class FirstLogInViewController: UIViewController {
 
+    @IBOutlet weak var helpButton: UIButton!
+    
+    @IBOutlet weak var helpMessage: UIImageView!
+   
+    @IBOutlet weak var helpMessageBox: UILabel!
+    
+    @IBAction func openHelpMessage(_ sender: UIButton) {
+        helpMessage.isHidden = false
+        helpMessageBox.isHidden = false
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
