@@ -68,34 +68,6 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, MKMapViewD
         self.messageView.layer.borderWidth = 1
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        let message: String = messageBox.text!
-        var type : String
-        
-        if recommendationBtn.isSelected {
-            type = "Recommendation"
-        } else if warningBtn.isSelected {
-            type = "Warning"
-        } else {
-            type = "Dangerousness"
-        }
-        
-        var timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
-        timestamp += timestamp + 7200
-        
-        let location: MKAnnotation = mapView.annotations.last!
-        let longitude: Double = location.coordinate.latitude
-        let latitude: Double = location.coordinate.longitude
-        
-        let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "long" : longitude, "lat" : latitude]
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: data)
-
-        StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
-    }
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Access the last object from locations to get perfect current location
         if let location = locations.last {

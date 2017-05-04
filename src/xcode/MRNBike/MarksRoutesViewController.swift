@@ -237,6 +237,35 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
+        
+        if let addReportViewController = segue.source as? AddReportViewController {
+            
+            
+            let message: String = addReportViewController.messageBox.text!
+            var type : String
+            
+            if addReportViewController.recommendationBtn.isSelected {
+                type = "Recommendation"
+            } else if addReportViewController.warningBtn.isSelected {
+                type = "Warning"
+            } else {
+                type = "Dangerousness"
+            }
+            
+            var timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+            timestamp += timestamp + 7200
+            
+            let location: MKAnnotation = addReportViewController.mapView.annotations.last!
+            let longitude: Double = location.coordinate.latitude
+            let latitude: Double = location.coordinate.longitude
+            
+            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "long" : longitude, "lat" : latitude]
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: data)
+            
+            StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
+            
+        }
     }    
     
 }
