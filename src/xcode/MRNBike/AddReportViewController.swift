@@ -10,11 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddReportViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var messageBox: UITextField!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
     
     //Radio buttons
@@ -33,7 +33,17 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageBox.delegate = self
+        //Delegate textView Control for dismiss keyboard on pressing "return" key
+        textView.delegate = self
+        
+        //Set a placeholder for textView because it doesn't have inherently a placeholder    
+        textView.text = "Placeholder"
+        textView.textColor = UIColor.lightGray
+        
+        
+        //Notification for keyboard will show/will hide
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //Setup location manager and properties
         manager.delegate = self
@@ -112,10 +122,45 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, MKMapViewD
         }
     }
     
+    //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
     
-    //MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ messageBox: UITextField) -> Bool {
-        self.view.endEditing(true)
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    //Delete the programatically set placeholder in the textView when editing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    //If the user left textView empty, show the placeholder again
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    //MARK: UITextViewDelegate
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        if(text == "\n") {
+            view.endEditing(true)
+            return false
+        }
         return true
     }
     

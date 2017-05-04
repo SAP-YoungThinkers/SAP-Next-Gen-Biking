@@ -117,13 +117,13 @@
                                             <segue destination="HUi-DD-idU" kind="unwind" unwindAction="saveReportWithSegue:" id="CBd-6B-BMG"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvw-cD-SKt">
-                                        <rect key="frame" x="8" y="31" width="269" height="30"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write Message" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tKJ-nR-ER3">
+                                        <rect key="frame" x="8" y="8" width="269" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -216,9 +216,9 @@
                     <connections>
                         <outlet property="dangerBtn" destination="AVa-rk-4hN" id="dJB-be-FOy"/>
                         <outlet property="mapView" destination="hj0-aj-8ZY" id="Lvd-oy-Q7K"/>
-                        <outlet property="messageBox" destination="gvw-cD-SKt" id="D2G-nX-NHc"/>
                         <outlet property="messageView" destination="GG8-UV-9e5" id="xSh-ld-7U9"/>
                         <outlet property="recommendationBtn" destination="A2P-jy-w9v" id="f8y-hR-SbY"/>
+                        <outlet property="textView" destination="tKJ-nR-ER3" id="DuL-sd-wLq"/>
                         <outlet property="warningBtn" destination="nLF-Pq-e2c" id="gpg-VO-mGY"/>
                     </connections>
                 </viewController>
@@ -232,7 +232,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RoutesStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,7 +251,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QJD-vu-BYR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AZ8-MP-RDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZ8-MP-RDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

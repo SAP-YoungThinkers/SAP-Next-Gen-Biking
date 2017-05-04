@@ -240,8 +240,14 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         if let addReportViewController = segue.source as? AddReportViewController {
             
+            var message: String = String(addReportViewController.textView.text)
             
-            let message: String = addReportViewController.messageBox.text!
+            //Check if the user hasn't add any message.
+            let placeholder = "Placeholder"
+            if message == placeholder {
+                    message = "No information"
+            }
+            
             var type : String
             
             if addReportViewController.recommendationBtn.isSelected {
@@ -252,8 +258,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 type = "Dangerousness"
             }
             
-            var timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
-            timestamp += timestamp + 7200
+            let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
             let location: MKAnnotation = addReportViewController.mapView.annotations.last!
             let longitude: Double = location.coordinate.latitude
@@ -264,7 +269,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             
             StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
-            
         }
     }    
     
