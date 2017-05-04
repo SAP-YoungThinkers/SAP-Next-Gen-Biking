@@ -20,7 +20,7 @@
         <!--LogIn-->
         <scene sceneID="huD-xQ-ZIa">
             <objects>
-                <viewController title="LogIn" id="dyA-bj-nhK" sceneMemberID="viewController">
+                <viewController title="LogIn" id="dyA-bj-nhK" customClass="FirstLogInViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LCc-40-oDn"/>
                         <viewControllerLayoutGuide type="bottom" id="v7V-2D-xP3"/>
@@ -95,9 +95,6 @@
                                 <rect key="frame" x="19" y="59" width="15" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="arrowbutton"/>
-                                <connections>
-                                    <segue destination="Lf7-0r-559" kind="show" id="o8x-jQ-gkj"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,6 +153,10 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="TAKE THE TOUR" backgroundImage="taketour"/>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="Sqb-gn-8zE">
+                                <rect key="frame" x="23" y="84" width="329" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvK-dp-8Yz">
                                 <rect key="frame" x="105" y="524" width="170" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -167,17 +168,14 @@
                                     <segue destination="dyA-bj-nhK" kind="show" id="MWP-Eh-Nbc"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="Sqb-gn-8zE">
-                                <rect key="frame" x="23" y="84" width="329" height="518"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iye-tP-JfD" userLabel="closeButton">
+                                <rect key="frame" x="323" y="87" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="Button" backgroundImage="closetourbutton"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="openbackImageView" destination="Sqb-gn-8zE" id="BVy-eS-T97"/>
-                        <outlet property="startRidingButton" destination="kvK-dp-8Yz" id="ScZ-19-2sO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJK-MM-RaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,6 +188,7 @@
         <image name="Startbutton" width="310" height="80"/>
         <image name="arrowbutton" width="26" height="23"/>
         <image name="backtour" width="584" height="931"/>
+        <image name="closetourbutton" width="24" height="23"/>
         <image name="facebookbutton" width="425" height="80"/>
         <image name="helpbutton" width="54" height="37"/>
         <image name="logoback" width="640" height="1136"/>
