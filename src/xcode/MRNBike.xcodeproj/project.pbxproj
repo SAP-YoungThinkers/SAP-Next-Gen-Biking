@@ -37,6 +37,7 @@
 		1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */; };
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
 		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
+		102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102568AA1EBD09F3005469D1 /* StartPage.storyboard */; };
 		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
 		10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A3189F1EBB088E00E1EE3B /* Home.storyboard */; };
 		10A318A41EBB0ED500E1EE3B /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */; };
@@ -84,6 +85,7 @@
 		1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "Fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		102568AA1EBD09F3005469D1 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
 		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
 		10A3189F1EBB088E00E1EE3B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				10FD07721EB936D000524F7E /* Start.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
 				108900091EB93D920030DBFB /* CreateProfile.storyboard */,
+				102568AA1EBD09F3005469D1 /* StartPage.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				1012FCB91EB8E07100C2817B /* Montserrat-Medium.otf in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
+				102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */,
 				0137F1751EA2778100FCA949 /* Main.storyboard in Resources */,
 				1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="t7r-MP-VpF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+        <array key="Montserrat-Regular.otf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="dQo-8W-RIa">
+            <objects>
+                <navigationController id="t7r-MP-VpF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yNM-CQ-uvL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Wlc-WN-fCf" kind="relationship" relationship="rootViewController" id="13e-6G-6CG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGk-d0-N9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-807" y="113"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BV3-85-fiA">
+            <objects>
+                <navigationController id="AV3-Lu-yV6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Y7d-JO-fLj"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VsG-wz-pbC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dCd-7R-fVk" kind="relationship" relationship="rootViewController" id="wtj-pu-17i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxB-f6-Tne" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="113"/>
+        </scene>
+        <!--LogIn-->
+        <scene sceneID="w6I-f8-ALJ">
+            <objects>
+                <viewController title="LogIn" id="dCd-7R-fVk" customClass="FirstLogInViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qax-aA-XVX"/>
+                        <viewControllerLayoutGuide type="bottom" id="9wD-vX-PPM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cud-ti-etr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoback" translatesAutoresizingMaskIntoConstraints="NO" id="pPc-os-g5U">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEi-V5-aNm">
+                                <rect key="frame" x="63" y="525" width="248" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <state key="normal" title="REGISTER" backgroundImage="registerbutton">
+                                    <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyY-Up-AAu">
+                                <rect key="frame" x="63" y="467" width="248" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <state key="normal" title="LOG IN" backgroundImage="Loginbutton"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jlx-gM-lYa">
+                                <rect key="frame" x="34" y="255" width="309" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YYE-Fo-W9e">
+                                <rect key="frame" x="34" y="324" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqb-Yr-FdH" userLabel="help">
+                                <rect key="frame" x="311" y="327" width="34" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="helpbutton"/>
+                                <connections>
+                                    <action selector="openHelpMessage:" destination="dCd-7R-fVk" eventType="touchUpInside" id="ZGz-t3-exs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jq3-qz-hLL">
+                                <rect key="frame" x="63" y="582" width="248" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <state key="normal" title="SIGN UP VIA FACEBOOK" backgroundImage="facebookbutton">
+                                    <color key="titleColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="messagebox" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-Rf-n7o">
+                                <rect key="frame" x="248" y="353" width="99" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLu-40-7yu">
+                                <rect key="frame" x="256" y="359" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="9"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-4z-P7T" userLabel="arrowBack">
+                                <rect key="frame" x="19" y="59" width="15" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="arrowbutton"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Whj-r7-azc"/>
+                    <connections>
+                        <outlet property="helpButton" destination="oqb-Yr-FdH" id="vDl-Td-Hp7"/>
+                        <outlet property="helpMessage" destination="gA1-Rf-n7o" id="ARG-Zf-i8Q"/>
+                        <outlet property="helpMessageBox" destination="SLu-40-7yu" id="GrF-X5-D1D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3G6-Zf-5Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1406" y="113"/>
+        </scene>
+        <!--View Controller Start-->
+        <scene sceneID="sXh-Ia-6L2">
+            <objects>
+                <viewController title="View Controller Start" id="Wlc-WN-fCf" customClass="StartViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n7V-U4-Gy8"/>
+                        <viewControllerLayoutGuide type="bottom" id="nsE-Tc-SOt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5UW-SG-Hn7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Backgroundstart" translatesAutoresizingMaskIntoConstraints="NO" id="5Nc-zv-yZ3">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO0-9n-gbF">
+                                <rect key="frame" x="95" y="481" width="185" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="START" backgroundImage="Startbutton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5S-tW-0x4">
+                                <rect key="frame" x="95" y="551" width="185" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="TAKE THE TOUR" backgroundImage="taketour"/>
+                                <connections>
+                                    <action selector="openTour:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="Iwm-8b-tIz"/>
+                                </connections>
+                            </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-gV-bKS">
+                                <rect key="frame" x="23" y="84" width="329" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-XT-lLu">
+                                <rect key="frame" x="105" y="524" width="170" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <state key="normal" title="START RIDING" backgroundImage="startridingbutton">
+                                    <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IF-n5-dtQ" userLabel="closeButton">
+                                <rect key="frame" x="323" y="87" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" backgroundImage="closetourbutton"/>
+                                <connections>
+                                    <action selector="closeTour:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="Rnx-f2-AfK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aVA-Ci-jzY"/>
+                    <connections>
+                        <outlet property="closeButton" destination="7IF-n5-dtQ" id="iBP-0e-z0Y"/>
+                        <outlet property="openBackImageView" destination="E2p-gV-bKS" id="iE4-kb-g67"/>
+                        <outlet property="opentour" destination="Q5S-tW-0x4" id="NCb-gs-DZr"/>
+                        <outlet property="startRidingButton" destination="1np-XT-lLu" id="5nd-vu-0BI"/>
+                        <segue destination="AV3-Lu-yV6" kind="show" id="OV6-xV-TuV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hMS-9l-Ew7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-60" y="113"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Backgroundstart" width="640" height="1136"/>
+        <image name="Loginbutton" width="425" height="80"/>
+        <image name="Startbutton" width="310" height="80"/>
+        <image name="arrowbutton" width="26" height="23"/>
+        <image name="backtour" width="584" height="931"/>
+        <image name="closetourbutton" width="24" height="23"/>
+        <image name="facebookbutton" width="425" height="80"/>
+        <image name="helpbutton" width="54" height="37"/>
+        <image name="logoback" width="640" height="1136"/>
+        <image name="messagebox" width="270" height="81"/>
+        <image name="registerbutton" width="425" height="80"/>
+        <image name="startridingbutton" width="310" height="80"/>
+        <image name="taketour" width="310" height="80"/>
+    </resources>
+</document>
