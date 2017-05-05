@@ -39,6 +39,7 @@
 		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
 		102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102568AA1EBD09F3005469D1 /* StartPage.storyboard */; };
 		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
+		10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A284291EBD383000EC4011 /* TourViewController.swift */; };
 		10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A3189F1EBB088E00E1EE3B /* Home.storyboard */; };
 		10A318A41EBB0ED500E1EE3B /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */; };
 		10FD07731EB936D000524F7E /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10FD07721EB936D000524F7E /* Start.storyboard */; };
@@ -87,6 +88,7 @@
 		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		102568AA1EBD09F3005469D1 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
 		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
+		10A284291EBD383000EC4011 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = SupportingFiles/TourViewController.swift; sourceTree = "<group>"; };
 		10A3189F1EBB088E00E1EE3B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
 		10FD07721EB936D000524F7E /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				0137F1631EA2778100FCA949 /* SecondViewController.swift */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
+				10A284291EBD383000EC4011 /* TourViewController.swift */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
 				10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */,
 				10054D131EBA729400663ECA /* StartViewController.swift */,
@@ -339,6 +342,7 @@
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
+				10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,

@@ -1,43 +1,33 @@
 //
-//  StartViewController.swift
+//  TourViewController.swift
 //  MRNBike
 //
-//  Created by 1 on 03.05.17.
+//  Created by 1 on 06.05.17.
 //  Copyright © 2017 Marc Bormeth. All rights reserved.
 //
 
 import UIKit
 
-class StartViewController: UIViewController {
-   
-    @IBOutlet weak var opentour: UIButton!
+class TourViewController: UIViewController {
 
-    @IBOutlet weak var navigationBar: UINavigationItem!
-    
-    @IBOutlet weak var ContView: UIView!
-   
-    @IBAction func openTourPage(_ sender: UIButton) {
-        ContView.isHidden = false
+
+    @IBAction func closeTour(segue:UIStoryboardSegue) {
     }
-    
-
-    
  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-// Hide navigation Bar on start page
-self.navigationController?.isNavigationBarHidden = true
-        
-        
+
         // Do any additional setup after loading the view.
+   
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+      
         // Dispose of any resources that can be recreated.
     }
-    
+
 
     /*
     // MARK: - Navigation

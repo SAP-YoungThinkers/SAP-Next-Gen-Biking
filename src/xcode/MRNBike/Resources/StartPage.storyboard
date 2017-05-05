@@ -73,12 +73,18 @@
                                 <state key="normal" title="REGISTER" backgroundImage="registerbutton">
                                     <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="e8o-nR-lep" kind="show" id="HXV-1O-f6h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyY-Up-AAu">
                                 <rect key="frame" x="63" y="467" width="248" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                 <state key="normal" title="LOG IN" backgroundImage="Loginbutton"/>
+                                <connections>
+                                    <segue destination="5QM-xS-ypK" kind="show" id="bBe-aW-K7l"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jlx-gM-lYa">
                                 <rect key="frame" x="34" y="255" width="309" height="30"/>
@@ -146,6 +152,22 @@
             </objects>
             <point key="canvasLocation" x="1406" y="113"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="ApY-pj-I5y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="5QM-xS-ypK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQE-M2-IWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2004" y="80"/>
+        </scene>
+        <!--CreateProfile-->
+        <scene sceneID="QBR-Mr-wBA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateProfile" id="e8o-nR-lep" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZ3-iJ-SWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="215"/>
+        </scene>
         <!--Start page-->
         <scene sceneID="sXh-Ia-6L2">
             <objects>
@@ -192,35 +214,22 @@
                     <navigationItem key="navigationItem" id="8cA-y4-XqV"/>
                     <connections>
                         <outlet property="ContView" destination="PDH-fA-CVL" id="Kwa-a6-tB0"/>
-                        <outlet property="closeButton" destination="7IF-n5-dtQ" id="iBP-0e-z0Y"/>
                         <outlet property="navigationBar" destination="8cA-y4-XqV" id="fsQ-a5-InH"/>
-                        <outlet property="openBackImageView" destination="E2p-gV-bKS" id="iE4-kb-g67"/>
                         <outlet property="opentour" destination="Q5S-tW-0x4" id="NCb-gs-DZr"/>
-                        <outlet property="startRidingButton" destination="1np-XT-lLu" id="5nd-vu-0BI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMS-9l-Ew7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-60" y="112.89355322338831"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Pw0-5V-jUF">
-            <objects>
-                <viewController id="75C-0Z-0ru" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aou-g7-ezm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bxr-0w-pgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2594" y="-5"/>
-        </scene>
         <!--tourPage-->
         <scene sceneID="Rul-q9-hRQ">
             <objects>
-                <viewController title="tourPage" id="WAO-ba-0QS" sceneMemberID="viewController">
+                <viewController title="tourPage" id="WAO-ba-0QS" customClass="TourViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0mW-V4-ntP"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ik-ZY-emD"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="U0X-ye-pF1">
                         <rect key="frame" x="0.0" y="0.0" width="329" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,14 +238,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="329" height="523"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IF-n5-dtQ" userLabel="closeButton">
-                                <rect key="frame" x="302" y="9" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" backgroundImage="closetourbutton"/>
-                                <connections>
-                                    <action selector="closeTour:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="Rnx-f2-AfK"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-XT-lLu">
                                 <rect key="frame" x="79" y="427" width="170" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -248,13 +249,14 @@
                                     <segue destination="AV3-Lu-yV6" kind="show" id="Wxw-Nc-2Fn"/>
                                 </connections>
                             </button>
-                            <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fVM-BS-4yR">
-                                <rect key="frame" x="0.0" y="0.0" width="329" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Close" id="WMc-51-fqo"/>
-                                </items>
-                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyR-88-CXf" userLabel="closeButton">
+                                <rect key="frame" x="283" y="8" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="closetourbutton"/>
+                                <connections>
+                                    <segue destination="Wlc-WN-fCf" kind="show" id="Bx8-89-Tiz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -263,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnS-QZ-28B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="798"/>
+            <point key="canvasLocation" x="-60" y="797.90104947526243"/>
         </scene>
     </scenes>
     <resources>
