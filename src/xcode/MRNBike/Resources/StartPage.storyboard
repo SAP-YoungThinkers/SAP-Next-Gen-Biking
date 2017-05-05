@@ -129,7 +129,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Whj-r7-azc"/>
+                    <navigationItem key="navigationItem" title="Sign in" id="Whj-r7-azc">
+                        <barButtonItem key="leftBarButtonItem" image="arrowbutton" id="6y6-P7-YkG" userLabel="Back Arrow">
+                            <connections>
+                                <segue destination="Wlc-WN-fCf" kind="show" id="uIn-rW-vut"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="helpButton" destination="oqb-Yr-FdH" id="vDl-Td-Hp7"/>
                         <outlet property="helpMessage" destination="gA1-Rf-n7o" id="ARG-Zf-i8Q"/>
@@ -140,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="1406" y="113"/>
         </scene>
-        <!--View Controller Start-->
+        <!--Start page-->
         <scene sceneID="sXh-Ia-6L2">
             <objects>
-                <viewController title="View Controller Start" id="Wlc-WN-fCf" customClass="StartViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Start page" id="Wlc-WN-fCf" customClass="StartViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n7V-U4-Gy8"/>
                         <viewControllerLayoutGuide type="bottom" id="nsE-Tc-SOt"/>
@@ -170,44 +176,94 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="TAKE THE TOUR" backgroundImage="taketour"/>
                                 <connections>
-                                    <action selector="openTour:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="Iwm-8b-tIz"/>
+                                    <action selector="openTourPage:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="SYU-s4-ETo"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-gV-bKS">
-                                <rect key="frame" x="23" y="84" width="329" height="518"/>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDH-fA-CVL">
+                                <rect key="frame" x="23" y="87" width="329" height="524"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="WAO-ba-0QS" kind="embed" id="Dye-1V-g2I"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8cA-y4-XqV"/>
+                    <connections>
+                        <outlet property="ContView" destination="PDH-fA-CVL" id="Kwa-a6-tB0"/>
+                        <outlet property="closeButton" destination="7IF-n5-dtQ" id="iBP-0e-z0Y"/>
+                        <outlet property="navigationBar" destination="8cA-y4-XqV" id="fsQ-a5-InH"/>
+                        <outlet property="openBackImageView" destination="E2p-gV-bKS" id="iE4-kb-g67"/>
+                        <outlet property="opentour" destination="Q5S-tW-0x4" id="NCb-gs-DZr"/>
+                        <outlet property="startRidingButton" destination="1np-XT-lLu" id="5nd-vu-0BI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hMS-9l-Ew7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-60" y="112.89355322338831"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Pw0-5V-jUF">
+            <objects>
+                <viewController id="75C-0Z-0ru" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aou-g7-ezm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bxr-0w-pgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2594" y="-5"/>
+        </scene>
+        <!--tourPage-->
+        <scene sceneID="Rul-q9-hRQ">
+            <objects>
+                <viewController title="tourPage" id="WAO-ba-0QS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U0X-ye-pF1">
+                        <rect key="frame" x="0.0" y="0.0" width="329" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-gV-bKS">
+                                <rect key="frame" x="0.0" y="0.0" width="329" height="523"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-XT-lLu">
-                                <rect key="frame" x="105" y="524" width="170" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                <state key="normal" title="START RIDING" backgroundImage="startridingbutton">
-                                    <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IF-n5-dtQ" userLabel="closeButton">
-                                <rect key="frame" x="323" y="87" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IF-n5-dtQ" userLabel="closeButton">
+                                <rect key="frame" x="302" y="9" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" backgroundImage="closetourbutton"/>
                                 <connections>
                                     <action selector="closeTour:" destination="Wlc-WN-fCf" eventType="touchUpInside" id="Rnx-f2-AfK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-XT-lLu">
+                                <rect key="frame" x="79" y="427" width="170" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <state key="normal" title="START RIDING" backgroundImage="startridingbutton">
+                                    <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AV3-Lu-yV6" kind="show" id="Wxw-Nc-2Fn"/>
+                                </connections>
+                            </button>
+                            <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fVM-BS-4yR">
+                                <rect key="frame" x="0.0" y="0.0" width="329" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Close" id="WMc-51-fqo"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aVA-Ci-jzY"/>
-                    <connections>
-                        <outlet property="closeButton" destination="7IF-n5-dtQ" id="iBP-0e-z0Y"/>
-                        <outlet property="openBackImageView" destination="E2p-gV-bKS" id="iE4-kb-g67"/>
-                        <outlet property="opentour" destination="Q5S-tW-0x4" id="NCb-gs-DZr"/>
-                        <outlet property="startRidingButton" destination="1np-XT-lLu" id="5nd-vu-0BI"/>
-                        <segue destination="AV3-Lu-yV6" kind="show" id="OV6-xV-TuV"/>
-                    </connections>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hMS-9l-Ew7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AnS-QZ-28B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="113"/>
+            <point key="canvasLocation" x="-60" y="798"/>
         </scene>
     </scenes>
     <resources>
@@ -225,4 +281,7 @@
         <image name="startridingbutton" width="310" height="80"/>
         <image name="taketour" width="310" height="80"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uIn-rW-vut"/>
+    </inferredMetricsTieBreakers>
 </document>

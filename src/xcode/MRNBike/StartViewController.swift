@@ -17,12 +17,21 @@ class StartViewController: UIViewController {
     @IBOutlet weak var startRidingButton: UIButton!
     
     @IBOutlet weak var closeButton: UIButton!
+
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
-    @IBAction func openTour(_ sender: UIButton) {
+    @IBOutlet weak var ContView: UIView!
+   
+    @IBAction func openTourPage(_ sender: UIButton) {
+        ContView.isHidden = false
+    }
+    
+/*    @IBAction func openTour(_ sender: UIButton) {
         openBackImageView.isHidden = false
         startRidingButton.isHidden = false
         closeButton.isHidden = false
     }
+*/
     
     @IBAction func closeTour(_ sender: UIButton!)
     {
@@ -35,7 +44,11 @@ class StartViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+// Hide navigation Bar on start page
+self.navigationController?.isNavigationBarHidden = true
+        
+        
         // Do any additional setup after loading the view.
     }
 
