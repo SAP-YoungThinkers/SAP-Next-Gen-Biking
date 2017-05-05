@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </tabBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhF-Ia-5wh">
-                                <rect key="frame" x="0.0" y="60" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="494"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,6 +65,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="" image="routes-1x" selectedImage="selected_routes-1x" id="Jk0-M7-ola"/>
                     <navigationItem key="navigationItem" title="Marks &amp; Routes" id="xDB-N6-Rkq">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="OVi-3b-s3k">
                             <connections>
@@ -72,6 +73,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="hhF-Ia-5wh" id="Goz-CV-66Z"/>
                         <outlet property="myRoutes" destination="PZD-gx-7om" id="O6z-5p-SHc"/>
@@ -232,7 +234,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RoutesStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,7 +253,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QJD-vu-BYR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZ8-MP-RDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AZ8-MP-RDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -268,6 +270,8 @@
     <resources>
         <image name="Location" width="25" height="25"/>
         <image name="Send_Report" width="115" height="60"/>
+        <image name="routes-1x" width="52" height="30"/>
+        <image name="selected_routes-1x" width="52" height="30"/>
     </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -31,6 +31,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="Ry3-xd-OAv"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TUh-Bf-LxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
