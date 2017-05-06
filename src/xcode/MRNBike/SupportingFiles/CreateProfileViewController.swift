@@ -13,6 +13,24 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var photoImageView: UIImageView!
 
 
+    @IBOutlet weak var surnameTextField: UITextField!
+    
+    @IBOutlet weak var firstnameTextField: UITextField!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var repeatPasswordTextField: UITextField!
+    
+    @IBOutlet weak var infoShareSwitch: UISwitch!
+    
+    @IBOutlet weak var userWeightSlider: UISlider!
+ 
+    
+    @IBOutlet weak var userWheelSlider: UISlider!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +57,31 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         
     }
 
+    @IBAction func saveProfileButton(sender: AnyObject) {
+        let user = User()
+       
+        // Check passwords
+        if(passwordTextField.text == repeatPasswordTextField.text){
+            user.accountPassword = passwordTextField.text
+        } else {
+            user.accountPassword = nil
+        }
+        
+        user.accountSurname = surnameTextField.text
+        user.accountFirstName = firstnameTextField.text
+        user.accountName = emailTextField.text
+        user.accountShareInfo = infoShareSwitch.isOn
+        user.accountUserWeight = userWeightSlider.value
+        user.accountUserWheelSize = userWheelSlider.value
+        
+        
+    
+        //let surname = userSurname.text
+        //let firstname = userFirstName.text
+        
+        
+        
+    }
     /*
     // MARK: - Navigation
 
