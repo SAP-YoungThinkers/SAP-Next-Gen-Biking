@@ -14,38 +14,37 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupTabBarSeparators()
+        AddBackgroundColor()
+        
         // Do any additional setup after loading the view.
     }
     
     
+    
+    // Adding Separatos between TabBarItems
+    
     func setupTabBarSeparators() {
         let itemWidth = floor(self.tabBar.frame.size.width / CGFloat(self.tabBar.items!.count))
         
-        // this is the separator width.  0.5px matches the line at the top of the tab bar
+       
         let separatorWidth: CGFloat = 0.5
         
-        // iterate through the items in the Tab Bar, except the last one
         for i in 0...(self.tabBar.items!.count - 1) {
-            // make a new separator at the end of each tab bar item
-            let separator = UIView(frame: CGRect(x: itemWidth * CGFloat(i + 1) - CGFloat(separatorWidth / 2), y: 0, width: CGFloat(separatorWidth), height: self.tabBar.frame.size.height))
             
-            // set the color to light gray (default line color for tab bar)
-            separator.backgroundColor = UIColor.lightGray
+            let separator = UIView(frame: CGRect(x: itemWidth * CGFloat(i + 1) - CGFloat(separatorWidth / 2), y: 0, width: CGFloat(separatorWidth), height: self.tabBar.frame.size.height))
+
+            separator.backgroundColor = UIColor.black
             
             self.tabBar.addSubview(separator)
         }
+    }
     
+    
+    //Adding Background Colour for selected and unselected TabBarItems
     
     func AddBackgroundColor(){
        
-            // Sets the default color of the icon of the selected UITabBarItem and Title
-            
-            UITabBar.appearance().tintColor = UIColor.red
-        
-        // Sets the default color of the background of the UITabBar
-        UITabBar.appearance().barTintColor = UIColor.black
-        
-        // Sets the background color of the selected UITabBarItem (using and plain colored UIImage with the width = 1/5 of the tabBar (if you have 5 items) and the height of the tabBar)
+        UITabBar.appearance().barTintColor = UIColor.init(red: 29.0/255, green: 41.0/255, blue: 52.0/255, alpha: 1.0)
         
         //UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(color: UIColor.white, size: CGSize(tabBar.frame.width/5, tabBar.frame.height))
         
@@ -54,11 +53,11 @@ class TabBarViewController: UITabBarController {
             if let image = item.image {
                 item.image = image.withRenderingMode(.alwaysOriginal)
             }
-            
-    
-    
+        }
+        }
 
-    func didReceiveMemoryWarning() {
+
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -66,6 +65,4 @@ class TabBarViewController: UITabBarController {
 
     
 }
-}
-}
-}
+
