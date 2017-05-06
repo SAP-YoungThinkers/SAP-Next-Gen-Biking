@@ -10,10 +10,7 @@ import UIKit
 
 class TourViewController: UIViewController {
 
-
-    @IBAction func closeTour(segue:UIStoryboardSegue) {
-    }
- 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
