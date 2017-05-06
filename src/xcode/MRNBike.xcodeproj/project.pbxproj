@@ -43,7 +43,7 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
-		D249BADA1EBD03D500BAF27C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D249BAD91EBD03D500BAF27C /* TabBarViewController.swift */; };
+		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
@@ -96,7 +96,7 @@
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
-		D249BAD91EBD03D500BAF27C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingScreen.storyboard; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
 				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
 				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
-				D249BAD91EBD03D500BAF27C /* TabBarViewController.swift */,
+				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
 				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
 			);
 			path = MRNBike;
@@ -344,9 +344,9 @@
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
-				D249BADA1EBD03D500BAF27C /* TabBarViewController.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
+				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
