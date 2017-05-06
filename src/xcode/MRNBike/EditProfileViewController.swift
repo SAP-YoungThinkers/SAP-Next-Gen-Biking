@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController : UIViewController {
+class EditProfileViewController : UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var imageBG: UIImageView!
     @IBOutlet weak var PrefStack: UIStackView!
@@ -17,6 +17,9 @@ class EditProfileViewController : UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var userBar: UIView!
+    @IBOutlet weak var scrollView : UIScrollView!
+    @IBOutlet weak var email : UILabel!
+    
     
     var userBarViewController : UserBarViewController!
     let userBarSegueName = "userBarSegue"
@@ -52,17 +55,40 @@ class EditProfileViewController : UIViewController {
         // surname
         if let surnameView : UILabel = userBarViewController?.view.viewWithTag(2) as? UILabel {
             surnameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
+            surnameView.numberOfLines = 0
+            surnameView.sizeToFit()
         }
         
         // first name
         if let firstNameView : UILabel = userBarViewController?.view.viewWithTag(3) as? UILabel {
             firstNameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
+            firstNameView.numberOfLines = 0
+            firstNameView.sizeToFit()
         }
         
         // surname input
-        if let firstNameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
+        if let lastNameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
+            lastNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
+        }
+        
+        // first name input
+        if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
         }
+        
+        /*
+            ========= USER INPUTS =========
+         */
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+        // email label
+        email.font = UIFont(name: "Montserrat-Regular", size: 16)
+        email.numberOfLines = 0
+        email.sizeToFit()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
