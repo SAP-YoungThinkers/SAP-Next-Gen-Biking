@@ -38,7 +38,7 @@
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
 		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
 		102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102568AA1EBD09F3005469D1 /* StartPage.storyboard */; };
-		1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108900091EB93D920030DBFB /* CreateProfile.storyboard */; };
+		109B85361EBD6FF80070FB4D /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */; };
 		10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A284291EBD383000EC4011 /* TourViewController.swift */; };
 		10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A3189F1EBB088E00E1EE3B /* Home.storyboard */; };
 		10A318A41EBB0ED500E1EE3B /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */; };
@@ -86,7 +86,7 @@
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		102568AA1EBD09F3005469D1 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
-		108900091EB93D920030DBFB /* CreateProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
+		109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProfileViewController.swift; path = SupportingFiles/CreateProfileViewController.swift; sourceTree = "<group>"; };
 		10A284291EBD383000EC4011 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = SupportingFiles/TourViewController.swift; sourceTree = "<group>"; };
 		10A3189F1EBB088E00E1EE3B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +127,7 @@
 				0137F1631EA2778100FCA949 /* SecondViewController.swift */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
+				109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */,
 				10A284291EBD383000EC4011 /* TourViewController.swift */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
 				10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */,
@@ -166,7 +167,6 @@
 				D25F5AD41EAFF78400850388 /* Tracking.storyboard */,
 				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
-				108900091EB93D920030DBFB /* CreateProfile.storyboard */,
 				102568AA1EBD09F3005469D1 /* StartPage.storyboard */,
 			);
 			path = Resources;
@@ -305,7 +305,6 @@
 				1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
-				1089000A1EB93D920030DBFB /* CreateProfile.storyboard in Resources */,
 				10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
@@ -340,6 +339,7 @@
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
 				10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
+				109B85361EBD6FF80070FB4D /* CreateProfileViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
 			);
