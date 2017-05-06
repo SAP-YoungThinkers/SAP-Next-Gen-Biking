@@ -12,10 +12,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
 
     @IBOutlet weak var photoImageView: UIImageView!
 
-    @IBAction func doneButton(segue:UIStoryboardSegue) {
-    }
-    @IBAction func backButton(segue:UIStoryboardSegue) {
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

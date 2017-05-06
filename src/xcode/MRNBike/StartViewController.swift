@@ -15,6 +15,9 @@ class StartViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     @IBOutlet weak var ContView: UIView!
+    
+    @IBAction func backToStart(_ segue:UIStoryboardSegue) {
+    }
    
     @IBAction func openTourPage(_ sender: UIButton) {
         ContView.isHidden = false

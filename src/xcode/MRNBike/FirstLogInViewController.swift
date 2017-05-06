@@ -10,6 +10,7 @@ import UIKit
 
 class FirstLogInViewController: UIViewController {
 
+
     @IBOutlet weak var helpButton: UIButton!
     
     @IBOutlet weak var helpMessage: UIImageView!
@@ -22,6 +23,10 @@ class FirstLogInViewController: UIViewController {
         
     }
     
+    @IBAction func doneButton(segue:UIStoryboardSegue) {
+    }
+    @IBAction func backButton(segue:UIStoryboardSegue) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
