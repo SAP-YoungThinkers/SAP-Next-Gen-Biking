@@ -28,6 +28,11 @@
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
 		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
+		0A259E561EBFB1140050AC0F /* ThisTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E551EBFB1140050AC0F /* ThisTracking.swift */; };
+		0A259E5A1EBFB13D0050AC0F /* trackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E581EBFB13D0050AC0F /* trackview.swift */; };
+		0A259E5C1EBFB14B0050AC0F /* trackviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */; };
+		0A259E5E1EBFB1620050AC0F /* SaveRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */; };
+		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
 		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
 		37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E21EB0B68000870844 /* Montserrat-Bold.otf */; };
@@ -48,7 +53,6 @@
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
-		D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD41EAFF78400850388 /* Tracking.storyboard */; };
 		D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD61EAFF7B700850388 /* Social.storyboard */; };
 		D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD81EAFF7E900850388 /* Routes.storyboard */; };
 		D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */; };
@@ -78,6 +82,11 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		0A259E551EBFB1140050AC0F /* ThisTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThisTracking.swift; path = Resources/ThisTracking.swift; sourceTree = "<group>"; };
+		0A259E581EBFB13D0050AC0F /* trackview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = trackview.swift; path = Resources/trackview.swift; sourceTree = "<group>"; };
+		0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = trackviewcontroller.swift; path = Resources/trackviewcontroller.swift; sourceTree = "<group>"; };
+		0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveRouteViewController.swift; path = Resources/SaveRouteViewController.swift; sourceTree = "<group>"; };
+		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -101,7 +110,6 @@
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
 		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		D25F5AD41EAFF78400850388 /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
 		D25F5AD61EAFF7B700850388 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
 		D25F5AD81EAFF7E900850388 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
 				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
 				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
+				0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */,
+				0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */,
+				0A259E551EBFB1140050AC0F /* ThisTracking.swift */,
+				0A259E581EBFB13D0050AC0F /* trackview.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -171,8 +183,8 @@
 				D25F5ACD1EAFF5C900850388 /* Home.storyboard */,
 				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
 				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
-				D25F5AD41EAFF78400850388 /* Tracking.storyboard */,
 				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+				0A259E611EBFBE950050AC0F /* Tracking.storyboard */,
 				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
 			);
@@ -306,6 +318,7 @@
 				D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */,
 				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
+				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
@@ -320,7 +333,6 @@
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
-				D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */,
 				0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
 				37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */,
@@ -336,13 +348,16 @@
 			files = (
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				0A259E561EBFB1140050AC0F /* ThisTracking.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
+				0A259E5E1EBFB1620050AC0F /* SaveRouteViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
+				0A259E5C1EBFB14B0050AC0F /* trackviewcontroller.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
@@ -351,6 +366,7 @@
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
+				0A259E5A1EBFB13D0050AC0F /* trackview.swift in Sources */,
 				4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
