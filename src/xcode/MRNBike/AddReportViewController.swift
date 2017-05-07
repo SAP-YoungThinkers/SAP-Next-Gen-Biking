@@ -37,7 +37,7 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         textView.delegate = self
         
         //Set a placeholder for textView because it doesn't have inherently a placeholder    
-        textView.text = "Placeholder"
+        textView.text = "Message..."
         textView.textColor = UIColor.lightGray
         
         
@@ -150,7 +150,7 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     //If the user left textView empty, show the placeholder again
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Message..."
             textView.textColor = UIColor.lightGray
         }
     }

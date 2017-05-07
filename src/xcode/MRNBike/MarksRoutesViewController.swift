@@ -231,6 +231,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
     
     
+    
     //MARK: Actions
     
     @IBAction func cancelToMarksRoutesViewController(segue:UIStoryboardSegue) {
@@ -238,13 +239,16 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
         
+        var status: String = ""
+        var alertTitle: String = ""
+        var alertMessage: String = ""
+        
         if let addReportViewController = segue.source as? AddReportViewController {
             
             var message: String = String(addReportViewController.textView.text)
             
             //Check if the user hasn't add any message.
-            let placeholder = "Placeholder"
-            if message == placeholder {
+            if message == "Message..." {
                     message = "No information"
             }
             
@@ -268,9 +272,21 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             
-            StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
+            status = StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
+            
+            if status == "1" {
+                alertTitle = "Upload successful"
+                alertMessage = "Report uploaded."
+            } else if status == "2" {
+                alertTitle = "Error"
+                alertMessage = "Something went wrong."
+            } else {
+                alertTitle = "Error"
+                alertMessage = status
+            }
+            
         }
-    }    
+    }
     
 }
 
