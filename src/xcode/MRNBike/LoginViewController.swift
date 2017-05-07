@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Action
     @IBAction func onPressLogin() {
-        
+/*
         User.accountName = userNameTF.text
         User.accountPassword = userPWTF.text
         
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let initialViewController = self.storyboard!.instantiateViewController(withIdentifier: "tabBarID")
         appDelagate.window?.rootViewController = initialViewController
         appDelagate.window?.makeKeyAndVisible()
-        
+*/       
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

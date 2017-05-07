@@ -74,12 +74,20 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         user.accountUserWeight = userWeightSlider.value
         user.accountUserWheelSize = userWheelSlider.value
         
-        
-    
-        //let surname = userSurname.text
-        //let firstname = userFirstName.text
-        
-        
+        // Creation object
+        var users = UserDefaults.standard.object(forKey: "userTable") as? Dictionary<String,User>
+        if (users == nil) {
+            // Creation hash table
+            users = Dictionary<String,User>.init()
+            // Adding table to the stored data
+            UserDefaults.standard.set(users, forKey: "userTable")
+            // Sent data to the table
+            users![user.accountName] = user
+           }
+        else {
+            users![user.accountName] = user
+         
+        }
         
     }
     /*

@@ -10,7 +10,7 @@ import Foundation
 
 class User : NSObject {
     
-    var accountName: String? = nil
+    var accountName: String!
     var accountPassword: String? = nil
     var accountSurname: String? = nil
     var accountFirstName: String? = nil
