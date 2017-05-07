@@ -78,7 +78,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             routesInfoContent()
 
         }
-    
     }
     
     func myRoutesContent() {
@@ -95,11 +94,25 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         //TODO: focus map around routes
     }
     
+   
     func routesInfoContent() {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
         // ANNOTATIONS!
+        StorageHelper.makeRequest(scriptName: "report/queryReport.xsjs", completion: { response in
+            
+            if let reports = response["records"] as? [[String: AnyObject]] {
+                
+                for report in reports {
+                    
+                    let description = report["description"] as? String
+                    let type = report["type"] as? String
+                    print(description!,type!)
+                    
+                }
+            }
+        })
         
         let testPin1 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663), type: RouteReport.Types.Recommendation)
         let testPin2 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283023, longitude: -157.831003), type: RouteReport.Types.Warning)

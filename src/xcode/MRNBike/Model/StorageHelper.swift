@@ -171,6 +171,64 @@ class StorageHelper : NSObject {
         return token
     }
     
+    static func makeRequest(scriptName: String, completion: @escaping (_ reports: [String: AnyObject]) -> Void){
+        
+        let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
+        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
+        let base64LoginString = loginData.base64EncodedString()
+        
+        let url:URL = URL(string: config.backendBaseURL + scriptName)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Fetch", forHTTPHeaderField: "X-Csrf-Token")
+        
+        let session = URLSession.shared
+        
+        session.dataTask(with: request, completionHandler: {(data, response, error) in
+            
+            guard let responseText = response else {
+                print("empty response")
+                return
+            }
+            
+            guard let responseData = data else{
+                print("nothing")
+                return
+            }
+            
+            if(error != nil){
+                print("error")
+            }else{
+                do{
+                    let json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
+                    
+                    completion(json)
+                    
+                    /*
+                     let reports = json["records"] as? [[String: AnyObject]]
+                     
+                     if let reports = json["records"] as? [[String: AnyObject]] {
+                     
+                     for report in reports {
+                     
+                     let description = report["description"] as? String
+                     let type = report["type"] as? String
+                     print(description!,type!)
+                     
+                     }
+                     
+                     }
+                     */
+                    
+                }catch let error as NSError{
+                    print(error)
+                }
+            }
+        }).resume()
+    }
+
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
         let baseUrl = config.backendBaseURL
