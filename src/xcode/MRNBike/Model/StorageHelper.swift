@@ -272,8 +272,9 @@ class StorageHelper : NSObject {
     }
     
     //Upload a report to Hana
-    static func uploadReportToHana(scriptName: String, paramDict: [String: String]?, data: Data) {
+    static func uploadReportToHana(scriptName: String, paramDict: [String: String]?, data: Data) -> String {
         
+        var status = ""
         let baseUrl = config.backendBaseURL
         var fullUrl: String = baseUrl + scriptName
         
@@ -306,8 +307,7 @@ class StorageHelper : NSObject {
         
         let session = URLSession.shared
         
-        //basic template of how communication with a server works
-        session.dataTask(with: request) {data, response, err in  //completion handler
+        session.dataTask(with: request) {data, response, err in
             
             guard let responseText = response else {
                 
@@ -329,21 +329,18 @@ class StorageHelper : NSObject {
                 
                 if let code = jsonBody?["code"] {
                     if code as? Int == 201{  //upload successful
-                        
-            
+                        status = "1"
                     }
                     else {
-                        print("Return code: " + (code as! String))
+                        status = "2"
                     }
                 }
                 
             } catch {
-                print("The following error occured: ")
-                print(error)
-                return
+                status = error as! String
             }
-            
-            }.resume()   //very important with urlsession
+            }.resume()
+        return status
     }
     
 }
