@@ -18,7 +18,35 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var userBar: UIView!
     @IBOutlet weak var scrollView : UIScrollView!
+    
+    // options
     @IBOutlet weak var email : UILabel!
+    @IBOutlet weak var password : UILabel!
+    @IBOutlet weak var repeatPassword : UILabel!
+    @IBOutlet weak var activityShare: UILabel!
+    @IBOutlet weak var personalInfo: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var wheelSize: UILabel!
+    
+    // inputs
+    @IBOutlet weak var inputEmail : UITextField!
+    @IBOutlet weak var inputPassword : UITextField!
+    @IBOutlet weak var inputPasswordRepeat : UITextField!
+    @IBOutlet weak var inputActivity: UISwitch!
+    @IBOutlet weak var inputIndicatorWeight: UILabel!
+    @IBOutlet weak var inputWeight: UISlider!
+    @IBOutlet weak var inputIndicatorWheel: UILabel!
+    @IBOutlet weak var inputWheelSize: UISlider!
+    
+    @IBAction func weightChanged(_ sender: UISlider) {
+        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
+        inputIndicatorWeight.sizeToFit()
+    }
+    
+    @IBAction func wheelChanged(_ sender: UISlider) {
+        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inch"
+        inputIndicatorWheel.sizeToFit()
+    }
     
     
     var userBarViewController : UserBarViewController!
@@ -77,17 +105,25 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate {
         }
         
         /*
-            ========= USER INPUTS =========
+            ========= USER OPTIONS =========
          */
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = true
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         
-        // email label
-        email.font = UIFont(name: "Montserrat-Regular", size: 16)
-        email.numberOfLines = 0
+        // labels to fit size
         email.sizeToFit()
+        password.sizeToFit()
+        repeatPassword.sizeToFit()
+        activityShare.sizeToFit()
+        personalInfo.sizeToFit()
+        inputIndicatorWeight.sizeToFit()
+        weight.sizeToFit()
+        inputIndicatorWheel.sizeToFit()
+        wheelSize.sizeToFit()
+        
+        // slider targets
         
     }
     
