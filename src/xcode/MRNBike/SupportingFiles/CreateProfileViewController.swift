@@ -47,20 +47,40 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     
     @IBAction func weightSliderValueChange(_ sender: UISlider) {
     var currentWeight = Int (sender.value)
-        currentWeightLabel.text = "\(currentWeight)"
+        currentWeightLabel.text = "\(currentWeight) " + " kg"
     }
     
     @IBOutlet weak var currentWheelLabel: UILabel!
 
     @IBAction func currentWheelChange(_ sender: UISlider) {
     var currentWheel = Int (sender.value)
-    currentWheelLabel.text = "\(currentWheel)"
+    currentWheelLabel.text = "\(currentWheel)" + " inch"
         
     }
 // Picture
-
+    //MARK: UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        // Set photoImageView to display the selected image.
+        photoImageView.image = selectedImage
+        
+        // Dismiss the picker. 
+        dismiss(animated: true, completion: nil) 
+    }
+    
+    //MARK: Actions
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
-
+        
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -70,9 +90,9 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-        
+        present(imagePickerController, animated: true, completion: nil) 
     }
+    
 // Save profile
 
     @IBAction func saveProfileButton(sender: AnyObject) {
