@@ -26,7 +26,6 @@
 		0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1631EA2778100FCA949 /* SecondViewController.swift */; };
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
-		10054D141EBA729400663ECA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10054D131EBA729400663ECA /* StartViewController.swift */; };
 		1012FCB41EB8E07100C2817B /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAB1EB8E07100C2817B /* Montserrat-Black.otf */; };
 		1012FCB51EB8E07100C2817B /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAC1EB8E07100C2817B /* Montserrat-Bold.otf */; };
 		1012FCB61EB8E07100C2817B /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCAD1EB8E07100C2817B /* Montserrat-ExtraBold.otf */; };
@@ -37,11 +36,17 @@
 		1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */; };
 		1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */; };
 		1022645B1EBA3AB2007ACDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */; };
-		102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102568AA1EBD09F3005469D1 /* StartPage.storyboard */; };
 		109B85361EBD6FF80070FB4D /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */; };
-		10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A284291EBD383000EC4011 /* TourViewController.swift */; };
+		109C96F61EBF1CC20057CF9B /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 109C96F51EBF1CC20057CF9B /* StartPage.storyboard */; };
+		109C97D71EBF21470057CF9B /* Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97D61EBF21470057CF9B /* Inspectable.swift */; };
+		109C97D91EBF21510057CF9B /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97D81EBF21510057CF9B /* CornerView.swift */; };
+		109C97DB1EBF21590057CF9B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97DA1EBF21590057CF9B /* Color.swift */; };
+		109C97DD1EBF215E0057CF9B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97DC1EBF215E0057CF9B /* Button.swift */; };
+		109C97DF1EBF21630057CF9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97DE1EBF21630057CF9B /* ViewController.swift */; };
+		109C97E31EBF21C20057CF9B /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97E21EBF21C20057CF9B /* TourViewController.swift */; };
+		109C97E51EBF21CC0057CF9B /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97E41EBF21CC0057CF9B /* FirstLogInViewController.swift */; };
+		109C97E71EBF21D60057CF9B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109C97E61EBF21D60057CF9B /* StartViewController.swift */; };
 		10A318A01EBB088E00E1EE3B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A3189F1EBB088E00E1EE3B /* Home.storyboard */; };
-		10A318A41EBB0ED500E1EE3B /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */; };
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
@@ -74,7 +79,6 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		10054D131EBA729400663ECA /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1012FCAB1EB8E07100C2817B /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.otf"; path = "Fonts/Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1012FCAC1EB8E07100C2817B /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		1012FCAD1EB8E07100C2817B /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.otf"; path = "Fonts/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -85,11 +89,17 @@
 		1012FCB21EB8E07100C2817B /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.otf"; path = "Fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		1012FCB31EB8E07100C2817B /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.otf"; path = "Fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; };
 		1022645A1EBA3AB2007ACDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		102568AA1EBD09F3005469D1 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
 		109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProfileViewController.swift; path = SupportingFiles/CreateProfileViewController.swift; sourceTree = "<group>"; };
-		10A284291EBD383000EC4011 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = SupportingFiles/TourViewController.swift; sourceTree = "<group>"; };
+		109C96F51EBF1CC20057CF9B /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
+		109C97D61EBF21470057CF9B /* Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspectable.swift; sourceTree = "<group>"; };
+		109C97D81EBF21510057CF9B /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		109C97DA1EBF21590057CF9B /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		109C97DC1EBF215E0057CF9B /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		109C97DE1EBF21630057CF9B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		109C97E21EBF21C20057CF9B /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
+		109C97E41EBF21CC0057CF9B /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
+		109C97E61EBF21D60057CF9B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		10A3189F1EBB088E00E1EE3B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
 		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -128,10 +138,9 @@
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
 				109B85351EBD6FF80070FB4D /* CreateProfileViewController.swift */,
-				10A284291EBD383000EC4011 /* TourViewController.swift */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
-				10A318A31EBB0ED500E1EE3B /* FirstLogInViewController.swift */,
-				10054D131EBA729400663ECA /* StartViewController.swift */,
+				109C97E01EBF21770057CF9B /* UI */,
+				109C97D51EBF21280057CF9B /* Ext */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -166,8 +175,8 @@
 				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
 				D25F5AD41EAFF78400850388 /* Tracking.storyboard */,
 				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+				109C96F51EBF1CC20057CF9B /* StartPage.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
-				102568AA1EBD09F3005469D1 /* StartPage.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -179,6 +188,38 @@
 				0137F1661EA2778100FCA949 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		109C97D51EBF21280057CF9B /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				109C97DE1EBF21630057CF9B /* ViewController.swift */,
+				109C97DC1EBF215E0057CF9B /* Button.swift */,
+				109C97DA1EBF21590057CF9B /* Color.swift */,
+				109C97D81EBF21510057CF9B /* CornerView.swift */,
+				109C97D61EBF21470057CF9B /* Inspectable.swift */,
+			);
+			name = Ext;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		109C97E01EBF21770057CF9B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				109C97E11EBF21810057CF9B /* StartPage */,
+				109C97E21EBF21C20057CF9B /* TourViewController.swift */,
+				109C97E41EBF21CC0057CF9B /* FirstLogInViewController.swift */,
+				109C97E61EBF21D60057CF9B /* StartViewController.swift */,
+			);
+			name = UI;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		109C97E11EBF21810057CF9B /* StartPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = StartPage;
 			sourceTree = "<group>";
 		};
 		37B601E01EB0B66A00870844 /* Fonts */ = {
@@ -300,7 +341,6 @@
 				1012FCB91EB8E07100C2817B /* Montserrat-Medium.otf in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
-				102568AB1EBD09F3005469D1 /* StartPage.storyboard in Resources */,
 				0137F1751EA2778100FCA949 /* Main.storyboard in Resources */,
 				1012FCBB1EB8E07100C2817B /* Montserrat-SemiBold.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
@@ -315,6 +355,7 @@
 				1012FCBC1EB8E07100C2817B /* Montserrat-Thin.otf in Resources */,
 				D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
+				109C96F61EBF1CC20057CF9B /* StartPage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,19 +366,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				109C97E31EBF21C20057CF9B /* TourViewController.swift in Sources */,
+				109C97D71EBF21470057CF9B /* Inspectable.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
-				10A318A41EBB0ED500E1EE3B /* FirstLogInViewController.swift in Sources */,
-				10054D141EBA729400663ECA /* StartViewController.swift in Sources */,
+				109C97DF1EBF21630057CF9B /* ViewController.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				109C97E71EBF21D60057CF9B /* StartViewController.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
+				109C97DD1EBF215E0057CF9B /* Button.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
+				109C97D91EBF21510057CF9B /* CornerView.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
+				109C97DB1EBF21590057CF9B /* Color.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
-				10A2842A1EBD383000EC4011 /* TourViewController.swift in Sources */,
+				109C97E51EBF21CC0057CF9B /* FirstLogInViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				109B85361EBD6FF80070FB4D /* CreateProfileViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
