@@ -10,6 +10,7 @@ import UIKit
 
 class CreateProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
+
     @IBOutlet weak var photoImageView: UIImageView!
 
 
@@ -20,9 +21,8 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
-    
+
     @IBOutlet weak var repeatPasswordTextField: UITextField!
-    
     @IBOutlet weak var infoShareSwitch: UISwitch!
     
     @IBOutlet weak var userWeightSlider: UISlider!
@@ -33,7 +33,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -42,6 +42,23 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         // Dispose of any resources that can be recreated.
     }
     
+   // Slider value changes
+    @IBOutlet weak var currentWeightLabel: UILabel!
+    
+    @IBAction func weightSliderValueChange(_ sender: UISlider) {
+    var currentWeight = Int (sender.value)
+        currentWeightLabel.text = "\(currentWeight)"
+    }
+    
+    @IBOutlet weak var currentWheelLabel: UILabel!
+
+    @IBAction func currentWheelChange(_ sender: UISlider) {
+    var currentWheel = Int (sender.value)
+    currentWheelLabel.text = "\(currentWheel)"
+        
+    }
+// Picture
+
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
 
         
@@ -56,6 +73,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         present(imagePickerController, animated: true, completion: nil)
         
     }
+// Save profile
 
     @IBAction func saveProfileButton(sender: AnyObject) {
         let user = User()
@@ -90,14 +108,5 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         }
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

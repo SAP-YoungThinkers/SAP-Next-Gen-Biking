@@ -9,4 +9,10 @@
 import UIKit
 
 class TourViewController: UIViewController {
+    var startRidingAction: (() -> ())?
+    
+    @IBAction func startRidingPressed(_ sender: Any) {
+        startRidingAction?()
+        self.close()
   }
+}
