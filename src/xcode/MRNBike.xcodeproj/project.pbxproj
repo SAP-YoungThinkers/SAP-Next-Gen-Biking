@@ -28,7 +28,31 @@
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
 		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
+		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
+		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
+		37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E21EB0B68000870844 /* Montserrat-Bold.otf */; };
+		37B601F51EB0B68000870844 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */; };
+		37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E41EB0B68000870844 /* Montserrat-ExtraLight.otf */; };
+		37B601F71EB0B68000870844 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E51EB0B68000870844 /* Montserrat-Light.otf */; };
+		37B601F81EB0B68000870844 /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E61EB0B68000870844 /* Montserrat-Medium.otf */; };
+		37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E71EB0B68000870844 /* Montserrat-Regular.otf */; };
+		37B601FA1EB0B68000870844 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */; };
+		37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E91EB0B68000870844 /* Montserrat-Thin.otf */; };
+		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
+		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
+		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
+		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
+		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
+		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
+		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
+		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
+		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
+		D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD41EAFF78400850388 /* Tracking.storyboard */; };
+		D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD61EAFF7B700850388 /* Social.storyboard */; };
+		D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD81EAFF7E900850388 /* Routes.storyboard */; };
+		D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */; };
+		D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,10 +78,34 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
+		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
+		37B601E41EB0B68000870844 /* Montserrat-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.otf"; sourceTree = "<group>"; };
+		37B601E51EB0B68000870844 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		37B601E61EB0B68000870844 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
+		37B601E71EB0B68000870844 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
+		37B601E91EB0B68000870844 /* Montserrat-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.otf"; sourceTree = "<group>"; };
+		37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksRoutesViewController.swift; sourceTree = "<group>"; };
+		37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteReport.swift; path = MRNBike/RouteReport.swift; sourceTree = SOURCE_ROOT; };
 		491EC5021DE421940077BF82 /* MRNBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRNBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButtonClass.swift; sourceTree = "<group>"; };
+		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
+		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
+		D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingScreen.storyboard; sourceTree = "<group>"; };
+		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
+		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		D25F5AD41EAFF78400850388 /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
+		D25F5AD61EAFF7B700850388 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
+		D25F5AD81EAFF7E900850388 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
+		D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */,
 				491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +133,12 @@
 				0137F1631EA2778100FCA949 /* SecondViewController.swift */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
+				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
+				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
+				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
+				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
+				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
+				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -105,12 +160,21 @@
 		0137F1561EA2778100FCA949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37B601E01EB0B66A00870844 /* Fonts */,
 				0137F1571EA2778100FCA949 /* Assets.xcassets */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				0137F15C1EA2778100FCA949 /* Main.storyboard */,
 				0137F15E1EA2778100FCA949 /* LaunchScreen.strings */,
 				0137F1611EA2778100FCA949 /* Main.strings */,
+				D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */,
+				D25F5ACD1EAFF5C900850388 /* Home.storyboard */,
+				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
+				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
+				D25F5AD41EAFF78400850388 /* Tracking.storyboard */,
+				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
+				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -122,6 +186,22 @@
 				0137F1661EA2778100FCA949 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		37B601E01EB0B66A00870844 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				37B601E11EB0B68000870844 /* Montserrat-Black.otf */,
+				37B601E21EB0B68000870844 /* Montserrat-Bold.otf */,
+				37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */,
+				37B601E41EB0B68000870844 /* Montserrat-ExtraLight.otf */,
+				37B601E51EB0B68000870844 /* Montserrat-Light.otf */,
+				37B601E61EB0B68000870844 /* Montserrat-Medium.otf */,
+				37B601E71EB0B68000870844 /* Montserrat-Regular.otf */,
+				37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */,
+				37B601E91EB0B68000870844 /* Montserrat-Thin.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		491EC4F91DE421940077BF82 = {
@@ -144,6 +224,7 @@
 		491EC5191DE441430077BF82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3734A7521EB27BE900970749 /* CoreLocation.framework */,
 				493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */,
 				493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */,
 				491EC51A1DE441430077BF82 /* MapKit.framework */,
@@ -217,15 +298,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B601FA1EB0B68000870844 /* Montserrat-SemiBold.otf in Resources */,
+				37B601F51EB0B68000870844 /* Montserrat-ExtraBold.otf in Resources */,
+				37B601F81EB0B68000870844 /* Montserrat-Medium.otf in Resources */,
 				0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */,
+				D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */,
+				D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */,
 				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
+				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
+				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
+				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
+				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
 				0137F17A1EA2778100FCA949 /* Info.plist in Resources */,
+				37B601F71EB0B68000870844 /* Montserrat-Light.otf in Resources */,
 				0137F1751EA2778100FCA949 /* Main.storyboard in Resources */,
+				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
+				D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
+				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
+				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
+				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
+				D25F5AD51EAFF78400850388 /* Tracking.storyboard in Resources */,
 				0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
+				37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,16 +336,22 @@
 			files = (
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
+				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
+				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
+				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
+				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
+				4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
