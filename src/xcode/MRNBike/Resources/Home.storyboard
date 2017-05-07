@@ -167,7 +167,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saturday, 6 May" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qB-ip-zkt">
                                                         <rect key="frame" x="215" y="55" width="152" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -178,7 +178,7 @@
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="big_cloudy-sunny-1x" translatesAutoresizingMaskIntoConstraints="NO" id="DoG-CN-LE7">
                                                         <rect key="frame" x="155" y="40" width="44" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -201,9 +201,8 @@
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.64592251712328763" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-cB-S9X" userLabel="Trees View">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-cB-S9X" userLabel="Trees View">
                                                         <rect key="frame" x="243" y="152" width="101" height="81"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trees saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grr-BS-QkH">
                                                                 <rect key="frame" x="8" y="8" width="85" height="21"/>
@@ -225,10 +224,13 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="101" id="A2N-Y0-KKz"/>
+                                                            <constraint firstAttribute="height" constant="81" id="I3i-ag-sow"/>
+                                                        </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-RX-tHH" userLabel="Distance View">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-RX-tHH" userLabel="Distance View">
                                                         <rect key="frame" x="133" y="152" width="109" height="81"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance (km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVM-Ra-sKB">
                                                                 <rect key="frame" x="12" y="8" width="85" height="21"/>
@@ -250,10 +252,13 @@
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="109" id="ZQd-6W-c1z"/>
+                                                            <constraint firstAttribute="height" constant="81" id="yB1-tC-sPF"/>
+                                                        </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zoJ-RJ-oQI" userLabel="Burgers View">
-                                                        <rect key="frame" x="20" y="152" width="105" height="81"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoJ-RJ-oQI" userLabel="Burgers View">
+                                                        <rect key="frame" x="27" y="152" width="105" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Burgers Burned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeu-QM-sjW">
                                                                 <rect key="frame" x="0.0" y="8" width="94" height="21"/>
@@ -275,15 +280,25 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="81" id="WWR-U0-BaU"/>
+                                                            <constraint firstAttribute="width" constant="105" id="aHm-w8-uHv"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="wIv-uW-Be3" firstAttribute="top" secondItem="mZG-NR-U7q" secondAttribute="top" constant="50" id="0lN-nQ-iuS"/>
                                                     <constraint firstItem="wIv-uW-Be3" firstAttribute="centerX" secondItem="mZG-NR-U7q" secondAttribute="centerX" id="3PZ-iu-qx6"/>
+                                                    <constraint firstItem="iBf-RX-tHH" firstAttribute="top" secondItem="l2Z-Us-Gg9" secondAttribute="bottom" constant="16" id="765-BP-CUv"/>
+                                                    <constraint firstItem="iBf-RX-tHH" firstAttribute="leading" secondItem="zoJ-RJ-oQI" secondAttribute="trailing" constant="1" id="8Do-dP-GZT"/>
+                                                    <constraint firstItem="zoJ-RJ-oQI" firstAttribute="top" secondItem="iBf-RX-tHH" secondAttribute="top" id="Fey-jj-7FO"/>
                                                     <constraint firstItem="l2Z-Us-Gg9" firstAttribute="top" secondItem="wIv-uW-Be3" secondAttribute="bottom" constant="5" id="InZ-j3-3ht"/>
+                                                    <constraint firstItem="VJl-cB-S9X" firstAttribute="top" secondItem="iBf-RX-tHH" secondAttribute="top" id="c5J-03-OP9"/>
                                                     <constraint firstAttribute="height" constant="251" id="iZW-eh-28C"/>
+                                                    <constraint firstItem="VJl-cB-S9X" firstAttribute="leading" secondItem="iBf-RX-tHH" secondAttribute="trailing" constant="1" id="iq2-IP-x1B"/>
                                                     <constraint firstItem="l2Z-Us-Gg9" firstAttribute="centerX" secondItem="mZG-NR-U7q" secondAttribute="centerX" id="w90-et-XQB"/>
+                                                    <constraint firstItem="iBf-RX-tHH" firstAttribute="centerX" secondItem="mZG-NR-U7q" secondAttribute="centerX" id="y4c-ix-qXM"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -488,6 +503,7 @@
                                             <constraint firstItem="3Fx-sY-BdT" firstAttribute="leading" secondItem="zlj-4f-aQw" secondAttribute="trailing" id="5Ue-ZQ-0MO"/>
                                             <constraint firstItem="zlj-4f-aQw" firstAttribute="top" secondItem="Hjn-Sf-lYE" secondAttribute="top" id="7of-07-y5L"/>
                                             <constraint firstAttribute="bottom" secondItem="zlj-4f-aQw" secondAttribute="bottom" id="8VS-zS-IqU"/>
+                                            <constraint firstAttribute="height" constant="95" id="EP7-8P-oGp"/>
                                             <constraint firstItem="raM-wE-c4V" firstAttribute="leading" secondItem="Qi3-ET-1sl" secondAttribute="trailing" id="LDD-Da-3vI"/>
                                             <constraint firstItem="OYM-7i-abr" firstAttribute="top" secondItem="Hjn-Sf-lYE" secondAttribute="top" id="Mj8-u3-6En"/>
                                             <constraint firstItem="Qi3-ET-1sl" firstAttribute="leading" secondItem="3Fx-sY-BdT" secondAttribute="trailing" id="PWg-ch-qKa"/>
@@ -524,7 +540,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="93" id="2GZ-cD-5Ps"/>
                                             <constraint firstItem="CTY-BR-AdT" firstAttribute="centerX" secondItem="CNH-HN-s8o" secondAttribute="centerX" id="HsC-JW-eOJ"/>
                                             <constraint firstItem="CTY-BR-AdT" firstAttribute="centerX" secondItem="CNH-HN-s8o" secondAttribute="centerX" id="T00-zf-xhG"/>
                                             <constraint firstItem="CTY-BR-AdT" firstAttribute="centerY" secondItem="CNH-HN-s8o" secondAttribute="centerY" id="Y9c-bg-yFl"/>
