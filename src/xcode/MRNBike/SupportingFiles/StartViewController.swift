@@ -22,11 +22,6 @@ class StartViewController: UIViewController {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
             }
    
-// Hide Navigation bar
-     //  self.navigationController?.isNavigationBarHidden = true
-
-        
-        // Do any additional setup after loading the view.
     }
 
 }

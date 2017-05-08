@@ -10,10 +10,14 @@ import UIKit
 
 class CreateProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
     @IBOutlet weak var photoImageView: UIImageView!
-
-
+   
     @IBOutlet weak var surnameTextField: UITextField!
     
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -30,17 +34,8 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     
     @IBOutlet weak var userWheelSlider: UISlider!
     
+    @IBOutlet weak var printLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
    // Slider value changes
     @IBOutlet weak var currentWeightLabel: UILabel!
@@ -95,14 +90,17 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     
 // Save profile
 
-    @IBAction func saveProfileButton(sender: AnyObject) {
+    @IBAction func saveOnPressed(_ sender: UIButton) {
+        
         let user = User()
        
         // Check passwords
         if(passwordTextField.text == repeatPasswordTextField.text){
             user.accountPassword = passwordTextField.text
         } else {
-            user.accountPassword = nil
+            //user.accountPassword = nil
+            // TODO show alert
+            printLabel.text = ("different passwords")
         }
         
         user.accountSurname = surnameTextField.text
@@ -114,6 +112,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         
         // Creation object
         var users = UserDefaults.standard.object(forKey: "userTable") as? Dictionary<String,User>
+        
         if (users == nil) {
             // Creation hash table
             users = Dictionary<String,User>.init()
@@ -121,12 +120,15 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
             UserDefaults.standard.set(users, forKey: "userTable")
             // Sent data to the table
             users![user.accountName] = user
+            printLabel.text = ("User Seved to new user Table")
            }
         else {
             users![user.accountName] = user
+            printLabel.text = ("user saved to existing user table")
          
         }
-        
+        UserDefaults.standard.synchronize()
+        self.view.endEditing(true)
+        self.close()
     }
-
 }

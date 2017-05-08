@@ -17,6 +17,6 @@ class User : NSObject {
     var accountUserWeight: Float? = nil
     var accountUserWheelSize: Float? = nil
     var accountShareInfo: Bool? = true
-    var accountPicturePath: String? = nil
+    //var accountPicturePath: String? = nil
 
 }
