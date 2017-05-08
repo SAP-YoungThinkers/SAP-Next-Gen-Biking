@@ -100,26 +100,28 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         mapView.showsUserLocation = true
         
         // ANNOTATIONS!
-        StorageHelper.makeRequest(scriptName: "report/queryReport.xsjs", completion: { response in
-            
-            if let reports = response["records"] as? [[String: AnyObject]] {
+        
+        //Get the reports from Backend
+        var result = StorageHelper.prepareRequest(scriptName: "report/queryReport.xsjs")
+        
+        print(result)
+        
+        if let reports = result["records"] as? [[String: AnyObject]] {
+            for report in reports {
+                let description = report["description"] as? String
+                let type = report["type"] as? String
+                let lat = report["x"]
+                let long = report["y"]
                 
-                for report in reports {
-                    
-                    let description = report["description"] as? String
-                    let type = report["type"] as? String
-                    print(description!,type!)
-                    
-                }
+                /*
+                print(lat,long)
+                
+                let pin = RouteReport(title: type!, message: description!, coordinate: CLLocationCoordinate2D(latitude: (report["x"] as? Double)!, longitude: (report["y"] as? Double)!))
+                
+                annotations?.append(pin)
+ */
             }
-        })
-        
-        let testPin1 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663), type: RouteReport.Types.Recommendation)
-        let testPin2 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283023, longitude: -157.831003), type: RouteReport.Types.Warning)
-        
-        annotations?.append(testPin1)
-        annotations?.append(testPin2)
-        
+        }
         
         mapView.addAnnotations(annotations!)
         
@@ -173,10 +175,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         // Accessory
         
-        if (reportAnnotation.pinType == RouteReport.Types.Dangerousness.rawValue) {
+        if (reportAnnotation.title == "Dangerous") {
             annotationView!.image = UIImage(named: "dangerous")
         }
-        else if (reportAnnotation.pinType == RouteReport.Types.Recommendation.rawValue) {
+        else if (reportAnnotation.title == "Recommendation") {
             annotationView!.image = UIImage(named: "recommendation")
         }
         else {
@@ -272,7 +274,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             } else if addReportViewController.warningBtn.isSelected {
                 type = "Warning"
             } else {
-                type = "Dangerousness"
+                type = "Dangerous"
             }
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)

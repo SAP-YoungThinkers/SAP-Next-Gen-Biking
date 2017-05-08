@@ -171,8 +171,7 @@ class StorageHelper : NSObject {
         return token
     }
     
-    static func makeRequest(scriptName: String, completion: @escaping (_ reports: [String: AnyObject]) -> Void){
-        
+    static func prepareRequest(scriptName: String) -> [String: AnyObject] {
         let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
         let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
         let base64LoginString = loginData.base64EncodedString()
@@ -184,51 +183,32 @@ class StorageHelper : NSObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Fetch", forHTTPHeaderField: "X-Csrf-Token")
         
-        let session = URLSession.shared
+        var test = [String: AnyObject]()
         
-        session.dataTask(with: request, completionHandler: {(data, response, error) in
-            
-            guard let responseText = response else {
-                print("empty response")
-                return
-            }
-            
-            guard let responseData = data else{
-                print("nothing")
-                return
-            }
-            
-            if(error != nil){
-                print("error")
-            }else{
-                do{
-                    let json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
-                    
-                    completion(json)
-                    
-                    /*
-                     let reports = json["records"] as? [[String: AnyObject]]
-                     
-                     if let reports = json["records"] as? [[String: AnyObject]] {
-                     
-                     for report in reports {
-                     
-                     let description = report["description"] as? String
-                     let type = report["type"] as? String
-                     print(description!,type!)
-                     
-                     }
-                     
-                     }
-                     */
-                    
-                }catch let error as NSError{
-                    print(error)
-                }
-            }
-        }).resume()
+        makeRequest(request: request) {response in
+                test = response
+        }
+        print(test)
+       return test
     }
 
+    static func makeRequest(request: URLRequest, completion: @escaping ([String: AnyObject])->()) {
+        let sem = DispatchSemaphore(value: 0)
+        var json = [String: AnyObject]()
+        URLSession.shared.dataTask(with: request) {data, response, error in
+            do {
+                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: AnyObject]
+                //print(json)
+                sem.signal()
+                
+            } catch {
+                print("error serializing JSON: \(error)")
+            }
+        }.resume()
+        sem.wait()
+        completion(json)    }
+    
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
         let baseUrl = config.backendBaseURL
