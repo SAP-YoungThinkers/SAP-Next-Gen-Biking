@@ -93,6 +93,11 @@ class SaverouteViewController: UIViewController {
         //store the route information in HANA and others locally, then go to myroute
         saveRoute()
         self.navigationController?.isNavigationBarHidden=true
+        let sb = UIStoryboard(name: "Routes", bundle:nil)
+        let vc = sb.instantiateViewController(withIdentifier: "RoutesStoryboard") as!UINavigationController
+        self.present(vc, animated: true, completion: nil)
+        
+        
     }
     
 

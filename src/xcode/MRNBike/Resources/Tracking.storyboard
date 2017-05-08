@@ -151,7 +151,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E3n-TY-cDr">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2kV-zQ-9Cy" kind="show" id="9j3-bT-hSJ"/>
+                                <action selector="cancel_track:" destination="L7H-ap-Ygz" id="L7r-1n-XBU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1q-Qi-lyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855.07246376811599" y="-854.34782608695662"/>
+            <point key="canvasLocation" x="1025" y="-862"/>
         </scene>
         <!--AddRoutes-->
         <scene sceneID="5qh-PG-vEl">
@@ -289,7 +289,6 @@
                                 <state key="normal" title="Button" image="save_route"/>
                                 <connections>
                                     <action selector="saveroute:" destination="Mwp-QO-MKs" eventType="touchUpInside" id="aGl-bg-tEe"/>
-                                    <segue destination="a5f-iE-LiP" kind="show" id="M0g-pb-DII"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-1l-OCM">
@@ -353,13 +352,13 @@
             </objects>
             <point key="canvasLocation" x="-52.173913043478265" y="-854.34782608695662"/>
         </scene>
-        <!--MarksRoutes-->
+        <!--RoutesStoryboard-->
         <scene sceneID="Nnl-iX-x7j">
             <objects>
-                <viewControllerPlaceholder storyboardName="Routes" referencedIdentifier="MarksRoutes" id="a5f-iE-LiP" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Routes" referencedIdentifier="RoutesStoryboard" id="a5f-iE-LiP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBF-EZ-rbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="-1333"/>
+            <point key="canvasLocation" x="2094" y="-1330"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KTu-W6-bZx">
@@ -409,8 +408,7 @@
         <image name="stop" width="130" height="130"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c2T-dX-gxv"/>
-        <segue reference="9c5-nq-HVb"/>
         <segue reference="3hV-Tm-ukx"/>
+        <segue reference="vmW-XK-FXx"/>
     </inferredMetricsTieBreakers>
 </document>

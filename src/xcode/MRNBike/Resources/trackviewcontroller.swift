@@ -86,10 +86,18 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var distancelable: UILabel!
     @IBOutlet weak var burgerlable: UILabel!
     
-    @IBAction func backbutton(_ sender: UIButton) {
+   
+    @IBAction func cancel_track(_ sender: UIBarButtonItem) {
+        
+        self.navigationController?.isNavigationBarHidden=true
+        let a = UIStoryboard(name: "Home", bundle:nil)
+        let b = a.instantiateViewController(withIdentifier: "Home") as! TabBarViewController
+        self.navigationController?.pushViewController(b, animated: true)
+        
     }
-    
+ 
     @IBAction func reportbutton(_ sender: UIButton) {
+        self.navigationController?.isNavigationBarHidden=true
     }
     
     
