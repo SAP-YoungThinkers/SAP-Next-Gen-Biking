@@ -92,7 +92,11 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     
     func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
         
-        mapView.removeAnnotations(mapView.annotations)
+        let c = mapView.annotations.count
+        
+        if c != 0 {
+            mapView.removeAnnotations(mapView.annotations)
+        }
         
         let coordinate = mapView.centerCoordinate
         let annotation = MKPointAnnotation()
@@ -168,6 +172,7 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     
     //Focus back on users location
     @IBAction func refreshLocation(_ sender: UIButton) {
+        
         //Get actual user location
         manager.startUpdatingLocation()
     }

@@ -104,22 +104,28 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         //Get the reports from Backend
         var result = StorageHelper.prepareRequest(scriptName: "report/queryReport.xsjs")
         
-        print(result)
-        
         if let reports = result["records"] as? [[String: AnyObject]] {
+            
+            var description : String
+            var type : String
+            var lat : String
+            var long : String
+            var latitude : Double
+            var longitude : Double
+            var pin : RouteReport
+            
             for report in reports {
-                let description = report["description"] as? String
-                let type = report["type"] as? String
-                let lat = report["x"]
-                let long = report["y"]
+                description = (report["description"] as? String)!
+                type = (report["type"] as? String)!
+                lat = (report["latitude"] as? String)!
+                long = (report["longitude"] as? String)!
                 
-                /*
-                print(lat,long)
+                latitude = Double(lat)!
+                longitude = Double(long)!
                 
-                let pin = RouteReport(title: type!, message: description!, coordinate: CLLocationCoordinate2D(latitude: (report["x"] as? Double)!, longitude: (report["y"] as? Double)!))
+                pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                 
                 annotations?.append(pin)
- */
             }
         }
         
@@ -280,10 +286,12 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
             let location: MKAnnotation = addReportViewController.mapView.annotations.last!
-            let longitude: Double = location.coordinate.latitude
-            let latitude: Double = location.coordinate.longitude
+            let latitude: Double = location.coordinate.latitude
+            print(latitude)
+            let longitude: Double = location.coordinate.longitude
+            print(longitude)
             
-            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "long" : longitude, "lat" : latitude]
+            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
             
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             

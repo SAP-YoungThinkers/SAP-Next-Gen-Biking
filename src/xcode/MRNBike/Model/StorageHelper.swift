@@ -188,7 +188,6 @@ class StorageHelper : NSObject {
         makeRequest(request: request) {response in
                 test = response
         }
-        print(test)
        return test
     }
 
@@ -207,7 +206,8 @@ class StorageHelper : NSObject {
             }
         }.resume()
         sem.wait()
-        completion(json)    }
+        completion(json)
+    }
     
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
