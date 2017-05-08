@@ -24,45 +24,38 @@ class FirstLogInViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-  /*  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  /* Close editor by tyoing somewhere 
+     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     } */
     //AMRK: - Handlers
     
     @IBAction func onPressedLogin(_ sender: UIButton) {
+     
         let userEmail = userEmailTextField.text
         let userPassword = userPasswordTextField.text
-
-        let userDictionary = UserDefaults.standard.object(forKey: "userTable") as? Dictionary<String,User>
         
-       if userDictionary != nil {
-            let user = userDictionary![userEmail!]
-            messageLabelTextField.text = "1"
-            if user != nil {
-                messageLabelTextField.text = "2"
-                if user?.accountPassword == userPassword {
-                    messageLabelTextField.text = "3"
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-                    self.present(controller, animated: true, completion: nil)
-                    messageLabelTextField.text = "4"
-                    
-                }
-                else {
-                    messageLabelTextField.text = "5"
-                //TODO add showing alert "The password is wrong. Check spelling"
-                }
+        let login = UserDefaults.standard.string(forKey: "userAccount")
+        let pass = UserDefaults.standard.string(forKey: "userPassword")
+        
+        if login != nil && login == userEmail  {
+            if pass == userPassword{
+                let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                self.present(controller, animated: true, completion: nil)
+                
             }
             else {
-                //messageLabelTextField.text = "6"
-                //TODO add showing alert "No such user"
+              
+                //TODO add showing alert "The password is wrong. Check spelling"
             }
         }
         else {
-            messageLabelTextField.text = "7"
-            //TODO add showing alert "Register first"
+           
+            //TODO add showing alert "No such user"
         }
+
         self.view.endEditing(true)
     }
     @IBAction func openHelpMessage(_ sender: UIButton) {

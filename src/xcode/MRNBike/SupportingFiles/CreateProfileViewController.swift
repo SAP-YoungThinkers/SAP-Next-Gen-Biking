@@ -27,14 +27,13 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBOutlet weak var repeatPasswordTextField: UITextField!
+    
     @IBOutlet weak var infoShareSwitch: UISwitch!
     
     @IBOutlet weak var userWeightSlider: UISlider!
  
     
     @IBOutlet weak var userWheelSlider: UISlider!
-    
-    @IBOutlet weak var printLabel: UILabel!
     
     
    // Slider value changes
@@ -52,7 +51,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
     currentWheelLabel.text = "\(currentWheel)" + " inch"
         
     }
-// Picture
+    // Picture
     //MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
@@ -99,8 +98,7 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
             user.accountPassword = passwordTextField.text
         } else {
             //user.accountPassword = nil
-            // TODO show alert
-            printLabel.text = ("different passwords")
+            // TODO show alert "different passwords"
         }
         
         user.accountSurname = surnameTextField.text
@@ -110,24 +108,14 @@ class CreateProfileViewController: UIViewController, UIImagePickerControllerDele
         user.accountUserWeight = userWeightSlider.value
         user.accountUserWheelSize = userWheelSlider.value
         
-        // Creation object
-        var users = UserDefaults.standard.object(forKey: "userTable") as? Dictionary<String,User>
+        UserDefaults.standard.set(user.accountSurname, forKey: "userSurname")
+        UserDefaults.standard.set(user.accountFirstName, forKey: "userFirstname")
+        UserDefaults.standard.set(user.accountName, forKey: "userAccount")
+        UserDefaults.standard.set(user.accountPassword, forKey: "userPassword")
+        UserDefaults.standard.set(user.accountShareInfo, forKey: "userShareInfo")
+        UserDefaults.standard.set(user.accountUserWeight, forKey: "userWeight")
+        UserDefaults.standard.set(user.accountUserWheelSize, forKey: "userSize")
         
-        if (users == nil) {
-            // Creation hash table
-            users = Dictionary<String,User>.init()
-            // Adding table to the stored data
-            UserDefaults.standard.set(users, forKey: "userTable")
-            // Sent data to the table
-            users![user.accountName] = user
-            printLabel.text = ("User Seved to new user Table")
-           }
-        else {
-            users![user.accountName] = user
-            printLabel.text = ("user saved to existing user table")
-         
-        }
-        UserDefaults.standard.synchronize()
         self.view.endEditing(true)
         self.close()
     }
