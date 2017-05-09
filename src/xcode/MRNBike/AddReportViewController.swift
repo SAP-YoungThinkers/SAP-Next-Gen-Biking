@@ -67,12 +67,6 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         dangerBtn.isSelected = false
         dangerBtn.tag = 3
         
-        //Setup gesture recognizer for long press recognition
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action:(#selector(longPress)))
-        gestureRecognizer.minimumPressDuration = 2.0
-        gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
-        mapView.addGestureRecognizer(gestureRecognizer)
-        
         //Border from the bottom background view
         self.messageView.layer.borderColor = UIColor.gray.cgColor
         self.messageView.layer.borderWidth = 1
@@ -86,22 +80,8 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
             let region = MKCoordinateRegionMake(myLocation, span)
             mapView.setRegion(region, animated: true)
         }
-        //self.mapView.showsUserLocation = true
+        self.mapView.showsUserLocation = true
         manager.stopUpdatingLocation()
-    }
-    
-    func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
-        
-        let c = mapView.annotations.count
-        
-        if c != 0 {
-            mapView.removeAnnotations(mapView.annotations)
-        }
-        
-        let coordinate = mapView.centerCoordinate
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        mapView.addAnnotation(annotation)
     }
     
     func manualAction (sender: RadioButtonClass) {
@@ -170,13 +150,32 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     
     //MARK: Actions
     
-    //Focus back on users location
-    @IBAction func refreshLocation(_ sender: UIButton) {
+    //Set pin for report
+
+    @IBAction func setPin(_ sender: UIButton) {
+        var count = mapView.annotations.count
+        var lastAnnotation: MKAnnotation = mapView.annotations.last!
+        print(lastAnnotation.coordinate.latitude)
+        print(lastAnnotation.coordinate.longitude)
         
-        //Get actual user location
-        manager.startUpdatingLocation()
+        print(mapView.annotations.count)
+        
+        while 1 < count {
+            lastAnnotation = mapView.annotations.last!
+            mapView.removeAnnotation(lastAnnotation)
+            print("schleife!")
+            count = mapView.annotations.count
+            print(count)
+        }
+        
+        let coordinate = mapView.centerCoordinate
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        
+        mapView.addAnnotation(annotation)
+        print(mapView.annotations.count)
+        print(annotation.coordinate.latitude)
+        print(annotation.coordinate.longitude)
     }
-    
-    
     
 }
