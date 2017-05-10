@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstLogInViewController: UIViewController {
+class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
   
     @IBOutlet weak var userEmailTextField: UITextField!
     
@@ -24,13 +24,14 @@ class FirstLogInViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-  /* Close editor by tyoing somewhere 
-     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    } */
-    //AMRK: - Handlers
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Change title color and font
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
+        
+    }
+    // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
      
         let userEmail = userEmailTextField.text
@@ -38,6 +39,9 @@ class FirstLogInViewController: UIViewController {
         
         let login = UserDefaults.standard.string(forKey: "userAccount")
         let pass = UserDefaults.standard.string(forKey: "userPassword")
+        
+        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+
         
         if login != nil && login == userEmail  {
             if pass == userPassword{
@@ -48,40 +52,33 @@ class FirstLogInViewController: UIViewController {
             }
             else {
               
-                //TODO add showing alert "The password is wrong. Check spelling"
+                passwordAlert.title = "Password wrong"
+                passwordAlert.message = "Please fill in your password"
+                passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(passwordAlert, animated: true, completion: nil)
+                print("Password is wrong")
+                return
             }
         }
         else {
            
-            //TODO add showing alert "No such user"
+            passwordAlert.title = "User doesn't exist"
+            passwordAlert.message = "Please check a correctness of your email!"
+            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            print("User doesn't exist")
+            return
         }
-
-        self.view.endEditing(true)
     }
+    //Open a help message
     @IBAction func openHelpMessage(_ sender: UIButton) {
         self.helpView.isHidden = !self.helpView.isHidden
     }
     
+   // Close keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
-
 }
