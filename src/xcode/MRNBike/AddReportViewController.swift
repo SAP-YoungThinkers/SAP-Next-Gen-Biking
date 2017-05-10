@@ -153,29 +153,18 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     //Set pin for report
 
     @IBAction func setPin(_ sender: UIButton) {
-        var count = mapView.annotations.count
-        var lastAnnotation: MKAnnotation = mapView.annotations.last!
-        print(lastAnnotation.coordinate.latitude)
-        print(lastAnnotation.coordinate.longitude)
         
-        print(mapView.annotations.count)
+        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
         
-        while 1 < count {
-            lastAnnotation = mapView.annotations.last!
-            mapView.removeAnnotation(lastAnnotation)
-            print("schleife!")
-            count = mapView.annotations.count
-            print(count)
+        while mapView.annotations.count >= 2 {
+            print("removed a annotation")
+            mapView.removeAnnotation(mapView.annotations[0])
         }
-        
         let coordinate = mapView.centerCoordinate
-        var annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
+        saveAnnotation.coordinate = coordinate
         
-        mapView.addAnnotation(annotation)
-        print(mapView.annotations.count)
-        print(annotation.coordinate.latitude)
-        print(annotation.coordinate.longitude)
+        mapView.addAnnotation(saveAnnotation)
+        print("will add this annotation to map: \(saveAnnotation.coordinate.latitude), \(saveAnnotation.coordinate.longitude)")
     }
     
 }

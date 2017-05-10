@@ -288,9 +288,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
-            let location: MKAnnotation = addReportViewController.mapView.annotations.last!
+            let location: MKAnnotation = addReportViewController.mapView.annotations[mapView.annotations.count - 1]
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
+            
+            print("will upload this location to server: \(latitude), \(longitude)")
             
             let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
             
