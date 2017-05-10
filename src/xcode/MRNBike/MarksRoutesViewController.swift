@@ -288,7 +288,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
-            let location: MKAnnotation = addReportViewController.mapView.annotations[mapView.annotations.count - 1]
+            let location: MKAnnotation = addReportViewController.mapView.annotations.last!
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
             

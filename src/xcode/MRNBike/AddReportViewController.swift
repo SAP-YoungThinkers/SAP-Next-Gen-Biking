@@ -40,10 +40,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         textView.text = "Message..."
         textView.textColor = UIColor.lightGray
         
-        
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //Hide Keyboard when touching anywhere except the keyboard
+        self.hideKeyboardWhenTappedAround()
         
         //Setup location manager and properties
         manager.delegate = self
@@ -151,20 +153,29 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     //MARK: Actions
     
     //Set pin for report
-
     @IBAction func setPin(_ sender: UIButton) {
-        
         let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
         
-        while mapView.annotations.count >= 2 {
-            print("removed a annotation")
-            mapView.removeAnnotation(mapView.annotations[0])
-        }
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        
         let coordinate = mapView.centerCoordinate
         saveAnnotation.coordinate = coordinate
-        
+        print("will upload this location to server: \(saveAnnotation.coordinate.latitude), \(saveAnnotation.coordinate.longitude)")
         mapView.addAnnotation(saveAnnotation)
-        print("will add this annotation to map: \(saveAnnotation.coordinate.latitude), \(saveAnnotation.coordinate.longitude)")
     }
     
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
