@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController : UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageBG: UIImageView!
     @IBOutlet weak var PrefStack: UIStackView!
@@ -143,6 +143,19 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIImag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Notification for keyboard will show/will hide
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //Delegation of the textFields to the view
+        inputEmail.delegate=self
+        inputPassword.delegate=self
+        inputPasswordRepeat.delegate=self
+        
+        //Keyboard hides, whereever the user taps on the screen (except the keyboard)
+        self.hideKeyboardWhenTappedAround()
+        
         
         imagePicker.delegate = self
         
@@ -321,9 +334,43 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIImag
             profileView.image = pickedImage
         }
     }
+    
+    //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
+    }
 }
 
 class UserBarViewController: UIViewController {
     // has to stick here...
     // ...because i need the class in EditProfileViewController!
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
