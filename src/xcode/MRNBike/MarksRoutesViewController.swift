@@ -78,7 +78,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             routesInfoContent()
 
         }
-    
     }
     
     func myRoutesContent() {
@@ -95,18 +94,43 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         //TODO: focus map around routes
     }
     
+   
     func routesInfoContent() {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
         // ANNOTATIONS!
         
-        let testPin1 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283923, longitude: -157.831663), type: RouteReport.Types.Recommendation)
-        let testPin2 = RouteReport(title: "Überschrift", message: "Nachricht blabla bla uffbasse!", coordinate: CLLocationCoordinate2D(latitude: 21.283023, longitude: -157.831003), type: RouteReport.Types.Warning)
+        //Get the reports from Backend
+        var result = StorageHelper.prepareRequest(scriptName: "report/queryReport.xsjs")
         
-        annotations?.append(testPin1)
-        annotations?.append(testPin2)
-        
+        if let reports = result["records"] as? [[String: AnyObject]] {
+            
+            var description : String
+            var type : String
+            var lat : String
+            var long : String
+            var latitude : Double
+            var longitude : Double
+            var pin : RouteReport
+            
+            for report in reports {
+                description = (report["description"] as? String)!
+                type = (report["type"] as? String)!
+                lat = (report["latitude"] as? String)!
+                long = (report["longitude"] as? String)!
+                
+                latitude = Double(lat)!
+                longitude = Double(long)!
+                
+                print(latitude)
+                print(longitude)
+                
+                pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                
+                annotations?.append(pin)
+            }
+        }
         
         mapView.addAnnotations(annotations!)
         
@@ -160,10 +184,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         // Accessory
         
-        if (reportAnnotation.pinType == RouteReport.Types.Dangerousness.rawValue) {
+        if (reportAnnotation.title == "Dangerous") {
             annotationView!.image = UIImage(named: "dangerous")
         }
-        else if (reportAnnotation.pinType == RouteReport.Types.Recommendation.rawValue) {
+        else if (reportAnnotation.title == "Recommendation") {
             annotationView!.image = UIImage(named: "recommendation")
         }
         else {
@@ -259,16 +283,18 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             } else if addReportViewController.warningBtn.isSelected {
                 type = "Warning"
             } else {
-                type = "Dangerousness"
+                type = "Dangerous"
             }
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
             let location: MKAnnotation = addReportViewController.mapView.annotations.last!
-            let longitude: Double = location.coordinate.latitude
-            let latitude: Double = location.coordinate.longitude
+            let latitude: Double = location.coordinate.latitude
+            let longitude: Double = location.coordinate.longitude
             
-            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "long" : longitude, "lat" : latitude]
+            print("will upload this location to server: \(latitude), \(longitude)")
+            
+            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
             
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             

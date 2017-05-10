@@ -171,6 +171,44 @@ class StorageHelper : NSObject {
         return token
     }
     
+    static func prepareRequest(scriptName: String) -> [String: AnyObject] {
+        let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
+        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
+        let base64LoginString = loginData.base64EncodedString()
+        
+        let url:URL = URL(string: config.backendBaseURL + scriptName)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Fetch", forHTTPHeaderField: "X-Csrf-Token")
+        
+        var test = [String: AnyObject]()
+        
+        makeRequest(request: request) {response in
+                test = response
+        }
+       return test
+    }
+
+    static func makeRequest(request: URLRequest, completion: @escaping ([String: AnyObject])->()) {
+        let sem = DispatchSemaphore(value: 0)
+        var json = [String: AnyObject]()
+        URLSession.shared.dataTask(with: request) {data, response, error in
+            do {
+                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: AnyObject]
+                //print(json)
+                sem.signal()
+                
+            } catch {
+                print("error serializing JSON: \(error)")
+            }
+        }.resume()
+        sem.wait()
+        completion(json)
+    }
+    
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
         
         let baseUrl = config.backendBaseURL

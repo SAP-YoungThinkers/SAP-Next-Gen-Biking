@@ -40,10 +40,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         textView.text = "Message..."
         textView.textColor = UIColor.lightGray
         
-        
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //Hide Keyboard when touching anywhere except the keyboard
+        self.hideKeyboardWhenTappedAround()
         
         //Setup location manager and properties
         manager.delegate = self
@@ -67,12 +69,6 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         dangerBtn.isSelected = false
         dangerBtn.tag = 3
         
-        //Setup gesture recognizer for long press recognition
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action:(#selector(longPress)))
-        gestureRecognizer.minimumPressDuration = 2.0
-        gestureRecognizer.delegate = self as? UIGestureRecognizerDelegate
-        mapView.addGestureRecognizer(gestureRecognizer)
-        
         //Border from the bottom background view
         self.messageView.layer.borderColor = UIColor.gray.cgColor
         self.messageView.layer.borderWidth = 1
@@ -86,18 +82,8 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
             let region = MKCoordinateRegionMake(myLocation, span)
             mapView.setRegion(region, animated: true)
         }
-        //self.mapView.showsUserLocation = true
+        self.mapView.showsUserLocation = true
         manager.stopUpdatingLocation()
-    }
-    
-    func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
-        
-        mapView.removeAnnotations(mapView.annotations)
-        
-        let coordinate = mapView.centerCoordinate
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        mapView.addAnnotation(annotation)
     }
     
     func manualAction (sender: RadioButtonClass) {
@@ -166,12 +152,30 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     
     //MARK: Actions
     
-    //Focus back on users location
-    @IBAction func refreshLocation(_ sender: UIButton) {
-        //Get actual user location
-        manager.startUpdatingLocation()
+    //Set pin for report
+    @IBAction func setPin(_ sender: UIButton) {
+        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
+        
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        
+        let coordinate = mapView.centerCoordinate
+        saveAnnotation.coordinate = coordinate
+        print("will upload this location to server: \(saveAnnotation.coordinate.latitude), \(saveAnnotation.coordinate.longitude)")
+        mapView.addAnnotation(saveAnnotation)
     }
     
-    
-    
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
