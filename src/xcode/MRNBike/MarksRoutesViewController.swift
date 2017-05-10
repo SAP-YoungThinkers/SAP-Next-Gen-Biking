@@ -123,9 +123,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 latitude = Double(lat)!
                 longitude = Double(long)!
                 
-                print(latitude)
-                print(longitude)
-                
                 pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                 
                 annotations?.append(pin)
@@ -288,11 +285,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
-            let location: MKAnnotation = addReportViewController.mapView.annotations.last!
+            let annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
+            let location: MKAnnotation = annotations[0]
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
-            
-            print("will upload this location to server: \(latitude), \(longitude)")
             
             let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
             

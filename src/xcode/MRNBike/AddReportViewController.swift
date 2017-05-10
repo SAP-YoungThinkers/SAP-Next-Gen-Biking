@@ -161,7 +161,7 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         
         let coordinate = mapView.centerCoordinate
         saveAnnotation.coordinate = coordinate
-        print("will upload this location to server: \(saveAnnotation.coordinate.latitude), \(saveAnnotation.coordinate.longitude)")
+
         mapView.addAnnotation(saveAnnotation)
     }
     
