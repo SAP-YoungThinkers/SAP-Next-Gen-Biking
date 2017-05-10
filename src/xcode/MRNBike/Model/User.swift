@@ -17,6 +17,7 @@ class User : NSObject {
     var accountUserWeight: Float? = nil
     var accountUserWheelSize: Float? = nil
     var accountShareInfo: Bool? = true
+    var accountProfilePicture : Data? = nil // as JPEG data stream of UIImage
     //var accountPicturePath: String? = nil
 
 }

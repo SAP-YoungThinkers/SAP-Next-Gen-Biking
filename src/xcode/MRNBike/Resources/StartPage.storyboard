@@ -429,43 +429,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT USERPIC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4D-hT-Ltl">
-                                                    <rect key="frame" x="120" y="37.5" width="135" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.68763166666030884" green="0.68816357851028442" blue="0.68771404027938843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iym-tT-wYh">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYK-gf-flH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iym-tT-wYh">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <state key="normal" title="SELECT USERPIC">
                                                         <color key="titleColor" red="0.61568627450980395" green="0.61568627450980395" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
-                                                            <color key="value" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
-                                                            <color key="value" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="lzTitle" value="SELECT USERPIC"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="avatarButtonPressed:" destination="6H7-EB-GQk" eventType="touchUpInside" id="dgh-hT-Nu4"/>
-                                                        <outletCollection property="gestureRecognizers" destination="24j-mi-738" appends="YES" id="HwC-iy-TJ6"/>
+                                                        <action selector="imageButtonPressed:" destination="6H7-EB-GQk" eventType="touchUpInside" id="dAm-ZS-us8"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYK-gf-flH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="L4D-hT-Ltl" firstAttribute="centerX" secondItem="55B-9e-BeA" secondAttribute="centerX" id="HU0-wm-KSa"/>
-                                                <constraint firstItem="L4D-hT-Ltl" firstAttribute="centerY" secondItem="55B-9e-BeA" secondAttribute="centerY" id="NgN-FQ-aUc"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90747469663619995" green="0.90816402435302734" blue="0.90758144855499268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
@@ -489,7 +473,7 @@
                                                     <rect key="frame" x="198" y="22" width="151" height="22"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -521,7 +505,7 @@
                                                     <rect key="frame" x="198" y="22" width="151" height="22"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -562,7 +546,7 @@
                                                     <rect key="frame" x="174" y="23" width="175" height="20"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -594,7 +578,7 @@
                                                     <rect key="frame" x="174" y="23" width="175" height="20"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -614,7 +598,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
-                                                    <rect key="frame" x="24" y="14" width="160" height="39.5"/>
+                                                    <rect key="frame" x="24" y="13" width="160" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
                                                     </constraints>
@@ -626,7 +610,7 @@
                                                     <rect key="frame" x="184" y="23" width="165" height="20"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -769,6 +753,8 @@ INFORMATION</string>
                         <outlet property="currentWheelSize" destination="xHC-Cq-gSy" id="mSM-9t-TAW"/>
                         <outlet property="emailLabel" destination="9bc-YX-rMb" id="lvU-MM-7mE"/>
                         <outlet property="firstNameLabel" destination="7Sm-Ch-Jd5" id="KB1-06-aAe"/>
+                        <outlet property="imagePickerButton" destination="iym-tT-wYh" id="eyy-aY-MiO"/>
+                        <outlet property="navBar" destination="wmA-03-3aM" id="oJb-EI-BGF"/>
                         <outlet property="passwordLabel" destination="DH3-0Q-Tin" id="btA-C5-RHa"/>
                         <outlet property="photoImageView" destination="ZYK-gf-flH" id="SnH-1M-VbA"/>
                         <outlet property="shareSwitch" destination="Bh0-rS-e0M" id="xfE-5S-83o"/>
@@ -780,7 +766,7 @@ INFORMATION</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n2i-Yb-ncf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="24j-mi-738"/>
             </objects>
-            <point key="canvasLocation" x="1786.4000000000001" y="85.007496251874073"/>
+            <point key="canvasLocation" x="1770" y="3"/>
         </scene>
         <!--tourPage-->
         <scene sceneID="Rul-q9-hRQ">
