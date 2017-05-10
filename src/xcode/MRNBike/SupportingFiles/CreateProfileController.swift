@@ -1,6 +1,6 @@
 import UIKit
 
-class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
     
     @IBOutlet private(set) var surnameLabel: UITextField!
     @IBOutlet private(set) var firstNameLabel: UITextField!
@@ -10,6 +10,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet private(set) var shareSwitch: UISwitch!
     @IBOutlet private(set) var weightSlider: UISlider!
  
+    
     @IBOutlet private(set) var wheelSizeSlider: UISlider!
 
     let imagePicker = UIImagePickerController()
@@ -22,6 +23,13 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         super.viewDidLoad()
         
         imagePicker.delegate = self
+        
+        // delegate for hiding keyboard
+        surnameLabel.delegate = self
+        firstNameLabel.delegate = self
+        emailLabel.delegate = self
+        passwordLabel.delegate = self
+        confirmPasswordLabel.delegate = self
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.white]
@@ -144,5 +152,10 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         imagePickerButton.backgroundColor = UIColor(red: (228/255.0), green: (228/255.0), blue: (228/255.0), alpha: 0.0)
         
+    }
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }
