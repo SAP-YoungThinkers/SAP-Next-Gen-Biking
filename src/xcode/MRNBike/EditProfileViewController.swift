@@ -337,19 +337,17 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
