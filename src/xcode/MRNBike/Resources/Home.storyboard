@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A201w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -69,16 +69,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldO-nZ-j6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1055" y="-850"/>
-        </scene>
-        <!--Start-->
-        <scene sceneID="bjp-KN-MRd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Tracking" referencedIdentifier="Start" id="hCk-Qg-z0U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="anQ-wl-Rm2"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="05G-ti-cUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="698" y="480"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Je1-Yi-uuU">
@@ -534,7 +524,7 @@
                                                 <rect key="frame" x="92.5" y="15" width="190" height="63"/>
                                                 <state key="normal" image="StartTracking"/>
                                                 <connections>
-                                                    <segue destination="hCk-Qg-z0U" kind="show" id="OUt-N8-skP"/>
+                                                    <segue destination="hjJ-2g-MFL" kind="show" id="wvF-fl-c0F"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -578,6 +568,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="108" y="440.32983508245883"/>
+        </scene>
+        <!--Tracking-->
+        <scene sceneID="eGj-ce-QFR">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Tracking" storyboardName="Tracking" id="hjJ-2g-MFL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4X-bm-I7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1109" y="434"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="lq9-ze-9Vh">

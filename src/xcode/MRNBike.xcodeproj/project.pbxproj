@@ -18,7 +18,6 @@
 		0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1531EA2778100FCA949 /* StorageHelper.swift */; };
 		0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1541EA2778100FCA949 /* TrackPoint.swift */; };
 		0137F1711EA2778100FCA949 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1551EA2778100FCA949 /* User.swift */; };
-		0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1571EA2778100FCA949 /* Assets.xcassets */; };
 		0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */; };
 		0137F1741EA2778100FCA949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15A1EA2778100FCA949 /* Localizable.strings */; };
 		0137F1751EA2778100FCA949 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15C1EA2778100FCA949 /* Main.storyboard */; };
@@ -28,10 +27,8 @@
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
 		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
-		0A259E561EBFB1140050AC0F /* ThisTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E551EBFB1140050AC0F /* ThisTracking.swift */; };
-		0A259E5A1EBFB13D0050AC0F /* trackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E581EBFB13D0050AC0F /* trackview.swift */; };
-		0A259E5C1EBFB14B0050AC0F /* trackviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */; };
-		0A259E5E1EBFB1620050AC0F /* SaveRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */; };
+		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
+		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
 		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
@@ -71,7 +68,6 @@
 		0137F1531EA2778100FCA949 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
 		0137F1541EA2778100FCA949 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		0137F1551EA2778100FCA949 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0137F1571EA2778100FCA949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0137F1591EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0137F15B1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0137F15D1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,10 +78,8 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		0A259E551EBFB1140050AC0F /* ThisTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThisTracking.swift; path = Resources/ThisTracking.swift; sourceTree = "<group>"; };
-		0A259E581EBFB13D0050AC0F /* trackview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = trackview.swift; path = Resources/trackview.swift; sourceTree = "<group>"; };
-		0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = trackviewcontroller.swift; path = Resources/trackviewcontroller.swift; sourceTree = "<group>"; };
-		0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveRouteViewController.swift; path = Resources/SaveRouteViewController.swift; sourceTree = "<group>"; };
+		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
@@ -132,6 +126,7 @@
 		0137F14A1EA2778100FCA949 /* MRNBike */ = {
 			isa = PBXGroup;
 			children = (
+				01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */,
 				0137F14B1EA2778100FCA949 /* AppDelegate.swift */,
 				0137F14C1EA2778100FCA949 /* FirstViewController.swift */,
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
@@ -147,10 +142,6 @@
 				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
 				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
 				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
-				0A259E5B1EBFB14B0050AC0F /* trackviewcontroller.swift */,
-				0A259E5D1EBFB1620050AC0F /* SaveRouteViewController.swift */,
-				0A259E551EBFB1140050AC0F /* ThisTracking.swift */,
-				0A259E581EBFB13D0050AC0F /* trackview.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -172,8 +163,8 @@
 		0137F1561EA2778100FCA949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01FBE2091EC3C603008903C1 /* Assets.xcassets */,
 				37B601E01EB0B66A00870844 /* Fonts */,
-				0137F1571EA2778100FCA949 /* Assets.xcassets */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				0137F15C1EA2778100FCA949 /* Main.storyboard */,
@@ -276,8 +267,9 @@
 				TargetAttributes = {
 					491EC5011DE421940077BF82 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P77XE64L45;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -316,6 +308,7 @@
 				0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */,
 				D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */,
 				D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */,
+				01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */,
 				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
@@ -333,7 +326,6 @@
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
 				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
-				0137F1721EA2778100FCA949 /* Assets.xcassets in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
 				37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */,
 			);
@@ -348,16 +340,14 @@
 			files = (
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
-				0A259E561EBFB1140050AC0F /* ThisTracking.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
-				0A259E5E1EBFB1620050AC0F /* SaveRouteViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
+				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
-				0A259E5C1EBFB14B0050AC0F /* trackviewcontroller.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
@@ -366,7 +356,6 @@
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
-				0A259E5A1EBFB13D0050AC0F /* trackview.swift in Sources */,
 				4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,7 +508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P77XE64L45;
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -537,7 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P77XE64L45;
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
