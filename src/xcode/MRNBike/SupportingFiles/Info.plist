@@ -33,7 +33,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs location server for tracking your trip</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>For setting a profile picture</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.otf</string>
