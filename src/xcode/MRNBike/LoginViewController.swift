@@ -57,11 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     */
 
     // MARK: Action
-<<<<<<< HEAD
     @IBAction func onPressLogin() {
-=======
-   /* @IBAction func onPressLogin() {
->>>>>>> origin/Lyubov_Login
         
         User.accountName = userNameTF.text
         User.accountPassword = userPWTF.text
@@ -85,11 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         appDelagate.window?.rootViewController = initialViewController
         appDelagate.window?.makeKeyAndVisible()
         
-<<<<<<< HEAD
     }
-=======
-    } */
->>>>>>> origin/Lyubov_Login
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
