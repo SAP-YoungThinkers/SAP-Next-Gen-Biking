@@ -198,30 +198,25 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        // only if this view was loaded and displayed!
-        if (self.isViewLoaded && self.view.window != nil) {
-            coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                
-                let orient = UIApplication.shared.statusBarOrientation
-                
-                switch orient {
-                case .portrait:
-                    print("Portrait")
-                default:
-                    print("Anything But Portrait")
-                }
-                
-            }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                // on device orientation change
-                
-                // update lines
-                self.updateTapBar()
-            })
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
             
-            super.viewWillTransition(to: size, with: coordinator)
-        }
+            let orient = UIApplication.shared.statusBarOrientation
+            
+            switch orient {
+            case .portrait:
+                print("Portrait")
+            default:
+                print("Anything But Portrait")
+            }
+            
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            // on device orientation change
+            
+            // update lines
+            self.updateTapBar()
+        })
         
-
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
     func updateTapBar() {

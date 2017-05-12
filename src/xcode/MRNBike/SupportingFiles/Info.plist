@@ -25,15 +25,15 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
-	<array/>
+	<array>
+		<string></string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>App needs location server for tracking your journey</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs location server for tracking your trip</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For setting a profile picture</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.otf</string>
