@@ -89,7 +89,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAP User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaH-ih-P3S">
-                                                <rect key="frame" x="80" y="23.5" width="76.5" height="21"/>
+                                                <rect key="frame" x="80" y="24" width="73.5" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="o2A-x0-jBv"/>
                                                 </constraints>
@@ -180,19 +180,19 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 587" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-uW-Be3">
-                                                        <rect key="frame" x="98.5" y="50" width="179.5" height="65"/>
+                                                        <rect key="frame" x="107" y="50" width="162.5" height="62"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="53"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHEEL ROTATIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-Us-Gg9">
-                                                        <rect key="frame" x="122.5" y="120" width="130" height="16"/>
+                                                        <rect key="frame" x="128" y="117" width="119" height="16"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="13"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.64592251712328763" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-cB-S9X" userLabel="Trees View">
-                                                        <rect key="frame" x="243" y="152" width="101" height="81"/>
+                                                        <rect key="frame" x="243" y="149" width="101" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trees saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grr-BS-QkH">
                                                                 <rect key="frame" x="8" y="8" width="85" height="21"/>
@@ -220,7 +220,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-RX-tHH" userLabel="Distance View">
-                                                        <rect key="frame" x="133" y="152" width="109" height="81"/>
+                                                        <rect key="frame" x="133" y="149" width="109" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance (km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVM-Ra-sKB">
                                                                 <rect key="frame" x="12" y="8" width="85" height="21"/>
@@ -248,7 +248,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoJ-RJ-oQI" userLabel="Burgers View">
-                                                        <rect key="frame" x="27" y="152" width="105" height="81"/>
+                                                        <rect key="frame" x="27" y="149" width="105" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Burgers Burned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeu-QM-sjW">
                                                                 <rect key="frame" x="0.0" y="8" width="94" height="21"/>
@@ -315,7 +315,7 @@
                                                 <rect key="frame" x="312" y="0.0" width="63" height="95"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-vB-T8A">
-                                                        <rect key="frame" x="13" y="8" width="38" height="21"/>
+                                                        <rect key="frame" x="15" y="8" width="34" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="4WQ-cp-zxm"/>
                                                         </constraints>
