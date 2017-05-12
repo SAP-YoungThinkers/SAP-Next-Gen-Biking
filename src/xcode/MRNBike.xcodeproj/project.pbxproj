@@ -30,6 +30,17 @@
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
+		10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */; };
+		10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D21EC6144100CC7027 /* TourViewController.swift */; };
+		10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */; };
+		10B9D4D71EC6145100CC7027 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D61EC6145100CC7027 /* StartViewController.swift */; };
+		10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */; };
+		10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DC1EC614A000CC7027 /* ViewController.swift */; };
+		10B9D4E31EC614A000CC7027 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DD1EC614A000CC7027 /* Button.swift */; };
+		10B9D4E41EC614A000CC7027 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DE1EC614A000CC7027 /* Color.swift */; };
+		10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DF1EC614A000CC7027 /* CornerView.swift */; };
+		10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E01EC614A000CC7027 /* Inspectable.swift */; };
+		10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
 		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
 		37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E21EB0B68000870844 /* Montserrat-Bold.otf */; };
@@ -81,6 +92,17 @@
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
+		10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
+		10B9D4D21EC6144100CC7027 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
+		10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
+		10B9D4D61EC6145100CC7027 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileController.swift; sourceTree = "<group>"; };
+		10B9D4DC1EC614A000CC7027 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10B9D4DD1EC614A000CC7027 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		10B9D4DE1EC614A000CC7027 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		10B9D4DF1EC614A000CC7027 /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		10B9D4E01EC614A000CC7027 /* Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspectable.swift; sourceTree = "<group>"; };
+		10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationExtensions.swift; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -163,6 +185,8 @@
 		0137F1561EA2778100FCA949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				10B9D4DB1EC6149000CC7027 /* Ext */,
+				10B9D4D11EC613A000CC7027 /* UI */,
 				01FBE2091EC3C603008903C1 /* Assets.xcassets */,
 				37B601E01EB0B66A00870844 /* Fonts */,
 				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
@@ -178,6 +202,7 @@
 				0A259E611EBFBE950050AC0F /* Tracking.storyboard */,
 				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
+				10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -189,6 +214,30 @@
 				0137F1661EA2778100FCA949 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		10B9D4D11EC613A000CC7027 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */,
+				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
+				10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */,
+				10B9D4D61EC6145100CC7027 /* StartViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		10B9D4DB1EC6149000CC7027 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				10B9D4DC1EC614A000CC7027 /* ViewController.swift */,
+				10B9D4DD1EC614A000CC7027 /* Button.swift */,
+				10B9D4DE1EC614A000CC7027 /* Color.swift */,
+				10B9D4DF1EC614A000CC7027 /* CornerView.swift */,
+				10B9D4E01EC614A000CC7027 /* Inspectable.swift */,
+				10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */,
+			);
+			name = Ext;
 			sourceTree = "<group>";
 		};
 		37B601E01EB0B66A00870844 /* Fonts */ = {
@@ -311,6 +360,7 @@
 				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
+				10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */,
 				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
@@ -337,21 +387,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
+				10B9D4D71EC6145100CC7027 /* StartViewController.swift in Sources */,
+				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
+				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
+				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
+				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
+				10B9D4E31EC614A000CC7027 /* Button.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
+				10B9D4E41EC614A000CC7027 /* Color.swift in Sources */,
 				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
 				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
 				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
+				10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */,
+				10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,

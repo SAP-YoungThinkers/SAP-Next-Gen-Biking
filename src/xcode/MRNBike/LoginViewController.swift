@@ -57,7 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     */
 
     // MARK: Action
-    @IBAction func onPressLogin() {
+   /* @IBAction func onPressLogin() {
         
         User.accountName = userNameTF.text
         User.accountPassword = userPWTF.text
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         appDelagate.window?.rootViewController = initialViewController
         appDelagate.window?.makeKeyAndVisible()
         
-    }
+    } */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
