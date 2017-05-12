@@ -2,18 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Montserrat-Black.otf</string>
-		<string>Montserrat-Bold.otf</string>
-		<string>Montserrat-ExtraBold.otf</string>
-		<string>Montserrat-ExtraLight.otf</string>
-		<string>Montserrat-Light.otf</string>
-		<string>Montserrat-Medium.otf</string>
-		<string>Montserrat-Regular.otf</string>
-		<string>Montserrat-SemiBold.otf</string>
-		<string>Montserrat-Thin.otf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -37,15 +25,27 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
-	<array/>
+	<array>
+		<string></string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>App needs location server for tracking your journey</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs location server for tracking your trip</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.otf</string>
+		<string>Montserrat-Bold.otf</string>
+		<string>Montserrat-ExtraBold.otf</string>
+		<string>Montserrat-ExtraLight.otf</string>
+		<string>Montserrat-Light.otf</string>
+		<string>Montserrat-Medium.otf</string>
+		<string>Montserrat-Regular.otf</string>
+		<string>Montserrat-SemiBold.otf</string>
+		<string>Montserrat-Thin.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maF-Oy-XYn">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,32 +9,107 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="Tor-KZ-zxD">
+        <!--AddRoutes-->
+        <scene sceneID="5qh-PG-vEl">
             <objects>
-                <viewController storyboardIdentifier="Tracking" id="oAP-H7-5cs" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="Routes" storyboardName="Routes" referencedIdentifier="AddRoutes" id="hnT-J7-dyQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pe0-cw-drJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1205" y="-1371"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ghC-KB-oGH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YCr-ih-O4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="Tracking" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="maF-Oy-XYn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NP5-pb-fLb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fS6-pA-Rd9">
+                        <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="iUQ-43-hVt" kind="relationship" relationship="rootViewController" id="Y3s-nG-rpH"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-52.173913043478265" y="-854.34782608695662"/>
+        </scene>
+        <!--RoutesStoryboard-->
+        <scene sceneID="Nnl-iX-x7j">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Routes" referencedIdentifier="RoutesStoryboard" id="a5f-iE-LiP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBF-EZ-rbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094" y="-1330"/>
+        </scene>
+        <!--Tracking View Controller-->
+        <scene sceneID="OGY-L3-gEL">
+            <objects>
+                <viewController id="iUQ-43-hVt" customClass="TrackingViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5B4-C2-uhP"/>
-                        <viewControllerLayoutGuide type="bottom" id="xtU-EO-IDd"/>
+                        <viewControllerLayoutGuide type="top" id="Vk5-90-5Ro"/>
+                        <viewControllerLayoutGuide type="bottom" id="G6k-xC-NRO"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hYb-wc-I8n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="J4W-zj-4GD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tracking" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NJf-Fc-Zdp">
-                                <rect key="frame" x="139" y="245" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHM-Lg-iJR">
+                                <rect key="frame" x="246" y="497" width="88" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="stop"/>
+                                <connections>
+                                    <action selector="stopTrackingEvent:" destination="iUQ-43-hVt" eventType="touchUpInside" id="IfS-MK-eKv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prz-YK-hoe">
+                                <rect key="frame" x="93" y="497" width="88" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="start"/>
+                                <state key="selected" image="pause"/>
+                                <connections>
+                                    <action selector="startTrackingEvent:" destination="iUQ-43-hVt" eventType="touchUpInside" id="P0d-Fz-TDG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dFR-eo-9C6"/>
+                    <connections>
+                        <outlet property="startButton" destination="Prz-YK-hoe" id="LFx-rM-de7"/>
+                        <outlet property="stopButton" destination="kHM-Lg-iJR" id="Tcg-09-xpb"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TUh-Bf-LxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YSZ-CN-w7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="130"/>
+            <point key="canvasLocation" x="1068" y="-854"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Lyz-Ej-Lm0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="Home" id="2kV-zQ-9Cy" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="D7g-bm-9M1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tI4-cr-Qc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="-423"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pause" width="130" height="130"/>
+        <image name="start" width="130" height="130"/>
+        <image name="stop" width="130" height="130"/>
+    </resources>
 </document>

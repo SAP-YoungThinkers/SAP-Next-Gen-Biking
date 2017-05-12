@@ -14,8 +14,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userPWTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
-    
-    
     let config = Configurator()
     var defaults = UserDefaults.standard
     
@@ -26,8 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.userNameTF.delegate = self
         self.userPWTF.delegate = self
-        
-        
+
         loginBtn.layer.cornerRadius = 10
         loginBtn.layer.borderWidth = 2
         loginBtn.layer.borderColor = config.yellowColor.cgColor
@@ -60,8 +57,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     */
 
     // MARK: Action
-    @IBAction func onPressLogin() {
-/*
+   /* @IBAction func onPressLogin() {
+        
         User.accountName = userNameTF.text
         User.accountPassword = userPWTF.text
         
@@ -83,8 +80,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let initialViewController = self.storyboard!.instantiateViewController(withIdentifier: "tabBarID")
         appDelagate.window?.rootViewController = initialViewController
         appDelagate.window?.makeKeyAndVisible()
-*/       
-    }
+        
+    } */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_map_3x.png",
+      "filename" : "ic_map.png",
       "scale" : "1x"
     },
     {
@@ -12,6 +12,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "ic_map_3x.png",
       "scale" : "3x"
     }
   ],
