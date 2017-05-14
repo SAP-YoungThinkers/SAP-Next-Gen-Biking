@@ -32,11 +32,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         confirmPasswordLabel.delegate = self
         
         // Change title color and font
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
-        
-        // Remove background
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         
         // set defaults
         currentWeightLabel.text = "\(weightSlider.value) " + " kg"
@@ -68,6 +65,17 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         // Check passwords
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        
+        // username neccessary
+        if (emailLabel.text == "") {
+            print("E-Mail empty")
+            passwordAlert.title = "No username"
+            passwordAlert.message = "Please let us know your email!"
+            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            return
+        }
+        
         if(passwordLabel.text == confirmPasswordLabel.text) {
             if (passwordLabel.text != "") {
                 user.accountPassword = passwordLabel.text
@@ -97,7 +105,10 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         user.accountShareInfo = shareSwitch.isOn
         user.accountUserWeight = weightSlider.value
         user.accountUserWheelSize = wheelSizeSlider.value
-        user.accountProfilePicture = UIImageJPEGRepresentation(photoImageView.image!, 1.0)  // get image data
+        if let tmpPhoto = photoImageView.image {
+            user.accountProfilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
+        }
+        
         
         UserDefaults.standard.set(user.accountSurname, forKey: "userSurname")
         UserDefaults.standard.set(user.accountFirstName, forKey: "userFirstName")

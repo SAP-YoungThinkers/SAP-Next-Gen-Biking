@@ -27,7 +27,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         topBar.delegate = self
         
         topBar.selectedItem = routeInformation
@@ -76,7 +76,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             // ROUTES INFORMATION
             routesInfoContent()
-
+            
         }
     }
     
@@ -94,7 +94,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         //TODO: focus map around routes
     }
     
-   
+    
     func routesInfoContent() {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
@@ -198,25 +198,30 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+        // only if this view was loaded and displayed!
+        if (self.isViewLoaded && self.view.window != nil) {
+            coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+                
+                let orient = UIApplication.shared.statusBarOrientation
+                
+                switch orient {
+                case .portrait:
+                    print("Portrait")
+                default:
+                    print("Anything But Portrait")
+                }
+                
+            }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+                // on device orientation change
+                
+                // update lines
+                self.updateTapBar()
+            })
             
-            let orient = UIApplication.shared.statusBarOrientation
-            
-            switch orient {
-            case .portrait:
-                print("Portrait")
-            default:
-                print("Anything But Portrait")
-            }
-            
-        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-            // on device orientation change
-            
-            // update lines
-            self.updateTapBar()
-        })
+            super.viewWillTransition(to: size, with: coordinator)
+        }
         
-        super.viewWillTransition(to: size, with: coordinator)
+        
     }
     
     func updateTapBar() {
@@ -230,7 +235,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         topBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: primaryColor, size: CGSize(width: topBar.frame.width/CGFloat(topBar.items!.count), height: topBar.frame.height), lineWidth: 3.0)
         
     }
-
+    
     
     func setupTabBarSeparators() -> UIView {
         let itemWidth = floor(self.topBar.frame.width / CGFloat(self.topBar.items!.count))
@@ -239,12 +244,12 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         let separatorWidth: CGFloat = 0.5
         
         
-            // make a new separator at the end of each tab bar item
-            let separator = UIView(frame: CGRect(x: itemWidth + 0.5 - CGFloat(separatorWidth / 2), y: 0, width: CGFloat(separatorWidth), height: self.topBar.frame.height))
-            
-            // set the color to light gray (default line color for tab bar)
-            separator.backgroundColor = UIColor(red: (170/255.0), green: (170/255.0), blue: (170/255.0), alpha: 1.0)
-            
+        // make a new separator at the end of each tab bar item
+        let separator = UIView(frame: CGRect(x: itemWidth + 0.5 - CGFloat(separatorWidth / 2), y: 0, width: CGFloat(separatorWidth), height: self.topBar.frame.height))
+        
+        // set the color to light gray (default line color for tab bar)
+        separator.backgroundColor = UIColor(red: (170/255.0), green: (170/255.0), blue: (170/255.0), alpha: 1.0)
+        
         self.topBar.insertSubview(separator, at: 1)
         
         
@@ -270,7 +275,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             //Check if the user hasn't add any message.
             if message == "Message..." {
-                    message = "No information"
+                message = "No information"
             }
             
             var type : String
