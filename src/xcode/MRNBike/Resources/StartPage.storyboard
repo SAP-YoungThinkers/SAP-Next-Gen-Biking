@@ -769,17 +769,17 @@ INFORMATION</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ride • Award • Protect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KWy-A8-BEM">
-                                <rect key="frame" x="70" y="353.33333333333331" width="274" height="31"/>
+                                <rect key="frame" x="70" y="348.33333333333331" width="274" height="41"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="25"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2E-6z-EoV">
-                                <rect key="frame" x="22" y="77" width="370" height="261.33333333333331"/>
+                                <rect key="frame" x="22" y="77" width="370" height="266.33333333333331"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="B91-dj-7tR">
-                                <rect key="frame" x="93" y="417.33333333333326" width="253" height="124.66666666666674"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="B91-dj-7tR">
+                                <rect key="frame" x="80" y="399.33333333333326" width="254" height="147.66666666666674"/>
                                 <string key="text">With our App you will not only ride bike for yourself, but even to make riding more comfortable for all of us. Award by reaching goals, protect our enironment!</string>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -796,20 +796,23 @@ INFORMATION</string>
                             <constraint firstItem="m2E-6z-EoV" firstAttribute="top" secondItem="U0X-ye-pF1" secondAttribute="topMargin" constant="77" id="GeP-ST-jh8"/>
                             <constraint firstItem="KWy-A8-BEM" firstAttribute="leading" secondItem="U0X-ye-pF1" secondAttribute="leadingMargin" constant="50" id="GqZ-Pq-xa0"/>
                             <constraint firstItem="E2p-gV-bKS" firstAttribute="top" secondItem="0mW-V4-ntP" secondAttribute="bottom" constant="57" id="GvU-X7-FXu"/>
-                            <constraint firstItem="KWy-A8-BEM" firstAttribute="top" secondItem="m2E-6z-EoV" secondAttribute="bottom" constant="15" id="IRf-cN-kLL"/>
                             <constraint firstItem="0ik-ZY-emD" firstAttribute="top" secondItem="91w-Vy-3dL" secondAttribute="bottom" id="Ii1-uI-dHb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="B91-dj-7tR" secondAttribute="trailing" constant="48" id="LOB-lg-hNw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B91-dj-7tR" secondAttribute="trailing" constant="60" id="LOB-lg-hNw"/>
                             <constraint firstItem="m2E-6z-EoV" firstAttribute="trailing" secondItem="U0X-ye-pF1" secondAttribute="trailingMargin" constant="-2" id="LaF-v8-ORZ"/>
                             <constraint firstAttribute="trailing" secondItem="VyR-88-CXf" secondAttribute="trailing" constant="17" id="N88-18-YSu"/>
                             <constraint firstItem="E2p-gV-bKS" firstAttribute="centerX" secondItem="U0X-ye-pF1" secondAttribute="centerX" id="OD4-Lb-pEx"/>
                             <constraint firstItem="91w-Vy-3dL" firstAttribute="leading" secondItem="U0X-ye-pF1" secondAttribute="leading" id="OMk-4G-ynN"/>
                             <constraint firstItem="VyR-88-CXf" firstAttribute="top" secondItem="0mW-V4-ntP" secondAttribute="bottom" constant="17" id="Uc4-QZ-szU"/>
-                            <constraint firstItem="B91-dj-7tR" firstAttribute="top" secondItem="KWy-A8-BEM" secondAttribute="bottom" constant="33" id="fXp-pM-AQr"/>
+                            <constraint firstItem="KWy-A8-BEM" firstAttribute="top" secondItem="m2E-6z-EoV" secondAttribute="bottom" constant="5" id="dla-18-COZ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="KWy-A8-BEM" secondAttribute="bottom" constant="346.67000000000002" id="fi3-fS-c0i"/>
                             <constraint firstItem="m2E-6z-EoV" firstAttribute="leading" secondItem="U0X-ye-pF1" secondAttribute="leadingMargin" constant="2" id="hNb-NI-pGY"/>
-                            <constraint firstItem="B91-dj-7tR" firstAttribute="leading" secondItem="U0X-ye-pF1" secondAttribute="leadingMargin" constant="73" id="iXZ-W3-osv"/>
-                            <constraint firstItem="1np-XT-lLu" firstAttribute="top" secondItem="B91-dj-7tR" secondAttribute="bottom" constant="30" id="jOE-K3-M8V"/>
+                            <constraint firstItem="B91-dj-7tR" firstAttribute="leading" secondItem="U0X-ye-pF1" secondAttribute="leadingMargin" constant="60" id="iXZ-W3-osv"/>
                             <constraint firstItem="91w-Vy-3dL" firstAttribute="top" secondItem="U0X-ye-pF1" secondAttribute="top" id="lKY-zV-Kv2"/>
                             <constraint firstAttribute="trailing" secondItem="91w-Vy-3dL" secondAttribute="trailing" id="p3u-wQ-rmj"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="m2E-6z-EoV" secondAttribute="bottom" constant="392.67000000000002" id="qsS-bA-q3b"/>
+                            <constraint firstItem="B91-dj-7tR" firstAttribute="top" secondItem="KWy-A8-BEM" secondAttribute="bottom" constant="10" id="sYd-5Q-8LT"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="B91-dj-7tR" secondAttribute="bottom" constant="189" id="scp-US-KC3"/>
+                            <constraint firstItem="1np-XT-lLu" firstAttribute="top" secondItem="B91-dj-7tR" secondAttribute="bottom" constant="25" id="vrx-ya-FaV"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -831,6 +834,6 @@ INFORMATION</string>
         <image name="messagebox" width="90" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e0g-Ut-X6d"/>
+        <segue reference="wfE-mz-IRX"/>
     </inferredMetricsTieBreakers>
 </document>

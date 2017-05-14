@@ -21,6 +21,7 @@ class TourViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //the youtube code of the video, will be changed later
         loadYoutube(videoID: "7iT9fueKCJM")
     }
     
