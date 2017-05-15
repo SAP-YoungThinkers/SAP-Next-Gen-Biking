@@ -14,6 +14,11 @@ class TrackingViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var SaveRouteButton: UIButton!
+    @IBOutlet weak var DismissButton: UIButton!
+    @IBOutlet weak var PauseButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
+    
     // TODO: pause button that appears instead of start button after start tracking
     
     var locationManager = LocationManager()
@@ -21,11 +26,17 @@ class TrackingViewController: UIViewController {
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
 
     var elapsedSeconds: Int = 0
+    var timerRunBool: Bool = true
     var timer: Timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.delegate = self
+        SaveRouteButton.isHidden = true
+        DismissButton.isHidden = true
+        PauseButton.isHidden = true
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,19 +49,53 @@ class TrackingViewController: UIViewController {
     // MARK: - Action
     @IBAction func startTrackingEvent(_ sender: UIButton) {
         startButton?.isHidden = true
+        PauseButton.isHidden = false
         locationManager.delegate = self
         locationManager.startTracking()
-        startTimer(startNew: true)
+        
+        if timerRunBool{ startTimer(startNew: true)}
+        
+        else
+        {startTimer(startNew: false)}
+        
+    }
+    
+    
+    @IBAction func pauseTrackingEvent(_ sender: UIButton) {
+        
+        startButton?.isHidden = false
+        PauseButton.isHidden = true
+        timerRunBool = false
+        timer.invalidate()
+        
     }
 
     @IBAction func stopTrackingEvent(_ sender: UIButton) {
         self.locationManager.stopTracking()
         locationManager.delegate = nil
+        DismissButton.isHidden = false
+        SaveRouteButton.isHidden = false
+        startButton.isHidden = true
+        stopButton.isHidden = true
+        PauseButton.isHidden = true
+        timer.invalidate()
+        
         
         //TODO: Show button to upload the route
         //      Call upload() if the user wants to upload
         
     }
+    @IBAction func DismissButton(_ sender: UIButton) {
+        
+        print("dismiss")
+    }
+    @IBAction func saveRouteButton(_ sender: UIButton) {
+        
+       //upload()
+    }
+    
+   
+    
     
     // TODO: Pause tracking (invoke startTimer(startNew: false))
     
@@ -75,7 +120,7 @@ class TrackingViewController: UIViewController {
     
     
     // MARK: - Helper Functions
-    
+
     func startTimer(startNew: Bool) {
         if startNew { elapsedSeconds = 0 }
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateElapsedTime), userInfo: nil, repeats: true)
@@ -84,6 +129,18 @@ class TrackingViewController: UIViewController {
     func updateElapsedTime() {
         elapsedSeconds += 1
         // TODO: Set label text with formatMinutesAgo(elapsedSeconds)
+   
+       
+        if(elapsedSeconds > 0){
+            
+            let ti = NSInteger(elapsedSeconds)
+            let strSeconds = ti % 60
+            let strMinutes = (ti / 60) % 60
+            let strHours = (ti / 3600)
+            
+            print("\(strHours):\(strMinutes):\(strSeconds)")
+            self.timeLabel.text = String(format: "%0.2d:%0.2d:%0.2d",strHours,strMinutes,strSeconds)
+        }
     }
     
     func formatMinutesAgo(timeDifference: Double) -> String {

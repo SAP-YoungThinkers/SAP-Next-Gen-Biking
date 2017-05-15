@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maF-Oy-XYn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="maF-Oy-XYn">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,7 +72,6 @@
                                 <state key="normal" image="stop"/>
                                 <connections>
                                     <action selector="stopTrackingEvent:" destination="iUQ-43-hVt" eventType="touchUpInside" id="IfS-MK-eKv"/>
-                                    <segue destination="uF6-em-03k" kind="presentation" id="d83-MM-ayM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prz-YK-hoe">
@@ -84,37 +83,71 @@
                                     <action selector="startTrackingEvent:" destination="iUQ-43-hVt" eventType="touchUpInside" id="P0d-Fz-TDG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqv-Ze-oAu">
+                                <rect key="frame" x="141" y="478" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save Route"/>
+                                <connections>
+                                    <action selector="saveRouteButton:" destination="iUQ-43-hVt" eventType="touchUpInside" id="4pf-cR-ci2"/>
+                                    <segue destination="lbA-Zc-0JH" kind="show" id="rsi-mA-iNW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pq-U9-OEm">
+                                <rect key="frame" x="141" y="526" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="DismissButton:" destination="iUQ-43-hVt" eventType="touchUpInside" id="3uR-a3-LTU"/>
+                                    <segue destination="6yK-Yr-dvl" kind="show" id="CeV-L3-5l3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImW-P0-FSj">
+                                <rect key="frame" x="93" y="497" width="88" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Pause"/>
+                                <connections>
+                                    <action selector="pauseTrackingEvent:" destination="iUQ-43-hVt" eventType="touchUpInside" id="Lrb-4x-nUb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91u-Y1-vMF">
+                                <rect key="frame" x="169" y="140" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dFR-eo-9C6"/>
                     <connections>
+                        <outlet property="DismissButton" destination="9pq-U9-OEm" id="9Zc-5U-txI"/>
+                        <outlet property="PauseButton" destination="ImW-P0-FSj" id="xIa-hM-5CL"/>
+                        <outlet property="SaveRouteButton" destination="bqv-Ze-oAu" id="6Yh-Fl-EUL"/>
                         <outlet property="startButton" destination="Prz-YK-hoe" id="LFx-rM-de7"/>
                         <outlet property="stopButton" destination="kHM-Lg-iJR" id="Tcg-09-xpb"/>
+                        <outlet property="timeLabel" destination="91u-Y1-vMF" id="VE6-iw-Mop"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSZ-CN-w7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="-854"/>
+            <point key="canvasLocation" x="1066.6666666666667" y="-854.34782608695662"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="q43-rn-nSW">
+        <!--Home-->
+        <scene sceneID="DWi-7V-ja8">
             <objects>
-                <viewController id="Tp8-0v-4iI" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="v3G-8f-vFi"/>
-                        <viewControllerLayoutGuide type="bottom" id="qPd-H1-7TT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xKR-ku-lU9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="5gC-Rg-xnD"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jXK-9X-MUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Home" id="6yK-Yr-dvl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hfg-hp-5jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2977" y="-854"/>
+            <point key="canvasLocation" x="1707" y="-745"/>
+        </scene>
+        <!--Routes-->
+        <scene sceneID="3tX-5y-cX4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Routes" id="lbA-Zc-0JH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="heE-gF-QzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1715" y="-684"/>
         </scene>
         <!--Home-->
         <scene sceneID="Lyz-Ej-Lm0">
@@ -125,24 +158,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tI4-cr-Qc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2463" y="-423"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="V81-Bj-Sgx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uF6-em-03k" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="c9B-M7-YDX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Tp8-0v-4iI" kind="relationship" relationship="rootViewController" id="hLf-4Q-q2D"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="STT-7C-g2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1983" y="-854"/>
         </scene>
     </scenes>
     <resources>
