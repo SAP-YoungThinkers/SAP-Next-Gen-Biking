@@ -18,6 +18,7 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var DismissButton: UIButton!
     @IBOutlet weak var PauseButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     // TODO: pause button that appears instead of start button after start tracking
     
@@ -31,12 +32,13 @@ class TrackingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navItem.title = "Record Route"
+        
         self.locationManager.delegate = self
         SaveRouteButton.isHidden = true
         DismissButton.isHidden = true
         PauseButton.isHidden = true
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
