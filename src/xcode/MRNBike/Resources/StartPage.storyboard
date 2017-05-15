@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="t7r-MP-VpF">
+
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -91,6 +93,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HW-wI-r8g" userLabel="HelpButtonView">
                                 <rect key="frame" x="356" y="323.33333333333331" width="20" height="20"/>
+
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2HW-wI-r8g" secondAttribute="height" multiplier="1:1" id="Csu-z4-Vtv"/>
@@ -109,7 +112,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqb-Yr-FdH" userLabel="HelpButton">
-                                <rect key="frame" x="353.66666666666669" y="320.33333333333331" width="26" height="26"/>
+
+                                <rect key="frame" x="353.66666666666669" y="320.66666666666669" width="26" height="26"/>
+
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="9Kq-Ps-noE"/>
@@ -128,7 +133,9 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-BJ-LZr">
-                                <rect key="frame" x="296.66666666666669" y="348.33333333333331" width="90" height="31"/>
+
+                                <rect key="frame" x="296.66666666666669" y="348.66666666666669" width="90" height="31"/>
+
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messagebox" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-Rf-n7o">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="31"/>
@@ -267,6 +274,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="helpView" destination="N5d-BJ-LZr" id="JUE-rq-sgs"/>
+                        <outlet property="loginButton" destination="fyY-Up-AAu" id="swf-nY-TLA"/>
                         <outlet property="userEmailTextField" destination="jlx-gM-lYa" id="EjW-Ic-Itb"/>
                         <outlet property="userPasswordTextField" destination="JuT-gq-7kW" id="kxp-sQ-50i"/>
                     </connections>
@@ -274,7 +282,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3G6-Zf-5Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Obm-lB-YsH"/>
             </objects>
-            <point key="canvasLocation" x="854" y="90"/>
+            <point key="canvasLocation" x="1026" y="260"/>
         </scene>
         <!--Start page-->
         <scene sceneID="sXh-Ia-6L2">
@@ -404,7 +412,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURNAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-X2-2zc">
+
                                                     <rect key="frame" x="24" y="23.333333333333329" width="166" height="18.666666666666671"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="Y3N-9V-DCu"/>
                                                     </constraints>
@@ -436,7 +446,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-pc-K3k">
+
                                                     <rect key="frame" x="24" y="23.333333333333329" width="166" height="18.666666666666671"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="CzI-Rl-GhZ"/>
                                                     </constraints>
@@ -477,7 +489,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhq-LV-Mh5">
+
                                                     <rect key="frame" x="24" y="23.333333333333329" width="150" height="18.666666666666671"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="qGe-qh-H2t"/>
                                                     </constraints>
@@ -509,7 +523,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7y-cb-pIu">
+
                                                     <rect key="frame" x="24" y="23.333333333333329" width="150" height="18.666666666666671"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="x4L-sT-47c"/>
                                                     </constraints>
@@ -541,7 +557,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
+
                                                     <rect key="frame" x="24" y="13.666666666666668" width="160" height="39.333333333333329"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
                                                     </constraints>
@@ -582,7 +600,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
+
                                                     <rect key="frame" x="24" y="13.666666666666668" width="250" height="39.333333333333329"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="c2V-J3-qSc"/>
                                                     </constraints>
@@ -726,9 +746,11 @@ INFORMATION</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Backgroundstart" translatesAutoresizingMaskIntoConstraints="NO" id="91w-Vy-3dL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
+
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-gV-bKS">
                                 <rect key="frame" x="18" y="77" width="378" height="594"/>
                                 <color key="backgroundColor" red="0.92615574598312378" green="0.94107741117477417" blue="0.94554203748703003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="5"/>
@@ -828,6 +850,7 @@ INFORMATION</string>
     <resources>
         <image name="Backgroundstart" width="213" height="378"/>
         <image name="arrowbutton" width="8" height="7"/>
+
         <image name="closetourbutton" width="8" height="7"/>
         <image name="logoImage" width="40" height="46"/>
         <image name="messagebox" width="90" height="27"/>

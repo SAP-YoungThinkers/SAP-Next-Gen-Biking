@@ -17,6 +17,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var messageLabelTextField: UILabel!
     
     @IBOutlet private var helpView: UIView!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,7 +31,20 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         
+        
+     // Setting default values for Login button
+        
+        loginButton.isEnabled = false
+        loginButton.alpha = 0.5
+
+           // Setting Fields to trigger any Changes
+        
+        userEmailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        userPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        
     }
+    
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
      
@@ -70,6 +84,21 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             return
         }
     }
+    
+    // UITextFieldDelegate For Enablind/Disabling Login Button
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        loginButton.isEnabled = (userEmailTextField.text != "") && (userPasswordTextField.text != "")
+        
+        if loginButton.isEnabled {
+            loginButton.alpha = 1.0
+        } else {
+            loginButton.alpha = 0.5
+        }
+    }
+    
+    // MARK: Actions
+    
     //Open a help message
     @IBAction func openHelpMessage(_ sender: UIButton) {
         self.helpView.isHidden = !self.helpView.isHidden

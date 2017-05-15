@@ -164,18 +164,15 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
 
         mapView.addAnnotation(saveAnnotation)
     }
-    
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
+    override func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
+    override func dismissKeyboard() {
         view.endEditing(true)
     }
+    
 }
 
