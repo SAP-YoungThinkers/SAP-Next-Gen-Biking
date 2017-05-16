@@ -31,6 +31,9 @@ class TrackingViewController: UIViewController {
     var timerRunBool: Bool = true
     var timer: Timer = Timer()
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
