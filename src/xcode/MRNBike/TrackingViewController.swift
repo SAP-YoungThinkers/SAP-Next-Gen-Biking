@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreImage
 
 class TrackingViewController: UIViewController {
     
@@ -19,8 +20,8 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var PauseButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var navItem: UINavigationItem!
-    
-    // TODO: pause button that appears instead of start button after start tracking
+    @IBOutlet weak var backGroundImage: UIImageView!
+    @IBOutlet weak var statisticView: UIView!
     
     var locationManager = LocationManager()
     
@@ -34,6 +35,25 @@ class TrackingViewController: UIViewController {
         super.viewDidLoad()
         
         navItem.title = "Record Route"
+        
+        statisticView.borderColor = UIColor.lightGray
+        statisticView.borderWidth = 1
+        
+        let context = CIContext(options: nil)
+        let currentFilter = CIFilter(name: "CIGaussianBlur")
+        let beginImage = CIImage(image: backGroundImage.image!)
+        currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
+        currentFilter!.setValue(3, forKey: kCIInputRadiusKey)
+        
+        let cropFilter = CIFilter(name: "CICrop")
+        cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
+        cropFilter!.setValue(CIVector(cgRect: beginImage!.extent), forKey: "inputRectangle")
+        
+        let output = cropFilter!.outputImage
+        let cgimg = context.createCGImage(output!, from: output!.extent)
+        let processedImage = UIImage(cgImage: cgimg!)
+        
+        backGroundImage.image = processedImage
         
         self.locationManager.delegate = self
         SaveRouteButton.isHidden = true
@@ -55,21 +75,19 @@ class TrackingViewController: UIViewController {
         locationManager.delegate = self
         locationManager.startTracking()
         
-        if timerRunBool{ startTimer(startNew: true)}
-        
-        else
-        {startTimer(startNew: false)}
-        
+        if timerRunBool {
+            startTimer(startNew: true)
+        } else {
+            startTimer(startNew: false)
+        }
     }
     
     
     @IBAction func pauseTrackingEvent(_ sender: UIButton) {
-        
         startButton?.isHidden = false
         PauseButton.isHidden = true
         timerRunBool = false
         timer.invalidate()
-        
     }
 
     @IBAction func stopTrackingEvent(_ sender: UIButton) {
@@ -81,45 +99,18 @@ class TrackingViewController: UIViewController {
         stopButton.isHidden = true
         PauseButton.isHidden = true
         timer.invalidate()
-        
-        
-        //TODO: Show button to upload the route
-        //      Call upload() if the user wants to upload
-        
     }
-    @IBAction func DismissButton(_ sender: UIButton) {
-        
-        print("dismiss")
-    }
+    
     @IBAction func saveRouteButton(_ sender: UIButton) {
-        
        //upload()
     }
     
-   
-    
-    
-    // TODO: Pause tracking (invoke startTimer(startNew: false))
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     // MARK: - NSCoding
     func saveCollectedDataLocally(){
-        
         if StorageHelper.storeLocally(trackPointsArray: trackPointsArray) {
             trackPointsArray.removeAll() // in order to dispose used memory
         }
     }
-    
     
     // MARK: - Helper Functions
 
@@ -130,17 +121,12 @@ class TrackingViewController: UIViewController {
     
     func updateElapsedTime() {
         elapsedSeconds += 1
-        // TODO: Set label text with formatMinutesAgo(elapsedSeconds)
-   
-       
+        
         if(elapsedSeconds > 0){
-            
             let ti = NSInteger(elapsedSeconds)
             let strSeconds = ti % 60
             let strMinutes = (ti / 60) % 60
             let strHours = (ti / 3600)
-            
-            print("\(strHours):\(strMinutes):\(strSeconds)")
             self.timeLabel.text = String(format: "%0.2d:%0.2d:%0.2d",strHours,strMinutes,strSeconds)
         }
     }
