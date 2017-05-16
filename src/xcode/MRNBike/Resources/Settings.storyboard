@@ -31,7 +31,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="settings-1x" selectedImage="selected_settings-1x" id="qhH-VD-iVN"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings-1x" selectedImage="selected_settings-1x" id="qhH-VD-iVN">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7TH-q3-XtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,7 +42,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="selected_settings-1x" width="30" height="30"/>
-        <image name="settings-1x" width="30" height="30"/>
+        <image name="selected_settings-1x" width="20" height="20"/>
+        <image name="settings-1x" width="20" height="20"/>
     </resources>
 </document>
