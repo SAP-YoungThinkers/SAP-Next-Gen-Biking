@@ -265,9 +265,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
         
-        var status: String = ""
-        var alertTitle: String = ""
-        var alertMessage: String = ""
+        var status: String
         
         if let addReportViewController = segue.source as? AddReportViewController {
             
@@ -290,7 +288,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
-            let annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
+            var annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
+            if annotations.count == 0 {
+                annotations = addReportViewController.mapView.annotations.filter { $0 === addReportViewController.mapView.userLocation } }
+            
             let location: MKAnnotation = annotations[0]
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
@@ -300,17 +301,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             
             status = StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
-            
-            if status == "1" {
-                alertTitle = "Upload successful"
-                alertMessage = "Report uploaded."
-            } else if status == "2" {
-                alertTitle = "Error"
-                alertMessage = "Something went wrong."
-            } else {
-                alertTitle = "Error"
-                alertMessage = status
-            }
             
         }
     }
