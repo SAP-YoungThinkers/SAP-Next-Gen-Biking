@@ -265,11 +265,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
         
-        var status: String
+        let status: String
         
         if let addReportViewController = segue.source as? AddReportViewController {
             
-            var message: String = String(addReportViewController.textView.text)
+            var message: String = addReportViewController.textView.text
             
             //Check if the user hasn't add any message.
             if message == "Message..." {
@@ -302,6 +302,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             status = StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
             
+            print(status);
         }
     }
     
