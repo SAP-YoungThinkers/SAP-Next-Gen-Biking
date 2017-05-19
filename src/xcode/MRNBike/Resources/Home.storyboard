@@ -34,43 +34,6 @@
             <point key="canvasLocation" x="75" y="-2"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="5Y1-gX-1uc">
-            <objects>
-                <viewController id="w4A-Q7-bsh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hIz-b5-Wn7"/>
-                        <viewControllerLayoutGuide type="bottom" id="j9C-zo-L6d"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ce7-g3-3JB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Profile Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhY-UA-8WM">
-                                <rect key="frame" x="141" y="265" width="149" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-HP-ocN">
-                                <rect key="frame" x="16" y="14" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GOE-25-Xjg" kind="show" id="wsZ-De-ccI"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ldO-nZ-j6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1055" y="-850"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="Je1-Yi-uuU">
             <objects>
                 <viewController id="LIY-8t-FG2" sceneMemberID="viewController">
@@ -89,7 +52,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAP User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaH-ih-P3S">
-                                                <rect key="frame" x="80" y="23.5" width="76.5" height="21"/>
+                                                <rect key="frame" x="80" y="24" width="73.5" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="o2A-x0-jBv"/>
                                                 </constraints>
@@ -119,7 +82,7 @@
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="w4A-Q7-bsh" kind="show" id="f4h-W2-A7P"/>
+                                                    <segue destination="eIW-4k-xSI" kind="show" id="Axx-Dw-H23"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back-1x" translatesAutoresizingMaskIntoConstraints="NO" id="kAg-xc-mCv">
@@ -177,19 +140,19 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 587" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-uW-Be3">
-                                                        <rect key="frame" x="98.5" y="50" width="179.5" height="65"/>
+                                                        <rect key="frame" x="107" y="50" width="162.5" height="62"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="53"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHEEL ROTATIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-Us-Gg9">
-                                                        <rect key="frame" x="122.5" y="120" width="130" height="16"/>
+                                                        <rect key="frame" x="128" y="117" width="119" height="16"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="13"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.64592251712328763" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-cB-S9X" userLabel="Trees View">
-                                                        <rect key="frame" x="243" y="152" width="101" height="81"/>
+                                                        <rect key="frame" x="243" y="149" width="101" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trees saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grr-BS-QkH">
                                                                 <rect key="frame" x="8" y="8" width="85" height="21"/>
@@ -217,7 +180,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-RX-tHH" userLabel="Distance View">
-                                                        <rect key="frame" x="133" y="152" width="109" height="81"/>
+                                                        <rect key="frame" x="133" y="149" width="109" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance (km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVM-Ra-sKB">
                                                                 <rect key="frame" x="12" y="8" width="85" height="21"/>
@@ -245,7 +208,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoJ-RJ-oQI" userLabel="Burgers View">
-                                                        <rect key="frame" x="27" y="152" width="105" height="81"/>
+                                                        <rect key="frame" x="27" y="149" width="105" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Burgers Burned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeu-QM-sjW">
                                                                 <rect key="frame" x="0.0" y="8" width="94" height="21"/>
@@ -312,7 +275,7 @@
                                                 <rect key="frame" x="312" y="0.0" width="63" height="95"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-vB-T8A">
-                                                        <rect key="frame" x="13" y="8" width="38" height="21"/>
+                                                        <rect key="frame" x="15" y="8" width="34" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="4WQ-cp-zxm"/>
                                                         </constraints>
@@ -585,6 +548,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pb-Wr-USz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="45" y="-288"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="czE-6o-raz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="eIW-4k-xSI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkQ-YE-eHD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="192"/>
         </scene>
         <!--RoutesStoryboard-->
         <scene sceneID="arI-OD-bzF">
