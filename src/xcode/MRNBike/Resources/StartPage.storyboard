@@ -112,11 +112,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqb-Yr-FdH" userLabel="HelpButton">
-<<<<<<< HEAD
-                                <rect key="frame" x="353.66666666666669" y="321" width="26" height="26"/>
-=======
                                 <rect key="frame" x="259.5" y="320" width="26" height="26"/>
->>>>>>> TourPage
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="9Kq-Ps-noE"/>
@@ -135,11 +131,7 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-BJ-LZr">
-<<<<<<< HEAD
-                                <rect key="frame" x="296.66666666666669" y="349" width="90" height="31"/>
-=======
                                 <rect key="frame" x="202.5" y="348" width="90" height="31"/>
->>>>>>> TourPage
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messagebox" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-Rf-n7o">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="31"/>
@@ -393,11 +385,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qyw-Hb-4cT" id="55B-9e-BeA">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
->>>>>>> TourPage
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYK-gf-flH">
@@ -428,19 +416,11 @@
                                         <rect key="frame" x="0.0" y="96" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZEA-8t-cFb" id="obr-Yi-of8">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURNAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-X2-2zc">
-                                                    <rect key="frame" x="24" y="23.333333333333329" width="166" height="18.666666666666671"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURNAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-X2-2zc">
                                                     <rect key="frame" x="24" y="22.5" width="166" height="20"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="Y3N-9V-DCu"/>
                                                     </constraints>
@@ -449,11 +429,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SURNAME" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Sm-Ch-Jd5">
-<<<<<<< HEAD
-                                                    <rect key="frame" x="198" y="23" width="190" height="21"/>
-=======
                                                     <rect key="frame" x="198" y="22" width="96" height="22"/>
->>>>>>> TourPage
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -472,19 +448,11 @@
                                         <rect key="frame" x="0.0" y="162" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XaB-4F-Lbw" id="DkM-Og-eTw">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-pc-K3k">
-                                                    <rect key="frame" x="24" y="23.333333333333329" width="166" height="18.666666666666671"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-pc-K3k">
                                                     <rect key="frame" x="24" y="22.5" width="166" height="20"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="CzI-Rl-GhZ"/>
                                                     </constraints>
@@ -493,11 +461,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FIRST NAME" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eed-C5-ugC">
-<<<<<<< HEAD
-                                                    <rect key="frame" x="198" y="23" width="190" height="21"/>
-=======
                                                     <rect key="frame" x="198" y="22" width="96" height="22"/>
->>>>>>> TourPage
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -516,11 +480,7 @@
                                         <rect key="frame" x="0.0" y="228" width="320" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gp9-pM-s9P" id="pDh-yV-Z1S">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="15.5"/>
->>>>>>> TourPage
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93499165773391724" green="0.94936329126358032" blue="0.95220357179641724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -529,19 +489,11 @@
                                         <rect key="frame" x="0.0" y="244" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7TS-TS-DpJ" id="9AV-H2-DWU">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhq-LV-Mh5">
                                                     <rect key="frame" x="24" y="23.333333333333329" width="150" height="18.666666666666671"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhq-LV-Mh5">
-                                                    <rect key="frame" x="24" y="22.5" width="150" height="20"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="qGe-qh-H2t"/>
                                                     </constraints>
@@ -550,11 +502,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@mail.com" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-YX-rMb">
-<<<<<<< HEAD
                                                     <rect key="frame" x="174" y="24" width="214" height="19"/>
-=======
-                                                    <rect key="frame" x="174" y="23" width="120" height="20"/>
->>>>>>> TourPage
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
@@ -573,19 +521,11 @@
                                         <rect key="frame" x="0.0" y="310" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8R-Id-Ovz" id="XvF-sb-HHr">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7y-cb-pIu">
                                                     <rect key="frame" x="24" y="23.333333333333329" width="150" height="18.666666666666671"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7y-cb-pIu">
-                                                    <rect key="frame" x="24" y="22.5" width="150" height="20"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="x4L-sT-47c"/>
                                                     </constraints>
@@ -594,11 +534,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DH3-0Q-Tin">
-<<<<<<< HEAD
                                                     <rect key="frame" x="174" y="24" width="214" height="19"/>
-=======
-                                                    <rect key="frame" x="174" y="23" width="120" height="20"/>
->>>>>>> TourPage
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -617,19 +553,11 @@
                                         <rect key="frame" x="0.0" y="376" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Apy-VR-7N8" id="Ps7-hm-giQ">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
                                                     <rect key="frame" x="24" y="23.999999999999996" width="160" height="18.666666666666661"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
-                                                    <rect key="frame" x="24" y="13.5" width="160" height="39.5"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
                                                     </constraints>
@@ -638,11 +566,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ph-5V-3uA">
-<<<<<<< HEAD
                                                     <rect key="frame" x="184" y="24" width="204" height="19"/>
-=======
-                                                    <rect key="frame" x="184" y="23" width="110" height="20"/>
->>>>>>> TourPage
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -661,11 +585,7 @@
                                         <rect key="frame" x="0.0" y="442" width="320" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePo-Ft-WEI" id="Pnp-8b-9GW">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="15.5"/>
->>>>>>> TourPage
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93499165770000003" green="0.94936329129999997" blue="0.95220357180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -674,19 +594,11 @@
                                         <rect key="frame" x="0.0" y="458" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rVu-Um-EkO" id="mZC-Zq-2TP">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
                                                     <rect key="frame" x="24" y="23.999999999999996" width="250" height="18.666666666666661"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
-                                                    <rect key="frame" x="24" y="13.5" width="250" height="39.5"/>
->>>>>>> TourPage
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="c2V-J3-qSc"/>
                                                     </constraints>
@@ -710,11 +622,7 @@
                                         <rect key="frame" x="0.0" y="524" width="320" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="790-b1-2m8" id="eHe-hr-uw4">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
->>>>>>> TourPage
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqn-cF-www">
