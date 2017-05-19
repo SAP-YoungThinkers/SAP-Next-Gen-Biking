@@ -11,11 +11,8 @@ import UIKit
 class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
   
     @IBOutlet weak var userEmailTextField: UITextField!
-    
     @IBOutlet weak var userPasswordTextField: UITextField!
-    
     @IBOutlet weak var messageLabelTextField: UILabel!
-    
     @IBOutlet private var helpView: UIView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
@@ -40,6 +37,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
         rememberSwitch.isOn = passwordWasStored
         
+
         if passwordWasStored {
             userEmailTextField.text = defaults.object(forKey: "userName") as! String?
             userPasswordTextField.text = defaults.object(forKey: "userPassword") as! String?
@@ -50,11 +48,19 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         
         
-     // Setting default values for Login button
+     // Setting default values for Login button incase of Remembering Password is on or off.
         
+        if !rememberSwitch.isOn{
+            
         loginButton.isEnabled = false
         loginButton.alpha = 0.5
-
+            
+        }
+        else {
+            loginButton.isEnabled = true
+            loginButton.alpha = 1.0
+            
+        }
            // Setting Fields to trigger any Changes
         
         userEmailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -66,10 +72,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
      
-       
-       
-   
-        
         let userEmail = userEmailTextField.text
         let userPassword = userPasswordTextField.text
         
@@ -78,33 +80,37 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
 
-        
-        
-        //Checking if Remember Password is on: Login with default values saved.
-        
-    if rememberSwitch.isOn {
-        
-        if userEmailTextField != nil && userPasswordTextField != nil {
+       
             
-    defaults.set(userEmailTextField.text, forKey: "userName")
-    defaults.set(userPasswordTextField.text, forKey: "userPassword")
+            //Checking if Remember Password is on: Login with default values saved.
+       if rememberSwitch.isOn {
+        if userEmailTextField != nil && userPasswordTextField != nil {
+            defaults.set(userEmailTextField.text, forKey: "userName")
+            defaults.set(userPasswordTextField.text, forKey: "userPassword")
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(controller, animated: true, completion: nil)
             
+        }
     }
-    
             //Check if Remember Password is Off, Check for other conditions to Login
     
-    else if passwordWasStored && rememberSwitch.isOn == false {
+       else if passwordWasStored && rememberSwitch.isOn == false {
+        
+        
+        defaults.removeObject(forKey: "userName")
+        defaults.removeObject(forKey: "userPassword")
+        
     
     if login != nil && login == userEmail  {
+        
             if pass == userPassword{
                 let storyboard = UIStoryboard(name: "Home", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                 self.present(controller, animated: true, completion: nil)
                 
             }
+                
             else {
               
                 passwordAlert.title = "Password wrong"
@@ -114,7 +120,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                 print("Password is wrong")
                 return
             }
-        }
+    }
+    
+
         else {
            
             passwordAlert.title = "User doesn't exist"
@@ -124,21 +132,29 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             print("User doesn't exist")
             return
         }
-    }
-    }
+            }
         
-    }
+        }
+
+    
     // UITextFieldDelegate For Enablind/Disabling Login Button
     
     func textFieldDidChange(_ textField: UITextField) {
         loginButton.isEnabled = (userEmailTextField.text != "") && (userPasswordTextField.text != "")
+       
         
         if loginButton.isEnabled {
             loginButton.alpha = 1.0
         } else {
             loginButton.alpha = 0.5
         }
+        
+        
+    
     }
+    
+    
+    
     
     // MARK: Actions
     
