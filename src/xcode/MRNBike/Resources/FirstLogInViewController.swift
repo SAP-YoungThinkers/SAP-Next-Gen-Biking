@@ -18,6 +18,10 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     @IBOutlet private var helpView: UIView!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var rememberSwitch: UISwitch!
+    
+    var defaults = UserDefaults.standard
+    var passwordWasStored: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,6 +31,20 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.userEmailTextField.delegate = self
+        self.userPasswordTextField.delegate = self
+        
+        if defaults.object(forKey: "userName") != nil {
+            passwordWasStored = true
+        }
+        rememberSwitch.isOn = passwordWasStored
+        
+        if passwordWasStored {
+            userEmailTextField.text = defaults.object(forKey: "userName") as! String?
+            userPasswordTextField.text = defaults.object(forKey: "userPassword") as! String?
+        }
+
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
