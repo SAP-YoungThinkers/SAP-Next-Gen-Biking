@@ -8,26 +8,75 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
 
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+         self.delegate = self
 
         
+
         // Do any additional setup after loading the view.
     }
    
+   
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTabBarSeparators()
         AddBackgroundColor()
+        
+    }
+    
+    // Open Login screen
+    func logOut (){
+        let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Login")
+        self.present(controller, animated: true, completion: nil)
+    }
+    // Open dashboard
+    func logOutCancel (){
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+
+    
+    // Open Login screen, when the user chose LogOut button
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+
+        let tabBarIndex = tabBarController.selectedIndex
+        print (tabBarIndex)
+        if tabBarIndex == 4 {
+            
+            
+            
+            let LogOutAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+            LogOutAlert.title = "LogOut conformation"
+            LogOutAlert.message = "Do you really want to sign out?"
+            LogOutAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {action in
+                self.logOutCancel()
+            }))
+            LogOutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+                self.logOut()
+            }))
+            self.present(LogOutAlert, animated: true, completion: nil)
+            return
+
+        }
     }
     
     
     // Adding Separatos between TabBarItems
     
     func setupTabBarSeparators() {
+       
+
+        
         let itemWidth = floor(self.tabBar.frame.size.width / CGFloat(self.tabBar.items!.count))
         let separatorWidth: CGFloat = 0.5
         
@@ -66,8 +115,5 @@ class TabBarViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
 }
 
