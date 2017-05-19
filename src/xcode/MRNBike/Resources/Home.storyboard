@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1055" y="-850"/>
         </scene>
-        <!--View Controller-->
+        <!--Dashboard Controller-->
         <scene sceneID="Je1-Yi-uuU">
             <objects>
-                <viewController id="LIY-8t-FG2" sceneMemberID="viewController">
+                <viewController id="LIY-8t-FG2" customClass="DashboardController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B1f-nV-AyC"/>
                         <viewControllerLayoutGuide type="bottom" id="fwC-fH-QDv"/>
@@ -564,6 +564,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home-1x" selectedImage="selected_home-1x" id="l2U-vj-ioK"/>
+                    <connections>
+                        <outlet property="burgerLabel" destination="ZfF-LI-Ocv" id="41t-9y-6Ue"/>
+                        <outlet property="distanceLabel" destination="mXV-Nv-uYt" id="PRJ-vG-TeM"/>
+                        <outlet property="treesSavedLabel" destination="Bcx-3X-xHM" id="QTq-eV-9Fi"/>
+                        <outlet property="wheelRotationLabel" destination="wIv-uW-Be3" id="GOd-P6-FxC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

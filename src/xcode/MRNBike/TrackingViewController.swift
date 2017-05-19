@@ -22,6 +22,10 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var backGroundImage: UIImageView!
     @IBOutlet weak var statisticView: UIView!
+    @IBOutlet weak var wheelRotationLabel: UILabel!
+    @IBOutlet weak var burgersLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var treesSavedLabel: UILabel!
     
     var locationManager = LocationManager()
     
@@ -30,9 +34,6 @@ class TrackingViewController: UIViewController {
     var elapsedSeconds: Int = 0
     var timerRunBool: Bool = true
     var timer: Timer = Timer()
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,10 +103,34 @@ class TrackingViewController: UIViewController {
         stopButton.isHidden = true
         PauseButton.isHidden = true
         timer.invalidate()
+        
+        //Test data. Delete Later!!!
+        wheelRotationLabel.text = "20"
+        burgersLabel.text = "30"
+        distanceLabel.text = "40"
+        treesSavedLabel.text = "50"
+        
     }
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
-       //upload()
+        
+        var wheelRotation: Int = UserDefaults.standard.integer(forKey: "wheelRotation")
+        wheelRotation += Int(wheelRotationLabel.text!)!
+        UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
+        
+        var burgers: Int = UserDefaults.standard.integer(forKey: "burgers")
+        burgers += Int(burgersLabel.text!)!
+        UserDefaults.standard.set(burgers, forKey: "burgers")
+        
+        var distance: Int = UserDefaults.standard.integer(forKey: "distance")
+        distance += Int(distanceLabel.text!)!
+        UserDefaults.standard.set(distance, forKey: "distance")
+        
+        var treesSaved: Int = UserDefaults.standard.integer(forKey: "treesSaved")
+        treesSaved += Int(treesSavedLabel.text!)!
+        UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
+      
+        //upload()
     }
     
     // MARK: - NSCoding
