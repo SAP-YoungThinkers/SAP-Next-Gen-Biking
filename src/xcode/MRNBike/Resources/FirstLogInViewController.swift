@@ -66,6 +66,10 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
      
+       
+       
+   
+        
         let userEmail = userEmailTextField.text
         let userPassword = userPasswordTextField.text
         
@@ -75,7 +79,26 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
 
         
-        if login != nil && login == userEmail  {
+        
+        //Checking if Remember Password is on: Login with default values saved.
+        
+    if rememberSwitch.isOn {
+        
+        if userEmailTextField != nil && userPasswordTextField != nil {
+            
+    defaults.set(userEmailTextField.text, forKey: "userName")
+    defaults.set(userPasswordTextField.text, forKey: "userPassword")
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(controller, animated: true, completion: nil)
+            
+    }
+    
+            //Check if Remember Password is Off, Check for other conditions to Login
+    
+    else if passwordWasStored && rememberSwitch.isOn == false {
+    
+    if login != nil && login == userEmail  {
             if pass == userPassword{
                 let storyboard = UIStoryboard(name: "Home", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "Home")
@@ -102,7 +125,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             return
         }
     }
-    
+    }
+        
+    }
     // UITextFieldDelegate For Enablind/Disabling Login Button
     
     func textFieldDidChange(_ textField: UITextField) {
