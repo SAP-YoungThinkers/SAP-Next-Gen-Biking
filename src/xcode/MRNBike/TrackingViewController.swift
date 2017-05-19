@@ -110,6 +110,23 @@ class TrackingViewController: UIViewController {
         distanceLabel.text = "40"
         treesSavedLabel.text = "50"
         
+        var wheelRotation: Int = UserDefaults.standard.integer(forKey: "wheelRotation")
+        wheelRotation += Int(wheelRotationLabel.text!)!
+        UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
+        
+        var burgers: Int = UserDefaults.standard.integer(forKey: "burgers")
+        burgers += Int(burgersLabel.text!)!
+        UserDefaults.standard.set(burgers, forKey: "burgers")
+        
+        var distance: Int = UserDefaults.standard.integer(forKey: "distance")
+        distance += Int(distanceLabel.text!)!
+        UserDefaults.standard.set(distance, forKey: "distance")
+        
+        var treesSaved: Int = UserDefaults.standard.integer(forKey: "treesSaved")
+        treesSaved += Int(treesSavedLabel.text!)!
+        UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
+        //End of test data
+        
     }
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
