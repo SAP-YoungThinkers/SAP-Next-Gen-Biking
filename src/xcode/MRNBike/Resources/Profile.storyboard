@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NoF-Nw-mDQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NoF-Nw-mDQ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -201,11 +201,15 @@
                     <navigationItem key="navigationItem" title="Edit" id="6XL-js-9ed">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="diG-9L-4gJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="cBt-n7-dfl" kind="show" id="FQL-3F-A2y"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="SAVE" id="sDz-NX-6YT">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveRequest:" destination="kkJ-d0-kWv" id="L9k-iZ-GdW"/>
+                                <segue destination="cBt-n7-dfl" kind="show" id="01D-GF-0Mt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -236,6 +240,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Epf-CA-QHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-566.25" y="550"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Gea-Nk-HXH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="cBt-n7-dfl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b2H-J0-NqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37" y="359"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mwi-jo-fJc">
@@ -358,4 +370,7 @@
     <resources>
         <image name="profileBG" width="1500" height="1000"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FQL-3F-A2y"/>
+    </inferredMetricsTieBreakers>
 </document>

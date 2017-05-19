@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable
 class RadioButtonClass: UIButton {
 
-    internal var outerCircleLayer = CAShapeLayer()
-    internal var innerCircleLayer = CAShapeLayer()
+    var outerCircleLayer = CAShapeLayer()
+    var innerCircleLayer = CAShapeLayer()
     
     @IBInspectable public var outerCircleColor: UIColor = UIColor.green {
         didSet {

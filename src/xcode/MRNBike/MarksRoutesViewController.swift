@@ -265,13 +265,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
         
-        var status: String = ""
-        var alertTitle: String = ""
-        var alertMessage: String = ""
+        let status: String
         
         if let addReportViewController = segue.source as? AddReportViewController {
             
-            var message: String = String(addReportViewController.textView.text)
+            var message: String = addReportViewController.textView.text
             
             //Check if the user hasn't add any message.
             if message == "Message..." {
@@ -290,7 +288,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
             
-            let annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
+            var annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
+            if annotations.count == 0 {
+                annotations = addReportViewController.mapView.annotations.filter { $0 === addReportViewController.mapView.userLocation } }
+            
             let location: MKAnnotation = annotations[0]
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
@@ -301,17 +302,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             status = StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
             
-            if status == "1" {
-                alertTitle = "Upload successful"
-                alertMessage = "Report uploaded."
-            } else if status == "2" {
-                alertTitle = "Error"
-                alertMessage = "Something went wrong."
-            } else {
-                alertTitle = "Error"
-                alertMessage = status
-            }
-            
+            print(status);
         }
     }
     
