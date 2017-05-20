@@ -36,9 +36,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
         
         // set defaults
-        currentWeightLabel.text = "\(weightSlider.value) " + " kg"
+        currentWeightLabel.text = "\(Int(weightSlider.value)) " + " kg"
         currentWeightLabel.sizeToFit()
-        currentWheelSize.text = "\(wheelSizeSlider.value) " + " Inches"
+        currentWheelSize.text = "\(Int(wheelSizeSlider.value)) " + " Inches"
         currentWheelSize.sizeToFit()
     }
 
