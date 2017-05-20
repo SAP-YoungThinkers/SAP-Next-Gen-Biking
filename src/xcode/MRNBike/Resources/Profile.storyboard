@@ -202,14 +202,13 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="diG-9L-4gJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="cBt-n7-dfl" kind="show" id="FQL-3F-A2y"/>
+                                <action selector="backAction:" destination="kkJ-d0-kWv" id="xOh-7q-OXr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="SAVE" id="sDz-NX-6YT">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveRequest:" destination="kkJ-d0-kWv" id="L9k-iZ-GdW"/>
-                                <segue destination="cBt-n7-dfl" kind="show" id="01D-GF-0Mt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -241,21 +240,14 @@
             </objects>
             <point key="canvasLocation" x="-566.25" y="550"/>
         </scene>
-        <!--Home-->
-        <scene sceneID="Gea-Nk-HXH">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="cBt-n7-dfl" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b2H-J0-NqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-37" y="359"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="mwi-jo-fJc">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzM-Uo-Xsl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Profile" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NoF-Nw-mDQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTm-Mf-KhT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cTm-Mf-KhT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -264,7 +256,6 @@
                         <segue destination="kkJ-d0-kWv" kind="relationship" relationship="rootViewController" id="8JR-CV-ybg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gzM-Uo-Xsl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1426.4000000000001" y="546.47676161919048"/>
         </scene>
@@ -370,7 +361,4 @@
     <resources>
         <image name="profileBG" width="1500" height="1000"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="FQL-3F-A2y"/>
-    </inferredMetricsTieBreakers>
 </document>

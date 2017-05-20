@@ -119,9 +119,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         let imageData = UIImageJPEGRepresentation(imageBG.image!, 1.0)
         userData.set(imageData, forKey: "userProfileImage")
         
-        // prepareforsegue
-        // ... ...
-        // TODO: get away from this screen!
+        self.navigationController?.popViewController(animated: true)
         
     }
     
@@ -137,6 +135,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         inputIndicatorWheel.sizeToFit()
     }
     
+    @IBAction func backAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     var userBarViewController : UserBarViewController!
     let userBarSegueName = "userBarSegue"
@@ -147,7 +148,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         //Delegation of the textFields to the view
         inputEmail.delegate=self
         inputPassword.delegate=self
@@ -354,6 +355,10 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         self.view.endEditing(true)
         return true;
     }
+    
+    // MARK: Actions 
+    
+    
 }
 
 class UserBarViewController: UIViewController {
