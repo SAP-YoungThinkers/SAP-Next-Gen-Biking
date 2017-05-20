@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="t7r-MP-VpF">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -43,7 +43,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9wD-vX-PPM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cud-ti-etr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoImage" translatesAutoresizingMaskIntoConstraints="NO" id="9Gs-o4-m1z">
@@ -284,14 +284,14 @@
                         <viewControllerLayoutGuide type="bottom" id="nsE-Tc-SOt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5UW-SG-Hn7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Backgroundstart" translatesAutoresizingMaskIntoConstraints="NO" id="5Nc-zv-yZ3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO0-9n-gbF">
-                                <rect key="frame" x="106" y="269" width="108" height="54"/>
+                                <rect key="frame" x="106" y="357" width="108" height="54"/>
                                 <color key="backgroundColor" red="0.75294117647058822" green="0.22352941176470587" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="062-VI-5cK"/>
@@ -309,7 +309,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5S-tW-0x4">
-                                <rect key="frame" x="106" y="346" width="108" height="54"/>
+                                <rect key="frame" x="106" y="434" width="108" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="h4x-PX-i8R"/>
                                 </constraints>
@@ -357,7 +357,7 @@
             <objects>
                 <tableViewController id="6H7-EB-GQk" customClass="CreateProfileController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="whs-4m-dkH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -540,7 +540,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
-                                                    <rect key="frame" x="24" y="13" width="160" height="39.5"/>
+                                                    <rect key="frame" x="24" y="13.5" width="160" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
                                                     </constraints>
@@ -581,7 +581,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
-                                                    <rect key="frame" x="24" y="13" width="250" height="39.5"/>
+                                                    <rect key="frame" x="24" y="13.5" width="250" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="c2V-J3-qSc"/>
                                                     </constraints>
@@ -609,8 +609,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqn-cF-www">
-                                                    <rect key="frame" x="24" y="19" width="120" height="41"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="24" y="19" width="120" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">PERSONAL
 INFORMATION</string>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
@@ -719,14 +719,14 @@ INFORMATION</string>
                         <viewControllerLayoutGuide type="bottom" id="0ik-ZY-emD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="U0X-ye-pF1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Backgroundstart" translatesAutoresizingMaskIntoConstraints="NO" id="91w-Vy-3dL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backtour" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-gV-bKS">
-                                <rect key="frame" x="18" y="77" width="284" height="338"/>
+                                <rect key="frame" x="18" y="77" width="284" height="426"/>
                                 <color key="backgroundColor" red="0.92469829320907593" green="0.94251453876495361" blue="0.94536954164505005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -742,7 +742,7 @@ INFORMATION</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1np-XT-lLu">
-                                <rect key="frame" x="60" y="316" width="200" height="54"/>
+                                <rect key="frame" x="60" y="404" width="200" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="aGm-zX-LyJ"/>
                                     <constraint firstAttribute="height" constant="54" id="tl5-Bg-uRG"/>
