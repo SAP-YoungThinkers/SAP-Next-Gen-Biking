@@ -20,9 +20,9 @@ class DashboardController: UIViewController {
         super.viewDidLoad()
         
         wheelRotationLabel.text = String(UserDefaults.standard.integer(forKey: "wheelRotation"))
-        burgerLabel.text = String(UserDefaults.standard.integer(forKey: "burgers"))
-        distanceLabel.text = String(UserDefaults.standard.integer(forKey: "distance"))
-        treesSavedLabel.text = String(UserDefaults.standard.integer(forKey: "treesSaved"))
+        burgerLabel.text = String(UserDefaults.standard.double(forKey: "burgers"))
+        distanceLabel.text = String(UserDefaults.standard.double(forKey: "distance"))
+        treesSavedLabel.text = String(UserDefaults.standard.double(forKey: "treesSaved"))
         
     }
     

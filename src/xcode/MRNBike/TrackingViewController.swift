@@ -35,6 +35,9 @@ class TrackingViewController: UIViewController {
     var timerRunBool: Bool = true
     var timer: Timer = Timer()
     
+    //Users wheel size from Zoll to cm.
+    let wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,25 +108,20 @@ class TrackingViewController: UIViewController {
         timer.invalidate()
         
         //Test data. Delete Later!!!
-        wheelRotationLabel.text = "20"
-        burgersLabel.text = "30"
-        distanceLabel.text = "40"
-        treesSavedLabel.text = "50"
-        
-        var wheelRotation: Int = UserDefaults.standard.integer(forKey: "wheelRotation")
-        wheelRotation += Int(wheelRotationLabel.text!)!
+        var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
+        wheelRotation += Double(wheelRotationLabel.text!)!
         UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
         
-        var burgers: Int = UserDefaults.standard.integer(forKey: "burgers")
-        burgers += Int(burgersLabel.text!)!
+        var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
+        burgers += Double(burgersLabel.text!)!
         UserDefaults.standard.set(burgers, forKey: "burgers")
         
-        var distance: Int = UserDefaults.standard.integer(forKey: "distance")
-        distance += Int(distanceLabel.text!)!
+        var distance: Double = UserDefaults.standard.double(forKey: "distance")
+        distance += Double(distanceLabel.text!)!
         UserDefaults.standard.set(distance, forKey: "distance")
         
-        var treesSaved: Int = UserDefaults.standard.integer(forKey: "treesSaved")
-        treesSaved += Int(treesSavedLabel.text!)!
+        var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
+        treesSaved += Double(treesSavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
         //End of test data
         
@@ -131,20 +129,20 @@ class TrackingViewController: UIViewController {
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
         
-        var wheelRotation: Int = UserDefaults.standard.integer(forKey: "wheelRotation")
-        wheelRotation += Int(wheelRotationLabel.text!)!
+        var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
+        wheelRotation += Double(wheelRotationLabel.text!)!
         UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
         
-        var burgers: Int = UserDefaults.standard.integer(forKey: "burgers")
-        burgers += Int(burgersLabel.text!)!
+        var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
+        burgers += Double(burgersLabel.text!)!
         UserDefaults.standard.set(burgers, forKey: "burgers")
         
-        var distance: Int = UserDefaults.standard.integer(forKey: "distance")
-        distance += Int(distanceLabel.text!)!
+        var distance: Double = UserDefaults.standard.double(forKey: "distance")
+        distance += Double(distanceLabel.text!)!
         UserDefaults.standard.set(distance, forKey: "distance")
         
-        var treesSaved: Int = UserDefaults.standard.integer(forKey: "treesSaved")
-        treesSaved += Int(treesSavedLabel.text!)!
+        var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
+        treesSaved += Double(treesSavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
       
         //upload()
@@ -172,8 +170,19 @@ class TrackingViewController: UIViewController {
             let strSeconds = ti % 60
             let strMinutes = (ti / 60) % 60
             let strHours = (ti / 3600)
-            self.timeLabel.text = String(format: "%0.2d:%0.2d:%0.2d",strHours,strMinutes,strSeconds)
+            timeLabel.text = String(format: "%0.2d:%0.2d:%0.2d",strHours,strMinutes,strSeconds)
         }
+        
+        let test: Double = 13.40 * Double(elapsedSeconds)
+        
+        //Claculate new statistic values and update label text
+        if (elapsedSeconds % 5) == 0 {
+            wheelRotationLabel.text = String(Int(test / wheelInCm))
+            burgersLabel.text = String(round(100*(test / 10000))/100)
+            distanceLabel.text = String(round(100*(test / 1000))/100)
+            treesSavedLabel.text = String(round(100*(test / 100000))/100)
+        }
+        
     }
     
     func formatMinutesAgo(timeDifference: Double) -> String {
