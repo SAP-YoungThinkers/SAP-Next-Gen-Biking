@@ -30,7 +30,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Tracking" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="maF-Oy-XYn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NP5-pb-fLb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NP5-pb-fLb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -181,7 +181,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TREES SAVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0a-2y-fKI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CO2 SAVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0a-2y-fKI">
                                                 <rect key="frame" x="245" y="19" width="112" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
@@ -289,13 +289,14 @@
                         <outlet property="SaveRouteButton" destination="bqv-Ze-oAu" id="6Yh-Fl-EUL"/>
                         <outlet property="backGroundImage" destination="HdX-BQ-V7T" id="02s-tu-Ib9"/>
                         <outlet property="burgersLabel" destination="rHp-0S-55H" id="U2V-Um-Mmn"/>
+                        <outlet property="co2SavedLabel" destination="znx-iz-abB" id="S89-AI-ol9"/>
                         <outlet property="distanceLabel" destination="4IP-8g-XZv" id="2ZS-1h-eI8"/>
                         <outlet property="navItem" destination="dFR-eo-9C6" id="tkB-zx-moi"/>
+                        <outlet property="reportLocation" destination="1t5-jv-FI8" id="R8g-CQ-NqP"/>
                         <outlet property="startButton" destination="Prz-YK-hoe" id="LFx-rM-de7"/>
                         <outlet property="statisticView" destination="Syo-xu-Hge" id="AiB-SM-9QK"/>
                         <outlet property="stopButton" destination="kHM-Lg-iJR" id="Tcg-09-xpb"/>
                         <outlet property="timeLabel" destination="91u-Y1-vMF" id="VE6-iw-Mop"/>
-                        <outlet property="treesSavedLabel" destination="znx-iz-abB" id="khz-za-php"/>
                         <outlet property="wheelRotationLabel" destination="MHk-4a-FkC" id="FUf-8c-Ay5"/>
                     </connections>
                 </viewController>

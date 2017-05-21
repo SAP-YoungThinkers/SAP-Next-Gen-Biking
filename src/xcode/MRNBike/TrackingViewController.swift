@@ -25,7 +25,8 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var wheelRotationLabel: UILabel!
     @IBOutlet weak var burgersLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var treesSavedLabel: UILabel!
+    @IBOutlet weak var co2SavedLabel: UILabel!
+    @IBOutlet weak var reportLocation: UIButton!
     
     var locationManager = LocationManager()
     
@@ -69,6 +70,7 @@ class TrackingViewController: UIViewController {
         SaveRouteButton.isHidden = true
         DismissButton.isHidden = true
         PauseButton.isHidden = true
+        reportLocation.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,26 +111,8 @@ class TrackingViewController: UIViewController {
         startButton.isHidden = true
         stopButton.isHidden = true
         PauseButton.isHidden = true
+        reportLocation.isHidden = false
         timer.invalidate()
-        
-        //Test data. Delete Later!!!
-        var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
-        wheelRotation += Double(wheelRotationLabel.text!)!
-        UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
-        
-        var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
-        burgers += Double(burgersLabel.text!)!
-        UserDefaults.standard.set(burgers, forKey: "burgers")
-        
-        var distance: Double = UserDefaults.standard.double(forKey: "distance")
-        distance += Double(distanceLabel.text!)!
-        UserDefaults.standard.set(distance, forKey: "distance")
-        
-        var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
-        treesSaved += Double(treesSavedLabel.text!)!
-        UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
-        //End of test data
-        
     }
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
@@ -146,7 +130,7 @@ class TrackingViewController: UIViewController {
         UserDefaults.standard.set(distance, forKey: "distance")
         
         var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
-        treesSaved += Double(treesSavedLabel.text!)!
+        treesSaved += Double(co2SavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
       
         //upload()
@@ -196,7 +180,7 @@ class TrackingViewController: UIViewController {
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
             //(Distance/1609.34*45)/12.97
-            treesSavedLabel.text = String(round(100*(metersDistance / 464))/100)
+            co2SavedLabel.text = String(round(10*(metersDistance / 464))/10)
             
             coordinateLast = coordinateNew
         }
