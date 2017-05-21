@@ -109,6 +109,30 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             user.accountProfilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
         }
         
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+        
+        var response = StorageHelper.prepareUploadUser(scriptName: "user/updateUser.xsjs", data: jsonData)
+        
+        let code = response["code"] as! Int
+        
+        switch code {
+        case 201:
+            print("Update successful")
+            break
+        case 404:
+            print("User not found.")
+            break
+        case 400:
+            print("Invalid JSON.")
+            break
+        case 404:
+            print("No JSON data in the body.")
+            break
+        default:
+            print("Error")
+        }
         
         UserDefaults.standard.set(user.accountSurname, forKey: "userSurname")
         UserDefaults.standard.set(user.accountFirstName, forKey: "userFirstName")
@@ -118,6 +142,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         UserDefaults.standard.set(user.accountUserWeight, forKey: "userWeight")
         UserDefaults.standard.set(user.accountUserWheelSize, forKey: "userWheelSize")
         UserDefaults.standard.set(user.accountProfilePicture, forKey: "userProfileImage")
+        
+        
         
         self.view.endEditing(true)
         self.close()
