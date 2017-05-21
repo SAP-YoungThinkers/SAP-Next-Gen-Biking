@@ -34,6 +34,9 @@ class TrackingViewController: UIViewController {
     var elapsedSeconds: Int = 0
     var timerRunBool: Bool = true
     var timer: Timer = Timer()
+    var coordinateNew = CLLocation()
+    var coordinateLast = CLLocation()
+    var metersDistance: Double = 0.0
     
     //Users wheel size from Zoll to cm.
     let wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
@@ -94,6 +97,7 @@ class TrackingViewController: UIViewController {
         startButton?.isHidden = false
         PauseButton.isHidden = true
         timerRunBool = false
+        locationManager.stopTracking()
         timer.invalidate()
     }
 
@@ -159,6 +163,7 @@ class TrackingViewController: UIViewController {
 
     func startTimer(startNew: Bool) {
         if startNew { elapsedSeconds = 0 }
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateElapsedTime), userInfo: nil, repeats: true)
     }
     
@@ -173,14 +178,27 @@ class TrackingViewController: UIViewController {
             timeLabel.text = String(format: "%0.2d:%0.2d:%0.2d",strHours,strMinutes,strSeconds)
         }
         
-        let test: Double = 13.40 * Double(elapsedSeconds)
-        
         //Claculate new statistic values and update label text
         if (elapsedSeconds % 5) == 0 {
-            wheelRotationLabel.text = String(Int(test / wheelInCm))
-            burgersLabel.text = String(round(100*(test / 10000))/100)
-            distanceLabel.text = String(round(100*(test / 1000))/100)
-            treesSavedLabel.text = String(round(100*(test / 100000))/100)
+            
+            if elapsedSeconds == 5 {
+            let trackpointLast = trackPointsArray.first
+                coordinateLast = CLLocation(latitude: (trackpointLast?.latitude)!, longitude: (trackpointLast?.longitude)!)
+            }
+            
+            let trackpointNew = trackPointsArray.last
+            coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
+          
+            metersDistance += coordinateLast.distance(from: coordinateNew)
+            
+            wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
+            //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
+            burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
+            distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
+            //(Distance/1609.34*45)/12.97
+            treesSavedLabel.text = String(round(100*(metersDistance / 464))/100)
+            
+            coordinateLast = coordinateNew
         }
         
     }
