@@ -3,7 +3,7 @@ import UIKit
 class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
     
     @IBOutlet private(set) var surnameLabel: UITextField!
-    @IBOutlet private(set) var firstNameLabel: UITextField!
+    @IBOutlet weak var firstNameLabel: UITextField!
     @IBOutlet private(set) var emailLabel: UITextField!
     @IBOutlet private(set) var passwordLabel: UITextField!
     @IBOutlet private(set) var confirmPasswordLabel: UITextField!
