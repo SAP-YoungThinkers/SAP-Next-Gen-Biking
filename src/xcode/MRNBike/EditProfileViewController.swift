@@ -119,6 +119,33 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         let imageData = UIImageJPEGRepresentation(imageBG.image!, 1.0)
         userData.set(imageData, forKey: "userProfileImage")
         
+        //Upload updated user to Hana
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : userData.string(forKey: "userPassword")!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+        
+        var response = StorageHelper.prepareUploadUser(scriptName: "user/updateUser.xsjs", data: jsonData)
+        
+        let code = response["code"] as! Int
+        
+        switch code {
+        case 201:
+            print("Update successful.")
+            break
+        case 0:
+            print("No JSON data in the body.")
+            break
+        case 400:
+            print("Invalid JSON.")
+            break
+        case 404:
+            print("User not found.")
+            break
+        default:
+            print("Error")
+        }
+        
         self.navigationController?.popViewController(animated: true)
         
     }

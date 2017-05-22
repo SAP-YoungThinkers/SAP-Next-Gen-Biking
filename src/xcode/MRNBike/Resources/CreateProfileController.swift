@@ -113,22 +113,22 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
-        var response = StorageHelper.prepareUploadUser(scriptName: "user/updateUser.xsjs", data: jsonData)
+        var response = StorageHelper.prepareUploadUser(scriptName: "user/createUser.xsjs", data: jsonData)
         
         let code = response["code"] as! Int
         
         switch code {
         case 201:
-            print("Update successful")
+            print("User successfully created on Hana.")
             break
-        case 404:
-            print("User not found.")
+        case 0:
+            print("No JSON data in the body.")
             break
         case 400:
             print("Invalid JSON.")
             break
-        case 404:
-            print("No JSON data in the body.")
+        case 409:
+            print("User already exists.")
             break
         default:
             print("Error")
@@ -142,8 +142,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         UserDefaults.standard.set(user.accountUserWeight, forKey: "userWeight")
         UserDefaults.standard.set(user.accountUserWheelSize, forKey: "userWheelSize")
         UserDefaults.standard.set(user.accountProfilePicture, forKey: "userProfileImage")
-        
-        
         
         self.view.endEditing(true)
         self.close()
