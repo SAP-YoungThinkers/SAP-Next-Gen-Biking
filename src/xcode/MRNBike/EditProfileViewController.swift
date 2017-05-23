@@ -76,7 +76,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                 else {
                     // password empty
                     passwordAlert.title = "Password empty"
-                    passwordAlert.message = "Okay, you did not fill in any password. So we won't overwrite it!"
+                    passwordAlert.message = "Okay, you did not fill in any password. Please fill in!"
                     passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                     self.present(passwordAlert, animated: true, completion: nil)
                     print("password empty")
@@ -85,11 +85,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             }
             else {
                 // password not changed
-                passwordAlert.title = "Password not changed"
-                passwordAlert.message = "Okay, you did not change the password. So we won't overwrite it!"
-                passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                self.present(passwordAlert, animated: true, completion: nil)
-                print("password wont be overwritten")
+                print("password didnt change, so wont be overwritten")
             }
         }
         else {
