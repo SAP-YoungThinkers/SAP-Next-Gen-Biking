@@ -84,6 +84,33 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             defaults.removeObject(forKey: "userPassword")
         }
         
+        //Check if user exists in Hana
+        let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+        
+        var response = StorageHelper.prepareUploadUser(scriptName: "user/verifyUser.xsjs", data: jsonData)
+        
+        let code = response["code"] as! Int
+        
+        switch code {
+        case 201:
+            print("User verified.")
+            break
+        case 0:
+            print("No JSON data in the body.")
+            break
+        case 400:
+            print("Invalid JSON.")
+            break
+        case 404:
+            print("User not found.")
+            break
+        default:
+            print("Error")
+        }
+        //ToDo: Delete and change the following code regarding the result.
+        
         // validate user inputs 
         if (userEmailTextField.text == defaultUserName && userPasswordTextField.text == defaultPassword) {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)

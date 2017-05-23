@@ -3,7 +3,7 @@ import UIKit
 class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
     
     @IBOutlet private(set) var surnameLabel: UITextField!
-    @IBOutlet private(set) var firstNameLabel: UITextField!
+    @IBOutlet weak var firstNameLabel: UITextField!
     @IBOutlet private(set) var emailLabel: UITextField!
     @IBOutlet private(set) var passwordLabel: UITextField!
     @IBOutlet private(set) var confirmPasswordLabel: UITextField!
@@ -109,6 +109,30 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             user.accountProfilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
         }
         
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+        
+        var response = StorageHelper.prepareUploadUser(scriptName: "user/createUser.xsjs", data: jsonData)
+        
+        let code = response["code"] as! Int
+        
+        switch code {
+        case 201:
+            print("User successfully created on Hana.")
+            break
+        case 0:
+            print("No JSON data in the body.")
+            break
+        case 400:
+            print("Invalid JSON.")
+            break
+        case 409:
+            print("User already exists.")
+            break
+        default:
+            print("Error")
+        }
         
         UserDefaults.standard.set(user.accountSurname, forKey: "userSurname")
         UserDefaults.standard.set(user.accountFirstName, forKey: "userFirstName")
