@@ -20,10 +20,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var imagePickerButton: UIButton!
     
-    @IBOutlet public var TemSwitch: UISwitch!
+    @IBOutlet var TemSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         imagePicker.delegate = self
         
@@ -68,14 +70,15 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         // Check passwords
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        let termAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
         
         
           //Agree with term condition warning
         if TemSwitch.isOn == false {
-            passwordAlert.title = "Not accepted term conditions"
-            passwordAlert.message = "Accept term conditions, please!"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
+            termAlert.title = "Not accepted term conditions"
+            termAlert.message = "Accept term conditions, please!"
+            termAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(termAlert, animated: true, completion: nil)
             return
         
         }
