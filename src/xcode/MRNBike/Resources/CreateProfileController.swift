@@ -1,6 +1,7 @@
 import UIKit
 
-class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
+class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
+{
     
     @IBOutlet private(set) var surnameLabel: UITextField!
     @IBOutlet weak var firstNameLabel: UITextField!
@@ -18,6 +19,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var imagePickerButton: UIButton!
+    
+    @IBOutlet public var TemSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +68,17 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         // Check passwords
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        
+        
+          //Agree with term condition warning
+        if TemSwitch.isOn == false {
+            passwordAlert.title = "Not accepted term conditions"
+            passwordAlert.message = "Accept term conditions, please!"
+            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            return
+        
+        }
         
         // username neccessary
         if (emailLabel.text == "") {
@@ -147,6 +161,17 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.close()
  
     }
+    
+
+    @IBAction func openTerm(_ sender: Any) {
+        if TemSwitch.isOn == true {
+        let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Term")
+        self.present(controller, animated: true, completion: nil)
+        }
+        
+    }
+
 
     @IBAction func imageButtonPressed(_ sender: UIButton) {
         print("image is going to be picked!")
