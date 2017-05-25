@@ -26,7 +26,7 @@
         <scene sceneID="dQo-8W-RIa">
             <objects>
                 <navigationController id="t7r-MP-VpF" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yNM-CQ-uvL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yNM-CQ-uvL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -93,7 +93,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HW-wI-r8g" userLabel="HelpButtonView">
-                                <rect key="frame" x="364" y="323.66666666666669" width="20" height="20"/>
+                                <rect key="frame" x="364" y="323" width="20" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2HW-wI-r8g" secondAttribute="height" multiplier="1:1" id="Csu-z4-Vtv"/>
@@ -112,7 +112,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqb-Yr-FdH" userLabel="HelpButton">
-                                <rect key="frame" x="361" y="320.66666666666669" width="26" height="26"/>
+                                <rect key="frame" x="361" y="320" width="26" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="9Kq-Ps-noE"/>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-BJ-LZr">
-                                <rect key="frame" x="304" y="348.66666666666669" width="90" height="31"/>
+                                <rect key="frame" x="304" y="348" width="90" height="31"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messagebox" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-Rf-n7o">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="31"/>
@@ -430,7 +430,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURNAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-X2-2zc">
-                                                    <rect key="frame" x="24" y="24.333333333333329" width="166" height="18.666666666666671"/>
+                                                    <rect key="frame" x="24" y="23.666666666666664" width="166" height="19.999999999999993"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="Y3N-9V-DCu"/>
                                                     </constraints>
@@ -462,7 +462,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-pc-K3k">
-                                                    <rect key="frame" x="24" y="24.333333333333329" width="166" height="18.666666666666671"/>
+                                                    <rect key="frame" x="24" y="23.666666666666664" width="166" height="19.999999999999993"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="CzI-Rl-GhZ"/>
                                                     </constraints>
@@ -503,7 +503,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhq-LV-Mh5">
-                                                    <rect key="frame" x="24" y="24.333333333333329" width="150" height="18.666666666666671"/>
+                                                    <rect key="frame" x="24" y="23.666666666666664" width="150" height="19.999999999999993"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="qGe-qh-H2t"/>
                                                     </constraints>
@@ -535,7 +535,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7y-cb-pIu">
-                                                    <rect key="frame" x="24" y="24.333333333333329" width="150" height="18.666666666666671"/>
+                                                    <rect key="frame" x="24" y="23.666666666666664" width="150" height="19.999999999999993"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="x4L-sT-47c"/>
                                                     </constraints>
@@ -898,34 +898,91 @@ INFORMATION</string>
                         <viewControllerLayoutGuide type="bottom" id="cqg-Sh-UCb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mGs-ml-NkD">
-                        <rect key="frame" x="0.0" y="0.0" width="230" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwr-sf-owY">
-                                <rect key="frame" x="102" y="202" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generic Terms and Conditions of MRN Bike mobile application" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-to-qrf">
+                                <rect key="frame" x="18" y="60.000000000000007" width="378" height="41.666666666666679"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt2-40-6Rt">
+                                <rect key="frame" x="75" y="113.66666666666666" width="264" height="483.33333333333337"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <mutableString key="text">Terms and Conditions ("Terms")Last updated:  (add date)Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the "Service") operated by  My Company (change this)  ("us", "we", or "our").Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Links To Other Web SitesOur Service may contain links to third-party web sites or services that are not owned or controlled by  My Company (change this).My Company (change this)  has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that  My Company (change this)  shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.ChangesWe reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 3  0 (change this)  days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.Contact UsIf you have any questions about these Terms, please contact us.</mutableString>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwr-sf-owY">
+                                <rect key="frame" x="278" y="623" width="116" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="Rxv-dN-r01"/>
+                                    <constraint firstAttribute="height" constant="40" id="oy2-qb-zdo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <state key="normal" title="I DISAGREE">
+                                    <color key="titleColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.039215686270000001" green="0.27450980390000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeTerm:" destination="qlY-3n-ZPT" eventType="touchUpInside" id="AOy-SK-CDo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-o5-C6T">
-                                <rect key="frame" x="40" y="256" width="170" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="I AGREE"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-o5-C6T">
+                                <rect key="frame" x="20" y="623" width="116" height="40"/>
+                                <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="CFe-Xn-yPW"/>
+                                    <constraint firstAttribute="height" constant="40" id="n9m-fa-VBx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <state key="normal" title="I AGREE">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="AgreeButton:" destination="qlY-3n-ZPT" eventType="touchUpInside" id="yTq-0n-Yan"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rwr-sf-owY" secondAttribute="trailing" id="0yn-F3-DFz"/>
+                            <constraint firstItem="J3a-to-qrf" firstAttribute="top" secondItem="dpE-Xe-94a" secondAttribute="bottom" constant="40" id="6Qc-Ak-PBJ"/>
+                            <constraint firstItem="qt2-40-6Rt" firstAttribute="leading" secondItem="mGs-ml-NkD" secondAttribute="leadingMargin" constant="55" id="Qqc-4W-FzK"/>
+                            <constraint firstItem="z6e-o5-C6T" firstAttribute="top" secondItem="qt2-40-6Rt" secondAttribute="bottom" constant="26" id="Rf2-pA-9sb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qt2-40-6Rt" secondAttribute="trailing" constant="55" id="Twy-eu-m0C"/>
+                            <constraint firstItem="J3a-to-qrf" firstAttribute="leading" secondItem="mGs-ml-NkD" secondAttribute="leading" constant="18" id="dLY-7k-FTL"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="z6e-o5-C6T" secondAttribute="leading" id="iLK-2X-x74"/>
+                            <constraint firstItem="cqg-Sh-UCb" firstAttribute="top" secondItem="rwr-sf-owY" secondAttribute="bottom" constant="73" id="iOq-99-Pf1"/>
+                            <constraint firstItem="rwr-sf-owY" firstAttribute="top" secondItem="qt2-40-6Rt" secondAttribute="bottom" constant="26" id="kBx-wq-rMf"/>
+                            <constraint firstItem="cqg-Sh-UCb" firstAttribute="top" secondItem="z6e-o5-C6T" secondAttribute="bottom" constant="73" id="oZV-Q9-eo6"/>
+                            <constraint firstAttribute="trailing" secondItem="J3a-to-qrf" secondAttribute="trailing" constant="18" id="r6Q-U2-L0A"/>
+                            <constraint firstItem="qt2-40-6Rt" firstAttribute="top" secondItem="J3a-to-qrf" secondAttribute="bottom" constant="12" id="yn9-dT-ble"/>
+                        </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="230" height="360"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqe-hf-pIs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="-11"/>
+            <point key="canvasLocation" x="2498.5507246376815" y="0.81521739130434789"/>
         </scene>
     </scenes>
     <resources>
@@ -936,6 +993,6 @@ INFORMATION</string>
         <image name="messagebox" width="90" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wfE-mz-IRX"/>
+        <segue reference="e0g-Ut-X6d"/>
     </inferredMetricsTieBreakers>
 </document>
