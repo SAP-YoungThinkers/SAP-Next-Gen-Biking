@@ -9,24 +9,16 @@
 /* Begin PBXBuildFile section */
 		01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01279A2E1EA4D9DF000505AA /* RouteKeys.swift */; };
 		0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14B1EA2778100FCA949 /* AppDelegate.swift */; };
-		0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14C1EA2778100FCA949 /* FirstViewController.swift */; };
 		0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F14D1EA2778100FCA949 /* InfoPlist.strings */; };
-		0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14E1EA2778100FCA949 /* LoginViewController.swift */; };
 		0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1501EA2778100FCA949 /* Configurator.swift */; };
 		0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1511EA2778100FCA949 /* CustomPin.swift */; };
 		0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1521EA2778100FCA949 /* LocationManager.swift */; };
 		0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1531EA2778100FCA949 /* StorageHelper.swift */; };
 		0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1541EA2778100FCA949 /* TrackPoint.swift */; };
 		0137F1711EA2778100FCA949 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1551EA2778100FCA949 /* User.swift */; };
-		0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */; };
 		0137F1741EA2778100FCA949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15A1EA2778100FCA949 /* Localizable.strings */; };
-		0137F1751EA2778100FCA949 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15C1EA2778100FCA949 /* Main.storyboard */; };
-		0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15E1EA2778100FCA949 /* LaunchScreen.strings */; };
-		0137F1771EA2778100FCA949 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1611EA2778100FCA949 /* Main.strings */; };
-		0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1631EA2778100FCA949 /* SecondViewController.swift */; };
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
-		0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F1671EA2778100FCA949 /* ThirdViewController.swift */; };
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
@@ -58,9 +50,7 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
-		4EBEDD481ECF94D6008587F8 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEDD471ECF94D6008587F8 /* DashboardController.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
-		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
@@ -74,34 +64,26 @@
 /* Begin PBXFileReference section */
 		01279A2E1EA4D9DF000505AA /* RouteKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteKeys.swift; sourceTree = "<group>"; };
 		0137F14B1EA2778100FCA949 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0137F14C1EA2778100FCA949 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		0137F14D1EA2778100FCA949 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		0137F14E1EA2778100FCA949 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0137F14D1EA2778100FCA949 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = ../InfoPlist.strings; sourceTree = "<group>"; };
 		0137F1501EA2778100FCA949 /* Configurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		0137F1511EA2778100FCA949 /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		0137F1521EA2778100FCA949 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0137F1531EA2778100FCA949 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
 		0137F1541EA2778100FCA949 /* TrackPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		0137F1551EA2778100FCA949 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0137F1591EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0137F15B1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0137F15D1EA2778100FCA949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0137F15F1EA2778100FCA949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0137F1601EA2778100FCA949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0137F1621EA2778100FCA949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		0137F1631EA2778100FCA949 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0137F1671EA2778100FCA949 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
-		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tracking.storyboard; sourceTree = "<group>"; };
+		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
 		109A6C811ED6203F0020657D /* TermConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermConditionsViewController.swift; path = SupportingFiles/TermConditionsViewController.swift; sourceTree = "<group>"; };
-		10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
-		10B9D4D21EC6144100CC7027 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
-		10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLogInViewController.swift; sourceTree = "<group>"; };
-		10B9D4D61EC6145100CC7027 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileController.swift; sourceTree = "<group>"; };
+		10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StartPage.storyboard; path = Resources/StartPage.storyboard; sourceTree = "<group>"; };
+		10B9D4D21EC6144100CC7027 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = Resources/TourViewController.swift; sourceTree = "<group>"; };
+		10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstLogInViewController.swift; path = Resources/FirstLogInViewController.swift; sourceTree = "<group>"; };
+		10B9D4D61EC6145100CC7027 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = Resources/StartViewController.swift; sourceTree = "<group>"; };
+		10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProfileController.swift; path = Resources/CreateProfileController.swift; sourceTree = "<group>"; };
 		10B9D4DC1EC614A000CC7027 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10B9D4DD1EC614A000CC7027 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		10B9D4DE1EC614A000CC7027 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -125,19 +107,17 @@
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButtonClass.swift; sourceTree = "<group>"; };
+		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
-		4EBEDD471ECF94D6008587F8 /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
-		D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingScreen.storyboard; sourceTree = "<group>"; };
-		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
-		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		D25F5AD61EAFF7B700850388 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
-		D25F5AD81EAFF7E900850388 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
-		D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		D29A94661ED0D06E002F619D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+color.swift"; sourceTree = "<group>"; };
+		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
+		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
+		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Resources/Profile.storyboard; sourceTree = "<group>"; };
+		D25F5AD61EAFF7B700850388 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Social.storyboard; path = Resources/Social.storyboard; sourceTree = "<group>"; };
+		D25F5AD81EAFF7E900850388 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Routes.storyboard; path = Resources/Routes.storyboard; sourceTree = "<group>"; };
+		D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
+		D29A94661ED0D06E002F619D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Resources/HomeViewController.swift; sourceTree = "<group>"; };
+		D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+color.swift"; path = "../UIImage+color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,25 +136,18 @@
 		0137F14A1EA2778100FCA949 /* MRNBike */ = {
 			isa = PBXGroup;
 			children = (
-				01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */,
 				0137F14B1EA2778100FCA949 /* AppDelegate.swift */,
-				0137F14C1EA2778100FCA949 /* FirstViewController.swift */,
-				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
-				0137F14E1EA2778100FCA949 /* LoginViewController.swift */,
+				4E36BA271ED73B4B0022704C /* LandingScreen */,
+				4E36BA261ED73ACF0022704C /* Home */,
+				4E36BA281ED73C8B0022704C /* Profile */,
+				4E36BA291ED73CE20022704C /* Tracking */,
+				4E36BA251ED7390B0022704C /* Marks&Routes */,
+				4E36BA2A1ED73E090022704C /* Statistics */,
 				0137F14F1EA2778100FCA949 /* Model */,
-				0137F1561EA2778100FCA949 /* Resources */,
-				0137F1631EA2778100FCA949 /* SecondViewController.swift */,
+				4E36BA2B1ED73E2A0022704C /* Social */,
+				4E36BA2C1ED73E680022704C /* Settings */,
+				10B9D4DB1EC6149000CC7027 /* Extension */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
-				0137F1671EA2778100FCA949 /* ThirdViewController.swift */,
-				109A6C811ED6203F0020657D /* TermConditionsViewController.swift */,
-				37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */,
-				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
-				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
-				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
-				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
-				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
-				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
-				4EBEDD471ECF94D6008587F8 /* DashboardController.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -193,63 +166,33 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0137F1561EA2778100FCA949 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				10B9D4DB1EC6149000CC7027 /* Ext */,
-				10B9D4D11EC613A000CC7027 /* UI */,
-				01FBE2091EC3C603008903C1 /* Assets.xcassets */,
-				37B601E01EB0B66A00870844 /* Fonts */,
-				0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */,
-				0137F15A1EA2778100FCA949 /* Localizable.strings */,
-				0137F15C1EA2778100FCA949 /* Main.storyboard */,
-				0137F15E1EA2778100FCA949 /* LaunchScreen.strings */,
-				0137F1611EA2778100FCA949 /* Main.strings */,
-				D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */,
-				D25F5ACD1EAFF5C900850388 /* Home.storyboard */,
-				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
-				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
-				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
-				0A259E611EBFBE950050AC0F /* Tracking.storyboard */,
-				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
-				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
-				10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		0137F1641EA2778100FCA949 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				01FBE2091EC3C603008903C1 /* Assets.xcassets */,
+				37B601E01EB0B66A00870844 /* Fonts */,
 				0137F1651EA2778100FCA949 /* ConfigList.plist */,
 				0137F1661EA2778100FCA949 /* Info.plist */,
+				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
+				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		10B9D4D11EC613A000CC7027 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */,
-				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
-				10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */,
-				10B9D4D61EC6145100CC7027 /* StartViewController.swift */,
-				D29A94661ED0D06E002F619D /* HomeViewController.swift */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		10B9D4DB1EC6149000CC7027 /* Ext */ = {
+		10B9D4DB1EC6149000CC7027 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				10B9D4DC1EC614A000CC7027 /* ViewController.swift */,
+				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
 				10B9D4DD1EC614A000CC7027 /* Button.swift */,
+				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
 				10B9D4DE1EC614A000CC7027 /* Color.swift */,
 				10B9D4DF1EC614A000CC7027 /* CornerView.swift */,
 				10B9D4E01EC614A000CC7027 /* Inspectable.swift */,
 				10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */,
 			);
-			name = Ext;
+			name = Extension;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		37B601E01EB0B66A00870844 /* Fonts */ = {
@@ -265,7 +208,8 @@
 				37B601E81EB0B68000870844 /* Montserrat-SemiBold.otf */,
 				37B601E91EB0B68000870844 /* Montserrat-Thin.otf */,
 			);
-			path = Fonts;
+			name = Fonts;
+			path = ../Resources/Fonts;
 			sourceTree = "<group>";
 		};
 		491EC4F91DE421940077BF82 = {
@@ -294,6 +238,82 @@
 				491EC51A1DE441430077BF82 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E36BA251ED7390B0022704C /* Marks&Routes */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
+				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
+				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
+				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
+			);
+			name = "Marks&Routes";
+			sourceTree = "<group>";
+		};
+		4E36BA261ED73ACF0022704C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5ACD1EAFF5C900850388 /* Home.storyboard */,
+				D29A94661ED0D06E002F619D /* HomeViewController.swift */,
+				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		4E36BA271ED73B4B0022704C /* LandingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */,
+				10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */,
+				10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */,
+				109A6C811ED6203F0020657D /* TermConditionsViewController.swift */,
+				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
+				10B9D4D61EC6145100CC7027 /* StartViewController.swift */,
+			);
+			name = LandingScreen;
+			sourceTree = "<group>";
+		};
+		4E36BA281ED73C8B0022704C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5AD21EAFF76400850388 /* Profile.storyboard */,
+				37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		4E36BA291ED73CE20022704C /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				0A259E611EBFBE950050AC0F /* Tracking.storyboard */,
+				01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */,
+			);
+			name = Tracking;
+			sourceTree = "<group>";
+		};
+		4E36BA2A1ED73E090022704C /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
+			);
+			name = Statistics;
+			sourceTree = "<group>";
+		};
+		4E36BA2B1ED73E2A0022704C /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
+		4E36BA2C1ED73E680022704C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,20 +385,16 @@
 				37B601FA1EB0B68000870844 /* Montserrat-SemiBold.otf in Resources */,
 				37B601F51EB0B68000870844 /* Montserrat-ExtraBold.otf in Resources */,
 				37B601F81EB0B68000870844 /* Montserrat-Medium.otf in Resources */,
-				0137F1731EA2778100FCA949 /* LaunchScreen.storyboard in Resources */,
 				D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */,
 				D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */,
 				01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */,
-				0137F1761EA2778100FCA949 /* LaunchScreen.strings in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
 				10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */,
-				D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
 				0137F17A1EA2778100FCA949 /* Info.plist in Resources */,
 				37B601F71EB0B68000870844 /* Montserrat-Light.otf in Resources */,
-				0137F1751EA2778100FCA949 /* Main.storyboard in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */,
@@ -386,7 +402,6 @@
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
-				0137F1771EA2778100FCA949 /* Main.strings in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
 				37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */,
 			);
@@ -404,7 +419,6 @@
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
-				0137F16B1EA2778100FCA949 /* LoginViewController.swift in Sources */,
 				109A6C821ED6203F0020657D /* TermConditionsViewController.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
@@ -416,20 +430,16 @@
 				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
-				4EBEDD481ECF94D6008587F8 /* DashboardController.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
 				10B9D4E31EC614A000CC7027 /* Button.swift in Sources */,
 				37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				10B9D4E41EC614A000CC7027 /* Color.swift in Sources */,
-				0137F1691EA2778100FCA949 /* FirstViewController.swift in Sources */,
 				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
-				0137F17B1EA2778100FCA949 /* ThirdViewController.swift in Sources */,
 				10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */,
 				10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
-				0137F1781EA2778100FCA949 /* SecondViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
 				4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */,
 			);
@@ -438,14 +448,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0137F1581EA2778100FCA949 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0137F1591EA2778100FCA949 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		0137F15A1EA2778100FCA949 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -453,30 +455,7 @@
 				0137F1601EA2778100FCA949 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		0137F15C1EA2778100FCA949 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0137F15D1EA2778100FCA949 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0137F15E1EA2778100FCA949 /* LaunchScreen.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0137F15F1EA2778100FCA949 /* de */,
-			);
-			name = LaunchScreen.strings;
-			sourceTree = "<group>";
-		};
-		0137F1611EA2778100FCA949 /* Main.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0137F1621EA2778100FCA949 /* de */,
-			);
-			name = Main.strings;
+			path = ../Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

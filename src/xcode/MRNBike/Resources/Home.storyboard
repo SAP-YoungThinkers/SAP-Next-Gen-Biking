@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +46,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAP User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaH-ih-P3S">
-                                                        <rect key="frame" x="80" y="24" width="76.5" height="21"/>
+                                                        <rect key="frame" x="80" y="24" width="76" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="o2A-x0-jBv"/>
                                                         </constraints>
@@ -140,7 +140,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 587" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-uW-Be3">
-                                                                <rect key="frame" x="98.5" y="50" width="179.5" height="65"/>
+                                                                <rect key="frame" x="98" y="50" width="180" height="65"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="53"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
@@ -272,10 +272,10 @@
                                                 <rect key="frame" x="0.0" y="410" width="375" height="95"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaS-kt-Xeh">
-                                                        <rect key="frame" x="312.5" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="313" y="0.0" width="62" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-vB-T8A">
-                                                                <rect key="frame" x="13" y="8" width="38" height="21"/>
+                                                                <rect key="frame" x="12" y="8" width="38" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="4WQ-cp-zxm"/>
                                                                 </constraints>
@@ -307,7 +307,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raM-wE-c4V">
-                                                        <rect key="frame" x="250" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="250" y="0.0" width="63" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaf-PD-nQj">
                                                                 <rect key="frame" x="10" y="73" width="42" height="21"/>
@@ -335,7 +335,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qi3-ET-1sl">
-                                                        <rect key="frame" x="187.5" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="188" y="0.0" width="62" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihH-jd-TFs">
                                                                 <rect key="frame" x="10" y="8" width="42" height="21"/>
@@ -363,7 +363,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fx-sY-BdT">
-                                                        <rect key="frame" x="125" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="125" y="0.0" width="63" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-xm-mXo">
                                                                 <rect key="frame" x="10" y="8" width="42" height="21"/>
@@ -391,7 +391,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlj-4f-aQw">
-                                                        <rect key="frame" x="62.5" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="63" y="0.0" width="62" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcW-It-8gp">
                                                                 <rect key="frame" x="10" y="8" width="42" height="21"/>
@@ -419,7 +419,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYM-7i-abr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="95"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pih-dd-L8V">
                                                                 <rect key="frame" x="21" y="8" width="20" height="21"/>
@@ -537,7 +537,11 @@
                     <navigationItem key="navigationItem" id="Fbr-Px-wQ1"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="burgerLabel" destination="ZfF-LI-Ocv" id="jfy-U3-WSi"/>
+                        <outlet property="distanceLabel" destination="mXV-Nv-uYt" id="gyn-vz-9u2"/>
+                        <outlet property="treesSavedLabel" destination="Bcx-3X-xHM" id="sa0-UD-WOv"/>
                         <outlet property="userNameLabel" destination="oaH-ih-P3S" id="nWx-pR-k30"/>
+                        <outlet property="wheelRotationLabel" destination="wIv-uW-Be3" id="1T2-r3-SCv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
