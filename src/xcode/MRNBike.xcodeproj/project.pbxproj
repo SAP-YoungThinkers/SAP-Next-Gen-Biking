@@ -58,6 +58,7 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
+		4EBEDD481ECF94D6008587F8 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEDD471ECF94D6008587F8 /* DashboardController.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25F5ACC1EAFF59A00850388 /* LandingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
@@ -126,6 +127,7 @@
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
+		4EBEDD471ECF94D6008587F8 /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25F5ACB1EAFF59A00850388 /* LandingScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingScreen.storyboard; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */,
 				D20CB72A1EBE25930029007C /* TabBarViewController.swift */,
 				D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */,
+				4EBEDD471ECF94D6008587F8 /* DashboardController.swift */,
 			);
 			path = MRNBike;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
+				4EBEDD481ECF94D6008587F8 /* DashboardController.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
 				10B9D4E31EC614A000CC7027 /* Button.swift in Sources */,
