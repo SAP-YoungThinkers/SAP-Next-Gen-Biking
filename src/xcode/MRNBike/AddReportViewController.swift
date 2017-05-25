@@ -28,6 +28,8 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     let manager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
 
+  
+    
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -74,6 +76,7 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         self.messageView.layer.borderWidth = 1
     }
     
+ 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Access the last object from locations to get perfect current location
         if let location = locations.last {

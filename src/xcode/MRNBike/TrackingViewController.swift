@@ -27,6 +27,7 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var co2SavedLabel: UILabel!
     @IBOutlet weak var reportLocation: UIButton!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     var locationManager = LocationManager()
     
@@ -41,6 +42,8 @@ class TrackingViewController: UIViewController {
     
     //Users wheel size from Zoll to cm.
     let wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +75,19 @@ class TrackingViewController: UIViewController {
         PauseButton.isHidden = true
         reportLocation.isHidden = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+    }
+  
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,9 +97,12 @@ class TrackingViewController: UIViewController {
     
     
     // MARK: - Action
+    
+  
     @IBAction func startTrackingEvent(_ sender: UIButton) {
         startButton?.isHidden = true
         PauseButton.isHidden = false
+        cancelButton.isEnabled =  false
         locationManager.delegate = self
         locationManager.startTracking()
         
@@ -111,15 +130,20 @@ class TrackingViewController: UIViewController {
         startButton.isHidden = true
         stopButton.isHidden = true
         PauseButton.isHidden = true
-        reportLocation.isHidden = false
         timer.invalidate()
     }
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
         
+        reportLocation.isHidden = false
+        SaveRouteButton.isHidden = true
+        
+        print(UserDefaults.standard.double(forKey: "wheelRotation"))
         var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
         wheelRotation += Double(wheelRotationLabel.text!)!
         UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
+        print(UserDefaults.standard.double(forKey: "wheelRotation"))
+        
         
         var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
         burgers += Double(burgersLabel.text!)!
@@ -133,6 +157,7 @@ class TrackingViewController: UIViewController {
         treesSaved += Double(co2SavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
       
+        
         upload()
     }
     
