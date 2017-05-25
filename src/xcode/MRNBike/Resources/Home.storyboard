@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,9 +92,11 @@
                                                     <constraint firstItem="R0u-xp-rLY" firstAttribute="top" secondItem="8I6-GO-Uz1" secondAttribute="top" constant="19" id="BuF-Mf-21C"/>
                                                     <constraint firstItem="R0u-xp-rLY" firstAttribute="width" secondItem="oaH-ih-P3S" secondAttribute="height" multiplier="4:1" id="OvH-QY-M4c"/>
                                                     <constraint firstAttribute="trailing" secondItem="R0u-xp-rLY" secondAttribute="trailing" id="Ppb-Ys-C4s"/>
+                                                    <constraint firstItem="oaH-ih-P3S" firstAttribute="width" secondItem="R0u-xp-rLY" secondAttribute="height" multiplier="38:15" id="SaS-RS-XV1"/>
                                                     <constraint firstItem="R0u-xp-rLY" firstAttribute="centerY" secondItem="oaH-ih-P3S" secondAttribute="centerY" id="h2z-Il-fsm"/>
                                                     <constraint firstAttribute="height" constant="68" id="l2M-f9-KBu"/>
                                                     <constraint firstItem="R0u-xp-rLY" firstAttribute="centerY" secondItem="kAg-xc-mCv" secondAttribute="centerY" id="rCt-Zy-Vh4"/>
+                                                    <constraint firstItem="oaH-ih-P3S" firstAttribute="width" secondItem="R0u-xp-rLY" secondAttribute="height" multiplier="38:15" id="zb9-gy-wAC"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dm-Wp-dFX" userLabel="dashboard view">
@@ -534,6 +536,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Fbr-Px-wQ1"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="userNameLabel" destination="oaH-ih-P3S" id="nWx-pR-k30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

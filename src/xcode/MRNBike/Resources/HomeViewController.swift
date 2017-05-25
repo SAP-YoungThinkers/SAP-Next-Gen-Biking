@@ -10,8 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var userNameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameLabel.text = UserDefaults.standard.string(forKey: "userFirstName")
 
         // Do any additional setup after loading the view.
     }
@@ -19,6 +21,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

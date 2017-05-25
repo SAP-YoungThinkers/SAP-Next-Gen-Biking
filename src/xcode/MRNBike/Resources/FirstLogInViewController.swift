@@ -18,8 +18,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var rememberSwitch: UISwitch!
     
     // Default user
-    let defaultUserName = "Ziad"
-    let defaultPassword = "123"
+   // let defaultUserName = "Ziad"
+    // let defaultPassword = "123"
     
     var defaults = UserDefaults.standard
     var passwordWasStored: Bool = false
@@ -91,6 +91,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         switch code {
         case 201:
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(controller, animated: true, completion: nil)
             print("User verified.")
             break
         case 0:
@@ -100,13 +103,17 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             print("Invalid JSON.")
             break
         case 404:
+            passwordAlert.title = "Username/Password is wrong"
+            passwordAlert.message = "Please check your username/password"
+            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
             print("User not found.")
             break
         default:
             print("Error")
         }
         //ToDo: Delete and change the following code regarding the result.
-        
+        /*
         // validate user inputs 
         if (userEmailTextField.text == defaultUserName && userPasswordTextField.text == defaultPassword) {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
@@ -124,7 +131,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                 passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(passwordAlert, animated: true, completion: nil)
             }
-        }
+ }
+ */
+        
     }
     
     // UITextFieldDelegate For Enablind/Disabling Login Button
