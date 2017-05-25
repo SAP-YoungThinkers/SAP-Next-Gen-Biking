@@ -33,6 +33,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     // Open Login screen
     func logOut (){
+        
+        // Remove Data
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "Login")
         self.present(controller, animated: true, completion: nil)

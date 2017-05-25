@@ -18,29 +18,27 @@ class StartViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         
-        // ------------------------------------------------------
-        // TODO: backend check the current login state!
-        // ------------------------------------------------------
+        // read values from local space
+        let userData = UserDefaults.standard
+        let tmpUserMail = userData.object(forKey: "userMail")
+        let tmpUserPwd = userData.object(forKey: "userPassword")
         
-        
-        let refreshAlert = UIAlertController(title: "login last time", message: "Assume: Were you already registered, and is the login still valid?", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // if login is TRUE -> DASHBOARD
-        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+        if(tmpUserMail != nil && tmpUserPwd != nil) {
+            // user exists
+            print("user exists, redirecting to dashboard")
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(controller, animated: true, completion: nil)
-        }))
-        
-        // if login is FALSE -> SIGN IN PAGE
-        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+        }
+        else {
+            // user doesnt exist
+            print("user does not exist, redirecting to register")
             let controller = TourViewController()
             controller.startRidingAction = {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
             }
-        }))
-        
-        present(refreshAlert, animated: true, completion: nil)
+        }
+
     }
 
 }

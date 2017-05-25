@@ -35,13 +35,13 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         
-        if defaults.object(forKey: "userName") != nil {
+        if defaults.object(forKey: "userMail") != nil {
             passwordWasStored = true
         }
         rememberSwitch.isOn = passwordWasStored
         
         if passwordWasStored {
-            if let userName = defaults.object(forKey: "userName") as? String {
+            if let userName = defaults.object(forKey: "userMail") as? String {
                 userEmailTextField.text = userName
             }
             if let password = defaults.object(forKey: "userPassword") as? String {
@@ -73,15 +73,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         // cachse default user
         if rememberSwitch.isOn {
             if let email = userEmailTextField.text {
-                defaults.set(email, forKey: "userName")
+                defaults.set(email, forKey: "userMail")
             }
             if let password = userPasswordTextField.text {
                 defaults.set(password, forKey: "userPassword")
             }
-        }
-        else  {
-            defaults.removeObject(forKey: "userName")
-            defaults.removeObject(forKey: "userPassword")
         }
         
         //Check if user exists in Hana

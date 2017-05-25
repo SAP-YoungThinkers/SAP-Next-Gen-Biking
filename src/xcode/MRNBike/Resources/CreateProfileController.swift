@@ -160,9 +160,13 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         UserDefaults.standard.set(user.accountUserWheelSize, forKey: "userWheelSize")
         UserDefaults.standard.set(user.accountProfilePicture, forKey: "userProfileImage")
         
+ 
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+        self.present(controller, animated: true, completion: nil)
+        
         self.view.endEditing(true)
         self.close()
- 
     }
     
 
