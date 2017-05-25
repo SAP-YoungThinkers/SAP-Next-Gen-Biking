@@ -133,7 +133,7 @@ class TrackingViewController: UIViewController {
         treesSaved += Double(co2SavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
       
-        //upload()
+        upload()
     }
     
     // MARK: - NSCoding
@@ -187,14 +187,7 @@ class TrackingViewController: UIViewController {
         
     }
     
-    func formatMinutesAgo(timeDifference: Double) -> String {
-        let hours = Int(timeDifference) / 3600
-        let minutes = Int(timeDifference) / 60 % 60
-        let seconds = Int(timeDifference) % 60
-        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-    }
-    
-    
+       
     // MARK: - Cloud storage
     
     func upload() {
