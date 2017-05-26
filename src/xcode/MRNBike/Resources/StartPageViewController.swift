@@ -8,8 +8,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
-    
+class StartPageViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {

@@ -26,7 +26,7 @@
 		10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */; };
 		10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D21EC6144100CC7027 /* TourViewController.swift */; };
 		10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */; };
-		10B9D4D71EC6145100CC7027 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D61EC6145100CC7027 /* StartViewController.swift */; };
+		10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */; };
 		10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */; };
 		10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DC1EC614A000CC7027 /* ViewController.swift */; };
 		10B9D4E31EC614A000CC7027 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DD1EC614A000CC7027 /* Button.swift */; };
@@ -82,7 +82,7 @@
 		10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StartPage.storyboard; path = Resources/StartPage.storyboard; sourceTree = "<group>"; };
 		10B9D4D21EC6144100CC7027 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = Resources/TourViewController.swift; sourceTree = "<group>"; };
 		10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstLogInViewController.swift; path = Resources/FirstLogInViewController.swift; sourceTree = "<group>"; };
-		10B9D4D61EC6145100CC7027 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = Resources/StartViewController.swift; sourceTree = "<group>"; };
+		10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartPageViewController.swift; path = Resources/StartPageViewController.swift; sourceTree = "<group>"; };
 		10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProfileController.swift; path = Resources/CreateProfileController.swift; sourceTree = "<group>"; };
 		10B9D4DC1EC614A000CC7027 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10B9D4DD1EC614A000CC7027 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 				10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */,
 				109A6C811ED6203F0020657D /* TermConditionsViewController.swift */,
 				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
-				10B9D4D61EC6145100CC7027 /* StartViewController.swift */,
+				10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */,
 			);
 			name = LandingScreen;
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				109A6C821ED6203F0020657D /* TermConditionsViewController.swift in Sources */,
-				10B9D4D71EC6145100CC7027 /* StartViewController.swift in Sources */,
+				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
 				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
