@@ -268,7 +268,6 @@ class StorageHelper : NSObject {
         let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
         let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
         let base64LoginString = loginData.base64EncodedString()
-        print("Basic \(base64LoginString)")
         
         let url:URL = URL(string: fullUrl)!
         var request = URLRequest(url: url)

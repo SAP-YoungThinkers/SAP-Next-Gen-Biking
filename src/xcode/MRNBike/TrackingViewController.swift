@@ -102,7 +102,10 @@ class TrackingViewController: UIViewController {
     @IBAction func startTrackingEvent(_ sender: UIButton) {
         startButton?.isHidden = true
         PauseButton.isHidden = false
+        
         cancelButton.isEnabled =  false
+        cancelButton.tintColor = UIColor.clear
+        
         locationManager.delegate = self
         locationManager.startTracking()
         
@@ -138,12 +141,9 @@ class TrackingViewController: UIViewController {
         reportLocation.isHidden = false
         SaveRouteButton.isHidden = true
         
-        print(UserDefaults.standard.double(forKey: "wheelRotation"))
         var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
         wheelRotation += Double(wheelRotationLabel.text!)!
         UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
-        print(UserDefaults.standard.double(forKey: "wheelRotation"))
-        
         
         var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
         burgers += Double(burgersLabel.text!)!
