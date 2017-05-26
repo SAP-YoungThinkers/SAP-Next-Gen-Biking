@@ -41,7 +41,7 @@ class TrackingViewController: UIViewController {
     var metersDistance: Double = 0.0
     
     //Users wheel size from Zoll to cm.
-    let wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
+    var wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
     
     
     
@@ -199,7 +199,7 @@ class TrackingViewController: UIViewController {
             coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
           
             metersDistance += coordinateLast.distance(from: coordinateNew)
-            
+            wheelInCm = 0.635
             wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
             //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
