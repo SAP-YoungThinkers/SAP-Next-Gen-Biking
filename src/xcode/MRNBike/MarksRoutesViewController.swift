@@ -62,21 +62,18 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         // add seperator
         tempPlaceholder = setupTabBarSeparators()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // WHICH TAB SELECTED?
-        
         if(topBar.selectedItem == myRoutes) {
-            
             // MY ROUTES
             myRoutesContent()
-            
-            
         } else {
-            
             // ROUTES INFORMATION
             routesInfoContent()
-            
         }
     }
     

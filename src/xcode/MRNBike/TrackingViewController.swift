@@ -140,6 +140,7 @@ class TrackingViewController: UIViewController {
         
         reportLocation.isHidden = false
         SaveRouteButton.isHidden = true
+        DismissButton.setTitle("Dashboard", for: .normal)
         
         var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
         wheelRotation += Double(wheelRotationLabel.text!)!

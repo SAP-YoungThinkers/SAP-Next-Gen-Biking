@@ -28,9 +28,6 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     let manager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
 
-  
-    
-    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()

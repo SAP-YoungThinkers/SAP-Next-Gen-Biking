@@ -148,13 +148,11 @@ class StorageHelper : NSObject {
     }
     
     //MARK: Cloud Storage
-    
-    static func getToken(destination: String, authorization: String) -> String? {
-        
+    static func getToken(authorization: String) -> String? {
         
         var token: String?
         
-        let url: URL = URL(string: destination)!
+        let url: URL = URL(string: config.backendBaseURL + "helper/getToken.xsjs")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("fetch", forHTTPHeaderField: "x-csrf-token")
@@ -171,6 +169,7 @@ class StorageHelper : NSObject {
         return token
     }
     
+    //Prepare the request to get reports from backend
     static func prepareRequest(scriptName: String) -> [String: AnyObject] {
         let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
         let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
@@ -190,7 +189,8 @@ class StorageHelper : NSObject {
         }
        return test
     }
-
+    
+    //Make request to get reports from backend
     static func makeRequest(request: URLRequest, completion: @escaping ([String: AnyObject])->()) {
         let sem = DispatchSemaphore(value: 0)
         var json = [String: AnyObject]()
@@ -206,6 +206,7 @@ class StorageHelper : NSObject {
         completion(json)
     }
     
+    //Prepare the request to upload user to backend
     static func prepareUploadUser(scriptName: String, data: Data) -> [String: AnyObject] {
         let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
         let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
@@ -219,7 +220,7 @@ class StorageHelper : NSObject {
         
         var test = [String: AnyObject]()
         
-        let x_csrf_token = getToken(destination: config.backendBaseURL + scriptName, authorization: base64LoginString)
+        let x_csrf_token = getToken(authorization: base64LoginString)
         if x_csrf_token != nil {
             request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
         }
@@ -232,6 +233,7 @@ class StorageHelper : NSObject {
         return test
     }
     
+    //Make request to upload a user to backend
     static func makeRequestUploadUser(request: URLRequest, completion: @escaping ([String: AnyObject])->()) {
         let sem = DispatchSemaphore(value: 0)
         var json = [String: AnyObject]()
@@ -274,7 +276,7 @@ class StorageHelper : NSObject {
         request.httpMethod = "POST"
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
-        let x_csrf_token = getToken(destination: baseUrl + scriptName, authorization: base64LoginString)
+        let x_csrf_token = getToken(authorization: base64LoginString)
         if x_csrf_token != nil {
             request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
         }
@@ -364,7 +366,7 @@ class StorageHelper : NSObject {
         request.httpMethod = "POST"
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
-        let x_csrf_token = getToken(destination: baseUrl + scriptName, authorization: base64LoginString)
+        let x_csrf_token = getToken(authorization: base64LoginString)
         if x_csrf_token != nil {
             request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
         }
