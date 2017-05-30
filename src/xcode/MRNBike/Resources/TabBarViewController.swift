@@ -43,7 +43,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Login")
+        let controller = storyboard.instantiateInitialViewController()!
         self.present(controller, animated: true, completion: nil)
     }
     // Open dashboard
