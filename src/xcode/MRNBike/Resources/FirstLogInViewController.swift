@@ -97,6 +97,13 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         switch code {
         case 201:
+            //Save email and password to UserDefaults
+            defaults.set(userPasswordTextField.text!, forKey: "userPassword")
+            defaults.set(userEmailTextField.text!, forKey: "userMail")
+            
+            //Save email and password to keychain
+            KeychainService.saveEmail(token: userEmailTextField.text! as NSString)
+            KeychainService.savePassword(token: userPasswordTextField.text! as NSString)
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(controller, animated: true, completion: nil)
