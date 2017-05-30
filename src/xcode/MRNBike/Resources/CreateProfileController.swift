@@ -126,7 +126,11 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             user.accountProfilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
         }
         
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
+        //Save email and password in KeyChain
+        KeychainService.saveEmail(token: emailLabel.text! as NSString)
+        KeychainService.savePassword(token: passwordLabel.text! as NSString)
+        
+        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()!, "password" : KeychainService.loadPassword()!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         

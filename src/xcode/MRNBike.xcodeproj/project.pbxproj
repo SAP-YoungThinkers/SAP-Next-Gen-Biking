@@ -48,6 +48,7 @@
 		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
+		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
@@ -107,6 +108,7 @@
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				0137F1541EA2778100FCA949 /* TrackPoint.swift */,
 				0137F1551EA2778100FCA949 /* User.swift */,
 				01279A2E1EA4D9DF000505AA /* RouteKeys.swift */,
+				4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				109A6C821ED6203F0020657D /* TermConditionsViewController.swift in Sources */,
+				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
 				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,

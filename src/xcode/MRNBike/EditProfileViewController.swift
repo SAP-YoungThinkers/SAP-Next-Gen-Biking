@@ -115,8 +115,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         let imageData = UIImageJPEGRepresentation(imageBG.image!, 1.0)
         userData.set(imageData, forKey: "userProfileImage")
         
+        //Save new password in KeyChain
+        KeychainService.savePassword(token: userData.string(forKey: "userPassword")! as NSString)
+        
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : userData.string(forKey: "userPassword")!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()!, "password" : KeychainService.loadPassword()!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
         
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)

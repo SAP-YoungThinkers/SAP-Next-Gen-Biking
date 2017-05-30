@@ -40,12 +40,16 @@ class TrackingViewController: UIViewController {
     var coordinateLast = CLLocation()
     var metersDistance: Double = 0.0
     
-    //Users wheel size from Zoll to cm.
-    var wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
+    //Users wheel size
+    var userWheelSize: Int = 0
+    var wheelInCm: Double = 0.0
     
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userWheelSize = UserDefaults.standard.integer(forKey: "userWheelSize")
+        wheelInCm = Double(userWheelSize) * 0.0254
         
         navItem.title = "Record Route"
         

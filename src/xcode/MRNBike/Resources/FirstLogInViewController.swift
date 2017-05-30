@@ -118,7 +118,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         default:
             print("Error")
         }
-        //ToDo: Delete and change the following code regarding the result.
+
         /*
         // validate user inputs 
         if (userEmailTextField.text == defaultUserName && userPasswordTextField.text == defaultPassword) {
