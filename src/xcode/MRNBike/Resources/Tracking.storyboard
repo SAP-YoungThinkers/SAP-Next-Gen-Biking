@@ -22,7 +22,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Tracking" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="maF-Oy-XYn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NP5-pb-fLb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NP5-pb-fLb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

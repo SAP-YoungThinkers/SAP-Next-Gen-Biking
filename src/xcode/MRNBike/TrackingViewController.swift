@@ -43,8 +43,7 @@ class TrackingViewController: UIViewController {
     //Users wheel size from Zoll to cm.
     var wheelInCm = Double(UserDefaults.standard.integer(forKey: "userWheelSize")) * 0.0254
     
-    
-    
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,8 +96,6 @@ class TrackingViewController: UIViewController {
     
     
     // MARK: - Action
-    
-  
     @IBAction func startTrackingEvent(_ sender: UIButton) {
         startButton?.isHidden = true
         PauseButton.isHidden = false
@@ -200,7 +197,6 @@ class TrackingViewController: UIViewController {
             coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
           
             metersDistance += coordinateLast.distance(from: coordinateNew)
-            wheelInCm = 0.635
             wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
             //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
@@ -227,6 +223,17 @@ class TrackingViewController: UIViewController {
             
             StorageHelper.uploadToHana(scriptName: "importData/bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
         }
+        
+        //Creating the alert controller
+        let alertController = UIAlertController(title: "Route Upload", message: "Route saved successfully.", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        //Add Action to alertController
+        alertController.addAction(defaultAction)
+        //Design
+        alertController.view.tintColor = UIColor(red: 255/255, green: 87/255, blue: 34/255, alpha: 1)
+        alertController.view.layer.cornerRadius = 25
+        //Presenting alert
+        present(alertController, animated: true, completion: nil)
     }
 
 }
