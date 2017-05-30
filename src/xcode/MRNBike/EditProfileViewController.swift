@@ -116,7 +116,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         userData.set(imageData, forKey: "userProfileImage")
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : userData.string(forKey: "userPassword")!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : userData.string(forKey: "userPassword") ?? "", "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
         
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
