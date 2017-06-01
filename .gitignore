@@ -1,2 +1,11 @@
 .DS_Store
 *.xcuserstate
+
+<<<<<<< HEAD
+src/xcode/MRNBike.xcodeproj/xcuserdata/huyen.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+=======
+>>>>>>> b4d3672dbedaa15bf0d5f6197615c145ce1d10c4
+src/xcode/MRNBike.xcodeproj/xcuserdata/huyen.xcuserdatad/xcschemes/MRNBike.xcscheme
+
+src/xcode/MRNBike.xcodeproj/xcuserdata/huyen.xcuserdatad/xcschemes/xcschememanagement.plist
