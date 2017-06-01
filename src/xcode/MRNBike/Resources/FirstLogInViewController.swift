@@ -12,7 +12,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var rememberSwitch: UISwitch!
     
     // Default user
-   // let defaultUserName = "Ziad"
+    // let defaultUserName = "Ziad"
     // let defaultPassword = "123"
     
     var defaults = UserDefaults.standard
@@ -35,11 +35,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         rememberSwitch.isOn = passwordWasStored
         
         if passwordWasStored {
-            if let userName = defaults.object(forKey: "defaultUserMail") as? String {
-                userEmailTextField.text = userName
+            if let userN = KeychainService.loadEmail() {
+                userEmailTextField.text = userN as String
             }
-            if let password = defaults.object(forKey: "defaultUserPassword") as? String {
-                userPasswordTextField.text = password
+            if let userP = KeychainService.loadPassword() {
+                userPasswordTextField.text = userP as String
             }
         }
         
