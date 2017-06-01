@@ -10,13 +10,12 @@ class StartPageViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
+        var userShouldLogin = true
+        if UserDefaults.standard.object(forKey: StorageKeys.shouldLoginKey) != nil {
+            userShouldLogin = UserDefaults.standard.object(forKey: StorageKeys.shouldLoginKey) as! Bool
+        }
         
-        // read values from local space
-        let userData = UserDefaults.standard
-        let tmpUserMail = userData.object(forKey: "userMail")
-        let tmpUserPwd = userData.object(forKey: "userPassword")
-        
-        if(tmpUserMail != nil && tmpUserPwd != nil) {
+        if(!userShouldLogin) {
             // user exists
             print("user exists, redirecting to dashboard")
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
