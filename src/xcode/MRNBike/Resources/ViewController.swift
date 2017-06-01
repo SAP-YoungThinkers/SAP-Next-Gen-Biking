@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  Getmed
-//
-//  Created by Gor Avakian on 26/12/2016.
-//  Copyright © 2016 Gor Avakian. All rights reserved.
-//
+
 
 import UIKit
 

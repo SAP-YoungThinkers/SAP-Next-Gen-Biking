@@ -1,10 +1,4 @@
-//
-//  Configurator.swift
-//  Next Gen Biking
-//
-//  Created by Bormeth, Marc on 30/12/2016.
-//  Copyright © 2016 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import UIKit

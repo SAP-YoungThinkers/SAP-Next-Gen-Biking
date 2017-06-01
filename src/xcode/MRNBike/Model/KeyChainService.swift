@@ -1,10 +1,4 @@
-//
-//  KeyChainService.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 30.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import Security

@@ -1,10 +1,4 @@
-//
-//  MarksRoutesViewController.swift
-//  MRNBike
-//
-//  Created by Huyen Nguyen on 26.04.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 import UIKit
 import CoreGraphics
 import MapKit

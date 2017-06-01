@@ -1,10 +1,4 @@
-//
-//  AddReportViewController.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 29.04.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 import MapKit

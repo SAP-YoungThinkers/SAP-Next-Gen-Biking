@@ -1,10 +1,4 @@
-//
-//  TrackingViewController.swift
-//  MRNBike
-//
-//  Created by Bormeth, Marc on 11.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 import MapKit

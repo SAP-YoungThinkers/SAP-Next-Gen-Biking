@@ -1,10 +1,4 @@
-//
-//  EditProfileViewController.swift
-//  MRNBike
-//
-//  Created by Huyen Nguyen on 03.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import UIKit

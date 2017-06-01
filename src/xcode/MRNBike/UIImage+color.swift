@@ -1,10 +1,4 @@
-//
-//  UIImage+color.swift
-//  MRNBike
-//
-//  Created by Ziad Abdelkader on 5/5/17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import UIKit

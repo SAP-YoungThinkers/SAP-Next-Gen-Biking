@@ -1,10 +1,4 @@
-//
-//  RouteReport.swift
-//  MRNBike
-//
-//  Created by Huyen Nguyen on 27.04.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import MapKit
 
