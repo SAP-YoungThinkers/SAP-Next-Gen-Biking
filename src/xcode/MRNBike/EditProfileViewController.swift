@@ -100,7 +100,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             userData.set(firstNameView.text, forKey: "userFirstName")
         }
-        userData.set(inputEmail.text, forKey: "userMail")
+        if let tmpMail = inputEmail.text as NSString? {
+            KeychainService.saveEmail(token: tmpMail)
+        }
         userData.set(inputActivity.isOn, forKey: "userShareActivity")
         userData.set(Int(inputWeight.value), forKey: "userWeight")
         userData.set(Int(inputWheelSize.value), forKey: "userWheelSize")
