@@ -117,7 +117,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()!, "password" : KeychainService.loadPassword()!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail() as String!, "password" : KeychainService.loadPassword() as String!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
         
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
@@ -268,6 +268,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if let tmpUserMail = KeychainService.loadEmail() {
             inputEmail.text = tmpUserMail as String
         }
+        if let tmpUserPass = KeychainService.loadPassword() as String? {
+            inputPassword.text = tmpUserPass
+            inputPasswordRepeat.text = tmpUserPass
+        }
+        
         if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
             inputActivity.isOn = tmpUserShareActivity as! Bool
         }
@@ -291,9 +296,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         // password: there will be inserted a random string
         // and when it wasn't changed, password won't be overwritten/saved
-        tmpPasswordHash = randomString(5)
-        inputPassword.text = tmpPasswordHash
-        inputPasswordRepeat.text = tmpPasswordHash
+        //tmpPasswordHash = randomString(5)
+        //inputPassword.text = tmpPasswordHash
+        //inputPasswordRepeat.text = tmpPasswordHash
         
     }
     
