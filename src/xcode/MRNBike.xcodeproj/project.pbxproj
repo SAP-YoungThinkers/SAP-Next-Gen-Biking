@@ -20,6 +20,7 @@
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
 		017558861EE06C44008E5B7D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017558851EE06C44008E5B7D /* StorageKeys.swift */; };
+		017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 017A79B01EE6DE8A00AA5588 /* conditions.txt */; };
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
@@ -78,6 +79,7 @@
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017558851EE06C44008E5B7D /* StorageKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		017A79B01EE6DE8A00AA5588 /* conditions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conditions.txt; sourceTree = "<group>"; };
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017558851EE06C44008E5B7D /* StorageKeys.swift */,
+				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
+				017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */,
 				10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,

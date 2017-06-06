@@ -3,11 +3,19 @@
 import UIKit
 
 class TermConditionsViewController: UIViewController {
+    @IBOutlet weak var cond_TextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let path = Bundle.main.path(forResource: "conditions", ofType: "txt") {
+            if let content = try? String(contentsOfFile: path as String, encoding: String.Encoding.utf8) {
+                cond_TextView.text = content
+            }
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
