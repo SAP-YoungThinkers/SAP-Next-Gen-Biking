@@ -90,6 +90,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             KeychainService.savePassword(token: userPasswordTextField.text! as NSString)
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            User.getUser(mail: userEmailTextField.text!)
             self.present(controller, animated: true, completion: nil)
             print("User verified.")
             break

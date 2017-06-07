@@ -15,20 +15,25 @@ class StartPageViewController: UIViewController {
             userShouldLogin = UserDefaults.standard.object(forKey: StorageKeys.shouldLoginKey) as! Bool
         }
         
-        if(!userShouldLogin) {
-            // user exists
-            print("user exists, redirecting to dashboard")
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-            self.present(controller, animated: true, completion: nil)
-        }
-        else {
+        if userShouldLogin {
             // user doesnt exist
             print("user does not exist, redirecting to register")
             let controller = TourViewController()
             controller.startRidingAction = {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
             }
+        } else {            
+            // user exists
+            print("user exists, redirecting to dashboard")
+            
+            // Quick and dirty solution because of the lack of time. Please refactor this
+            if let tmpMail = KeychainService.loadEmail() as String? {
+                User.getUser(mail: tmpMail)
+            }
+            
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(controller, animated: true, completion: nil)
         }
 
     }

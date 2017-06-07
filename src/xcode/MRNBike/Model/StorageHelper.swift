@@ -7,6 +7,7 @@ import CoreLocation
 class StorageHelper : NSObject {
     
     static let config = Configurator()
+    static let dpqueue = DispatchQueue(label: "com.MRNBike.dpqueue")
     
     // MARK: Local Storage
     
