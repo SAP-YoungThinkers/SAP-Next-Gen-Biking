@@ -1,19 +1,21 @@
-//
-//  TermConditionsViewController.swift
-//  MRNBike
-//
-//  Created by 1 on 24.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 
 class TermConditionsViewController: UIViewController {
+    @IBOutlet weak var cond_TextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let path = Bundle.main.path(forResource: "conditions", ofType: "txt") {
+            if let content = try? String(contentsOfFile: path as String, encoding: String.Encoding.utf8) {
+                cond_TextView.text = content
+            }
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

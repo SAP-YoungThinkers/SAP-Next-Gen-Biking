@@ -1,10 +1,4 @@
-//
-//  EditProfileViewController.swift
-//  MRNBike
-//
-//  Created by Huyen Nguyen on 03.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
@@ -106,7 +100,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             userData.set(firstNameView.text, forKey: "userFirstName")
         }
-        userData.set(inputEmail.text, forKey: "userMail")
+        if let tmpMail = inputEmail.text as NSString? {
+            KeychainService.saveEmail(token: tmpMail)
+        }
         userData.set(inputActivity.isOn, forKey: "userShareActivity")
         userData.set(Int(inputWeight.value), forKey: "userWeight")
         userData.set(Int(inputWheelSize.value), forKey: "userWheelSize")
@@ -116,10 +112,12 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         userData.set(imageData, forKey: "userProfileImage")
         
         //Save new password in KeyChain
-        KeychainService.savePassword(token: userData.string(forKey: "userPassword")! as NSString)
+        if let tmpPass = inputPassword.text as NSString? {
+            KeychainService.savePassword(token: tmpPass)
+        }
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()!, "password" : KeychainService.loadPassword()!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail() as String!, "password" : KeychainService.loadPassword() as String!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
         
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
@@ -256,34 +254,39 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         // surname input
         if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
             inputSurnameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserSurname = userData.object(forKey: "userSurname") {
-                inputSurnameView.text = tmpUserSurname as? String
+            if let tmpUserSurname = userData.string(forKey: StorageKeys.nameKey) {
+                inputSurnameView.text = tmpUserSurname
             }
         }
         // first name input
         if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserFirstName = userData.object(forKey: "userFirstName") {
-                firstNameView.text = tmpUserFirstName as? String
+            if let tmpUserFirstName = userData.string(forKey: StorageKeys.firstnameKey) {
+                firstNameView.text = tmpUserFirstName
             }
         }
-        if let tmpUserMail = userData.object(forKey: "userMail") {
-            inputEmail.text = tmpUserMail as? String
+        if let tmpUserMail = KeychainService.loadEmail() {
+            inputEmail.text = tmpUserMail as String
         }
-        if let tmpUserShareActivity = userData.object(forKey: "userShareActivity") {
+        if let tmpUserPass = KeychainService.loadPassword() as String? {
+            inputPassword.text = tmpUserPass
+            inputPasswordRepeat.text = tmpUserPass
+        }
+        
+        if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
             inputActivity.isOn = tmpUserShareActivity as! Bool
         }
-        if let tmpUserWeight = userData.object(forKey: "userWeight") {
+        if let tmpUserWeight = userData.object(forKey: StorageKeys.weightKey) {
             inputWeight.value = Float(tmpUserWeight as! Int)
             inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
             inputIndicatorWeight.sizeToFit()
         }
-        if let tmpUserWheelSize = userData.object(forKey: "userWheelSize") {
+        if let tmpUserWheelSize = userData.object(forKey: StorageKeys.wheelKey) {
             inputWheelSize.value = Float(tmpUserWheelSize as! Int)
             inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
             inputIndicatorWheel.sizeToFit()
         }
-        if let tmpUserPhoto = userData.object(forKey: "userProfileImage") {
+        if let tmpUserPhoto = userData.object(forKey: StorageKeys.imageKey) {
             let myImage = UIImage(data: tmpUserPhoto as! Data)
             imageBG.image = myImage
             if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
@@ -293,9 +296,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         // password: there will be inserted a random string
         // and when it wasn't changed, password won't be overwritten/saved
-        tmpPasswordHash = randomString(5)
-        inputPassword.text = tmpPasswordHash
-        inputPasswordRepeat.text = tmpPasswordHash
+        //tmpPasswordHash = randomString(5)
+        //inputPassword.text = tmpPasswordHash
+        //inputPasswordRepeat.text = tmpPasswordHash
         
     }
     

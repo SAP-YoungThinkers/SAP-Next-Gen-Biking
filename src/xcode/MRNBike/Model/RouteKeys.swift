@@ -1,11 +1,4 @@
-//
-//  gpsModel.swift
-//  Next Gen Biking
-//
-//  Created by Marc Bormeth on 17.4.16
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//  
-//  RouteIDs in HANA are stored in this class.
+
 
 import UIKit
 

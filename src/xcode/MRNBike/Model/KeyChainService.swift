@@ -1,10 +1,4 @@
-//
-//  KeyChainService.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 30.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import Security
@@ -21,6 +15,7 @@ let accessGroup = "SecuritySerivice"
 
 let emailKey = "KeyForEmail"
 let passwordKey = "KeyForPassword"
+let routeKey = "KeyForRouteIDs"
 
 
 // Arguments for the keychain queries
@@ -53,6 +48,18 @@ public class KeychainService: NSObject {
     
     public class func loadPassword() -> NSString? {
         return self.load(service: passwordKey as NSString)
+    }
+    
+    public class func saveIDs(IDs: [Int]) {
+        let IDsAsString = IDs.map{ String($0) }.joined(separator: ",") as NSString
+
+        self.save(service: routeKey as NSString, data: IDsAsString)
+    }
+    
+    public class func loadIDs() -> [Int]? {
+        let arrString = self.load(service: routeKey as NSString) as String?
+        
+        return arrString?.components(separatedBy: ",").map{ return Int($0) } as? [Int]
     }
     
     /**

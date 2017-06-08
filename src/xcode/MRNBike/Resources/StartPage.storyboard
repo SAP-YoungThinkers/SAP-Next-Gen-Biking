@@ -567,7 +567,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
-                                                    <rect key="frame" x="24" y="14" width="160" height="39.5"/>
+                                                    <rect key="frame" x="24" y="13.5" width="160" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
                                                     </constraints>
@@ -608,7 +608,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
-                                                    <rect key="frame" x="24" y="14" width="250" height="39.5"/>
+                                                    <rect key="frame" x="24" y="13.5" width="250" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="c2V-J3-qSc"/>
                                                     </constraints>
@@ -995,6 +995,9 @@ If you have any questions about these Terms, please contact us.</string>
                             <constraint firstItem="qt2-40-6Rt" firstAttribute="top" secondItem="J3a-to-qrf" secondAttribute="bottom" constant="12" id="yn9-dT-ble"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cond_TextView" destination="qt2-40-6Rt" id="XkU-dA-UXv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqe-hf-pIs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
