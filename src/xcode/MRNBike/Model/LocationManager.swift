@@ -1,10 +1,4 @@
-//
-//  LocationManager.swift
-//  Next Gen Biking
-//
-//  Created by Bormeth, Marc on 01/03/2017.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import Foundation
 import CoreLocation

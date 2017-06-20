@@ -156,14 +156,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             print("Error")
         }
         
-        UserDefaults.standard.set(user.accountSurname, forKey: "userSurname")
-        UserDefaults.standard.set(user.accountFirstName, forKey: "userFirstName")
-        UserDefaults.standard.set(user.accountName, forKey: "userMail")
-        UserDefaults.standard.set(user.accountPassword, forKey: "userPassword")
-        UserDefaults.standard.set(user.accountShareInfo, forKey: "userShareActivity")
-        UserDefaults.standard.set(user.accountUserWeight, forKey: "userWeight")
-        UserDefaults.standard.set(user.accountUserWheelSize, forKey: "userWheelSize")
-        UserDefaults.standard.set(user.accountProfilePicture, forKey: "userProfileImage")
+        UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
+        UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
+        UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
+        UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
+        UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
+        UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
         
  
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
@@ -230,4 +228,5 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.view.endEditing(true)
         return true
     }
+    
 }

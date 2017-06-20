@@ -1,10 +1,4 @@
-//
-//  TabBarViewController.swift
-//  MRNBike
-//
-//  Created by Ziad Abdelkader on 5/6/17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 
@@ -27,20 +21,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     // Open Login screen
     func logOut (){
         
-        // get default values
-        let userName = UserDefaults.standard.object(forKey: "defaultUserMail") as? String
-        let password = UserDefaults.standard.object(forKey: "defaultUserPassword") as? String
-        
         // Remove Data
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
         
-        // save default user again 
-        if let userName = userName, let password = password {
-            UserDefaults.standard.setValue(userName, forKeyPath: "defaultUserMail")
-            UserDefaults.standard.setValue(password, forKeyPath: "defaultUserPassword")
-        }
-        
+        UserDefaults.standard.set(true, forKey: StorageKeys.shouldLoginKey)
         
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
         let controller = storyboard.instantiateInitialViewController()!

@@ -1,10 +1,4 @@
-//
-//  RadioButtonClass.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 30.04.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 

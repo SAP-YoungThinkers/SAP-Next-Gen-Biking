@@ -1,10 +1,4 @@
-//
-//  HomeViewController.swift
-//  MRNBike
-//
-//  Created by Ziad Abdelkader on 5/20/17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 

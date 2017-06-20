@@ -1,10 +1,4 @@
-//
-//  FirstLogInViewController.swift
-//  MRNBike
-//
-//  Created by 1 on 04.05.17.
-//  Copyright © 2017 Marc Bormeth. All rights reserved.
-//
+
 
 import UIKit
 
@@ -18,7 +12,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var rememberSwitch: UISwitch!
     
     // Default user
-   // let defaultUserName = "Ziad"
+    // let defaultUserName = "Ziad"
     // let defaultPassword = "123"
     
     var defaults = UserDefaults.standard
@@ -36,17 +30,17 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         
-        if defaults.object(forKey: "defaultUserMail") != nil {
-            passwordWasStored = true
+        if defaults.object(forKey: "rememberMe") != nil{
+            passwordWasStored = defaults.object(forKey: "rememberMe") as! Bool
         }
         rememberSwitch.isOn = passwordWasStored
         
         if passwordWasStored {
-            if let userName = defaults.object(forKey: "defaultUserMail") as? String {
-                userEmailTextField.text = userName
+            if let userName = KeychainService.loadEmail() {
+                userEmailTextField.text = userName as String
             }
-            if let password = defaults.object(forKey: "defaultUserPassword") as? String {
-                userPasswordTextField.text = password
+            if let userPassword = KeychainService.loadPassword() {
+                userPasswordTextField.text = userPassword as String
             }
         }
         
@@ -71,20 +65,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBAction func onPressedLogin(_ sender: UIButton) {
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
         
-        // cachse default user
-        if rememberSwitch.isOn {
-            if let email = userEmailTextField.text, let password = userPasswordTextField.text {
-                defaults.set(email, forKey: "defaultUserMail")
-                defaults.set(password, forKey: "defaultUserPassword")
-                
-                defaults.set(email, forKey: "userMail")
-                defaults.set(password, forKey: "userPassword")
-            }
-            
-            //Remover Default User
-        } else {
-            UserDefaults.standard.setValue(nil, forKeyPath: "defaultUserMail")
-            UserDefaults.standard.setValue(nil, forKeyPath: "defaultUserPassword")
+        if !rememberSwitch.isOn {
+            defaults.set(false, forKey: "rememberMe")
         }
         
         //Check if user exists in Hana
@@ -98,15 +80,18 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         switch code {
         case 201:
-            //Save email and password to UserDefaults
-            defaults.set(userPasswordTextField.text!, forKey: "userPassword")
-            defaults.set(userEmailTextField.text!, forKey: "userMail")
+            // cachse default user
+            if rememberSwitch.isOn {
+                defaults.set(true, forKey: "rememberMe")
+            }
+            defaults.set(false, forKey: StorageKeys.shouldLoginKey)
             
             //Save email and password to keychain
             KeychainService.saveEmail(token: userEmailTextField.text! as NSString)
             KeychainService.savePassword(token: userPasswordTextField.text! as NSString)
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            User.getUser(mail: userEmailTextField.text!)
             self.present(controller, animated: true, completion: nil)
             print("User verified.")
             break

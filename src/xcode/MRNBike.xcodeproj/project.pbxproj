@@ -19,6 +19,9 @@
 		0137F1741EA2778100FCA949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15A1EA2778100FCA949 /* Localizable.strings */; };
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
+		017558861EE06C44008E5B7D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017558851EE06C44008E5B7D /* StorageKeys.swift */; };
+		017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 017A79B01EE6DE8A00AA5588 /* conditions.txt */; };
+		019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */; };
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
@@ -76,6 +79,9 @@
 		0137F1601EA2778100FCA949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		017558851EE06C44008E5B7D /* StorageKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		017A79B01EE6DE8A00AA5588 /* conditions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conditions.txt; sourceTree = "<group>"; };
+		019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 				0137F1661EA2778100FCA949 /* Info.plist */,
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
+				017558851EE06C44008E5B7D /* StorageKeys.swift */,
+				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -273,6 +281,7 @@
 				109A6C811ED6203F0020657D /* TermConditionsViewController.swift */,
 				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
 				10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */,
+				019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */,
 			);
 			name = LandingScreen;
 			sourceTree = "<group>";
@@ -347,7 +356,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Marc Bormeth";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					491EC5011DE421940077BF82 = {
 						CreatedOnToolsVersion = 8.1;
@@ -393,6 +402,7 @@
 				01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */,
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
+				017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */,
 				10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
@@ -402,6 +412,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
+				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
@@ -426,6 +437,7 @@
 				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
+				017558861EE06C44008E5B7D /* StorageKeys.swift in Sources */,
 				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
@@ -570,7 +582,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.nextgen.MRNBike;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GEONet.MRNBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MRNBike/Bridging-Header.h";
@@ -589,7 +601,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/MRNBike/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.nextgen.MRNBike;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GEONet.MRNBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MRNBike/Bridging-Header.h";
