@@ -25,8 +25,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         imagePicker.delegate = self
         
         // delegate for hiding keyboard
@@ -35,6 +33,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         emailLabel.delegate = self
         passwordLabel.delegate = self
         confirmPasswordLabel.delegate = self
+        
+        //Hide Keyboard Extension
+        self.hideKeyboardWhenTappedAround()
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]

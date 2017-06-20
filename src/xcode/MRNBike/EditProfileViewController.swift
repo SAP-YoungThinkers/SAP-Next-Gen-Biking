@@ -291,6 +291,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             }
         }
         
+        //Hide Keyboard Extension
+        self.hideKeyboardWhenTappedAround()
+        
         // password: there will be inserted a random string
         // and when it wasn't changed, password won't be overwritten/saved
         tmpPasswordHash = randomString(5)
@@ -390,16 +393,4 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
 class UserBarViewController: UIViewController {
     // has to stick here...
     // ...because i need the class in EditProfileViewController!
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }

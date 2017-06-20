@@ -19,6 +19,6 @@
 	<key>zoom level</key>
 	<string>0.02</string>
 	<key>distance filter</key>
-	<string>3.0</string>
+	<string>10.0</string>
 </dict>
 </plist>

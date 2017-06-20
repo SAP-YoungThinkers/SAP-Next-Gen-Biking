@@ -31,7 +31,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Hide Keyboard Extension
+        self.hideKeyboardWhenTappedAround()
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         

@@ -77,6 +77,7 @@ class TrackingViewController: UIViewController {
         DismissButton.isHidden = true
         PauseButton.isHidden = true
         reportLocation.isHidden = true
+        stopButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +89,6 @@ class TrackingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
     }
     
 
@@ -117,7 +117,6 @@ class TrackingViewController: UIViewController {
         }
     }
     
-    
     @IBAction func pauseTrackingEvent(_ sender: UIButton) {
         startButton?.isHidden = false
         PauseButton.isHidden = true
@@ -128,17 +127,16 @@ class TrackingViewController: UIViewController {
 
     @IBAction func stopTrackingEvent(_ sender: UIButton) {
         self.locationManager.stopTracking()
+        timer.invalidate()
         locationManager.delegate = nil
         DismissButton.isHidden = false
         SaveRouteButton.isHidden = false
         startButton.isHidden = true
         stopButton.isHidden = true
         PauseButton.isHidden = true
-        timer.invalidate()
     }
     
     @IBAction func saveRouteButton(_ sender: UIButton) {
-        
         reportLocation.isHidden = false
         SaveRouteButton.isHidden = true
         DismissButton.setTitle("Dashboard", for: .normal)
@@ -158,7 +156,6 @@ class TrackingViewController: UIViewController {
         var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
         treesSaved += Double(co2SavedLabel.text!)!
         UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
-      
         
         upload()
     }
@@ -195,6 +192,7 @@ class TrackingViewController: UIViewController {
             if elapsedSeconds == 5 {
             let trackpointLast = trackPointsArray.first
                 coordinateLast = CLLocation(latitude: (trackpointLast?.latitude)!, longitude: (trackpointLast?.longitude)!)
+                stopButton.isEnabled = true
             }
             
             let trackpointNew = trackPointsArray.last
@@ -218,7 +216,6 @@ class TrackingViewController: UIViewController {
     
     func upload() {
         //TODO: Check for connection -> what if there is bad connection?
-        
         saveCollectedDataLocally()
         
         if let loadedData = StorageHelper.loadGPS() {
@@ -239,7 +236,6 @@ class TrackingViewController: UIViewController {
         //Presenting alert
         present(alertController, animated: true, completion: nil)
     }
-
 }
 
 

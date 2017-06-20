@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
@@ -51,6 +51,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
+        
+        //Setup gesture recognizer for long press recognition
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action:(#selector(longPress)))
+        gestureRecognizer.minimumPressDuration = 1.5
+        gestureRecognizer.delegate = self as UIGestureRecognizerDelegate
+        mapView.addGestureRecognizer(gestureRecognizer)
         
         //Settings from the radio buttons
         recommendationBtn.addTarget(self, action: #selector(manualAction(sender:)), for: .touchUpInside)
@@ -108,6 +114,20 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         }
     }
     
+    //Set pin for report
+    func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
+        
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        
+        let coordinate = mapView.centerCoordinate
+        saveAnnotation.coordinate = coordinate
+        print(coordinate)
+        
+        mapView.addAnnotation(saveAnnotation)
+    }
+    
     //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -151,28 +171,10 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
     }
     
     //MARK: Actions
-    
-    //Set pin for report
-    @IBAction func setPin(_ sender: UIButton) {
-        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
-        
-        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
-        mapView.removeAnnotations( annotationsToRemove )
-        
-        let coordinate = mapView.centerCoordinate
-        saveAnnotation.coordinate = coordinate
-
-        mapView.addAnnotation(saveAnnotation)
+  
+    @IBAction func refreshLocation(_ sender: UIButton) {
+        manager.startUpdatingLocation()
+        //manager.stopUpdatingLocation()
     }
-    override func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    override func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
 }
 
