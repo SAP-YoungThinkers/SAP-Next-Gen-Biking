@@ -5,3 +5,57 @@
 "Stop_Tracking"="Stop tracking";
 "Start_Tracking"="Start tracking";
 "center"="Center map";
+
+//Create/Edit Profile Scene
+"surnameLabel"="SURNAME";
+"firstnameLabel"="FIRSTNAME";
+"createProfile"="Create Profile";
+"editProfile"="Edit Profile";
+"emailLabel"="EMAIL";
+"passwordLabel"="PASSWORD";
+"repeatPasswordLabel"="REPEAT PASSWORD";
+"shareInfoLabel"="SHARE ACTIVITY INFORMATION";
+"agreeTermCondition"="I AGREE WITH TERM CONDITIONS";
+"personalInfoLabel"="PERSONAL INFORMATION";
+"weightLabel"="Weight";
+"wheelSizeLabel"="Wheel Size";
+
+"passwordEmptyDialogTitle"="Password empty";
+"passwordEmptyDialogMsg"="Please fill in your password.";
+
+"passwordMismatchDialogTitle"="Password Mismatch";
+"passwordMismatchDialogMsg"="Please repeat the same password!";
+
+"noEmailDialogTitle"="No email";
+"noEmailDialogMsg"="Please let us know your email!";
+
+"noTermConditionDialogTitle"="Term Conditions";
+"noTermConditionDialogMsg"="Accept term conditions, please!";
+
+"dialogActionGotIt"="Got it!";
+
+//Tracking Scene
+"wheelRotation"="WHEEL ROTATIONS";
+"burgers"="BURGERS";
+"distance"="DISTANCE";
+"co2Saved"="CO2 SAVED";
+"saveRoute"="Save Route";
+"dismiss"="Dismiss";
+"reportLocation"="Report Location";
+"dashboard"="Dashboard";
+"routeUploadDialogTitle"="Route Upload";
+"routeUploadDialogMsgPositive"="Route uploaded successfully.";
+"routeUploadDialogMsgNegative"="Uploading route failed.";
+
+//Marks & Routes Scene
+"marksAndRoutesTitle"="Marks & Routes";
+"routeInformation"="ROUTE INFO";
+"myRoutes"="MY ROUTES";
+
+//Add Route Mark Scene
+"addRouteMarkTitle"="Add Route Mark";
+"whatDidYouSee"="WHAT DID YOU SEE?";
+"recommendation"="Recommendation";
+"warning"="Warning";
+"danger"="Danger";
+"writeMessage"="Message...";

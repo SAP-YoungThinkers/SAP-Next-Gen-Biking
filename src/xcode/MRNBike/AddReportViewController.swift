@@ -10,6 +10,10 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var recommendationLabel: UILabel!
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var dangerLabel: UILabel!
+    @IBOutlet weak var whatDidYouSeeLabel: UILabel!
     
     //Radio buttons
     
@@ -26,12 +30,18 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set text
+        self.title = NSLocalizedString("addRouteMarkTitle", comment: "")
+        recommendationLabel.text = NSLocalizedString("recommendation", comment: "")
+        warningLabel.text = NSLocalizedString("warning", comment: "")
+        dangerLabel.text = NSLocalizedString("danger", comment: "")
+        whatDidYouSeeLabel.text = NSLocalizedString("whatDidYouSee", comment: "")
+        textView.text = NSLocalizedString("writeMessage", comment: "")
+        
+        textView.textColor = UIColor.lightGray
+        
         //Delegate textView Control for dismiss keyboard on pressing "return" key
         textView.delegate = self
-        
-        //Set a placeholder for textView because it doesn't have inherently a placeholder    
-        textView.text = "Message..."
-        textView.textColor = UIColor.lightGray
         
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

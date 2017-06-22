@@ -22,6 +22,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set text
+        self.title = NSLocalizedString("marksAndRoutesTitle", comment: "")
+        routeInformation.title = NSLocalizedString("routeInformation", comment: "")
+        myRoutes.title = NSLocalizedString("myRoutes", comment: "")
+        
         topBar.delegate = self
         
         topBar.selectedItem = routeInformation

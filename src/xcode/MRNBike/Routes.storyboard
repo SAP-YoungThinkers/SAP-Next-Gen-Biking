@@ -265,11 +265,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dangerBtn" destination="AVa-rk-4hN" id="dJB-be-FOy"/>
+                        <outlet property="dangerLabel" destination="X0t-jD-whg" id="c89-eV-ss0"/>
                         <outlet property="mapView" destination="hj0-aj-8ZY" id="Lvd-oy-Q7K"/>
                         <outlet property="messageView" destination="GG8-UV-9e5" id="xSh-ld-7U9"/>
                         <outlet property="recommendationBtn" destination="A2P-jy-w9v" id="f8y-hR-SbY"/>
+                        <outlet property="recommendationLabel" destination="deP-ff-Q14" id="WZe-xO-Qaz"/>
                         <outlet property="textView" destination="tKJ-nR-ER3" id="DuL-sd-wLq"/>
                         <outlet property="warningBtn" destination="nLF-Pq-e2c" id="gpg-VO-mGY"/>
+                        <outlet property="warningLabel" destination="nse-nj-yhq" id="JGv-TL-G0g"/>
+                        <outlet property="whatDidYouSeeLabel" destination="4ss-zy-0rX" id="ljz-YU-vvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fr-36-mVD" userLabel="First Responder" sceneMemberID="firstResponder"/>

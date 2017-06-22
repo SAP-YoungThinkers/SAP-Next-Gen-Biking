@@ -17,9 +17,13 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var backGroundImage: UIImageView!
     @IBOutlet weak var statisticView: UIView!
     @IBOutlet weak var wheelRotationLabel: UILabel!
+    @IBOutlet weak var wheelRotationText: UILabel!
     @IBOutlet weak var burgersLabel: UILabel!
+    @IBOutlet weak var burgersText: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceText: UILabel!
     @IBOutlet weak var co2SavedLabel: UILabel!
+    @IBOutlet weak var co2SavedText: UILabel!
     @IBOutlet weak var reportLocation: UIButton!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
@@ -41,6 +45,16 @@ class TrackingViewController: UIViewController {
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set text
+        wheelRotationText.text = NSLocalizedString("wheelRotation", comment: "")
+        burgersText.text = NSLocalizedString("burgers", comment: "")
+        distanceText.text = NSLocalizedString("distance", comment: "")
+        co2SavedText.text = NSLocalizedString("co2Saved", comment: "")
+        SaveRouteButton.setTitle(NSLocalizedString("saveRoute", comment: ""), for: .normal)
+        DismissButton.setTitle(NSLocalizedString("dismiss", comment: ""), for: .normal)
+        reportLocation.setTitle(NSLocalizedString("reportLocation", comment: ""), for: .normal)
+        
         
         userWheelSize = UserDefaults.standard.integer(forKey: "userWheelSize")
         wheelInCm = Double(userWheelSize) * 0.0254
@@ -133,7 +147,7 @@ class TrackingViewController: UIViewController {
     @IBAction func saveRouteButton(_ sender: UIButton) {
         reportLocation.isHidden = false
         SaveRouteButton.isHidden = true
-        DismissButton.setTitle("Dashboard", for: .normal)
+        DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
         
         var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
         wheelRotation += Double(wheelRotationLabel.text!)!
@@ -220,7 +234,7 @@ class TrackingViewController: UIViewController {
         }
         
         //Creating the alert controller
-        let alertController = UIAlertController(title: "Route Upload", message: "Route saved successfully.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgNegative", comment: ""), preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         //Add Action to alertController
         alertController.addAction(defaultAction)

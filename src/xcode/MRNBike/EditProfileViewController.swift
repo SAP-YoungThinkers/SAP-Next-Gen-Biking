@@ -27,6 +27,10 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
      
      ======================= */
     
+    //User Bar View
+    
+    
+    
     var tmpPasswordHash : String!       // only local
     let imagePicker = UIImagePickerController()
     
@@ -69,9 +73,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                 }
                 else {
                     // password empty
-                    passwordAlert.title = "Password empty"
-                    passwordAlert.message = "Okay, you did not fill in any password. Please fill in!"
-                    passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                    passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
+                    passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
+                    passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
                     self.present(passwordAlert, animated: true, completion: nil)
                     print("password empty")
                     return
@@ -84,9 +88,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         else {
             // passwords dont match
-            passwordAlert.title = "Password Mismatch"
-            passwordAlert.message = "Please repeat the same password!"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("passwordMismatchDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
             print("passwords dont match")
             return
@@ -168,6 +172,16 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set text
+        self.title = NSLocalizedString("editProfile", comment: "")
+        email.text = NSLocalizedString("emailLabel", comment: "")
+        password.text = NSLocalizedString("passwordLabel", comment: "")
+        repeatPassword.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        activityShare.text = NSLocalizedString("shareInfoLabel", comment: "")
+        personalInfo.text = NSLocalizedString("personalInfoLabel", comment: "")
+        weight.text = NSLocalizedString("weightLabel", comment: "")
+        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
         
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -293,16 +307,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                 profileView.image = myImage
             }
         }
-        
-        //Hide Keyboard Extension
-        self.hideKeyboardWhenTappedAround()
-        
-        // password: there will be inserted a random string
-        // and when it wasn't changed, password won't be overwritten/saved
-        //tmpPasswordHash = randomString(5)
-        //inputPassword.text = tmpPasswordHash
-        //inputPasswordRepeat.text = tmpPasswordHash
-        
     }
     
     func handleImagePicker(button: UIButton) {
@@ -394,6 +398,19 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
 }
 
 class UserBarViewController: UIViewController {
+    
+    @IBOutlet weak var surnameLabel: UILabel!
+    @IBOutlet weak var firstnameLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Set text
+        surnameLabel.text = NSLocalizedString("surnameLabel", comment: "")
+        firstnameLabel.text = NSLocalizedString("firstnameLabel", comment: "")
+        
+    }
+    
     // has to stick here...
     // ...because i need the class in EditProfileViewController!
 }

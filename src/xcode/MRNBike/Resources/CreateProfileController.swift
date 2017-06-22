@@ -3,6 +3,19 @@ import UIKit
 class CreateProfileController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     
+    
+    @IBOutlet weak var surnameDescription: UILabel!
+    @IBOutlet weak var firstnameDescription: UILabel!
+    @IBOutlet weak var emailDescription: UILabel!
+    @IBOutlet weak var passwodDescription: UILabel!
+    @IBOutlet weak var repeatPasswordDescription: UILabel!
+    @IBOutlet weak var activityShareDescription: UILabel!
+    @IBOutlet weak var agreementTermCondition: UILabel!
+    @IBOutlet weak var personalInfoLabel: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var wheelSize: UILabel!
+    
+    
     @IBOutlet private(set) var surnameLabel: UITextField!
     @IBOutlet weak var firstNameLabel: UITextField!
     @IBOutlet private(set) var emailLabel: UITextField!
@@ -24,6 +37,19 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set text
+        self.title = NSLocalizedString("createProfile", comment: "")
+        surnameDescription.text = NSLocalizedString("surnameLabel", comment: "")
+        firstnameDescription.text = NSLocalizedString("firstnameLabel", comment: "")
+        emailDescription.text = NSLocalizedString("emailLabel", comment: "")
+        passwodDescription.text = NSLocalizedString("passwordLabel", comment: "")
+        repeatPasswordDescription.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        activityShareDescription.text = NSLocalizedString("shareInfoLabel", comment: "")
+        agreementTermCondition.text = NSLocalizedString("agreeTermCondition", comment: "")
+        personalInfoLabel.text = NSLocalizedString("personalInfoLabel", comment: "")
+        weight.text = NSLocalizedString("weightLabel", comment: "")
+        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
         
         imagePicker.delegate = self
         
@@ -76,9 +102,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
           //Agree with term condition warning
         if TemSwitch.isOn == false {
-            termAlert.title = "Not accepted term conditions"
-            termAlert.message = "Accept term conditions, please!"
-            termAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            termAlert.title = NSLocalizedString("noTermConditionDialogTitle", comment: "")
+            termAlert.message = NSLocalizedString("noTermConditionDialogMsg", comment: "")
+            termAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(termAlert, animated: true, completion: nil)
             return
         
@@ -87,9 +113,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         // username neccessary
         if (emailLabel.text == "") {
             print("E-Mail empty")
-            passwordAlert.title = "No username"
-            passwordAlert.message = "Please let us know your email!"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            passwordAlert.title = NSLocalizedString("noEmailDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("noEmailDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
             return
         }
@@ -100,18 +126,18 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             }
             else {
                 // empty password
-                passwordAlert.title = "Password empty"
-                passwordAlert.message = "Please fill in your password"
-                passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
+                passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
+                passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
                 self.present(passwordAlert, animated: true, completion: nil)
                 print("password empty")
                 return
             }
         } else {
             // different passwords
-            passwordAlert.title = "Password Mismatch"
-            passwordAlert.message = "Please repeat the same password!"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("passwordMicmatchDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
             print("passwords dont match")
             return

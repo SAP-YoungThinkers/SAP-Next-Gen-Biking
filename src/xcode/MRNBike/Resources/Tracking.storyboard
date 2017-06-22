@@ -373,6 +373,7 @@
                                             <constraint firstItem="Syo-xu-Hge" firstAttribute="leading" secondItem="Jl3-fZ-j84" secondAttribute="leading" constant="24" id="MD9-la-u46"/>
                                             <constraint firstItem="HdX-BQ-V7T" firstAttribute="leading" secondItem="Jl3-fZ-j84" secondAttribute="leading" id="NJq-te-YTR"/>
                                             <constraint firstItem="Ddo-rS-0M0" firstAttribute="top" secondItem="Syo-xu-Hge" secondAttribute="bottom" constant="59" id="a3C-SA-CRt"/>
+                                            <constraint firstItem="91u-Y1-vMF" firstAttribute="leading" secondItem="SC9-0Q-hpy" secondAttribute="trailing" constant="-59" id="aHh-0a-5eS"/>
                                             <constraint firstAttribute="trailing" secondItem="Lju-xK-pXv" secondAttribute="trailing" id="dG6-us-Xjt"/>
                                             <constraint firstItem="Lju-xK-pXv" firstAttribute="top" secondItem="Jl3-fZ-j84" secondAttribute="top" id="kNx-a4-OkF"/>
                                             <constraint firstItem="Lju-xK-pXv" firstAttribute="centerX" secondItem="Jl3-fZ-j84" secondAttribute="centerX" id="o82-OX-of4"/>
@@ -414,9 +415,12 @@
                         <outlet property="SaveRouteButton" destination="bqv-Ze-oAu" id="6Yh-Fl-EUL"/>
                         <outlet property="backGroundImage" destination="HdX-BQ-V7T" id="02s-tu-Ib9"/>
                         <outlet property="burgersLabel" destination="rHp-0S-55H" id="U2V-Um-Mmn"/>
+                        <outlet property="burgersText" destination="SC9-0Q-hpy" id="fjY-JM-hXj"/>
                         <outlet property="cancelButton" destination="Tsb-ht-RkR" id="wkf-m5-UWG"/>
                         <outlet property="co2SavedLabel" destination="znx-iz-abB" id="S89-AI-ol9"/>
+                        <outlet property="co2SavedText" destination="H0a-2y-fKI" id="HXh-Ge-cBd"/>
                         <outlet property="distanceLabel" destination="4IP-8g-XZv" id="2ZS-1h-eI8"/>
+                        <outlet property="distanceText" destination="I5t-So-L1L" id="551-iK-Qv4"/>
                         <outlet property="navItem" destination="dFR-eo-9C6" id="tkB-zx-moi"/>
                         <outlet property="reportLocation" destination="1t5-jv-FI8" id="ofV-VT-zRy"/>
                         <outlet property="startButton" destination="Prz-YK-hoe" id="LFx-rM-de7"/>
@@ -424,6 +428,7 @@
                         <outlet property="stopButton" destination="kHM-Lg-iJR" id="Tcg-09-xpb"/>
                         <outlet property="timeLabel" destination="91u-Y1-vMF" id="VE6-iw-Mop"/>
                         <outlet property="wheelRotationLabel" destination="MHk-4a-FkC" id="FUf-8c-Ay5"/>
+                        <outlet property="wheelRotationText" destination="Gi4-El-Syv" id="xhh-VK-f4y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSZ-CN-w7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
