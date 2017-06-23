@@ -270,7 +270,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             //Check if the user hasn't add any message.
             if message == "Message..." {
-                message = "No information"
+                message = "..."
             }
             
             var type : String

@@ -4,9 +4,15 @@ import UIKit
 
 class StartPageViewController: UIViewController {
     
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var takeTourButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //Set text
+        startButton.setTitle(NSLocalizedString("start", comment: ""), for: .normal)
+        takeTourButton.setTitle(NSLocalizedString("takeTour", comment: ""), for: .normal)
         
         self.navigationController?.isNavigationBarHidden = true
         

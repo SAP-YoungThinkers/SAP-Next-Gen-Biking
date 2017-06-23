@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
@@ -9,7 +7,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var messageLabelTextField: UILabel!
     @IBOutlet private var helpView: UIView!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var rememberPasswordLabel: UILabel!
     @IBOutlet weak var rememberSwitch: UISwitch!
+    @IBOutlet weak var registerButton: UIButton!
     
     // Default user
     // let defaultUserName = "Ziad"
@@ -25,6 +25,15 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set text
+        self.title = NSLocalizedString("signIn", comment: "")
+        rememberPasswordLabel.text = NSLocalizedString("emailLabel", comment: "")
+        rememberPasswordLabel.text = NSLocalizedString("passwordLabel", comment: "")
+        rememberPasswordLabel.text = NSLocalizedString("rememberPassword", comment: "")
+        loginButton.setTitle(NSLocalizedString("loginButton", comment: ""), for: .normal)
+        registerButton.setTitle(NSLocalizedString("registerButton", comment: ""), for: .normal)
+        
         //Hide Keyboard Extension
         self.hideKeyboardWhenTappedAround()
         self.userEmailTextField.delegate = self
@@ -102,41 +111,17 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             print("Invalid JSON.")
             break
         case 404:
-            passwordAlert.title = "Username/Password is wrong"
-            passwordAlert.message = "Please check your username/password"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            passwordAlert.title = NSLocalizedString("passwordUserWrongDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("passwordUserDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
-            print("User not found.")
             break
         default:
             print("Error")
         }
-
-        /*
-        // validate user inputs 
-        if (userEmailTextField.text == defaultUserName && userPasswordTextField.text == defaultPassword) {
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-            self.present(controller, animated: true, completion: nil)
-        } else {
-            if userPasswordTextField.text != defaultPassword && userEmailTextField.text == defaultUserName {
-                passwordAlert.title = "Password wrong"
-                passwordAlert.message = "Please fill in your password"
-                passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                self.present(passwordAlert, animated: true, completion: nil)
-            } else {
-                passwordAlert.title = "User doesn't exist"
-                passwordAlert.message = "Please check a correctness of your email!"
-                passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                self.present(passwordAlert, animated: true, completion: nil)
-            }
- }
- */
-        
     }
     
     // UITextFieldDelegate For Enablind/Disabling Login Button
-    
     func textFieldDidChange(_ textField: UITextField) {
         loginButton.isEnabled = (userEmailTextField.text != "") && (userPasswordTextField.text != "")
         if loginButton.isEnabled {
@@ -145,7 +130,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             loginButton.alpha = 0.5
         }
     }
-    
     
     // MARK: Actions
     
@@ -159,5 +143,4 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.view.endEditing(true)
         return false
     }
-    
 }

@@ -51,6 +51,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         weight.text = NSLocalizedString("weightLabel", comment: "")
         wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
         
+        surnameLabel.text = NSLocalizedString("surnameLabel", comment: "")
+        firstNameLabel.text = NSLocalizedString("firstnameLabel", comment: "")
+        emailLabel.text = NSLocalizedString("emailExample", comment: "")
+        passwordLabel.text = NSLocalizedString("passwordLabel", comment: "")
+        confirmPasswordLabel.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        
         imagePicker.delegate = self
         
         // delegate for hiding keyboard

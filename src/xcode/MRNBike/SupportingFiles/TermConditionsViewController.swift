@@ -4,10 +4,19 @@ import UIKit
 
 class TermConditionsViewController: UIViewController {
     @IBOutlet weak var cond_TextView: UITextView!
+    @IBOutlet weak var termsConditionLabel: UILabel!
+    @IBOutlet weak var agreeButton: UIButton!
+    @IBOutlet weak var disagreeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Set text
+        termsConditionLabel.text = NSLocalizedString("termConditionHeader", comment: "")
+        cond_TextView.text = NSLocalizedString("termConditionText", comment: "")
+        agreeButton.setTitle(NSLocalizedString("agreeButton", comment: ""), for: .normal)
+        disagreeButton.setTitle(NSLocalizedString("disagreeButton", comment: ""), for: .normal)
+        
         // Do any additional setup after loading the view.
         if let path = Bundle.main.path(forResource: "conditions", ofType: "txt") {
             if let content = try? String(contentsOfFile: path as String, encoding: String.Encoding.utf8) {

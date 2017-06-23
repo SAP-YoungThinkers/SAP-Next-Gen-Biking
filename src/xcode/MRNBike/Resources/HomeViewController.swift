@@ -1,19 +1,31 @@
-
-
 import UIKit
 
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var wheelRotationValue: UILabel!
     @IBOutlet weak var wheelRotationLabel: UILabel!
     @IBOutlet weak var burgerLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var treesSavedLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var myProfileButton: UIButton!
+    @IBOutlet weak var startTrackingButton: UIButton!
+    @IBOutlet weak var burgersLabel: UILabel!
+    @IBOutlet weak var co2Label: UILabel!
+    @IBOutlet weak var distanceText: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set text
+        wheelRotationLabel.text = NSLocalizedString("wheelRotation", comment: "")
+        burgersLabel.text = NSLocalizedString("burgersBurned", comment: "")
+        distanceText.text = NSLocalizedString("distanceKM", comment: "")
+        co2Label.text = NSLocalizedString("co2Saved", comment: "")
+        myProfileButton.setTitle(NSLocalizedString("myProfile", comment: ""), for: .normal)
+        startTrackingButton.setTitle(NSLocalizedString("startTracking", comment: ""), for: .normal)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +62,7 @@ class HomeViewController: UIViewController {
         }
         
         //Updating the labels after each tracking.
-        wheelRotationLabel.text = String(UserDefaults.standard.integer(forKey: "wheelRotation"))
+        wheelRotationValue.text = String(UserDefaults.standard.integer(forKey: "wheelRotation"))
         burgerLabel.text = String(UserDefaults.standard.double(forKey: "burgers"))
         distanceLabel.text = String(UserDefaults.standard.double(forKey: "distance"))
         treesSavedLabel.text = String(UserDefaults.standard.double(forKey: "treesSaved"))
@@ -67,5 +79,4 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 }

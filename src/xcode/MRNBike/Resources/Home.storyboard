@@ -46,7 +46,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAP User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="oaH-ih-P3S">
-                                                        <rect key="frame" x="80" y="24" width="77" height="21"/>
+                                                        <rect key="frame" x="80" y="24" width="76.5" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="o2A-x0-jBv"/>
                                                         </constraints>
@@ -138,13 +138,16 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 587" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-uW-Be3">
-                                                                <rect key="frame" x="98" y="50" width="180" height="65"/>
+                                                                <rect key="frame" x="98.5" y="50" width="179.5" height="65"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="53"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHEEL ROTATIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-Us-Gg9">
                                                                 <rect key="frame" x="123" y="120" width="130" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="130" id="3WB-rN-j3W"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="13"/>
                                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.64592251712328763" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -552,11 +555,17 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="burgerLabel" destination="ZfF-LI-Ocv" id="jfy-U3-WSi"/>
-                        <outlet property="distanceLabel" destination="mXV-Nv-uYt" id="gyn-vz-9u2"/>
+                        <outlet property="burgersLabel" destination="aeu-QM-sjW" id="ZFD-u4-VAZ"/>
+                        <outlet property="co2Label" destination="grr-BS-QkH" id="STI-jf-bSt"/>
+                        <outlet property="distanceLabel" destination="mXV-Nv-uYt" id="iWc-tk-8Fs"/>
+                        <outlet property="distanceText" destination="iVM-Ra-sKB" id="rfh-3i-lRs"/>
+                        <outlet property="myProfileButton" destination="R0u-xp-rLY" id="o40-ze-657"/>
+                        <outlet property="startTrackingButton" destination="CTY-BR-AdT" id="Gxw-XT-c2B"/>
                         <outlet property="treesSavedLabel" destination="Bcx-3X-xHM" id="sa0-UD-WOv"/>
                         <outlet property="userImage" destination="fJC-vn-2Um" id="Ykg-tP-qJl"/>
                         <outlet property="userNameLabel" destination="oaH-ih-P3S" id="nWx-pR-k30"/>
-                        <outlet property="wheelRotationLabel" destination="wIv-uW-Be3" id="1T2-r3-SCv"/>
+                        <outlet property="wheelRotationLabel" destination="l2Z-Us-Gg9" id="7TT-VL-Ah2"/>
+                        <outlet property="wheelRotationValue" destination="wIv-uW-Be3" id="ivu-nB-mG3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMi-zW-lla" userLabel="First Responder" sceneMemberID="firstResponder"/>
