@@ -55,6 +55,12 @@
 "agreeButton"="I AGREE";
 "disagreeButton"="I DISAGREE";
 
+"dismissConfDialogTitle"="Dismiss conformation";
+"dismissConfDialogMsg"="If you disagree with term conditions, you can't continue work with the App and your current progress will be lost. Are you sure about this?";
+
+"dialogActionNo"="No";
+"termAlertAction"="Dismiss";
+
 //Tracking Scene
 "wheelRotation"="WHEEL ROTATIONS";
 "burgers"="BURGERS";
