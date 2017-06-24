@@ -30,7 +30,7 @@
 "passwordLabel"="PASSWORD";
 "repeatPasswordLabel"="REPEAT PASSWORD";
 "shareInfoLabel"="SHARE ACTIVITY INFORMATION";
-"agreeTermCondition"="I AGREE WITH TERM CONDITIONS";
+"agreeTermCondition"="I AGREE WITH THE TERMS AND CONDITIONS";
 "personalInfoLabel"="PERSONAL INFORMATION";
 "weightLabel"="Weight";
 "wheelSizeLabel"="Wheel Size";
@@ -44,8 +44,8 @@
 "noEmailDialogTitle"="No email";
 "noEmailDialogMsg"="Please let us know your email!";
 
-"noTermConditionDialogTitle"="Term Conditions";
-"noTermConditionDialogMsg"="Accept term conditions, please!";
+"noTermConditionDialogTitle"="Terms and Conditions";
+"noTermConditionDialogMsg"="Accept the terms and conditions, please!";
 
 "dialogActionGotIt"="Got it!";
 
@@ -56,7 +56,7 @@
 "disagreeButton"="I DISAGREE";
 
 "dismissConfDialogTitle"="Dismiss conformation";
-"dismissConfDialogMsg"="If you disagree with term conditions, you can't continue work with the App and your current progress will be lost. Are you sure about this?";
+"dismissConfDialogMsg"="If you disagree with the terms and conditions, you can't continue working with the app and your current progress will be lost. Are you sure about this?";
 
 "dialogActionNo"="No";
 "termAlertAction"="Dismiss";

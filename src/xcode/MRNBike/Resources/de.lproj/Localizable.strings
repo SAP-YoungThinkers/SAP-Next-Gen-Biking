@@ -1,88 +1,90 @@
 //Start Page Scene
-"takeTourHeader"="Ride • Award • Protect";
-"takeTourDescription"="With our App you will not only ride bike for yourself, but even to make riding more comfortable for all of us. Award by reaching goals, protect our enironment!";
-"startRidingButton"="START RIDING";
+"takeTourHeader"="Radle • Gewinne • Schütze";
+"takeTourDescription"="Mit unserer App trägst du dazu bei, Fahrradfahren für alle angenehmer zu machen. Erhalte Auszeichnungen für das Erreichen von Zielen und schone unsere Umwelt!";
+"startRidingButton"="Los geht's";
 //Take Tour Scene
 "start"="START";
-"takeTour"="TAKE THE TOUR";
+"takeTour"="Mache einen Rundgang";
 
 //Login Scene
-"signIn"="Sign in";
-"rememberPassword"="Remember Password";
+"signIn"="Einloggen";
+"rememberPassword"="Merke mein Passwort";
 "loginButton"="LOG IN";
-"registerButton"="REGISTER";
-"passwordUserWrongDialogTitle"="Username/Password is wrong";
-"passwordUserDialogMsg"="Please check your username/password.";
+"registerButton"="REGISTRIEREN";
+"passwordUserWrongDialogTitle"="Nutzername oder Passwort falsch";
+"passwordUserDialogMsg"="Überprüfe deinen Nutzernamen / dein Passwort";
 
 //Home Scene
-"startTracking"="Start Tracking";
-"myProfile"="My Profile";
-"burgersBurned"="Burgers Burned";
-"distanceKM"="Distance (km)";
+"startTracking"="Ortung starten";
+"myProfile"="Mein Profil";
+"burgersBurned"="Burger verbrannt";
+"distanceKM"="Distanz (km)";
 
 //Create/Edit Profile Scene
-"surnameLabel"="SURNAME";
-"firstnameLabel"="FIRSTNAME";
-"createProfile"="Create Profile";
-"editProfile"="Edit Profile";
+"surnameLabel"="NACHNAME";
+"firstnameLabel"="VORNAME";
+"createProfile"="Profil erstellen";
+"editProfile"="Profil bearbeiten";
 "emailLabel"="EMAIL";
 "emailExample"="john.doe@mrn.com";
-"passwordLabel"="PASSWORD";
-"repeatPasswordLabel"="REPEAT PASSWORD";
-"shareInfoLabel"="SHARE ACTIVITY INFORMATION";
-"agreeTermCondition"="I AGREE WITH TERM CONDITIONS";
-"personalInfoLabel"="PERSONAL INFORMATION";
-"weightLabel"="Weight";
-"wheelSizeLabel"="Wheel Size";
+"passwordLabel"="PASSWORT";
+"repeatPasswordLabel"="PASSWORT WIEDERHOLEN";
+"shareInfoLabel"="MEINE AKTIVITÄTEN TEILEN";
+"agreeTermCondition"="ICH STIMME DEN NUTZUNGSBEDINGUNGEN ZU";
+"personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
+"weightLabel"="GEWICHT";
+"wheelSizeLabel"="RADGRÖßE";
 
-"passwordEmptyDialogTitle"="Password empty";
-"passwordEmptyDialogMsg"="Please fill in your password.";
+"passwordEmptyDialogTitle"="KEIN PASSWORT EINGEGEBEN";
+"passwordEmptyDialogMsg"="BITTE GEBE DEIN PASSWORT EIN.";
 
-"passwordMismatchDialogTitle"="Password Mismatch";
-"passwordMismatchDialogMsg"="Please repeat the same password!";
+"passwordMismatchDialogTitle"="Falsches Passwort";
+"passwordMismatchDialogMsg"="Gebe zwei Mal das gleiche Passwort ein.";
 
-"noEmailDialogTitle"="No email";
-"noEmailDialogMsg"="Please let us know your email!";
+"noEmailDialogTitle"="Keine E-Mail";
+"noEmailDialogMsg"="Bitte lass uns deine E-Mail Adresse wissen!";
 
-"noTermConditionDialogTitle"="Term Conditions";
-"noTermConditionDialogMsg"="Accept term conditions, please!";
+"noTermConditionDialogTitle"="Nutzungsbedingungen";
+"noTermConditionDialogMsg"="Stimme bitte den Nutzungsbedingungen zu!";
 
-"dialogActionGotIt"="Got it!";
+"dialogActionGotIt"="Verstanden!";
 
 //Term Scene
 "termConditionHeader"="Generic Terms and Conditions of MRN Bike mobile application";
+
+// The original repo contains the right terms and conditions
 "termConditionText"="Terms and Conditions (\"Terms\") Last updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this)  (\"us\", \"we\", or \"our\"). Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service. By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Links To Other Web Sites Our Service may contain links to third-party web sites or services that are not owned or controlled by  My Company (change this). My Company (change this)  has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that  My Company (change this)  shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services. Changes We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 3  0 (change this)  days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. Contact Us If you have any questions about these Terms, please contact us.";
-"agreeButton"="I AGREE";
-"disagreeButton"="I DISAGREE";
+"agreeButton"="ICH STIMME ZU";
+"disagreeButton"="ICH LEHNE AB";
 
-"dismissConfDialogTitle"="Dismiss conformation";
-"dismissConfDialogMsg"="If you disagree with term conditions, you can't continue work with the App and your current progress will be lost. Are you sure about this?";
+"dismissConfDialogTitle"="Verwerfen";
+"dismissConfDialogMsg"="Wenn du den Nutzungsbedingungen nicht zustimmst, kannst du die App nicht verwenden und der aktuelle Fortschritt geht verloren. Bist du sicher?";
 
-"dialogActionNo"="No";
-"termAlertAction"="Dismiss";
+"dialogActionNo"="Fortfahren";
+"termAlertAction"="Verwerfen";
 
 //Tracking Scene
-"wheelRotation"="WHEEL ROTATIONS";
-"burgers"="BURGERS";
-"distance"="DISTANCE";
-"co2Saved"="CO2 SAVED";
-"saveRoute"="Save Route";
-"dismiss"="Dismiss";
-"reportLocation"="Report Location";
+"wheelRotation"="RADUMDREHUNGEN";
+"burgers"="BURGER";
+"distance"="DISTANZ";
+"co2Saved"="CO2 GESPART";
+"saveRoute"="Route speichern";
+"dismiss"="Verwerfen";
+"reportLocation"="Stelle melden";
 "dashboard"="Dashboard";
-"routeUploadDialogTitle"="Route Upload";
-"routeUploadDialogMsgPositive"="Route uploaded successfully.";
-"routeUploadDialogMsgNegative"="Uploading route failed.";
+"routeUploadDialogTitle"="Route hochladen";
+"routeUploadDialogMsgPositive"="Route erfolgreich hochgeladen";
+"routeUploadDialogMsgNegative"="Fehler beim Hochladen der Route";
 
 //Marks & Routes Scene
-"marksAndRoutesTitle"="Marks & Routes";
-"routeInformation"="ROUTE INFO";
-"myRoutes"="MY ROUTES";
+"marksAndRoutesTitle"="Routen und Anmerkungen";
+"routeInformation"="Routeninformation;
+"myRoutes"="MEINE ROUTEN";
 
 //Add Route Mark Scene
-"addRouteMarkTitle"="Add Route Mark";
-"whatDidYouSee"="WHAT DID YOU SEE?";
-"recommendation"="Recommendation";
-"warning"="Warning";
-"danger"="Danger";
-"writeMessage"="Message...";
+"addRouteMarkTitle"="Anmerkung hinzufügen";
+"whatDidYouSee"="WAS HAST DU GESEHEN?";
+"recommendation"="Empfehlung";
+"warning"="Warnung";
+"danger"="Gefahr";
+"writeMessage"="Kommentar...";
