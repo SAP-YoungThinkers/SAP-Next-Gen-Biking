@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011799611F025AAD00FFED59 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 011799601F025AAD00FFED59 /* Credentials.json */; };
 		01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01279A2E1EA4D9DF000505AA /* RouteKeys.swift */; };
 		0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0137F14B1EA2778100FCA949 /* AppDelegate.swift */; };
 		0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F14D1EA2778100FCA949 /* InfoPlist.strings */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		011799601F025AAD00FFED59 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		01279A2E1EA4D9DF000505AA /* RouteKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteKeys.swift; sourceTree = "<group>"; };
 		0137F14B1EA2778100FCA949 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0137F14D1EA2778100FCA949 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = ../InfoPlist.strings; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017558851EE06C44008E5B7D /* StorageKeys.swift */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
+				011799601F025AAD00FFED59 /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
+				011799611F025AAD00FFED59 /* Credentials.json in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
@@ -584,6 +588,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GEONet.MRNBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MRNBike/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
