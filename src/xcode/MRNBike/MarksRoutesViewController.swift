@@ -98,42 +98,41 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         // ANNOTATIONS!
         
-        //Get the reports from Backend
-        var result = StorageHelper.prepareRequest(scriptName: "report/queryReport.xsjs")
-        
-        if let reports = result["records"] as? [[String: AnyObject]] {
-            
-            var description : String
-            var type : String
-            var lat : String
-            var long : String
-            var latitude : Double
-            var longitude : Double
-            var pin : RouteReport
-            
-            for report in reports {
-                description = (report["description"] as? String)!
-                type = (report["type"] as? String)!
-                lat = (report["latitude"] as? String)!
-                long = (report["longitude"] as? String)!
+        ClientService.getReports() { result in
+            if let reports = result["records"] as? [[String: AnyObject]] {
                 
-                latitude = Double(lat)!
-                longitude = Double(long)!
+                var description : String
+                var type : String
+                var lat : String
+                var long : String
+                var latitude : Double
+                var longitude : Double
+                var pin : RouteReport
                 
-                pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                for report in reports {
+                    description = (report["description"] as? String)!
+                    type = (report["type"] as? String)!
+                    lat = (report["latitude"] as? String)!
+                    long = (report["longitude"] as? String)!
+                    
+                    latitude = Double(lat)!
+                    longitude = Double(long)!
+                    
+                    pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                    print("schleife")
+                    self.annotations?.append(pin)
+                }
                 
-                annotations?.append(pin)
+                
+                self.mapView.addAnnotations(self.annotations!)
+                
+                // center map around points
+                let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
+                self.mapView.setRegion(region, animated: true)
             }
         }
         
-        mapView.addAnnotations(annotations!)
-        
-        // center map around points
-        let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
-        mapView.setRegion(region, animated: true)
-        
     }
-    
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         //This method will be called when user changes tab.
