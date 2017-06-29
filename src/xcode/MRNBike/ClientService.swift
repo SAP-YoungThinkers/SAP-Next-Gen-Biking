@@ -16,7 +16,6 @@ class ClientService {
         let request = generateRequest(scriptName: "report/queryReport.xsjs", httpMethod: "GET")
 
         session.dataTask(with: request) {data, response, error in
-            
             var json = [String: AnyObject]()
             
             do {
@@ -28,6 +27,7 @@ class ClientService {
             }.resume()
     }
     
+    //ToDo: How this method should look/work? It shouldn't be async, because i need the token for the primary request.
     static func getXCSRFToken() -> String? {
         
         var token: String
@@ -49,13 +49,13 @@ class ClientService {
             return nil
         }
         
-        token = header.allHeaderFields["x-csrf-token"] as! String
+        token = header.allHeaderFields["X-Csrf-Token"] as! String
         
         return token
     }
     
     static func generateRequest(scriptName: String, httpMethod: String) -> URLRequest {
-        
+
         let configurator = Configurator()
         
         let loginString = NSString(format: "%@:%@", "GBI_030", "[MobileApp]")
@@ -70,7 +70,7 @@ class ClientService {
         if httpMethod == "POST" {
             let token = getXCSRFToken()
             if token != nil {
-                request.addValue(token!, forHTTPHeaderField: "x-csrf-token")
+                request.addValue(token!, forHTTPHeaderField: "X-Csrf-Token")
             }
         } else {
             request.setValue("Fetch", forHTTPHeaderField: "X-Csrf-Token")

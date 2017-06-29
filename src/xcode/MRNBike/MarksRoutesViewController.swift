@@ -126,9 +126,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 
                 self.mapView.addAnnotations(self.annotations!)
                 
-                // center map around points
+                //center map around points
                 let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
                 self.mapView.setRegion(region, animated: true)
+ 
             }
         }
         
