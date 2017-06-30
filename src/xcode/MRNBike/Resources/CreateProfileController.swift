@@ -51,11 +51,11 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         weight.text = NSLocalizedString("weightLabel", comment: "")
         wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
         
-        surnameLabel.text = NSLocalizedString("surnameLabel", comment: "")
-        firstNameLabel.text = NSLocalizedString("firstnameLabel", comment: "")
-        emailLabel.text = NSLocalizedString("emailExample", comment: "")
-        passwordLabel.text = NSLocalizedString("passwordLabel", comment: "")
-        confirmPasswordLabel.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        surnameLabel.placeholder = NSLocalizedString("surnameLabel", comment: "")
+        firstNameLabel.placeholder = NSLocalizedString("firstnameLabel", comment: "")
+        emailLabel.placeholder = NSLocalizedString("emailExample", comment: "")
+        passwordLabel.placeholder = NSLocalizedString("passwordLabel", comment: "")
+        confirmPasswordLabel.placeholder = NSLocalizedString("repeatPasswordLabel", comment: "")
         
         imagePicker.delegate = self
         

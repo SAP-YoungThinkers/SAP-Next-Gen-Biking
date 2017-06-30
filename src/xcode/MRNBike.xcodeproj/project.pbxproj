@@ -150,7 +150,6 @@
 		0137F14A1EA2778100FCA949 /* MRNBike */ = {
 			isa = PBXGroup;
 			children = (
-				4EE64FA21F04577A00758004 /* Networking */,
 				0137F14B1EA2778100FCA949 /* AppDelegate.swift */,
 				4E36BA271ED73B4B0022704C /* LandingScreen */,
 				4E36BA261ED73ACF0022704C /* Home */,
@@ -161,6 +160,7 @@
 				0137F14F1EA2778100FCA949 /* Model */,
 				4E36BA2B1ED73E2A0022704C /* Social */,
 				4E36BA2C1ED73E680022704C /* Settings */,
+				4EE64FA21F04577A00758004 /* Networking */,
 				10B9D4DB1EC6149000CC7027 /* Extension */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 			);

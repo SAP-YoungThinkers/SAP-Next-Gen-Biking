@@ -28,8 +28,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         //Set text
         self.title = NSLocalizedString("signIn", comment: "")
-        rememberPasswordLabel.text = NSLocalizedString("emailLabel", comment: "")
-        rememberPasswordLabel.text = NSLocalizedString("passwordLabel", comment: "")
+        userEmailTextField.placeholder = NSLocalizedString("emailLabel", comment: "")
+        userPasswordTextField.placeholder = NSLocalizedString("passwordLabel", comment: "")
         rememberPasswordLabel.text = NSLocalizedString("rememberPassword", comment: "")
         loginButton.setTitle(NSLocalizedString("loginButton", comment: ""), for: .normal)
         registerButton.setTitle(NSLocalizedString("registerButton", comment: ""), for: .normal)
@@ -38,6 +38,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.hideKeyboardWhenTappedAround()
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
+        
+        userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.edited), for:UIControlEvents.editingChanged)
+        userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.edited), for:UIControlEvents.editingChanged)
         
         if defaults.object(forKey: "rememberMe") != nil{
             passwordWasStored = defaults.object(forKey: "rememberMe") as! Bool
@@ -65,9 +68,28 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             loginButton.isEnabled = true
             loginButton.alpha = 1.0
         }
-        // Setting Fields to trigger any Changes
-        userEmailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        userPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    func edited() {
+        
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,3}"
+        
+        var valid = false
+       
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+
+        if emailTest.evaluate(with: userEmailTextField.text) {
+            let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+            valid = passwordTest.evaluate(with: userPasswordTextField.text)
+        }
+       
+        if valid == true {
+            loginButton.isEnabled = true
+            loginButton.alpha = 1.0
+        } else {
+            loginButton.isEnabled = false
+            loginButton.alpha = 0.5
+          }
     }
     
     // Login to the app
@@ -118,16 +140,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
             break
         default:
             print("Error")
-        }
-    }
-    
-    // UITextFieldDelegate For Enablind/Disabling Login Button
-    func textFieldDidChange(_ textField: UITextField) {
-        loginButton.isEnabled = (userEmailTextField.text != "") && (userPasswordTextField.text != "")
-        if loginButton.isEnabled {
-            loginButton.alpha = 1.0
-        } else {
-            loginButton.alpha = 0.5
         }
     }
     
