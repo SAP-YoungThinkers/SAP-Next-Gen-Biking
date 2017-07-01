@@ -4,12 +4,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var recommendationLabel: UILabel!
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var dangerLabel: UILabel!
@@ -38,12 +38,13 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
         warningLabel.text = NSLocalizedString("warning", comment: "")
         dangerLabel.text = NSLocalizedString("danger", comment: "")
         whatDidYouSeeLabel.text = NSLocalizedString("whatDidYouSee", comment: "")
-        textView.text = NSLocalizedString("writeMessage", comment: "")
+        messageTextField.placeholder = NSLocalizedString("writeMessage", comment: "")
         
-        textView.textColor = UIColor.lightGray
+        messageTextField.textColor = UIColor.lightGray
         
-        //Delegate textView Control for dismiss keyboard on pressing "return" key
-        textView.delegate = self
+        //Hide Keyboard Extension
+        self.hideKeyboardWhenTappedAround()
+        self.messageTextField.delegate = self
         
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -85,35 +86,22 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
         self.messageView.layer.borderWidth = 1
         
         //Bind textfields to regex validator
-        textView.addTarget(self, action:#selector(AddReportViewController.checkInput), for:UIControlEvents.editingChanged)
+        messageTextField.addTarget(self, action:#selector(AddReportViewController.checkInput), for:UIControlEvents.editingChanged)
     }
     
     //Check if message is valid
     func checkInput() {
         
-        var valid = false
+        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()@\\s]{5,60}$")
         
-        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-Z\\s]{2,20}$")
-        
-        //Check input fields and TermSwitcher
-        if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
-            
-            //Check if passwords are similar
-            if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count {
-                valid = true
-            }
-        }
-        
-        //If all inputs are valid, enable the done button
-        if valid == true {
-            doneButton.isEnabled = true
+        //If message is valid, enable the send button
+        if messageTest.evaluate(with: messageTextField.text) {
+            sendButton.isEnabled = true
         } else {
-            doneButton.isEnabled = false
+            sendButton.isEnabled = false
         }
     }
 
-    
- 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Access the last object from locations to get perfect current location
         if let location = locations.last {
@@ -179,31 +167,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
         }
     }
     
-    //Delete the programatically set placeholder in the textView when editing
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
+    // Close keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
-    
-    //If the user left textView empty, show the placeholder again
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Message..."
-            textView.textColor = UIColor.lightGray
-        }
-    }
-    
-    //MARK: UITextViewDelegate
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
-        if(text == "\n") {
-            view.endEditing(true)
-            return false
-        }
-        return true
-    }
-    
+
     //MARK: Actions
   
     @IBAction func refreshLocation(_ sender: UIButton) {

@@ -266,12 +266,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         if let addReportViewController = segue.source as? AddReportViewController {
             
-            var message: String = addReportViewController.textView.text
-            
-            //Check if the user hasn't add any message.
-            if message == "Message..." {
-                message = "..."
-            }
+            let message: String = addReportViewController.messageTextField.text!
             
             var type : String
             
