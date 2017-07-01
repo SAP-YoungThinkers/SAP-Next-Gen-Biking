@@ -23,7 +23,7 @@
                         <viewControllerLayoutGuide type="top" id="6bc-cf-uPY"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ms-6E-rzB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rCE-EH-rhY">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="rCE-EH-rhY">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -270,6 +270,7 @@
                         <outlet property="messageView" destination="GG8-UV-9e5" id="xSh-ld-7U9"/>
                         <outlet property="recommendationBtn" destination="A2P-jy-w9v" id="f8y-hR-SbY"/>
                         <outlet property="recommendationLabel" destination="deP-ff-Q14" id="WZe-xO-Qaz"/>
+                        <outlet property="sendButton" destination="2jg-g1-t4F" id="g2a-EQ-dQv"/>
                         <outlet property="textView" destination="tKJ-nR-ER3" id="DuL-sd-wLq"/>
                         <outlet property="warningBtn" destination="nLF-Pq-e2c" id="gpg-VO-mGY"/>
                         <outlet property="warningLabel" destination="nse-nj-yhq" id="JGv-TL-G0g"/>
@@ -286,7 +287,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RoutesStoryboard" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6R-Ad-dlt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1KD-kl-KDj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1KD-kl-KDj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,7 +306,7 @@
             <objects>
                 <navigationController storyboardIdentifier="AddRoutes" automaticallyAdjustsScrollViewInsets="NO" id="QJD-vu-BYR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZ8-MP-RDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AZ8-MP-RDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

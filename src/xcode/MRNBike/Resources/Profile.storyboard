@@ -229,7 +229,7 @@
                         <outlet property="password" destination="3UX-6B-WnM" id="KRi-7z-2sl"/>
                         <outlet property="personalInfo" destination="gwA-jh-Pcy" id="V68-Ls-RPL"/>
                         <outlet property="repeatPassword" destination="2Mm-BH-I4Q" id="PVL-1W-Fwd"/>
-                        <outlet property="saveButton" destination="sDz-NX-6YT" id="bwH-H3-H5Z"/>
+                        <outlet property="saveButton" destination="sDz-NX-6YT" id="gYN-mm-3qD"/>
                         <outlet property="scrollView" destination="Hcd-ft-WfM" id="ERg-0K-Lof"/>
                         <outlet property="userBar" destination="uN6-zh-n08" id="p1W-xn-eSm"/>
                         <outlet property="weight" destination="lp6-6r-hwL" id="2mX-uy-hQn"/>

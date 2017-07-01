@@ -10,6 +10,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    
     @IBOutlet weak var userBar: UIView!
     @IBOutlet weak var scrollView : UIScrollView!
     
@@ -28,9 +29,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
      ======================= */
     
     //User Bar View
-    
-    
-    
     var tmpPasswordHash : String!       // only local
     let imagePicker = UIImagePickerController()
     
@@ -53,6 +51,285 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var inputIndicatorWheel: UILabel!
     @IBOutlet weak var inputWheelSize: UISlider!
     
+    
+    var userBarViewController : UserBarViewController!
+    let userBarSegueName = "userBarSegue"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Set save button disabled
+        saveButton.isEnabled = false
+        
+        //Set text
+        self.title = NSLocalizedString("editProfile", comment: "")
+        email.text = NSLocalizedString("emailLabel", comment: "")
+        password.text = NSLocalizedString("passwordLabel", comment: "")
+        repeatPassword.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        activityShare.text = NSLocalizedString("shareInfoLabel", comment: "")
+        personalInfo.text = NSLocalizedString("personalInfoLabel", comment: "")
+        weight.text = NSLocalizedString("weightLabel", comment: "")
+        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
+        
+        //Notification for keyboard will show/will hide
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        //Delegation of the textFields to the view
+        inputEmail.delegate=self
+        inputPassword.delegate=self
+        inputPasswordRepeat.delegate=self
+        
+        //Keyboard hides, whereever the user taps on the screen (except the keyboard)
+        self.hideKeyboardWhenTappedAround()
+        
+        imagePicker.delegate = self
+        
+        // Change title color and font
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.white]
+        navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
+        
+        // Remove line and background
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        
+        // Blur Effect of Image Background
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageBG.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.75
+        imageBG.addSubview(blurEffectView)
+        
+        // user bar
+        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
+            profileView.layer.borderWidth = 2
+            profileView.layer.masksToBounds = false
+            profileView.layer.borderColor = UIColor.white.cgColor
+            profileView.layer.cornerRadius = profileView.frame.height/2
+            profileView.clipsToBounds = true
+            
+            // button over image
+            let button = UIButton(type: .custom)
+            button.frame = profileView.frame
+            button.addTarget(self, action: #selector(handleImagePicker(button:)), for: .touchUpInside)
+            userBarViewController.view.addSubview(button)
+        }
+        
+        // surname
+        if let surnameView : UILabel = userBarViewController?.view.viewWithTag(2) as? UILabel {
+            surnameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
+            surnameView.numberOfLines = 0
+            surnameView.sizeToFit()
+        }
+        
+        // first name
+        if let firstNameView : UILabel = userBarViewController?.view.viewWithTag(3) as? UILabel {
+            firstNameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
+            firstNameView.numberOfLines = 0
+            firstNameView.sizeToFit()
+        }
+        
+        /*
+            ========= USER OPTIONS =========
+         */
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+        // labels to fit size
+        email.sizeToFit()
+        password.sizeToFit()
+        repeatPassword.sizeToFit()
+        activityShare.sizeToFit()
+        personalInfo.sizeToFit()
+        inputIndicatorWeight.sizeToFit()
+        weight.sizeToFit()
+        inputIndicatorWheel.sizeToFit()
+        wheelSize.sizeToFit()
+        
+        // read values from local space
+        let userData = UserDefaults.standard
+        
+        // surname input
+        if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
+            inputSurnameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
+            if let tmpUserSurname = userData.string(forKey: StorageKeys.nameKey) {
+                inputSurnameView.text = tmpUserSurname
+            }
+        }
+        
+        // first name input
+        if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
+            firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
+            if let tmpUserFirstName = userData.string(forKey: StorageKeys.firstnameKey) {
+                firstNameView.text = tmpUserFirstName
+            }
+        }
+        
+        if let tmpUserMail = KeychainService.loadEmail() {
+            inputEmail.text = tmpUserMail as String
+        }
+        
+        inputEmail.isUserInteractionEnabled = false
+        
+        if let tmpUserPass = KeychainService.loadPassword() as String? {
+            inputPassword.text = tmpUserPass
+            inputPasswordRepeat.text = tmpUserPass
+        }
+        
+        if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
+            inputActivity.isOn = tmpUserShareActivity as! Bool
+        }
+        
+        if let tmpUserWeight = userData.object(forKey: StorageKeys.weightKey) {
+            inputWeight.value = Float(tmpUserWeight as! Int)
+            inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
+            inputIndicatorWeight.sizeToFit()
+        }
+        
+        if let tmpUserWheelSize = userData.object(forKey: StorageKeys.wheelKey) {
+            inputWheelSize.value = Float(tmpUserWheelSize as! Int)
+            inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
+            inputIndicatorWheel.sizeToFit()
+        }
+        
+        if let tmpUserPhoto = userData.object(forKey: StorageKeys.imageKey) {
+            let myImage = UIImage(data: tmpUserPhoto as! Data)
+            imageBG.image = myImage
+            if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
+                profileView.image = myImage
+            }
+        }
+        
+        //Bind textfields to validator
+        let surname = userBarViewController.view.viewWithTag(4) as! UITextField
+        let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
+        surname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        firstname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        inputPassword.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        inputPasswordRepeat.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+    }
+    
+    //Check if email, password, firstname and lastname are syntacticylly valid and TermSwitch is on
+    func checkInput() {
+        
+        var valid = false
+    
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-Z\\s]{2,20}$")
+        
+        let surname = userBarViewController.view.viewWithTag(4) as! UITextField
+        let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
+        print(firstname)
+        //Check input fields and TermSwitcher
+        if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
+            print("1")
+            //Check if passwords are similar
+            if inputPassword.text?.characters.count == inputPasswordRepeat.text?.characters.count {
+                valid = true
+                print("true")
+            }
+        }
+        
+        //If all inputs are valid, enable the done button
+        if valid == true {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+            print("false")
+        }
+    }
+
+    
+    func handleImagePicker(button: UIButton) {
+        print("image picked!")
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == userBarSegueName {
+            userBarViewController = segue.destination as? UserBarViewController
+        }
+    }
+    
+    func randomString(_ length: Int) -> String {
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$"
+        let len = UInt32(letters.length)
+
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            updateProfileBG(pickedImage: pickedImage)
+        } else {
+            print("Something went wrong")
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func updateProfileBG(pickedImage: UIImage) {
+        
+        // remove old blur first
+        for subview in imageBG.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        imageBG.image = pickedImage
+        
+        // Blur Effect of Image Background
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageBG.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.75
+        
+        imageBG.addSubview(blurEffectView)
+        
+        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
+            profileView.image = pickedImage
+        }
+    }
+    
+    
+    //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
+    }
+    
+    // MARK: Actions 
+    
     // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
         
@@ -66,7 +343,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if (inputPassword.text == inputPasswordRepeat.text) {
             
             if (inputPassword.text != tmpPasswordHash) {
-            
+                
                 if (inputPassword.text != "") {
                     // was changed, so save!
                     userData.set(inputPassword.text, forKey: "userPassword")
@@ -166,235 +443,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    var userBarViewController : UserBarViewController!
-    let userBarSegueName = "userBarSegue"
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Set text
-        self.title = NSLocalizedString("editProfile", comment: "")
-        email.text = NSLocalizedString("emailLabel", comment: "")
-        password.text = NSLocalizedString("passwordLabel", comment: "")
-        repeatPassword.text = NSLocalizedString("repeatPasswordLabel", comment: "")
-        activityShare.text = NSLocalizedString("shareInfoLabel", comment: "")
-        personalInfo.text = NSLocalizedString("personalInfoLabel", comment: "")
-        weight.text = NSLocalizedString("weightLabel", comment: "")
-        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
-        
-        //Notification for keyboard will show/will hide
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //Delegation of the textFields to the view
-        inputEmail.delegate=self
-        inputPassword.delegate=self
-        inputPasswordRepeat.delegate=self
-        
-        //Keyboard hides, whereever the user taps on the screen (except the keyboard)
-        self.hideKeyboardWhenTappedAround()
-        
-        
-        imagePicker.delegate = self
-        
-        // Change title color and font
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.white]
-        navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
-        
-        // Remove line and background
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        
-        // Blur Effect of Image Background
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = imageBG.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.75
-        imageBG.addSubview(blurEffectView)
-        
-        // user bar
-        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-            profileView.layer.borderWidth = 2
-            profileView.layer.masksToBounds = false
-            profileView.layer.borderColor = UIColor.white.cgColor
-            profileView.layer.cornerRadius = profileView.frame.height/2
-            profileView.clipsToBounds = true
-            
-            // button over image
-            let button = UIButton(type: .custom)
-            button.frame = profileView.frame
-            button.addTarget(self, action: #selector(handleImagePicker(button:)), for: .touchUpInside)
-            userBarViewController.view.addSubview(button)
-        }
-        
-        // surname
-        if let surnameView : UILabel = userBarViewController?.view.viewWithTag(2) as? UILabel {
-            surnameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
-            surnameView.numberOfLines = 0
-            surnameView.sizeToFit()
-        }
-        
-        // first name
-        if let firstNameView : UILabel = userBarViewController?.view.viewWithTag(3) as? UILabel {
-            firstNameView.font = UIFont.init(name: "Montserrat-Regular", size: 16)!
-            firstNameView.numberOfLines = 0
-            firstNameView.sizeToFit()
-        }
-        
-        /*
-            ========= USER OPTIONS =========
-         */
-        scrollView.isScrollEnabled = true
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
-        
-        // labels to fit size
-        email.sizeToFit()
-        password.sizeToFit()
-        repeatPassword.sizeToFit()
-        activityShare.sizeToFit()
-        personalInfo.sizeToFit()
-        inputIndicatorWeight.sizeToFit()
-        weight.sizeToFit()
-        inputIndicatorWheel.sizeToFit()
-        wheelSize.sizeToFit()
-        
-        // read values from local space
-        let userData = UserDefaults.standard
-        
-        // surname input
-        if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
-            inputSurnameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserSurname = userData.string(forKey: StorageKeys.nameKey) {
-                inputSurnameView.text = tmpUserSurname
-            }
-        }
-        // first name input
-        if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
-            firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserFirstName = userData.string(forKey: StorageKeys.firstnameKey) {
-                firstNameView.text = tmpUserFirstName
-            }
-        }
-        if let tmpUserMail = KeychainService.loadEmail() {
-            inputEmail.text = tmpUserMail as String
-        }
-        if let tmpUserPass = KeychainService.loadPassword() as String? {
-            inputPassword.text = tmpUserPass
-            inputPasswordRepeat.text = tmpUserPass
-        }
-        
-        if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
-            inputActivity.isOn = tmpUserShareActivity as! Bool
-        }
-        if let tmpUserWeight = userData.object(forKey: StorageKeys.weightKey) {
-            inputWeight.value = Float(tmpUserWeight as! Int)
-            inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-            inputIndicatorWeight.sizeToFit()
-        }
-        if let tmpUserWheelSize = userData.object(forKey: StorageKeys.wheelKey) {
-            inputWheelSize.value = Float(tmpUserWheelSize as! Int)
-            inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-            inputIndicatorWheel.sizeToFit()
-        }
-        if let tmpUserPhoto = userData.object(forKey: StorageKeys.imageKey) {
-            let myImage = UIImage(data: tmpUserPhoto as! Data)
-            imageBG.image = myImage
-            if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-                profileView.image = myImage
-            }
-        }
-    }
-    
-    func handleImagePicker(button: UIButton) {
-        print("image picked!")
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == userBarSegueName {
-            userBarViewController = segue.destination as? UserBarViewController
-        }
-    }
-    
-    func randomString(_ length: Int) -> String {
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$"
-        let len = UInt32(letters.length)
-
-        var randomString = ""
-        
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        return randomString
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            updateProfileBG(pickedImage: pickedImage)
-        } else {
-            print("Something went wrong")
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func updateProfileBG(pickedImage: UIImage) {
-        
-        // remove old blur first
-        for subview in imageBG.subviews {
-            if subview is UIVisualEffectView {
-                subview.removeFromSuperview()
-            }
-        }
-        
-        imageBG.image = pickedImage
-        
-        // Blur Effect of Image Background
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = imageBG.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.75
-        
-        imageBG.addSubview(blurEffectView)
-        
-        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-            profileView.image = pickedImage
-        }
-    }
-    
-    //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
-    func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = UIEdgeInsets.zero
-        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true;
-    }
-    
-    // MARK: Actions 
-    
-    
 }
 
 class UserBarViewController: UIViewController {
@@ -408,9 +456,5 @@ class UserBarViewController: UIViewController {
         //Set text
         surnameLabel.text = NSLocalizedString("surnameLabel", comment: "")
         firstnameLabel.text = NSLocalizedString("firstnameLabel", comment: "")
-        
     }
-    
-    // has to stick here...
-    // ...because i need the class in EditProfileViewController!
 }

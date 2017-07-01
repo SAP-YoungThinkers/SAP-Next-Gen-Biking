@@ -16,12 +16,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
     @IBOutlet weak var whatDidYouSeeLabel: UILabel!
     
     //Radio buttons
-    
     @IBOutlet weak var recommendationBtn: RadioButtonClass!
-    
     @IBOutlet weak var warningBtn: RadioButtonClass!
-    
     @IBOutlet weak var dangerBtn: RadioButtonClass!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
     
     let manager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
@@ -29,6 +29,8 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sendButton.isEnabled = false
         
         //Set text
         self.title = NSLocalizedString("addRouteMarkTitle", comment: "")
@@ -81,7 +83,35 @@ class AddReportViewController: UIViewController, UITextViewDelegate, UIGestureRe
         //Border from the bottom background view
         self.messageView.layer.borderColor = UIColor.gray.cgColor
         self.messageView.layer.borderWidth = 1
+        
+        //Bind textfields to regex validator
+        textView.addTarget(self, action:#selector(AddReportViewController.checkInput), for:UIControlEvents.editingChanged)
     }
+    
+    //Check if message is valid
+    func checkInput() {
+        
+        var valid = false
+        
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-Z\\s]{2,20}$")
+        
+        //Check input fields and TermSwitcher
+        if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
+            
+            //Check if passwords are similar
+            if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count {
+                valid = true
+            }
+        }
+        
+        //If all inputs are valid, enable the done button
+        if valid == true {
+            doneButton.isEnabled = true
+        } else {
+            doneButton.isEnabled = false
+        }
+    }
+
     
  
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

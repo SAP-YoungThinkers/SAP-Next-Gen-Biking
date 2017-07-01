@@ -84,7 +84,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         //Set done button disabled
         doneButton.isEnabled = false
         
-        //Bind textfields to regex validator
+        //Bind textfields and TemSwitch to validator
         surnameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         firstNameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         emailLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
@@ -252,7 +252,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //Check if email, password, firstname and lastname are syntacticylly valid
+    //Check if email, password, firstname and lastname are syntacticylly valid and TermSwitch is on
     func checkInput() {
         
         var valid = false
