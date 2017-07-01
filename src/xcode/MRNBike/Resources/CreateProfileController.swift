@@ -35,6 +35,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     
     @IBOutlet var TemSwitch: UISwitch!
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,11 +75,22 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
         
-        // set defaults
+        //Set defaults
         currentWeightLabel.text = "\(Int(weightSlider.value)) " + " kg"
         currentWeightLabel.sizeToFit()
         currentWheelSize.text = "\(Int(wheelSizeSlider.value)) " + " Inches"
         currentWheelSize.sizeToFit()
+        
+        //Set done button disabled
+        doneButton.isEnabled = false
+        
+        //Bind textfields to regex validator
+        surnameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        firstNameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        emailLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        passwordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        confirmPasswordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        TemSwitch.addTarget(self, action: #selector(CreateProfileController.checkInput), for: UIControlEvents.valueChanged)
     }
 
     
@@ -101,6 +114,19 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
         let user = User()
         
+        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        
+        //Show alert that passwords are not similar
+        if(passwordLabel.text != confirmPasswordLabel.text) {
+            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("passwordMicmatchDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            doneButton.isEnabled = false
+            return
+        }
+
+        /* The following block can be deleted if not necessary anymore
         // Check passwords
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
         let termAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
@@ -112,17 +138,18 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             termAlert.message = NSLocalizedString("noTermConditionDialogMsg", comment: "")
             termAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(termAlert, animated: true, completion: nil)
+            doneButton.isEnabled = false
             return
         
         }
         
         // username neccessary
         if (emailLabel.text == "") {
-            print("E-Mail empty")
             passwordAlert.title = NSLocalizedString("noEmailDialogTitle", comment: "")
             passwordAlert.message = NSLocalizedString("noEmailDialogMsg", comment: "")
             passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
+            doneButton.isEnabled = false
             return
         }
         
@@ -136,7 +163,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                 passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
                 passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
                 self.present(passwordAlert, animated: true, completion: nil)
-                print("password empty")
+                doneButton.isEnabled = false
                 return
             }
         } else {
@@ -145,9 +172,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             passwordAlert.message = NSLocalizedString("passwordMicmatchDialogMsg", comment: "")
             passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
-            print("passwords dont match")
+            doneButton.isEnabled = false
             return
         }
+        */
+        
+        user.accountPassword = passwordLabel.text
         
         user.accountSurname = surnameLabel.text
         user.accountFirstName = firstNameLabel.text
@@ -221,6 +251,33 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    //Check if email, password, firstname and lastname are syntacticylly valid
+    func checkInput() {
+        
+        var valid = false
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,3}")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-Z\\s]{2,20}$")
+        
+        //Check input fields and TermSwitcher
+        if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
+    
+            //Check if passwords are similar
+            if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count {
+                valid = true
+            }
+        }
+        
+        //If all inputs are valid, enable the done button
+        if valid == true {
+            doneButton.isEnabled = true
+        } else {
+           doneButton.isEnabled = false
+        }
+    }
+
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {

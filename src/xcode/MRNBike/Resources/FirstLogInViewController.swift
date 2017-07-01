@@ -39,8 +39,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         
-        userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.edited), for:UIControlEvents.editingChanged)
-        userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.edited), for:UIControlEvents.editingChanged)
+        //Bind textfields to regex validator
+        userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
+        userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         
         if defaults.object(forKey: "rememberMe") != nil{
             passwordWasStored = defaults.object(forKey: "rememberMe") as! Bool
@@ -70,17 +71,17 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
     }
     
-    func edited() {
-        
-        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,3}"
+    //Check if email and password are syntacticylly valid
+    func checkRegEx() {
         
         var valid = false
-       
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-
-        if emailTest.evaluate(with: userEmailTextField.text) {
-            let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
-            valid = passwordTest.evaluate(with: userPasswordTextField.text)
+        
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,3}")
+    
+        if emailTest.evaluate(with: userEmailTextField.text) && passwordTest.evaluate(with: userPasswordTextField.text) {
+            valid = true
+            print("true")
         }
        
         if valid == true {
@@ -89,7 +90,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         } else {
             loginButton.isEnabled = false
             loginButton.alpha = 0.5
-          }
+            print("false")
+        }
     }
     
     // Login to the app
