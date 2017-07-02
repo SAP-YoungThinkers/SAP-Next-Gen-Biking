@@ -47,6 +47,12 @@
 "noTermConditionDialogTitle"="Terms and Conditions";
 "noTermConditionDialogMsg"="Accept the terms and conditions, please!";
 
+"userExistsDialogTitle"="User Exists";
+"userExistsDialogMsg"="A user with the provided email address already exists!";
+
+"errorOccuredDialogTitle"="Error Occured";
+"errorOccuredDialogMsg"="Ooops! An error occured.";
+
 "dialogActionGotIt"="Got it!";
 
 //Term Scene

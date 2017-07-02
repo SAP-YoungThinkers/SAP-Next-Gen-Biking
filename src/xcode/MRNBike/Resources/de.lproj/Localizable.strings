@@ -47,6 +47,12 @@
 "noTermConditionDialogTitle"="Nutzungsbedingungen";
 "noTermConditionDialogMsg"="Stimme bitte den Nutzungsbedingungen zu!";
 
+"userExistsDialogTitle"="E-Mail vergeben";
+"userExistsDialogMsg"="Die von Dir angegebene E-Mail ist schon vergeben.";
+
+"errorOccuredDialogTitle"="Fehlermeldung";
+"errorOccuredDialogMsg"="Ooops! Ein Fehler ist aufgetreten.";
+
 "dialogActionGotIt"="Verstanden!";
 
 //Term Scene

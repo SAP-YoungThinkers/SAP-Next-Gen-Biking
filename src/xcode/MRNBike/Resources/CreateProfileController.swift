@@ -200,38 +200,39 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         var response = StorageHelper.prepareUploadUser(scriptName: "user/createUser.xsjs", data: jsonData)
         
         let code = response["code"] as! Int
-        
+
         switch code {
         case 201:
-            print("User successfully created on Hana.")
-            break
-        case 0:
-            print("No JSON data in the body.")
-            break
-        case 400:
-            print("Invalid JSON.")
+            UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
+            UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
+            UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
+            UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
+            UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
+            UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
+            
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(controller, animated: true, completion: nil)
+            
+            self.view.endEditing(true)
+            self.close()
             break
         case 409:
-            print("User already exists.")
+            passwordAlert.title = NSLocalizedString("userExistsDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("userExistsDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            doneButton.isEnabled = false
             break
         default:
-            print("Error")
+            //For Http Code: 0 or 400
+            passwordAlert.title = NSLocalizedString("errorOccuredDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("errorOccuredDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            doneButton.isEnabled = false
+            return
         }
-        
-        UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
-        UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
-        UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
-        UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
-        UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
-        UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
-        
- 
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-        self.present(controller, animated: true, completion: nil)
-        
-        self.view.endEditing(true)
-        self.close()
     }
     
 

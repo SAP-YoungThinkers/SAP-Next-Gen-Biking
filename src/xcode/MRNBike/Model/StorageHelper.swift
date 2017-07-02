@@ -250,15 +250,17 @@ class StorageHelper : NSObject {
         let url:URL = URL(string: config.backendBaseURL + scriptName)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("Basic R0JJXzAwMDpBcm1pbnZhbmJ1dXJlbjE5OTM=", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         var test = [String: AnyObject]()
-        
+        /*
         let x_csrf_token = getToken(authorization: base64LoginString)
         if x_csrf_token != nil {
             request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
         }
+        */
+        request.addValue("B09DABFE1D4FA3468B138BF4648E5CBB", forHTTPHeaderField: "x-csrf-token")
         
         request.httpBody = data
         
