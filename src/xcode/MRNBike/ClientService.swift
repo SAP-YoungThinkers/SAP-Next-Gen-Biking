@@ -8,6 +8,12 @@
 
 import Foundation
 
+
+enum ClientServiceError: Error {
+    case httpError
+    case csrfTokenError
+}
+
 class ClientService {
     
     static func getReports(completion: @escaping ([String: AnyObject])->()) {
@@ -53,6 +59,39 @@ class ClientService {
         
         return token
     }
+    
+    
+    
+    static func fetchXCSRFToken(completion: @escaping((String?, ClientServiceError?) -> ())) {
+        
+        let session = SessionFactory.shared().getSession()
+        let request = generateRequest(scriptName: "helper/getToken.xsjs", httpMethod: "GET")
+        
+        session.dataTask(with: request) { data, response, error in
+            if error != nil{
+                print("Error -> \(error!)")
+                completion(nil,ClientServiceError.httpError)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("httpresponse isn't correct!")
+                return
+            }
+            
+            
+            
+            guard let csrfToken = httpResponse.allHeaderFields["X-Csrf-Token"] as? String else {
+                
+                print("Strnage! CSRF Token is nil")
+                completion(nil, ClientServiceError.csrfTokenError)
+                return
+            }
+            completion(csrfToken, nil)
+            
+            }.resume()
+    }
+    
     
     static func generateRequest(scriptName: String, httpMethod: String) -> URLRequest {
 
