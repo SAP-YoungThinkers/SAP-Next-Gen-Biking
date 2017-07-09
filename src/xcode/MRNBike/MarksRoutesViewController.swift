@@ -1,4 +1,3 @@
-
 import UIKit
 import CoreGraphics
 import MapKit
@@ -76,7 +75,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         }
     }
     
-   
+    
     func myRoutesContent() {
         
         mapView.showsUserLocation = false
@@ -93,46 +92,59 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     
     func routesInfoContent() {
+        //Show activity indicator
+        let alert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(alert, animated: false, completion: nil)
+        
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
         // ANNOTATIONS!
+        print("1")
         
-        ClientService.getReports() { result in
-            if let reports = result["records"] as? [[String: AnyObject]] {
+        ClientService.getReports { (result, error) in
+            print("6")
+            
+            if error == nil {
                 
-                var description : String
-                var type : String
-                var lat : String
-                var long : String
-                var latitude : Double
-                var longitude : Double
-                var pin : RouteReport
-                
-                for report in reports {
-                    description = (report["description"] as? String)!
-                    type = (report["type"] as? String)!
-                    lat = (report["latitude"] as? String)!
-                    long = (report["longitude"] as? String)!
+                if let reports = result?["records"] as? [[String: AnyObject]] {
                     
-                    latitude = Double(lat)!
-                    longitude = Double(long)!
+                    var description : String
+                    var type : String
+                    var lat : String
+                    var long : String
+                    var latitude : Double
+                    var longitude : Double
+                    var pin : RouteReport
                     
-                    pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-                    print("schleife")
-                    self.annotations?.append(pin)
+                    for report in reports {
+                        description = (report["description"] as? String)!
+                        type = (report["type"] as? String)!
+                        lat = (report["latitude"] as? String)!
+                        long = (report["longitude"] as? String)!
+                        
+                        latitude = Double(lat)!
+                        longitude = Double(long)!
+                        
+                        pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                        self.annotations?.append(pin)
+                    }
+                    
+                    self.mapView.addAnnotations(self.annotations!)
+                    
+                    //center map around points
+                    let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
+                    self.mapView.setRegion(region, animated: true)
+                    
                 }
+            } else {
+                //alert.dismiss(animated: false, completion: nil)
                 
-                
-                self.mapView.addAnnotations(self.annotations!)
-                
-                //center map around points
-                let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
-                self.mapView.setRegion(region, animated: true)
- 
+                //Notification
             }
+            print("wrong")
+            alert.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -150,8 +162,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         }
         
     }
-    
-    
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: config.zoomLevel, longitudeDelta: config.zoomLevel))
@@ -262,8 +272,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func saveReport(segue:UIStoryboardSegue) {
         
-        let status: String
-        
         if let addReportViewController = segue.source as? AddReportViewController {
             
             let message: String = addReportViewController.messageTextField.text!
@@ -292,9 +300,16 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             let jsonData = try! JSONSerialization.data(withJSONObject: data)
             
-            status = StorageHelper.uploadReportToHana(scriptName: "report/createReport.xsjs", paramDict: nil, data: jsonData)
-            
-            print(status);
+            ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
+                if error == nil {
+                    print("success")
+                }
+                else
+                {
+                    print("fail")
+                }
+                
+            })
         }
     }
     

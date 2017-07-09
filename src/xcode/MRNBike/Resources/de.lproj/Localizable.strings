@@ -94,3 +94,6 @@
 "warning"="Warnung";
 "danger"="Gefahr";
 "writeMessage"="Kommentar...";
+
+//Alert strings
+"pleaseWait"="Bitte warten...";

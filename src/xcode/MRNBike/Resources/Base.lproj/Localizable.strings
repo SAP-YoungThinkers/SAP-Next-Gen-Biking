@@ -92,3 +92,6 @@
 "warning"="Warning";
 "danger"="Danger";
 "writeMessage"="Message...";
+
+//Alert strings
+"pleaseWait"="Please wait...";

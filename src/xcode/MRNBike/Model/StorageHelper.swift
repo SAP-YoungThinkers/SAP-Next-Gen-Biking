@@ -121,10 +121,10 @@ class StorageHelper : NSObject {
         
         let config = URLSessionConfiguration.default
         
-
+        
         let session = URLSession(configuration: config, delegate: nil, delegateQueue:OperationQueue.main)
         
-       // let session = URLSession.shared
+        // let session = URLSession.shared
         var ret: [String: Any] = [:]
         let sem = DispatchSemaphore(value: 0)
         
@@ -186,11 +186,11 @@ class StorageHelper : NSObject {
         var test = [String: AnyObject]()
         
         makeRequest(request: request) {response in
-                test = response
+            test = response
         }
         
         
-       return test
+        return test
     }
     
     
@@ -212,7 +212,7 @@ class StorageHelper : NSObject {
             completion(response)
         }
         
-
+        
     }
     
     
@@ -231,11 +231,11 @@ class StorageHelper : NSObject {
         session.dataTask(with: request) {data, response, error in
             do {
                 json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: AnyObject]
-                 completion(json)
+                completion(json)
             } catch {
                 print("error serializing JSON: \(error)")
             }
-        }.resume()
+            }.resume()
         
     }
     
@@ -255,11 +255,11 @@ class StorageHelper : NSObject {
         
         var test = [String: AnyObject]()
         /*
-        let x_csrf_token = getToken(authorization: base64LoginString)
-        if x_csrf_token != nil {
-            request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
-        }
-        */
+         let x_csrf_token = getToken(authorization: base64LoginString)
+         if x_csrf_token != nil {
+         request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
+         }
+         */
         request.addValue("B09DABFE1D4FA3468B138BF4648E5CBB", forHTTPHeaderField: "x-csrf-token")
         
         request.httpBody = data
@@ -285,7 +285,7 @@ class StorageHelper : NSObject {
         sem.wait()
         completion(json)
     }
-
+    
     
     
     static func uploadToHana(scriptName: String, paramDict: [String: String]?, jsonData: [String: Any]?) {
@@ -358,7 +358,7 @@ class StorageHelper : NSObject {
                 print("nothing")
                 return
             }
-           
+            
             print(responseData)
             
             do {
@@ -384,68 +384,5 @@ class StorageHelper : NSObject {
             }
             
             }.resume()   //very important with urlsession
-        
     }
-    
-    //Upload a report to Hana
-    static func uploadReportToHana(scriptName: String, paramDict: [String: String]?, data: Data) -> String {
-        
-        var status = ""
-        let baseUrl = config.backendBaseURL
-        let fullUrl: String = baseUrl + scriptName
-        
-        let loginString = NSString(format: "%@:%@", config.hanaUser, config.hanaPW)
-        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
-        let base64LoginString = loginData.base64EncodedString()
-        
-        let url:URL = URL(string: fullUrl)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        
-        let x_csrf_token = getToken(authorization: base64LoginString)
-        if x_csrf_token != nil {
-            request.addValue(x_csrf_token!, forHTTPHeaderField: "x-csrf-token")
-        }
-        
-        request.httpBody = data
-        
-        let session = URLSession.shared
-        
-        session.dataTask(with: request) {data, response, err in
-            
-            guard let responseText = response else {
-                
-                print("empty response")
-                return
-            }
-            
-            print(responseText)
-            
-            guard let responseData = data else{
-                print("nothing")
-                return
-            }
-            
-            print(responseData)
-            
-            do {
-                let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                
-                if let code = jsonBody?["code"] {
-                    if code as? Int == 201{  //upload successful
-                        status = "1"
-                    }
-                    else {
-                        status = "2"
-                    }
-                }
-                
-            } catch {
-                status = error as! String
-            }
-            }.resume()
-        return status
-    }
-    
 }
