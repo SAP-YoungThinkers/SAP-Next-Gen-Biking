@@ -145,7 +145,6 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
         
         let coordinate = mapView.centerCoordinate
         saveAnnotation.coordinate = coordinate
-        print(coordinate)
         
         mapView.addAnnotation(saveAnnotation)
     }

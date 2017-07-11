@@ -95,3 +95,11 @@
 
 //Alert strings
 "pleaseWait"="Please wait...";
+
+"reportUploadDialogTitle"="Report Upload";
+"reportUploadDialogMsgPositive"="Report uploaded successfully.";
+
+"userUpdatedDialogTitle"="Profile Updated";
+"userUpdatedDialogMsg"="Profile was successfully updated!";
+
+

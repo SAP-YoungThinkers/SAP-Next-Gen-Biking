@@ -78,12 +78,12 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
         let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,3}")
-    
+        
         if emailTest.evaluate(with: userEmailTextField.text) && passwordTest.evaluate(with: userPasswordTextField.text) {
             valid = true
             print("true")
         }
-       
+        
         if valid == true {
             loginButton.isEnabled = true
             loginButton.alpha = 1.0
@@ -96,7 +96,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
-        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
         
         if !rememberSwitch.isOn {
             defaults.set(false, forKey: "rememberMe")
@@ -107,41 +106,39 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
-        var response = StorageHelper.prepareUploadUser(scriptName: "user/verifyUser.xsjs", data: jsonData)
-        
-        let code = response["code"] as! Int
-        
-        switch code {
-        case 201:
-            // cachse default user
-            if rememberSwitch.isOn {
-                defaults.set(true, forKey: "rememberMe")
+        ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
+            if error == nil {
+                
+                let code = httpCode!
+                
+                switch code {
+                case 201: //User verified
+                    // cachse default user
+                    if self.rememberSwitch.isOn {
+                        self.defaults.set(true, forKey: "rememberMe")
+                    }
+                    self.defaults.set(false, forKey: StorageKeys.shouldLoginKey)
+                    
+                    //Save email and password to keychain
+                    KeychainService.saveEmail(token: self.userEmailTextField.text! as NSString)
+                    KeychainService.savePassword(token: self.userPasswordTextField.text! as NSString)
+                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                    User.getUser(mail: self.userEmailTextField.text!)
+                    self.present(controller, animated: true, completion: nil)
+                    break
+                case 404: //Username/Password wrong ot user doesn't exists
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
+                    break
+                default: //JSON wrong or empty (Code 0, 400 or 500)
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
             }
-            defaults.set(false, forKey: StorageKeys.shouldLoginKey)
-            
-            //Save email and password to keychain
-            KeychainService.saveEmail(token: userEmailTextField.text! as NSString)
-            KeychainService.savePassword(token: userPasswordTextField.text! as NSString)
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-            User.getUser(mail: userEmailTextField.text!)
-            self.present(controller, animated: true, completion: nil)
-            print("User verified.")
-            break
-        case 0:
-            print("No JSON data in the body.")
-            break
-        case 400:
-            print("Invalid JSON.")
-            break
-        case 404:
-            passwordAlert.title = NSLocalizedString("passwordUserWrongDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("passwordUserDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            break
-        default:
-            print("Error")
+            else
+            {
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            }
         }
     }
     

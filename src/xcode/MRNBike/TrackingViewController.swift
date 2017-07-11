@@ -1,5 +1,3 @@
-
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -30,7 +28,7 @@ class TrackingViewController: UIViewController {
     var locationManager = LocationManager()
     
     var trackPointsArray = [TrackPoint]() //storing Trackpoints including timestamp
-
+    
     var elapsedSeconds: Int = 0
     var timerRunBool: Bool = true
     var timer: Timer = Timer()
@@ -93,13 +91,13 @@ class TrackingViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
-  
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -132,7 +130,7 @@ class TrackingViewController: UIViewController {
         locationManager.stopTracking()
         timer.invalidate()
     }
-
+    
     @IBAction func stopTrackingEvent(_ sender: UIButton) {
         self.locationManager.stopTracking()
         timer.invalidate()
@@ -176,7 +174,7 @@ class TrackingViewController: UIViewController {
     }
     
     // MARK: - Helper Functions
-
+    
     func startTimer(startNew: Bool) {
         if startNew { elapsedSeconds = 0 }
         
@@ -198,14 +196,14 @@ class TrackingViewController: UIViewController {
         if (elapsedSeconds % 5) == 0 {
             
             if elapsedSeconds == 5 {
-            let trackpointLast = trackPointsArray.first
+                let trackpointLast = trackPointsArray.first
                 coordinateLast = CLLocation(latitude: (trackpointLast?.latitude)!, longitude: (trackpointLast?.longitude)!)
                 stopButton.isEnabled = true
             }
             
             let trackpointNew = trackPointsArray.last
             coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
-          
+            
             metersDistance += coordinateLast.distance(from: coordinateNew)
             wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
             //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
@@ -219,7 +217,7 @@ class TrackingViewController: UIViewController {
         
     }
     
-       
+    
     // MARK: - Cloud storage
     
     func upload() {
@@ -228,21 +226,22 @@ class TrackingViewController: UIViewController {
         
         if let loadedData = StorageHelper.loadGPS() {
             
-            let jsonObj = StorageHelper.generateJSON(tracks: loadedData)
-            
-            StorageHelper.uploadToHana(scriptName: "importData/bringItToHana.xsjs", paramDict: nil, jsonData: jsonObj)
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (code, keys, error) in
+                if error == nil {
+                    StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
+                    StorageHelper.clearCollectedGPS()
+                    
+                    //Upload was successfully alert
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
+                } else {
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
+            })
+        } else {
+            //An error occured in the app
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
         }
-        
-        //Creating the alert controller
-        let alertController = UIAlertController(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgNegative", comment: ""), preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        //Add Action to alertController
-        alertController.addAction(defaultAction)
-        //Design
-        alertController.view.tintColor = UIColor(red: 255/255, green: 87/255, blue: 34/255, alpha: 1)
-        alertController.view.layer.cornerRadius = 25
-        //Presenting alert
-        present(alertController, animated: true, completion: nil)
     }
 }
 

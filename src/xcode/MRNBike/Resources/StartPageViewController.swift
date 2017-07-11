@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class StartPageViewController: UIViewController {
@@ -41,7 +39,5 @@ class StartPageViewController: UIViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(controller, animated: true, completion: nil)
         }
-
     }
-
 }

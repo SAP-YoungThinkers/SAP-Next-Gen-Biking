@@ -52,7 +52,6 @@
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
-		4E56D0961F1226CC00C7879A /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E56D0951F1226CC00C7879A /* Credentials.json */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
@@ -119,7 +118,6 @@
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
-		4E56D0951F1226CC00C7879A /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017558851EE06C44008E5B7D /* StorageKeys.swift */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4E56D0951F1226CC00C7879A /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -432,7 +429,6 @@
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
-				4E56D0961F1226CC00C7879A /* Credentials.json in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,

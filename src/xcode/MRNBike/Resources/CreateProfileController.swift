@@ -114,68 +114,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
         let user = User()
         
-        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        
         //Show alert that passwords are not similar
         if(passwordLabel.text != confirmPasswordLabel.text) {
-            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("passwordMicmatchDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordMismatchDialogTitle", comment: ""), message: NSLocalizedString("passwordMicmatchDialogMsg", comment: "")), animated: true, completion: nil)
             doneButton.isEnabled = false
             return
         }
-
-        /* The following block can be deleted if not necessary anymore
-        // Check passwords
-        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        let termAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        
-        
-          //Agree with term condition warning
-        if TemSwitch.isOn == false {
-            termAlert.title = NSLocalizedString("noTermConditionDialogTitle", comment: "")
-            termAlert.message = NSLocalizedString("noTermConditionDialogMsg", comment: "")
-            termAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(termAlert, animated: true, completion: nil)
-            doneButton.isEnabled = false
-            return
-        
-        }
-        
-        // username neccessary
-        if (emailLabel.text == "") {
-            passwordAlert.title = NSLocalizedString("noEmailDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("noEmailDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            doneButton.isEnabled = false
-            return
-        }
-        
-        if(passwordLabel.text == confirmPasswordLabel.text) {
-            if (passwordLabel.text != "") {
-                user.accountPassword = passwordLabel.text
-            }
-            else {
-                // empty password
-                passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
-                passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
-                passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-                self.present(passwordAlert, animated: true, completion: nil)
-                doneButton.isEnabled = false
-                return
-            }
-        } else {
-            // different passwords
-            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("passwordMicmatchDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            doneButton.isEnabled = false
-            return
-        }
-        */
         
         user.accountPassword = passwordLabel.text
         
@@ -197,44 +141,48 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
-        var response = StorageHelper.prepareUploadUser(scriptName: "user/createUser.xsjs", data: jsonData)
-        
-        let code = response["code"] as! Int
-
-        switch code {
-        case 201:
-            UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
-            UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
-            UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
-            UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
-            UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
-            UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
-            
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-            self.present(controller, animated: true, completion: nil)
-            
-            self.view.endEditing(true)
-            self.close()
-            break
-        case 409:
-            passwordAlert.title = NSLocalizedString("userExistsDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("userExistsDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            doneButton.isEnabled = false
-            break
-        default:
-            //For Http Code: 0 or 400
-            passwordAlert.title = NSLocalizedString("errorOccuredDialogTitle", comment: "")
-            passwordAlert.message = NSLocalizedString("errorOccuredDialogMsg", comment: "")
-            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            doneButton.isEnabled = false
-            return
+        ClientService.postUser(scriptName: "user/createUser.xsjs", userData: jsonData) { (httpCode, error) in
+            print(error as Any)
+            print(httpCode as Any)
+            if error == nil {
+                
+                let code = httpCode!
+                
+                switch code {
+                case 201: //User created
+                    UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
+                    UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
+                    UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
+                    UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
+                    UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
+                    UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
+                    
+                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                    self.present(controller, animated: true, completion: nil)
+                    
+                    self.view.endEditing(true)
+                    self.close()
+                    break
+                case 409: //User already exists
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
+                    self.doneButton.isEnabled = false
+                    break
+                default:
+                    //For http error codes: 0 or 400
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    self.doneButton.isEnabled = false
+                    return
+                }
+            }
+            else
+            {
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                self.doneButton.isEnabled = false
+            }
         }
     }
-    
 
     @IBAction func openTerm(_ sender: Any) {
         if TemSwitch.isOn == true {

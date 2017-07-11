@@ -132,7 +132,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         /*
-            ========= USER OPTIONS =========
+         ========= USER OPTIONS =========
          */
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = true
@@ -217,7 +217,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     func checkInput() {
         
         var valid = false
-    
+        
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
         let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
         
@@ -226,11 +226,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         print(firstname)
         //Check input fields and TermSwitcher
         if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
-            print("1")
             //Check if passwords are similar
             if inputPassword.text?.characters.count == inputPasswordRepeat.text?.characters.count {
                 valid = true
-                print("true")
             }
         }
         
@@ -239,10 +237,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
-            print("false")
         }
     }
-
+    
     
     func handleImagePicker(button: UIButton) {
         print("image picked!")
@@ -261,7 +258,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     func randomString(_ length: Int) -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$"
         let len = UInt32(letters.length)
-
+        
         var randomString = ""
         
         for _ in 0 ..< length {
@@ -328,7 +325,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         return true;
     }
     
-    // MARK: Actions 
+    // MARK: Actions
     
     // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
@@ -403,29 +400,37 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
-        var response = StorageHelper.prepareUploadUser(scriptName: "user/updateUser.xsjs", data: jsonData)
         
-        let code = response["code"] as! Int
-        
-        switch code {
-        case 201:
-            print("Update successful.")
-            break
-        case 0:
-            print("No JSON data in the body.")
-            break
-        case 400:
-            print("Invalid JSON.")
-            break
-        case 404:
-            print("User not found.")
-            break
-        default:
-            print("Error")
+        ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+            if error == nil {
+                
+                let code = httpCode!
+                
+                switch code {
+                case 201: //User successfully updated
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                    break
+                default: //For http error codes: 0, 400 and 404
+                    
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            else
+            {
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            }
         }
-        
-        self.navigationController?.popViewController(animated: true)
-        
     }
     
     // weight slider indicator update

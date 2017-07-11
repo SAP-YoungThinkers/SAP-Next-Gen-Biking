@@ -97,3 +97,9 @@
 
 //Alert strings
 "pleaseWait"="Bitte warten...";
+
+"reportUploadDialogTitle"="Anmerkung hochladen";
+"reportUploadDialogMsgPositive"="Anmerkung wurde erfolgreich hochgeladen.";
+
+"userUpdatedDialogTitle"="Profil aktualisiert";
+"userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";

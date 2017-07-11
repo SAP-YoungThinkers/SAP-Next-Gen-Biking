@@ -100,10 +100,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         mapView.showsUserLocation = true
         
         // ANNOTATIONS!
-        print("1")
-        
         ClientService.getReports { (result, error) in
-            print("6")
             
             if error == nil {
                 
@@ -142,7 +139,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 
                 //Notification
             }
-            print("wrong")
             alert.dismiss(animated: true, completion: nil)
         }
     }
@@ -259,11 +255,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         self.topBar.insertSubview(separator, at: 1)
         
-        
         return separator
     }
-    
-    
     
     //MARK: Actions
     
@@ -302,17 +295,15 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
                 if error == nil {
-                    print("success")
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
                 }
                 else
                 {
-                    print("fail")
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
-                
             })
         }
     }
-    
 }
 
 extension UIImage {
