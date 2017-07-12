@@ -38,6 +38,14 @@ public class KeychainService: NSObject {
         self.save(service: emailKey as NSString, data: token)
     }
     
+    public class func removeEmail() {
+        return self.delete(service: emailKey as NSString)
+    }
+    
+    public class func removePassword() {
+        return self.delete(service: passwordKey as NSString)
+    }
+    
     public class func loadEmail() -> NSString? {
         return self.load(service: emailKey as NSString)
     }
@@ -65,6 +73,18 @@ public class KeychainService: NSObject {
     /**
      * Internal methods for querying the keychain.
      */
+    
+    private class func delete(service: NSString) {
+        // Instantiate a new default keychain query
+        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue])
+        
+        // Delete any existing items
+        let status = SecItemDelete(keychainQuery as CFDictionary)
+        if (status != errSecSuccess) {
+            print("Delete failed")
+        }
+        
+    }
     
     private class func save(service: NSString, data: NSString) {
         let dataFromString: NSData = data.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)! as NSData
