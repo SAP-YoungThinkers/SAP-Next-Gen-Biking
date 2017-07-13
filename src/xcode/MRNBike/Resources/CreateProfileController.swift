@@ -91,8 +91,32 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         passwordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         confirmPasswordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         TemSwitch.addTarget(self, action: #selector(CreateProfileController.checkInput), for: UIControlEvents.valueChanged)
+        
+        /* Password Hints */
+        passwordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
+        confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
+        
+        passwordHint.isHidden = true
+        passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
+        
+        
     }
-
+    
+    @IBOutlet var profileTableView: UITableView!
+    @IBOutlet weak var tableCellPassword: UITableViewCell!
+    @IBOutlet weak var passwordHint: UILabel!
+    
+    func passwordValidate() {
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        
+        if passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) {
+            passwordHint.isHidden = true
+            return
+        }
+        passwordHint.isHidden = false
+        
+        
+    }
     
     // Slider value changes
     @IBOutlet private(set) var currentWeightLabel: UILabel!
@@ -214,7 +238,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
     
             //Check if passwords are similar
-            if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count {
+            if passwordLabel.text! == confirmPasswordLabel.text! {
                 valid = true
             }
         }

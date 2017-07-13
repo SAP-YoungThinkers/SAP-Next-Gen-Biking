@@ -34,6 +34,7 @@
 "personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
+"passwordValidationHint"="muss aus 10 bis 15 großen und kleinen Buchstaben sowie Sonderzeichen und Zahlen bestehen";
 
 "passwordEmptyDialogTitle"="KEIN PASSWORT EINGEGEBEN";
 "passwordEmptyDialogMsg"="BITTE GEBE DEIN PASSWORT EIN.";
