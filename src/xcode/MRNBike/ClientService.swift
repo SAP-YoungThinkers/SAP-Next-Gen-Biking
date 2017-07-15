@@ -59,6 +59,47 @@ class ClientService {
         }
     }
     
+    //Get user from backend (Hana)
+    static func getUser(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "user/readUser.xsjs?email=" + mail
+
+        generateRequest(scriptName: scriptName, httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+  
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard (response as? HTTPURLResponse) != nil else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    guard let responseData = data else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    var json = [String: AnyObject]()
+                    
+                    do {
+                        json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
+                        completion(json, nil)
+                    } catch {
+                        completion(nil, ClientServiceError.jsonSerializationError)
+                    }
+                    
+                    }.resume()
+                
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+    
+    
     //Upload report to backend (Hana)
     static func uploadReportToHana(reportInfo: Data, completion: @escaping (ClientServiceError?)->()) {
         

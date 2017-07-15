@@ -185,6 +185,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                     self.present(controller, animated: true, completion: nil)
                     
+                    
                     self.view.endEditing(true)
                     self.close()
                     break
@@ -238,7 +239,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
     
             //Check if passwords are similar
-            if passwordLabel.text! == confirmPasswordLabel.text! {
+            if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count  {
                 valid = true
             }
         }

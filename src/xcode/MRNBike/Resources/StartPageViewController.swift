@@ -32,7 +32,7 @@ class StartPageViewController: UIViewController {
             
             // Quick and dirty solution because of the lack of time. Please refactor this
             if let tmpMail = KeychainService.loadEmail() as String? {
-                User.getUser(mail: tmpMail)
+                //User.getUser(mail: tmpMail)
             }
             
             let storyboard = UIStoryboard(name: "Home", bundle: nil)

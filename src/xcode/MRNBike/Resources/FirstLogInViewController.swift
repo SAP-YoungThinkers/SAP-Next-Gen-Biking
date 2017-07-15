@@ -122,10 +122,29 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                     //Save email and password to keychain
                     KeychainService.saveEmail(token: self.userEmailTextField.text! as NSString)
                     KeychainService.savePassword(token: self.userPasswordTextField.text! as NSString)
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-                    User.getUser(mail: self.userEmailTextField.text!)
-                    self.present(controller, animated: true, completion: nil)
+                    
+                    
+                    ClientService.getUser(mail: self.userEmailTextField.text!, completion: { (data, error) in
+                        if error == nil {
+                            
+                            guard let responseData = data else {
+                                //An error occured
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                return
+                            }
+                            
+                            User.createSingletonUser(userData: responseData)
+                            let user = User.getUser()
+                            print(user)
+                            
+                            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                            self.present(controller, animated: true, completion: nil)
+                        } else {
+                            //An error occured
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    })
                     break
                 case 404: //Username/Password wrong ot user doesn't exists
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
