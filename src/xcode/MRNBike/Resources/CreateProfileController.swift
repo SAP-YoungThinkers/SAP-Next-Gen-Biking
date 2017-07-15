@@ -136,7 +136,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     }
 
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
-        let user = User()
         
         //Show alert that passwords are not similar
         if(passwordLabel.text != confirmPasswordLabel.text) {
@@ -144,49 +143,41 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             doneButton.isEnabled = false
             return
         }
+    
+        //Collect data for creating user
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
         
-        user.accountPassword = passwordLabel.text
-        
-        user.accountSurname = surnameLabel.text
-        user.accountFirstName = firstNameLabel.text
-        user.accountName = emailLabel.text
-        user.accountShareInfo = shareSwitch.isOn
-        user.accountUserWeight = weightSlider.value
-        user.accountUserWheelSize = wheelSizeSlider.value
-        if let tmpPhoto = photoImageView.image {
-            user.accountProfilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
-        }
-        
-        //Save email and password in KeyChain
-        KeychainService.saveEmail(token: emailLabel.text! as NSString)
-        KeychainService.savePassword(token: passwordLabel.text! as NSString)
-        
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()!, "password" : KeychainService.loadPassword()!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
-        
+        //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
+        //Try create user in backend
         ClientService.postUser(scriptName: "user/createUser.xsjs", userData: jsonData) { (httpCode, error) in
-            print(error as Any)
-            print(httpCode as Any)
+    
             if error == nil {
                 
-                let code = httpCode!
-                
-                switch code {
+                switch httpCode! {
                 case 201: //User created
-                    UserDefaults.standard.set(user.accountSurname, forKey: StorageKeys.nameKey)
-                    UserDefaults.standard.set(user.accountFirstName, forKey: StorageKeys.firstnameKey)
-                    UserDefaults.standard.set(user.accountShareInfo, forKey: StorageKeys.shareKey)
-                    UserDefaults.standard.set(user.accountUserWeight, forKey: StorageKeys.weightKey)
-                    UserDefaults.standard.set(user.accountUserWheelSize, forKey: StorageKeys.wheelKey)
-                    UserDefaults.standard.set(user.accountProfilePicture, forKey: StorageKeys.imageKey)
+                    
+                    //Save email and password in KeyChain
+                    KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
+                    KeychainService.savePassword(token: self.passwordLabel.text! as NSString)
+                    
+                    User.createSingletonUser(userData: nil)
+                    let user = User.getUser()
+                    user.firstName = self.firstNameLabel.text
+                    user.surname = self.surnameLabel.text
+                    user.userWeight = 1 //self.weightSlider.value //Change to int
+                    user.userWheelSize = 2 //self.wheelSizeSlider.value
+                    user.shareInfo = self.shareSwitch.isOn
+                    if let tmpPhoto = self.photoImageView.image {
+                        user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
+                    }
+                    
+                    self.view.endEditing(true)
                     
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                     self.present(controller, animated: true, completion: nil)
-                    
-                    
-                    self.view.endEditing(true)
                     self.close()
                     break
                 case 409: //User already exists

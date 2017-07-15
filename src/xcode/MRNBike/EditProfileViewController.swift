@@ -150,60 +150,57 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         inputIndicatorWheel.sizeToFit()
         wheelSize.sizeToFit()
         
-        // read values from local space
-        let userData = UserDefaults.standard
+        // Read user instance and set values
+        let user = User.getUser()
         
         // surname input
         if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
             inputSurnameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserSurname = userData.string(forKey: StorageKeys.nameKey) {
-                inputSurnameView.text = tmpUserSurname
-            }
+            inputSurnameView.text = user.surname
         }
         
         // first name input
         if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserFirstName = userData.string(forKey: StorageKeys.firstnameKey) {
-                firstNameView.text = tmpUserFirstName
-            }
+            firstNameView.text = user.firstName
         }
         
-        if let tmpUserMail = KeychainService.loadEmail() {
-            inputEmail.text = tmpUserMail as String
+        //Set eMail
+        if let userMail = KeychainService.loadEmail() {
+            inputEmail.text = userMail as String
         }
-        
         inputEmail.isUserInteractionEnabled = false
         
+        //Set password
         if let tmpUserPass = KeychainService.loadPassword() as String? {
             inputPassword.text = tmpUserPass
             inputPasswordRepeat.text = tmpUserPass
         }
         
-        if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
-            inputActivity.isOn = tmpUserShareActivity as! Bool
-        }
+        //Set share option
+        //inputActivity.isOn = user.shareInfo!
+        inputActivity.isOn = true
         
-        if let tmpUserWeight = userData.object(forKey: StorageKeys.weightKey) {
-            inputWeight.value = Float(tmpUserWeight as! Int)
-            inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-            inputIndicatorWeight.sizeToFit()
-        }
+        print(user.shareInfo as Any)
         
-        if let tmpUserWheelSize = userData.object(forKey: StorageKeys.wheelKey) {
-            inputWheelSize.value = Float(tmpUserWheelSize as! Int)
-            inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-            inputIndicatorWheel.sizeToFit()
-        }
+        //Set user weight
+        inputWeight.value = Float(user.userWeight!)
+        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
+        inputIndicatorWeight.sizeToFit()
         
-        if let tmpUserPhoto = userData.object(forKey: StorageKeys.imageKey) {
-            let myImage = UIImage(data: tmpUserPhoto as! Data)
-            imageBG.image = myImage
-            if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-                profileView.image = myImage
-            }
-        }
+        //Set wheel size
+        inputWheelSize.value = Float(user.userWheelSize!)
+        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
+        inputIndicatorWheel.sizeToFit()
         
+        //Set user image
+        /*
+        let myImage = UIImage(data: user.profilePicture!)
+        imageBG.image = myImage
+        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
+            profileView.image = myImage
+        }
+        */
         //Bind textfields to validator
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
@@ -330,8 +327,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
         
-        let userData = UserDefaults.standard
-        
         // password: there will be inserted a random string
         // and when it wasn't changed, password won't be overwritten/saved
         
@@ -342,8 +337,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             if (inputPassword.text != tmpPasswordHash) {
                 
                 if (inputPassword.text != "") {
-                    // was changed, so save!
-                    userData.set(inputPassword.text, forKey: "userPassword")
+                    
                 }
                 else {
                     // password empty
@@ -370,37 +364,15 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             return
         }
         
-        // SAVE OTHERS
-        
-        if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
-            userData.set(inputSurnameView.text, forKey: "userSurname")
-        }
-        if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
-            userData.set(firstNameView.text, forKey: "userFirstName")
-        }
-        if let tmpMail = inputEmail.text as NSString? {
-            KeychainService.saveEmail(token: tmpMail)
-        }
-        userData.set(inputActivity.isOn, forKey: "userShareActivity")
-        userData.set(Int(inputWeight.value), forKey: "userWeight")
-        userData.set(Int(inputWheelSize.value), forKey: "userWheelSize")
-        
-        // save image
-        let imageData = UIImageJPEGRepresentation(imageBG.image!, 1.0)
-        userData.set(imageData, forKey: "userProfileImage")
-        
-        //Save new password in KeyChain
-        if let tmpPass = inputPassword.text as NSString? {
-            KeychainService.savePassword(token: tmpPass)
-        }
+        let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
+        let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail() as String!, "password" : KeychainService.loadPassword() as String!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
-        
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
-        
+        //Try update user profile
         ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
@@ -408,6 +380,24 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                 
                 switch code {
                 case 201: //User successfully updated
+                    
+                    //Save email and password in KeyChain
+                    if let mail = self.inputEmail.text as NSString? {
+                        KeychainService.saveEmail(token: mail)
+                    }
+                    if let password = self.inputPassword.text as NSString? {
+                        KeychainService.savePassword(token: password)
+                    }
+                    
+                    //Update User class
+                    let user = User.getUser()
+                    user.surname = surname.text!
+                    user.firstName = firstname.text!
+                    user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
+                    user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
+                    user.shareInfo = self.inputActivity.isOn
+                    user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
+                    
                     let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
                     let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
                         (action) -> Void in self.navigationController?.popViewController(animated: true)

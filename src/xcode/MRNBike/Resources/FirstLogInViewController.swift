@@ -43,25 +43,29 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         
-        if defaults.object(forKey: "rememberMe") != nil{
-            passwordWasStored = defaults.object(forKey: "rememberMe") as! Bool
+        if let rememberMe = KeychainService.loadRemember() {
+            print(rememberMe)
+            print("hello")
+            if rememberMe == "yes" {
+                if let userName = KeychainService.loadEmail() {
+                    userEmailTextField.text = userName as String
+                }
+                if let userPassword = KeychainService.loadPassword() {
+                    userPasswordTextField.text = userPassword as String
+                }
+                rememberSwitch.isOn = true
+            } else {
+                rememberSwitch.isOn = false
+            }
         }
-        rememberSwitch.isOn = passwordWasStored
         
-        if passwordWasStored {
-            if let userName = KeychainService.loadEmail() {
-                userEmailTextField.text = userName as String
-            }
-            if let userPassword = KeychainService.loadPassword() {
-                userPasswordTextField.text = userPassword as String
-            }
-        }
+        
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         
-        // Setting default values for Login button incase of Remembering Password is on or off.
-        if !rememberSwitch.isOn{
+        // Setting default values for Login button in case of Remembering Password is on or off.
+        if !rememberSwitch.isOn {
             loginButton.isEnabled = false
             loginButton.alpha = 0.5
         }
@@ -97,15 +101,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
         
-        if !rememberSwitch.isOn {
-            defaults.set(false, forKey: "rememberMe")
-        }
-        
         //Check if user exists in Hana
         let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
+ 
         ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
@@ -113,10 +113,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                 
                 switch code {
                 case 201: //User verified
-                    // cachse default user
-                    if self.rememberSwitch.isOn {
-                        self.defaults.set(true, forKey: "rememberMe")
+                    
+                    if !self.rememberSwitch.isOn {
+                        KeychainService.saveRemember(token: "no")
                     }
+                    
                     self.defaults.set(false, forKey: StorageKeys.shouldLoginKey)
                     
                     //Save email and password to keychain
@@ -134,8 +135,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                             }
                             
                             User.createSingletonUser(userData: responseData)
-                            let user = User.getUser()
-                            print(user)
                             
                             let storyboard = UIStoryboard(name: "Home", bundle: nil)
                             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
@@ -146,7 +145,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                         }
                     })
                     break
-                case 404: //Username/Password wrong ot user doesn't exists
+                case 404: //Username/Password wrong or user doesn't exists
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
                     break
                 default: //JSON wrong or empty (Code 0, 400 or 500)

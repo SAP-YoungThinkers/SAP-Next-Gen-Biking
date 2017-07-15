@@ -25,9 +25,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
         
-        KeychainService.removePassword()
-        KeychainService.removeEmail()
-        
         UserDefaults.standard.set(true, forKey: StorageKeys.shouldLoginKey)
         
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)

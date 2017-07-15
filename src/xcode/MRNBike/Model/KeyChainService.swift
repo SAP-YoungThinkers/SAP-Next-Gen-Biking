@@ -1,5 +1,3 @@
-
-
 import Foundation
 import Security
 
@@ -16,6 +14,7 @@ let accessGroup = "SecuritySerivice"
 let emailKey = "KeyForEmail"
 let passwordKey = "KeyForPassword"
 let routeKey = "KeyForRouteIDs"
+let rememberMeKey = "no"
 
 
 // Arguments for the keychain queries
@@ -34,22 +33,16 @@ public class KeychainService: NSObject {
      * Exposed methods to perform save and load queries.
      */
     
+    //EMail
     public class func saveEmail(token: NSString) {
         self.save(service: emailKey as NSString, data: token)
-    }
-    
-    public class func removeEmail() {
-        return self.delete(service: emailKey as NSString)
-    }
-    
-    public class func removePassword() {
-        return self.delete(service: passwordKey as NSString)
     }
     
     public class func loadEmail() -> NSString? {
         return self.load(service: emailKey as NSString)
     }
     
+    //Password
     public class func savePassword(token: NSString) {
         self.save(service: passwordKey as NSString, data: token)
     }
@@ -57,7 +50,17 @@ public class KeychainService: NSObject {
     public class func loadPassword() -> NSString? {
         return self.load(service: passwordKey as NSString)
     }
+
+    //RememberMe
+    public class func saveRemember(token: NSString) {
+        self.save(service: rememberMeKey as NSString, data: token)
+    }
     
+    public class func loadRemember() -> NSString? {
+        return self.load(service: rememberMeKey as NSString)
+    }
+    
+    //IDs
     public class func saveIDs(IDs: [Int]) {
         let IDsAsString = IDs.map{ String($0) }.joined(separator: ",") as NSString
 

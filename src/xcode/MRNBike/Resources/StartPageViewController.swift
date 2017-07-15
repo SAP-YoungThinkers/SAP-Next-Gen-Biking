@@ -30,14 +30,28 @@ class StartPageViewController: UIViewController {
             // user exists
             print("user exists, redirecting to dashboard")
             
-            // Quick and dirty solution because of the lack of time. Please refactor this
-            if let tmpMail = KeychainService.loadEmail() as String? {
-                //User.getUser(mail: tmpMail)
+            if let userMail = KeychainService.loadEmail() as String? {
+                ClientService.getUser(mail: userMail, completion: { (data, error) in
+                    if error == nil {
+                        
+                        guard let responseData = data else {
+                            //An error occured
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            return
+                        }
+                        
+                        User.createSingletonUser(userData: responseData)
+                        
+                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                        self.present(controller, animated: true, completion: nil)
+                    } else {
+                        //An error occured
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                })
+
             }
-            
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-            self.present(controller, animated: true, completion: nil)
         }
     }
 }
