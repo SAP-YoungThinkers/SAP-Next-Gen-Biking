@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 
@@ -25,7 +23,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
         
-        UserDefaults.standard.set(true, forKey: StorageKeys.shouldLoginKey)
+        KeychainService.saveRemember(token: "no" as NSString)
         
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
         let controller = storyboard.instantiateInitialViewController()!
@@ -42,7 +40,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         let tabBarIndex = tabBarController.selectedIndex
-        print (tabBarIndex)
         if tabBarIndex == 4 {
             let LogOutAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
             LogOutAlert.title = "LogOut conformation"

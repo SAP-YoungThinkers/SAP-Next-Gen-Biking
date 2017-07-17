@@ -14,23 +14,32 @@ class StartPageViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
-        var userShouldLogin = true
-        if UserDefaults.standard.object(forKey: StorageKeys.shouldLoginKey) != nil {
-            userShouldLogin = UserDefaults.standard.object(forKey: StorageKeys.shouldLoginKey) as! Bool
+        var rememberMe: String
+        
+        if KeychainService.loadRemember() == nil {
+            print("aaa")
+            rememberMe = "no"
+        } else {
+            rememberMe = KeychainService.loadRemember()! as String
+            print("bbb")
         }
         
-        if userShouldLogin {
+        if rememberMe == "no" {
             // user doesnt exist
-            print("user does not exist, redirecting to register")
+            print("user not 2")
             let controller = TourViewController()
             controller.startRidingAction = {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
             }
-        } else {            
+        } else {
+            print("ccc")
             // user exists
-            print("user exists, redirecting to dashboard")
-            
             if let userMail = KeychainService.loadEmail() as String? {
+                
+                //Show activity indicator
+                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+                present(activityAlert, animated: false, completion: nil)
+                
                 ClientService.getUser(mail: userMail, completion: { (data, error) in
                     if error == nil {
                         
@@ -42,15 +51,21 @@ class StartPageViewController: UIViewController {
                         
                         User.createSingletonUser(userData: responseData)
                         
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
                         let storyboard = UIStoryboard(name: "Home", bundle: nil)
                         let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                         self.present(controller, animated: true, completion: nil)
                     } else {
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
                         //An error occured
                         self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     }
                 })
-
+                
             }
         }
     }

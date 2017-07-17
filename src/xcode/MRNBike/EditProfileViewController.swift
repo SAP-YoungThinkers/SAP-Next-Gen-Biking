@@ -327,9 +327,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
         
-        // password: there will be inserted a random string
-        // and when it wasn't changed, password won't be overwritten/saved
-        
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
         
         if (inputPassword.text == inputPasswordRepeat.text) {
@@ -364,6 +361,10 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             return
         }
         
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
+        
         let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
         let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
         
@@ -377,6 +378,10 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             if error == nil {
                 
                 let code = httpCode!
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+                    print("user uploaded")
+                }
                 
                 switch code {
                 case 201: //User successfully updated
@@ -398,6 +403,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.shareInfo = self.inputActivity.isOn
                     user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
                     
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
                     let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
                         (action) -> Void in self.navigationController?.popViewController(animated: true)
@@ -406,6 +414,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     self.present(alert, animated: true, completion: nil)
                     break
                 default: //For http error codes: 0, 400 and 404
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
                     
                     let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
                     let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
@@ -417,6 +427,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             }
             else
             {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
                 //An error occured in the app
                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
             }

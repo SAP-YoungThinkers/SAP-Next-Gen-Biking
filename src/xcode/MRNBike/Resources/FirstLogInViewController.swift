@@ -11,13 +11,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var rememberSwitch: UISwitch!
     @IBOutlet weak var registerButton: UIButton!
     
-    // Default user
-    // let defaultUserName = "Ziad"
-    // let defaultPassword = "123"
-    
-    var defaults = UserDefaults.standard
-    var passwordWasStored: Bool = false
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -45,8 +38,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         if let rememberMe = KeychainService.loadRemember() {
             print(rememberMe)
-            print("hello")
             if rememberMe == "yes" {
+                print("hallo")
                 if let userName = KeychainService.loadEmail() {
                     userEmailTextField.text = userName as String
                 }
@@ -55,11 +48,10 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                 }
                 rememberSwitch.isOn = true
             } else {
+                print("nope")
                 rememberSwitch.isOn = false
             }
         }
-        
-        
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
@@ -85,7 +77,6 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         if emailTest.evaluate(with: userEmailTextField.text) && passwordTest.evaluate(with: userPasswordTextField.text) {
             valid = true
-            print("true")
         }
         
         if valid == true {
@@ -94,40 +85,46 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         } else {
             loginButton.isEnabled = false
             loginButton.alpha = 0.5
-            print("false")
         }
     }
     
     // Login to the app
     @IBAction func onPressedLogin(_ sender: UIButton) {
         
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
+        
         //Check if user exists in Hana
         let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
- 
+ print("blub")
         ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
                 let code = httpCode!
-                
+                print("blab")
                 switch code {
                 case 201: //User verified
                     
-                    if !self.rememberSwitch.isOn {
-                        KeychainService.saveRemember(token: "no")
-                    }
+                    print("ttt")
                     
-                    self.defaults.set(false, forKey: StorageKeys.shouldLoginKey)
+                    if self.rememberSwitch.isOn {
+                        KeychainService.saveRemember(token: "yes")
+                        print("Gespeichert")
+                    } else {
+                        KeychainService.saveRemember(token: "no")
+                        print("nicht gespeichert")
+                    }
                     
                     //Save email and password to keychain
                     KeychainService.saveEmail(token: self.userEmailTextField.text! as NSString)
                     KeychainService.savePassword(token: self.userPasswordTextField.text! as NSString)
                     
-                    
                     ClientService.getUser(mail: self.userEmailTextField.text!, completion: { (data, error) in
                         if error == nil {
-                            
+                            print("hhh")
                             guard let responseData = data else {
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -136,24 +133,39 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                             
                             User.createSingletonUser(userData: responseData)
                             
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
                             let storyboard = UIStoryboard(name: "Home", bundle: nil)
                             let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                             self.present(controller, animated: true, completion: nil)
                         } else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
                             //An error occured
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     })
                     break
                 case 404: //Username/Password wrong or user doesn't exists
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
                     break
                 default: //JSON wrong or empty (Code 0, 400 or 500)
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
             }
             else
             {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
                 //An error occured in the app
                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
             }

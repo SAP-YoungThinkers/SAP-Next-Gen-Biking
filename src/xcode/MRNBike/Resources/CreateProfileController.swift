@@ -75,7 +75,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
         
-        //Set defaults
+        //Set default values
         currentWeightLabel.text = "\(Int(weightSlider.value)) " + " kg"
         currentWeightLabel.sizeToFit()
         currentWheelSize.text = "\(Int(wheelSizeSlider.value)) " + " Inches"
@@ -144,6 +144,10 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             return
         }
     
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
+        
         //Collect data for creating user
         let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
         
@@ -157,7 +161,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                 
                 switch httpCode! {
                 case 201: //User created
-                    
+    
                     //Save email and password in KeyChain
                     KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
                     KeychainService.savePassword(token: self.passwordLabel.text! as NSString)
@@ -173,6 +177,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
                     
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     self.view.endEditing(true)
                     
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)
@@ -181,11 +188,16 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     self.close()
                     break
                 case 409: //User already exists
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
                     self.doneButton.isEnabled = false
                     break
-                default:
-                    //For http error codes: 0 or 400
+                default: //For http error codes: 0 or 400
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     self.doneButton.isEnabled = false
                     return
@@ -193,6 +205,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             }
             else
             {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
                 //An error occured in the app
                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 self.doneButton.isEnabled = false

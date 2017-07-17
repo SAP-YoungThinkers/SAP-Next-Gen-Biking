@@ -14,9 +14,7 @@ class User {
     private static var singletonUser: User? = nil
     
     private init(userData: [String: AnyObject]?) {
-        print("user init")
-        print(userData as Any)
-        
+
         if let userArray = userData?["entity"] as? [[String: AnyObject]] {
             
             for user in userArray {
@@ -47,7 +45,6 @@ class User {
     
     static func createSingletonUser(userData: [String: AnyObject]?) {
         if User.isSingleton != true {
-            print(userData as Any)
             let user = User(userData: userData)
             User.singletonUser = user
         }

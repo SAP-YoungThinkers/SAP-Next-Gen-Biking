@@ -46,12 +46,10 @@ class HomeViewController: UIViewController {
     private func updateUI() {
         
         // Setting The Username to the Label in Home Screen.
+        let user = User.getUser()
         
-        if let firstName = UserDefaults.standard.string(forKey: "userFirstName") {
+        if let firstName = user.firstName {
             userNameLabel.text = firstName
-        }
-        if let lastName = UserDefaults.standard.string(forKey: "userSurname"), let label = userNameLabel.text {
-            userNameLabel.text = "\(label) \(lastName)"
         }
         
         //Updating the Picture in Homescreen.
@@ -66,6 +64,13 @@ class HomeViewController: UIViewController {
         burgerLabel.text = String(UserDefaults.standard.double(forKey: "burgers"))
         distanceLabel.text = String(UserDefaults.standard.double(forKey: "distance"))
         treesSavedLabel.text = String(UserDefaults.standard.double(forKey: "treesSaved"))
+        
+        /*
+        wheelRotationValue.text = user.wheelRotation
+        burgerLabel.text = user.burgerBurned
+        distanceLabel.text = user.distanceMade
+        treesSavedLabel.text = user.co2Saved
+         */
     }
 }
 
