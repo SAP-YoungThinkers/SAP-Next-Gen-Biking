@@ -44,33 +44,34 @@ class HomeViewController: UIViewController {
     
     //Method to be called each time the screen appears to update the UI.
     private func updateUI() {
-        
+        print("hallo")
         // Setting The Username to the Label in Home Screen.
         let user = User.getUser()
         
         if let firstName = user.firstName {
             userNameLabel.text = firstName
         }
-        
-        //Updating the Picture in Homescreen.
-        
-        let imageData = UserDefaults.standard.value(forKey: "userProfileImage")
-        if let image = imageData as? Data {
-            userImage.image = UIImage(data: image)
+        if let wheelRotation = user.wheelRotation {
+            //wheelRotationValue.text = String(wheelRotation)
+            wheelRotationValue.text = "0"
+        } else {
+            wheelRotationValue.text = "0"
+            print("hallo")
+        }
+        if let burgersBurned = user.burgersBurned {
+            wheelRotationValue.text = String(burgersBurned)
+        }
+        if let distanceMade = user.distanceMade {
+            wheelRotationValue.text = String(distanceMade)
+        }
+        if let co2Saved = user.co2Saved {
+            wheelRotationValue.text = String(co2Saved)
         }
         
-        //Updating the labels after each tracking.
-        wheelRotationValue.text = String(UserDefaults.standard.integer(forKey: "wheelRotation"))
-        burgerLabel.text = String(UserDefaults.standard.double(forKey: "burgers"))
-        distanceLabel.text = String(UserDefaults.standard.double(forKey: "distance"))
-        treesSavedLabel.text = String(UserDefaults.standard.double(forKey: "treesSaved"))
-        
-        /*
-        wheelRotationValue.text = user.wheelRotation
-        burgerLabel.text = user.burgerBurned
-        distanceLabel.text = user.distanceMade
-        treesSavedLabel.text = user.co2Saved
-         */
+        //Updating the Picture in Homescreen.
+        if let image = user.profilePicture {
+            userImage.image = UIImage(data: image)
+        }
     }
 }
 

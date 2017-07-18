@@ -178,10 +178,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Set share option
-        //inputActivity.isOn = user.shareInfo!
-        inputActivity.isOn = true
-        
-        print(user.shareInfo as Any)
+        inputActivity.isOn = user.shareInfo!
         
         //Set user weight
         inputWeight.value = Float(user.userWeight!)
@@ -194,13 +191,14 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         inputIndicatorWheel.sizeToFit()
         
         //Set user image
-        /*
-        let myImage = UIImage(data: user.profilePicture!)
-        imageBG.image = myImage
-        if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-            profileView.image = myImage
+        if let image = user.profilePicture {
+            let img = UIImage(data: image)
+            imageBG.image = img
+            if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
+                profileView.image = img
+            }
         }
-        */
+        
         //Bind textfields to validator
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
@@ -220,7 +218,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
-        print(firstname)
+
         //Check input fields and TermSwitcher
         if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
             //Check if passwords are similar

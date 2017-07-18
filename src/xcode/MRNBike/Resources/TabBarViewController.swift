@@ -1,6 +1,5 @@
 import UIKit
 
-
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
@@ -18,10 +17,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     // Open Login screen
     func logOut (){
-        
-        // Remove Data
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        //Remove user singleton
+        User.deleteSingleton()
         
         KeychainService.saveRemember(token: "no" as NSString)
         

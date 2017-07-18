@@ -53,8 +53,12 @@ class TrackingViewController: UIViewController {
         DismissButton.setTitle(NSLocalizedString("dismiss", comment: ""), for: .normal)
         reportLocation.setTitle(NSLocalizedString("reportLocation", comment: ""), for: .normal)
         
+        //Get user wheel size attribute
+        let user = User.getUser()
+        if let wheelSize = user.userWheelSize {
+            userWheelSize = wheelSize
+        }
         
-        userWheelSize = UserDefaults.standard.integer(forKey: "userWheelSize")
         wheelInCm = Double(userWheelSize) * 0.0254
         
         navItem.title = "Record Route"
@@ -142,28 +146,79 @@ class TrackingViewController: UIViewController {
         PauseButton.isHidden = true
     }
     
+    //Upload route to backend (Hana)
     @IBAction func saveRouteButton(_ sender: UIButton) {
-        reportLocation.isHidden = false
-        SaveRouteButton.isHidden = true
-        DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
         
-        var wheelRotation: Double = UserDefaults.standard.double(forKey: "wheelRotation")
-        wheelRotation += Double(wheelRotationLabel.text!)!
-        UserDefaults.standard.set(wheelRotation, forKey: "wheelRotation")
+        //TODO: Check for connection -> what if there is bad connection?
+        saveCollectedDataLocally()
         
-        var burgers: Double = UserDefaults.standard.double(forKey: "burgers")
-        burgers += Double(burgersLabel.text!)!
-        UserDefaults.standard.set(burgers, forKey: "burgers")
-        
-        var distance: Double = UserDefaults.standard.double(forKey: "distance")
-        distance += Double(distanceLabel.text!)!
-        UserDefaults.standard.set(distance, forKey: "distance")
-        
-        var treesSaved: Double = UserDefaults.standard.double(forKey: "treesSaved")
-        treesSaved += Double(co2SavedLabel.text!)!
-        UserDefaults.standard.set(treesSaved, forKey: "treesSaved")
-        
-        upload()
+        if let loadedData = StorageHelper.loadGPS() {
+            
+            //Show activity indicator
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
+            
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (code, keys, error) in
+                if error == nil {
+                    StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
+                    StorageHelper.clearCollectedGPS()
+                    
+                    self.reportLocation.isHidden = false
+                    self.SaveRouteButton.isHidden = true
+                    self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
+                    
+                    //Set new user attributes
+                    let user = User.getUser()
+                    
+                    let newWheelRotation = Int(self.wheelRotationLabel.text!)
+                    print(self.wheelRotationLabel.text!)
+                    if let currentWheelRotation = user.wheelRotation {
+                        print("a")
+                        user.wheelRotation = currentWheelRotation + newWheelRotation!
+                    } else {
+                        print("b")
+                        user.wheelRotation = newWheelRotation!
+                    }
+                    
+                    let newBurgersBurned = Double(self.burgersLabel.text!)
+                    if let currentBurgersBurned = user.burgersBurned {
+                        user.burgersBurned = currentBurgersBurned + newBurgersBurned!
+                    } else {
+                        user.burgersBurned = newBurgersBurned!
+                    }
+                    
+                    let newDistanceMade = Double(self.distanceLabel.text!)
+                    if let currentDistanceMade = user.distanceMade {
+                        user.distanceMade = currentDistanceMade + newDistanceMade!
+                    } else {
+                        user.distanceMade = newDistanceMade!
+                    }
+                    
+                    let newCo2Saved = Double(self.co2SavedLabel.text!)
+                    
+                    if let currentCo2Saved = user.co2Saved {
+                        user.co2Saved = currentCo2Saved + Int(newCo2Saved!)
+                    } else {
+                        user.co2Saved = Int(newCo2Saved!)
+                    }
+                   
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //Upload was successfully alert
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
+                } else {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
+            })
+        } else {
+            //An error occured in the app
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+        }
     }
     
     // MARK: - NSCoding
@@ -215,33 +270,6 @@ class TrackingViewController: UIViewController {
             coordinateLast = coordinateNew
         }
         
-    }
-    
-    
-    // MARK: - Cloud storage
-    
-    func upload() {
-        //TODO: Check for connection -> what if there is bad connection?
-        saveCollectedDataLocally()
-        
-        if let loadedData = StorageHelper.loadGPS() {
-            
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (code, keys, error) in
-                if error == nil {
-                    StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
-                    StorageHelper.clearCollectedGPS()
-                    
-                    //Upload was successfully alert
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
-                } else {
-                    //An error occured in the app
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                }
-            })
-        } else {
-            //An error occured in the app
-            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-        }
     }
 }
 

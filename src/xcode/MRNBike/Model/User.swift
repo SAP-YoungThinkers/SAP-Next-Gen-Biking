@@ -10,6 +10,11 @@ class User {
     var profilePicture : Data? // as JPEG data stream of UIImage
     //private var accountPicturePath: String? = nil
     
+    var wheelRotation: Int?
+    var burgersBurned: Double?
+    var distanceMade: Double?
+    var co2Saved: Int?
+    
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
     
@@ -28,9 +33,26 @@ class User {
                 if let weight = user["weight"] as? Int {
                     self.userWeight = weight
                 }
-                if let wheel = user["wheelSize"] as? Int {
-                    self.userWheelSize = wheel
+                if let wsize = user["wheelSize"] as? Int {
+                    self.userWheelSize = wsize
                 }
+                /*
+                if let wheelRotation = user["wheelRotation"] as? Int {
+                    self.userWeight = wheelRotation
+                }
+ */
+                self.wheelRotation = 33
+                
+                if let burgersBurned = user["burgersBurned"] as? Int {
+                    self.userWeight = burgersBurned
+                }
+                if let distanceMade = user["distanceMade"] as? Int {
+                    self.userWeight = distanceMade
+                }
+                if let co2Saved = user["co2Saved"] as? Int {
+                    self.userWeight = co2Saved
+                }
+                
                 if let allow = user["allowShare"] as? Int {
                     if allow == 1 {
                         self.shareInfo = true
@@ -55,7 +77,6 @@ class User {
     }
     
     static func deleteSingleton() {
-        User.singletonUser = nil
+        User.isSingleton = false
     }
-    
 }
