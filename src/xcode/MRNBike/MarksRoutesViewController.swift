@@ -8,6 +8,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var routeInformation: UITabBarItem!
     @IBOutlet weak var myRoutes: UITabBarItem!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var myRoutesList: UIView!
+    @IBOutlet weak var helperSubView: UIView!
     
     let config = Configurator()
     
@@ -60,6 +62,25 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         // add seperator
         tempPlaceholder = setupTabBarSeparators()
+        
+        /* My Routes List */
+        // shadows & corner radii
+        let maskPath = UIBezierPath(roundedRect: myRoutesList.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = maskPath
+        maskLayer.shadowColor = UIColor.black.cgColor
+        maskLayer.shadowOffset = CGSize.zero
+        maskLayer.shadowOpacity = 0.7
+        maskLayer.shadowRadius = 16.0
+        maskLayer.shadowPath = maskPath
+        maskLayer.shouldRasterize = true
+        maskLayer.rasterizationScale = UIScreen.main.scale
+        myRoutesList.layer.mask = maskLayer
+        
+        let helperLayer = CAShapeLayer()
+        helperLayer.path = maskPath
+        helperSubView.clipsToBounds = true
+        helperSubView.layer.mask = helperLayer
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +98,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     
     func myRoutesContent() {
+        myRoutesList.isHidden = false
         
         mapView.showsUserLocation = false
         
@@ -92,6 +114,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     
     func routesInfoContent() {
+        myRoutesList.isHidden = true
+        
         //Show activity indicator
         let alert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
         present(alert, animated: false, completion: nil)
