@@ -53,7 +53,6 @@
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
-		4E7ADD0A1F1FE97000A3FA49 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E7ADD091F1FE97000A3FA49 /* Credentials.json */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
 		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
@@ -119,7 +118,6 @@
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
-		4E7ADD091F1FE97000A3FA49 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4E7ADD091F1FE97000A3FA49 /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -429,7 +426,6 @@
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
-				4E7ADD0A1F1FE97000A3FA49 /* Credentials.json in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
