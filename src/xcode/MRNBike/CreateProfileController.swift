@@ -174,12 +174,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
                    
-                    if self.shareSwitch.isOn {
-                        user.shareInfo = 1
-                    } else {
-                        user.shareInfo = 0
-                    }
-//                    user.shareInfo = self.shareSwitch.isOn
+                   user.shareInfo = self.shareSwitch.isOn
                     
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
