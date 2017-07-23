@@ -50,10 +50,7 @@ class HomeViewController: UIViewController {
         if let firstName = user.firstName {
             userNameLabel.text = firstName
         }
-        print(user.wheelRotation as Any)
-        print(user.co2Saved as Any)
         if let wheelRotation = user.wheelRotation {
-            print(wheelRotation)
             wheelRotationValue.text = String(wheelRotation)
         }
         if let burgersBurned = user.burgersBurned {
@@ -65,7 +62,6 @@ class HomeViewController: UIViewController {
         if let co2Saved = user.co2Saved {
             treesSavedLabel.text = String(co2Saved)
         }
-        
         //Updating the Picture in Homescreen.
         if let image = user.profilePicture {
             userImage.image = UIImage(data: image)

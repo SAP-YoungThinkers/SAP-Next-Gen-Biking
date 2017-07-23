@@ -19,15 +19,12 @@ class StartPageViewController: UIViewController {
         
         if KeychainService.loadRemember() == nil {
             //User not registered
-            print("User not registered")
             rememberMe = "no"
         } else {
             rememberMe = KeychainService.loadRemember()! as String
-            print("User registered")
         }
         
         if rememberMe == "no" {
-            print("show start page")
             let controller = TourViewController()
             controller.startRidingAction = {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
@@ -56,7 +53,6 @@ class StartPageViewController: UIViewController {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
                         
-                        print("go to home")
                         let storyboard = UIStoryboard(name: "Home", bundle: nil)
                         let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                         self.present(controller, animated: true, completion: nil)

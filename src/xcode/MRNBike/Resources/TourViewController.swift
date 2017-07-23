@@ -22,7 +22,6 @@ class TourViewController: UIViewController {
         takeTourLabel.text = NSLocalizedString("takeTourHeader", comment: "")
         takeTourText.text = NSLocalizedString("takeTourDescription", comment: "")
         startRidingButton.setTitle(NSLocalizedString("startRidingButton", comment: ""), for: .normal)
-        print("nein!!!")
         //the youtube code of the video, will be changed later
         loadYoutube(videoID: "7iT9fueKCJM")
     }

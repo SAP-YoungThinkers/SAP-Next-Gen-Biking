@@ -75,16 +75,14 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
- print("make request")
+
         ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
                 let code = httpCode!
-                print("code:" + String(code))
+
                 switch code {
                 case 201: //User verified
-                    
-                    print("User verified")
                     
                     if self.rememberSwitch.isOn {
                         KeychainService.saveRemember(token: "yes")
@@ -104,7 +102,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                                 return
                             }
-                            print("create singleton user")
+                            
                             User.createSingletonUser(userData: responseData)
                             
                             //Dismiss activity indicator
