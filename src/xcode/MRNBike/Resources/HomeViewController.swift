@@ -51,21 +51,20 @@ class HomeViewController: UIViewController {
         if let firstName = user.firstName {
             userNameLabel.text = firstName
         }
+        print(user.wheelRotation as Any)
+        print(user.co2Saved as Any)
         if let wheelRotation = user.wheelRotation {
-            //wheelRotationValue.text = String(wheelRotation)
-            wheelRotationValue.text = "0"
-        } else {
-            wheelRotationValue.text = "0"
-            print("hallo")
+            print(wheelRotation)
+            wheelRotationValue.text = String(wheelRotation)
         }
         if let burgersBurned = user.burgersBurned {
-            wheelRotationValue.text = String(burgersBurned)
+            burgerLabel.text = String(burgersBurned)
         }
         if let distanceMade = user.distanceMade {
-            wheelRotationValue.text = String(distanceMade)
+            distanceLabel.text = String(distanceMade)
         }
         if let co2Saved = user.co2Saved {
-            wheelRotationValue.text = String(co2Saved)
+            treesSavedLabel.text = String(co2Saved)
         }
         
         //Updating the Picture in Homescreen.
