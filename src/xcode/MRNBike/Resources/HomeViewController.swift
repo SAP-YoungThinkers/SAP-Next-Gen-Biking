@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
     
     //Method to be called each time the screen appears to update the UI.
     private func updateUI() {
-        print("hallo")
         // Setting The Username to the Label in Home Screen.
         let user = User.getUser()
         
