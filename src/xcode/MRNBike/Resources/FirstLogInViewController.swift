@@ -36,35 +36,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         
-        if let rememberMe = KeychainService.loadRemember() {
-            print(rememberMe)
-            if rememberMe == "yes" {
-                print("hallo")
-                if let userName = KeychainService.loadEmail() {
-                    userEmailTextField.text = userName as String
-                }
-                if let userPassword = KeychainService.loadPassword() {
-                    userPasswordTextField.text = userPassword as String
-                }
-                rememberSwitch.isOn = true
-            } else {
-                print("nope")
-                rememberSwitch.isOn = false
-            }
-        }
+        rememberSwitch.isOn = true
+        loginButton.isEnabled = false
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
-        
-        // Setting default values for Login button in case of Remembering Password is on or off.
-        if !rememberSwitch.isOn {
-            loginButton.isEnabled = false
-            loginButton.alpha = 0.5
-        }
-        else {
-            loginButton.isEnabled = true
-            loginButton.alpha = 1.0
-        }
     }
     
     //Check if email and password are syntacticylly valid
@@ -99,23 +75,19 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
- print("blub")
+
         ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
                 let code = httpCode!
-                print("blab")
+
                 switch code {
                 case 201: //User verified
                     
-                    print("ttt")
-                    
                     if self.rememberSwitch.isOn {
                         KeychainService.saveRemember(token: "yes")
-                        print("Gespeichert")
                     } else {
                         KeychainService.saveRemember(token: "no")
-                        print("nicht gespeichert")
                     }
                     
                     //Save email and password to keychain
@@ -124,7 +96,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                     
                     ClientService.getUser(mail: self.userEmailTextField.text!, completion: { (data, error) in
                         if error == nil {
-                            print("hhh")
+                            
                             guard let responseData = data else {
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)

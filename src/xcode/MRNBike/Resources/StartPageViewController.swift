@@ -16,23 +16,20 @@ class StartPageViewController: UIViewController {
         
         var rememberMe: String
         
+        
         if KeychainService.loadRemember() == nil {
-            print("aaa")
+            //User not registered
             rememberMe = "no"
         } else {
             rememberMe = KeychainService.loadRemember()! as String
-            print("bbb")
         }
         
         if rememberMe == "no" {
-            // user doesnt exist
-            print("user not 2")
             let controller = TourViewController()
             controller.startRidingAction = {
                 self.performSegue(withIdentifier: "segSignIn", sender: self)
             }
         } else {
-            print("ccc")
             // user exists
             if let userMail = KeychainService.loadEmail() as String? {
                 
@@ -44,6 +41,8 @@ class StartPageViewController: UIViewController {
                     if error == nil {
                         
                         guard let responseData = data else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
                             //An error occured
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                             return

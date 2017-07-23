@@ -172,10 +172,20 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
-                    user.shareInfo = self.shareSwitch.isOn
+            
+                    if self.shareSwitch.isOn {
+                        user.shareInfo = 1
+                    } else {
+                        user.shareInfo = 0
+                    }
+                    
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
+                    user.wheelRotation = 0
+                    user.burgersBurned = 0.0
+                    user.distanceMade = 0.0
+                    user.co2Saved = 0
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)

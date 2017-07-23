@@ -160,53 +160,78 @@ class TrackingViewController: UIViewController {
             
             ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (code, keys, error) in
                 if error == nil {
-                    StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
-                    StorageHelper.clearCollectedGPS()
                     
-                    self.reportLocation.isHidden = false
-                    self.SaveRouteButton.isHidden = true
-                    self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
-                    
-                    //Set new user attributes
                     let user = User.getUser()
                     
-                    let newWheelRotation = Int(self.wheelRotationLabel.text!)
-                    print(self.wheelRotationLabel.text!)
-                    if let currentWheelRotation = user.wheelRotation {
-                        print("a")
-                        user.wheelRotation = currentWheelRotation + newWheelRotation!
-                    } else {
-                        print("b")
-                        user.wheelRotation = newWheelRotation!
+                    //Upload updated user to Hana
+                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersBurned" : user.burgersBurned!, "wheelRotation" : user.wheelRotation!, "distanceMade" : user.distanceMade!, "co2Saved" : user.co2Saved!]
+                    
+                    let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+                    
+                    
+                    
+                    
+                    //Try update user profile
+                    ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                        if error == nil {
+                            
+                            let code = httpCode!
+                            
+                            switch code {
+                            case 201: //User successfully updated
+                                StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
+                                StorageHelper.clearCollectedGPS()
+                                
+                                self.reportLocation.isHidden = false
+                                self.SaveRouteButton.isHidden = true
+                                self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
+                                
+                                //Set new user attributes
+                                //let user = User.getUser()
+                                
+                                if let currentWheelRotation = user.wheelRotation {
+                                    let newWheelRotation = Int(self.wheelRotationLabel.text!)
+                                    user.wheelRotation = currentWheelRotation + newWheelRotation!
+                                }
+                                
+                                if let currentBurgersBurned = user.burgersBurned {
+                                    let newBurgersBurned = Double(self.burgersLabel.text!)
+                                    user.burgersBurned = currentBurgersBurned + newBurgersBurned!
+                                }
+                                
+                                if let currentDistanceMade = user.distanceMade {
+                                    let newDistanceMade = Double(self.distanceLabel.text!)
+                                    user.distanceMade = currentDistanceMade + newDistanceMade!
+                                }
+                                
+                                if let currentCo2Saved = user.co2Saved {
+                                    let newCo2Saved = Double(self.co2SavedLabel.text!)
+                                    user.co2Saved = currentCo2Saved + Int(newCo2Saved!)
+                                }
+                                
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                                
+                                //Upload was successfully alert
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
+                                break
+                            default: //For http error codes: 0, 400 and 404
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                                //An error occured in the app
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
+                        }
+                        else
+                        {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
                     }
                     
-                    let newBurgersBurned = Double(self.burgersLabel.text!)
-                    if let currentBurgersBurned = user.burgersBurned {
-                        user.burgersBurned = currentBurgersBurned + newBurgersBurned!
-                    } else {
-                        user.burgersBurned = newBurgersBurned!
-                    }
-                    
-                    let newDistanceMade = Double(self.distanceLabel.text!)
-                    if let currentDistanceMade = user.distanceMade {
-                        user.distanceMade = currentDistanceMade + newDistanceMade!
-                    } else {
-                        user.distanceMade = newDistanceMade!
-                    }
-                    
-                    let newCo2Saved = Double(self.co2SavedLabel.text!)
-                    
-                    if let currentCo2Saved = user.co2Saved {
-                        user.co2Saved = currentCo2Saved + Int(newCo2Saved!)
-                    } else {
-                        user.co2Saved = Int(newCo2Saved!)
-                    }
-                   
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    //Upload was successfully alert
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
                 } else {
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)

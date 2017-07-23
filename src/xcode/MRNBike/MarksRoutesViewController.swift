@@ -93,13 +93,13 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     func routesInfoContent() {
         //Show activity indicator
-        let alert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(alert, animated: false, completion: nil)
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: true, completion: nil)
         
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
-        // ANNOTATIONS!
+        //Update annotations
         ClientService.getReports { (result, error) in
             
             if error == nil {
@@ -129,20 +129,23 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                     
                     self.mapView.addAnnotations(self.annotations!)
                     
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
                     //center map around points
                     let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
                     self.mapView.setRegion(region, animated: true)
-                    
                 }
             } else {
-                //alert.dismiss(animated: false, completion: nil)
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
                 
-                //Notification
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
             }
-            alert.dismiss(animated: true, completion: nil)
         }
     }
-    
+ 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         //This method will be called when user changes tab.
         
@@ -256,53 +259,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         self.topBar.insertSubview(separator, at: 1)
         
         return separator
-    }
-    
-    //MARK: Actions
-    
-    @IBAction func cancelToMarksRoutesViewController(segue:UIStoryboardSegue) {
-    }
-    
-    @IBAction func saveReport(segue:UIStoryboardSegue) {
-        
-        if let addReportViewController = segue.source as? AddReportViewController {
-            
-            let message: String = addReportViewController.messageTextField.text!
-            
-            var type : String
-            
-            if addReportViewController.recommendationBtn.isSelected {
-                type = "Recommendation"
-            } else if addReportViewController.warningBtn.isSelected {
-                type = "Warning"
-            } else {
-                type = "Dangerous"
-            }
-            
-            let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
-            
-            var annotations = addReportViewController.mapView.annotations.filter { $0 !== addReportViewController.mapView.userLocation }
-            if annotations.count == 0 {
-                annotations = addReportViewController.mapView.annotations.filter { $0 === addReportViewController.mapView.userLocation } }
-            
-            let location: MKAnnotation = annotations[0]
-            let latitude: Double = location.coordinate.latitude
-            let longitude: Double = location.coordinate.longitude
-            
-            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
-            
-            let jsonData = try! JSONSerialization.data(withJSONObject: data)
-            
-            ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
-                if error == nil {
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
-                }
-                else
-                {
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                }
-            })
-        }
     }
 }
 

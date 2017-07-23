@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
     
     //Method to be called each time the screen appears to update the UI.
     private func updateUI() {
-        print("hallo")
         // Setting The Username to the Label in Home Screen.
         let user = User.getUser()
         
@@ -52,22 +51,17 @@ class HomeViewController: UIViewController {
             userNameLabel.text = firstName
         }
         if let wheelRotation = user.wheelRotation {
-            //wheelRotationValue.text = String(wheelRotation)
-            wheelRotationValue.text = "0"
-        } else {
-            wheelRotationValue.text = "0"
-            print("hallo")
+            wheelRotationValue.text = String(wheelRotation)
         }
         if let burgersBurned = user.burgersBurned {
-            wheelRotationValue.text = String(burgersBurned)
+            burgerLabel.text = String(burgersBurned)
         }
         if let distanceMade = user.distanceMade {
-            wheelRotationValue.text = String(distanceMade)
+            distanceLabel.text = String(distanceMade)
         }
         if let co2Saved = user.co2Saved {
-            wheelRotationValue.text = String(co2Saved)
+            treesSavedLabel.text = String(co2Saved)
         }
-        
         //Updating the Picture in Homescreen.
         if let image = user.profilePicture {
             userImage.image = UIImage(data: image)
