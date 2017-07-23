@@ -195,7 +195,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                     self.present(controller, animated: true, completion: nil)
-                    self.close()
+                    self.closeViewController()
                     break
                 case 409: //User already exists
                     //Dismiss activity indicator
