@@ -2,37 +2,38 @@
 
 import UIKit
 
-
 extension UIViewController {
     
-    func popViewController() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func dismissViewController() {
+    @IBAction func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func closeViewController() {
+    @IBAction func pop() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func close() {
         if self.navigationController != nil {
-            self.dismissViewController()
+            self.pop()
         }
         else {
-            self.popViewController()
+            self.dismiss()
         }
+    }
+    
+    @IBAction func hideKeyboard() {
+        self.view.endEditing(true)
     }
 }
 
-
-
 extension UITabBarController {
     
-    override func closeViewController() {
+    override func close() {
         self.viewControllers?.forEach { (c) in
             if let nav = c as? UINavigationController {
                 nav.popToRootViewController(animated: false)
             }
-            c.presentedViewController?.dismissViewController()
+            c.presentedViewController?.dismiss()
         }
     }
 }

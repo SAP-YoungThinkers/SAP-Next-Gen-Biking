@@ -25,10 +25,10 @@ class TermConditionsViewController: UIViewController {
         if let complete = complete {
             complete()
         }
-        self.closeViewController()
+        self.close()
     }
 
     @IBAction func AgreeButton(_ sender: Any) {
-        self.closeViewController()
+        self.close()
     }
 }

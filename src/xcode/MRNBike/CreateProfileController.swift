@@ -173,9 +173,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
-                   
-                   user.shareInfo = self.shareSwitch.isOn
-                    
+                    user.shareInfo = self.shareSwitch.isOn
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
@@ -188,7 +186,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "Home")
                     self.present(controller, animated: true, completion: nil)
-                    self.closeViewController()
+                    self.close()
                     break
                 case 409: //User already exists
                     //Dismiss activity indicator

@@ -226,7 +226,7 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
                     self.present(newViewController, animated: true, completion: nil)
-                    self.closeViewController()
+                    self.close()
                 })
                 alert.addAction(gotItAction)
                 self.present(alert, animated: true, completion: nil)
@@ -242,7 +242,7 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
                     self.present(newViewController, animated: true, completion: nil)
-                    self.closeViewController()
+                    self.close()
                 })
                 alert.addAction(gotItAction)
                 self.present(alert, animated: true, completion: nil)
