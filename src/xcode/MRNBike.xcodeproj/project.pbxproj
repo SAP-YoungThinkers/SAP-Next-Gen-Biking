@@ -24,12 +24,12 @@
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
-		109A6C821ED6203F0020657D /* TermConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A6C811ED6203F0020657D /* TermConditionsViewController.swift */; };
-		10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */; };
+		10B2ABC91F25534F00847AA6 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2ABC81F25534F00847AA6 /* CreateProfileController.swift */; };
+		10B2ABCB1F2553BA00847AA6 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */; };
+		10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2ABCC1F2553F000847AA6 /* TermConditionsViewController.swift */; };
 		10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D21EC6144100CC7027 /* TourViewController.swift */; };
 		10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */; };
 		10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */; };
-		10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */; };
 		10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DC1EC614A000CC7027 /* ViewController.swift */; };
 		10B9D4E31EC614A000CC7027 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DD1EC614A000CC7027 /* Button.swift */; };
 		10B9D4E41EC614A000CC7027 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DE1EC614A000CC7027 /* Color.swift */; };
@@ -86,12 +86,12 @@
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
-		109A6C811ED6203F0020657D /* TermConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermConditionsViewController.swift; path = SupportingFiles/TermConditionsViewController.swift; sourceTree = "<group>"; };
-		10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StartPage.storyboard; path = Resources/StartPage.storyboard; sourceTree = "<group>"; };
+		10B2ABC81F25534F00847AA6 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileController.swift; sourceTree = "<group>"; };
+		10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
+		10B2ABCC1F2553F000847AA6 /* TermConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermConditionsViewController.swift; sourceTree = "<group>"; };
 		10B9D4D21EC6144100CC7027 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TourViewController.swift; path = Resources/TourViewController.swift; sourceTree = "<group>"; };
 		10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstLogInViewController.swift; path = Resources/FirstLogInViewController.swift; sourceTree = "<group>"; };
 		10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartPageViewController.swift; path = Resources/StartPageViewController.swift; sourceTree = "<group>"; };
-		10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProfileController.swift; path = Resources/CreateProfileController.swift; sourceTree = "<group>"; };
 		10B9D4DC1EC614A000CC7027 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10B9D4DD1EC614A000CC7027 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		10B9D4DE1EC614A000CC7027 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -280,10 +280,10 @@
 		4E36BA271ED73B4B0022704C /* LandingScreen */ = {
 			isa = PBXGroup;
 			children = (
-				10B9D4CF1EC6135A00CC7027 /* StartPage.storyboard */,
+				10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */,
 				10B9D4D41EC6144900CC7027 /* FirstLogInViewController.swift */,
-				10B9D4D91EC6147500CC7027 /* CreateProfileController.swift */,
-				109A6C811ED6203F0020657D /* TermConditionsViewController.swift */,
+				10B2ABC81F25534F00847AA6 /* CreateProfileController.swift */,
+				10B2ABCC1F2553F000847AA6 /* TermConditionsViewController.swift */,
 				10B9D4D21EC6144100CC7027 /* TourViewController.swift */,
 				10B9D4D61EC6145100CC7027 /* StartPageViewController.swift */,
 				019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */,
@@ -418,7 +418,6 @@
 				D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */,
 				0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */,
 				017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */,
-				10B9D4D01EC6135A00CC7027 /* StartPage.storyboard in Resources */,
 				D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */,
 				37B601F61EB0B68000870844 /* Montserrat-ExtraLight.otf in Resources */,
 				0137F17A1EA2778100FCA949 /* Info.plist in Resources */,
@@ -431,6 +430,7 @@
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
 				0137F16A1EA2778100FCA949 /* InfoPlist.strings in Resources */,
+				10B2ABCB1F2553BA00847AA6 /* StartPage.storyboard in Resources */,
 				37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,15 +443,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */,
+				10B2ABC91F25534F00847AA6 /* CreateProfileController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
-				109A6C821ED6203F0020657D /* TermConditionsViewController.swift in Sources */,
+				10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */,
 				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
-				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
