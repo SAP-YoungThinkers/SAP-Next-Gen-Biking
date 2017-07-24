@@ -4,34 +4,47 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
-
+class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+    
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var recommendationLabel: UILabel!
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var dangerLabel: UILabel!
+    @IBOutlet weak var whatDidYouSeeLabel: UILabel!
     
     //Radio buttons
-    
     @IBOutlet weak var recommendationBtn: RadioButtonClass!
-    
     @IBOutlet weak var warningBtn: RadioButtonClass!
-    
     @IBOutlet weak var dangerBtn: RadioButtonClass!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
     
     let manager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
-
+    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Delegate textView Control for dismiss keyboard on pressing "return" key
-        textView.delegate = self
+        sendButton.isEnabled = false
         
-        //Set a placeholder for textView because it doesn't have inherently a placeholder    
-        textView.text = "Message..."
-        textView.textColor = UIColor.lightGray
+        //Set text
+        self.title = NSLocalizedString("addRouteMarkTitle", comment: "")
+        recommendationLabel.text = NSLocalizedString("recommendation", comment: "")
+        warningLabel.text = NSLocalizedString("warning", comment: "")
+        dangerLabel.text = NSLocalizedString("danger", comment: "")
+        whatDidYouSeeLabel.text = NSLocalizedString("whatDidYouSee", comment: "")
+        messageTextField.placeholder = NSLocalizedString("writeMessage", comment: "")
+        
+        messageTextField.textColor = UIColor.lightGray
+        
+        //Hide Keyboard Extension
+        self.hideKeyboardWhenTappedAround()
+        self.messageTextField.delegate = self
         
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -45,6 +58,12 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
+        
+        //Setup gesture recognizer for long press recognition
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action:(#selector(longPress)))
+        gestureRecognizer.minimumPressDuration = 1.5
+        gestureRecognizer.delegate = self as UIGestureRecognizerDelegate
+        mapView.addGestureRecognizer(gestureRecognizer)
         
         //Settings from the radio buttons
         recommendationBtn.addTarget(self, action: #selector(manualAction(sender:)), for: .touchUpInside)
@@ -65,9 +84,24 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         //Border from the bottom background view
         self.messageView.layer.borderColor = UIColor.gray.cgColor
         self.messageView.layer.borderWidth = 1
+        
+        //Bind textfields to regex validator
+        messageTextField.addTarget(self, action:#selector(AddReportViewController.checkInput), for:UIControlEvents.editingChanged)
     }
     
- 
+    //Check if message is valid
+    func checkInput() {
+        
+        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()@\\s]{5,60}$")
+        
+        //If message is valid, enable the send button
+        if messageTest.evaluate(with: messageTextField.text) {
+            sendButton.isEnabled = true
+        } else {
+            sendButton.isEnabled = false
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Access the last object from locations to get perfect current location
         if let location = locations.last {
@@ -102,6 +136,19 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         }
     }
     
+    //Set pin for report
+    func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
+        
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        
+        let coordinate = mapView.centerCoordinate
+        saveAnnotation.coordinate = coordinate
+        
+        mapView.addAnnotation(saveAnnotation)
+    }
+    
     //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -119,54 +166,94 @@ class AddReportViewController: UIViewController, UITextViewDelegate, MKMapViewDe
         }
     }
     
-    //Delete the programatically set placeholder in the textView when editing
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    
-    //If the user left textView empty, show the placeholder again
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Message..."
-            textView.textColor = UIColor.lightGray
-        }
-    }
-    
-    //MARK: UITextViewDelegate
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
-        if(text == "\n") {
-            view.endEditing(true)
-            return false
-        }
-        return true
+    // Close keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     //MARK: Actions
     
-    //Set pin for report
-    @IBAction func setPin(_ sender: UIButton) {
-        let saveAnnotation: MKPointAnnotation = MKPointAnnotation()
+    @IBAction func onPressCancel(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
         
-        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
-        mapView.removeAnnotations( annotationsToRemove )
-        
-        let coordinate = mapView.centerCoordinate
-        saveAnnotation.coordinate = coordinate
-
-        mapView.addAnnotation(saveAnnotation)
-    }
-    override func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        /*let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+        self.present(newViewController, animated: true, completion: nil)
+        self.close()
+ */
     }
     
-    override func dismissKeyboard() {
-        view.endEditing(true)
+    @IBAction func onPressSend(_ sender: UIButton) {
+        let message: String = messageTextField.text!
+        
+        var type : String
+        
+        if recommendationBtn.isSelected {
+            type = "Recommendation"
+        } else if warningBtn.isSelected {
+            type = "Warning"
+        } else {
+            type = "Dangerous"
+        }
+        
+        let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+        
+        var annotations = mapView.annotations.filter { $0 !== mapView.userLocation }
+        if annotations.count == 0 {
+            annotations = mapView.annotations.filter { $0 === mapView.userLocation } }
+        
+        let location: MKAnnotation = annotations[0]
+        let latitude: Double = location.coordinate.latitude
+        let longitude: Double = location.coordinate.longitude
+        
+        let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: data)
+        
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
+        
+        ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
+            if error == nil {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
+                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: ""))
+                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                    (action) -> Void in
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+                    self.present(newViewController, animated: true, completion: nil)
+                    self.close()
+                })
+                alert.addAction(gotItAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else
+            {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
+                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                    (action) -> Void in
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+                    self.present(newViewController, animated: true, completion: nil)
+                    self.close()
+                })
+                alert.addAction(gotItAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
+        
     }
     
+    @IBAction func refreshLocation(_ sender: UIButton) {
+        manager.startUpdatingLocation()
+        //manager.stopUpdatingLocation()
+    }
 }
 

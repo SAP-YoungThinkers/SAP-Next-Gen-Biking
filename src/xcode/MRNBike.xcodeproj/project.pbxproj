@@ -19,7 +19,6 @@
 		0137F1741EA2778100FCA949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0137F15A1EA2778100FCA949 /* Localizable.strings */; };
 		0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1651EA2778100FCA949 /* ConfigList.plist */; };
 		0137F17A1EA2778100FCA949 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0137F1661EA2778100FCA949 /* Info.plist */; };
-		017558861EE06C44008E5B7D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017558851EE06C44008E5B7D /* StorageKeys.swift */; };
 		017A79B11EE6DE8A00AA5588 /* conditions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 017A79B01EE6DE8A00AA5588 /* conditions.txt */; };
 		019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */; };
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
@@ -51,15 +50,18 @@
 		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
+		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
+		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
+		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
+		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
 		D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD61EAFF7B700850388 /* Social.storyboard */; };
-		D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD81EAFF7E900850388 /* Routes.storyboard */; };
 		D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */; };
 		D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A94661ED0D06E002F619D /* HomeViewController.swift */; };
 		D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */; };
@@ -79,7 +81,6 @@
 		0137F1601EA2778100FCA949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0137F1651EA2778100FCA949 /* ConfigList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigList.plist; sourceTree = "<group>"; };
 		0137F1661EA2778100FCA949 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		017558851EE06C44008E5B7D /* StorageKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		017A79B01EE6DE8A00AA5588 /* conditions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conditions.txt; sourceTree = "<group>"; };
 		019FF7181EE817A90061F8B7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
@@ -114,15 +115,18 @@
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
+		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
+		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
+		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
 		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Resources/Profile.storyboard; sourceTree = "<group>"; };
 		D25F5AD61EAFF7B700850388 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Social.storyboard; path = Resources/Social.storyboard; sourceTree = "<group>"; };
-		D25F5AD81EAFF7E900850388 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Routes.storyboard; path = Resources/Routes.storyboard; sourceTree = "<group>"; };
 		D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		D29A94661ED0D06E002F619D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Resources/HomeViewController.swift; sourceTree = "<group>"; };
 		D2D955A51EBD0C3B00E5CACE /* UIImage+color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+color.swift"; path = "../UIImage+color.swift"; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				0137F14F1EA2778100FCA949 /* Model */,
 				4E36BA2B1ED73E2A0022704C /* Social */,
 				4E36BA2C1ED73E680022704C /* Settings */,
+				4EE64FA21F04577A00758004 /* Networking */,
 				10B9D4DB1EC6149000CC7027 /* Extension */,
 				0137F1641EA2778100FCA949 /* SupportingFiles */,
 			);
@@ -171,6 +176,7 @@
 				0137F1551EA2778100FCA949 /* User.swift */,
 				01279A2E1EA4D9DF000505AA /* RouteKeys.swift */,
 				4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */,
+				4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,7 +190,6 @@
 				0137F1661EA2778100FCA949 /* Info.plist */,
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
-				017558851EE06C44008E5B7D /* StorageKeys.swift */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
 			);
 			path = SupportingFiles;
@@ -254,7 +259,7 @@
 		4E36BA251ED7390B0022704C /* Marks&Routes */ = {
 			isa = PBXGroup;
 			children = (
-				D25F5AD81EAFF7E900850388 /* Routes.storyboard */,
+				4E046DD91EFC77F100187B23 /* Routes.storyboard */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
 				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
 				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
@@ -328,6 +333,15 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		4EE64FA21F04577A00758004 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4EE64FA31F04579E00758004 /* SessionFactory.swift */,
+				4EE64FA51F04583A00758004 /* ClientService.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -396,6 +410,7 @@
 			files = (
 				37B601FA1EB0B68000870844 /* Montserrat-SemiBold.otf in Resources */,
 				37B601F51EB0B68000870844 /* Montserrat-ExtraBold.otf in Resources */,
+				4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */,
 				37B601F81EB0B68000870844 /* Montserrat-Medium.otf in Resources */,
 				D25F5ADB1EAFFFCD00850388 /* Settings.storyboard in Resources */,
 				D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */,
@@ -410,7 +425,6 @@
 				37B601F71EB0B68000870844 /* Montserrat-Light.otf in Resources */,
 				D25F5AD71EAFF7B700850388 /* Social.storyboard in Resources */,
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
-				D25F5AD91EAFF7E900850388 /* Routes.storyboard in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
@@ -437,7 +451,6 @@
 				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				10B9D4E21EC614A000CC7027 /* ViewController.swift in Sources */,
-				017558861EE06C44008E5B7D /* StorageKeys.swift in Sources */,
 				10B9D4DA1EC6147500CC7027 /* CreateProfileController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
@@ -448,15 +461,18 @@
 				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
+				4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */,
 				10B9D4E31EC614A000CC7027 /* Button.swift in Sources */,
 				37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
 				10B9D4E41EC614A000CC7027 /* Color.swift in Sources */,
 				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
+				4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */,
 				10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */,
 				10B9D4D51EC6144900CC7027 /* FirstLogInViewController.swift in Sources */,
 				37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */,
 				0137F16D1EA2778100FCA949 /* CustomPin.swift in Sources */,
+				4EE64FA61F04583A00758004 /* ClientService.swift in Sources */,
 				4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +600,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GEONet.MRNBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MRNBike/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

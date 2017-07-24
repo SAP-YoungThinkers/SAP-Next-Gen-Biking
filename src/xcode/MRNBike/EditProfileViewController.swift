@@ -10,6 +10,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    
     @IBOutlet weak var userBar: UIView!
     @IBOutlet weak var scrollView : UIScrollView!
     
@@ -27,6 +28,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
      
      ======================= */
     
+    //User Bar View
     var tmpPasswordHash : String!       // only local
     let imagePicker = UIImagePickerController()
     
@@ -49,119 +51,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var inputIndicatorWheel: UILabel!
     @IBOutlet weak var inputWheelSize: UISlider!
     
-    // save button pressed
-    @IBAction func saveRequest(_ sender: UIBarButtonItem) {
-        
-        let userData = UserDefaults.standard
-        
-        // password: there will be inserted a random string
-        // and when it wasn't changed, password won't be overwritten/saved
-        
-        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        
-        if (inputPassword.text == inputPasswordRepeat.text) {
-            
-            if (inputPassword.text != tmpPasswordHash) {
-            
-                if (inputPassword.text != "") {
-                    // was changed, so save!
-                    userData.set(inputPassword.text, forKey: "userPassword")
-                }
-                else {
-                    // password empty
-                    passwordAlert.title = "Password empty"
-                    passwordAlert.message = "Okay, you did not fill in any password. Please fill in!"
-                    passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                    self.present(passwordAlert, animated: true, completion: nil)
-                    print("password empty")
-                    return
-                }
-            }
-            else {
-                // password not changed
-                print("password didnt change, so wont be overwritten")
-            }
-        }
-        else {
-            // passwords dont match
-            passwordAlert.title = "Password Mismatch"
-            passwordAlert.message = "Please repeat the same password!"
-            passwordAlert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(passwordAlert, animated: true, completion: nil)
-            print("passwords dont match")
-            return
-        }
-        
-        // SAVE OTHERS
-        
-        if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
-            userData.set(inputSurnameView.text, forKey: "userSurname")
-        }
-        if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
-            userData.set(firstNameView.text, forKey: "userFirstName")
-        }
-        if let tmpMail = inputEmail.text as NSString? {
-            KeychainService.saveEmail(token: tmpMail)
-        }
-        userData.set(inputActivity.isOn, forKey: "userShareActivity")
-        userData.set(Int(inputWeight.value), forKey: "userWeight")
-        userData.set(Int(inputWheelSize.value), forKey: "userWheelSize")
-        
-        // save image
-        let imageData = UIImageJPEGRepresentation(imageBG.image!, 1.0)
-        userData.set(imageData, forKey: "userProfileImage")
-        
-        //Save new password in KeyChain
-        if let tmpPass = inputPassword.text as NSString? {
-            KeychainService.savePassword(token: tmpPass)
-        }
-        
-        //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail() as String!, "password" : KeychainService.loadPassword() as String!, "firstname" : userData.string(forKey: "userFirstName")!, "lastname" : userData.string(forKey: "userSurname")! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
-        
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        var response = StorageHelper.prepareUploadUser(scriptName: "user/updateUser.xsjs", data: jsonData)
-        
-        let code = response["code"] as! Int
-        
-        switch code {
-        case 201:
-            print("Update successful.")
-            break
-        case 0:
-            print("No JSON data in the body.")
-            break
-        case 400:
-            print("Invalid JSON.")
-            break
-        case 404:
-            print("User not found.")
-            break
-        default:
-            print("Error")
-        }
-        
-        self.navigationController?.popViewController(animated: true)
-        
-    }
-    
-    // weight slider indicator update
-    @IBAction func weightChanged(_ sender: UISlider) {
-        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-        inputIndicatorWeight.sizeToFit()
-    }
-    
-    // wheelsize slider indicator update
-    @IBAction func wheelChanged(_ sender: UISlider) {
-        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-        inputIndicatorWheel.sizeToFit()
-    }
-    
-    @IBAction func backAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     var userBarViewController : UserBarViewController!
     let userBarSegueName = "userBarSegue"
@@ -169,10 +58,24 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set save button disabled
+        saveButton.isEnabled = false
+        
+        //Set text
+        self.title = NSLocalizedString("editProfile", comment: "")
+        email.text = NSLocalizedString("emailLabel", comment: "")
+        password.text = NSLocalizedString("passwordLabel", comment: "")
+        repeatPassword.text = NSLocalizedString("repeatPasswordLabel", comment: "")
+        activityShare.text = NSLocalizedString("shareInfoLabel", comment: "")
+        personalInfo.text = NSLocalizedString("personalInfoLabel", comment: "")
+        weight.text = NSLocalizedString("weightLabel", comment: "")
+        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
+        
         //Notification for keyboard will show/will hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         //Delegation of the textFields to the view
         inputEmail.delegate=self
         inputPassword.delegate=self
@@ -180,7 +83,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         //Keyboard hides, whereever the user taps on the screen (except the keyboard)
         self.hideKeyboardWhenTappedAround()
-        
         
         imagePicker.delegate = self
         
@@ -230,7 +132,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         /*
-            ========= USER OPTIONS =========
+         ========= USER OPTIONS =========
          */
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = true
@@ -248,59 +150,95 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         inputIndicatorWheel.sizeToFit()
         wheelSize.sizeToFit()
         
-        // read values from local space
-        let userData = UserDefaults.standard
+        // Read user instance and set values
+        let user = User.getUser()
         
         // surname input
         if let inputSurnameView = userBarViewController?.view.viewWithTag(4) as? UITextField {
             inputSurnameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserSurname = userData.string(forKey: StorageKeys.nameKey) {
-                inputSurnameView.text = tmpUserSurname
-            }
+            inputSurnameView.text = user.surname
         }
+        
         // first name input
         if let firstNameView = userBarViewController?.view.viewWithTag(5) as? UITextField {
             firstNameView.font = UIFont.init(name: "Montserrat-Light", size: 22)!
-            if let tmpUserFirstName = userData.string(forKey: StorageKeys.firstnameKey) {
-                firstNameView.text = tmpUserFirstName
-            }
+            firstNameView.text = user.firstName
         }
-        if let tmpUserMail = KeychainService.loadEmail() {
-            inputEmail.text = tmpUserMail as String
+        
+        //Set eMail
+        if let userMail = KeychainService.loadEmail() {
+            inputEmail.text = userMail as String
         }
+        inputEmail.isUserInteractionEnabled = false
+        
+        //Set password
         if let tmpUserPass = KeychainService.loadPassword() as String? {
             inputPassword.text = tmpUserPass
             inputPasswordRepeat.text = tmpUserPass
         }
         
-        if let tmpUserShareActivity = userData.object(forKey: StorageKeys.shareKey) {
-            inputActivity.isOn = tmpUserShareActivity as! Bool
+        //Set share option
+        if user.shareInfo == 0 {
+            inputActivity.isOn = false
+        } else {
+            inputActivity.isOn = true
         }
-        if let tmpUserWeight = userData.object(forKey: StorageKeys.weightKey) {
-            inputWeight.value = Float(tmpUserWeight as! Int)
-            inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-            inputIndicatorWeight.sizeToFit()
-        }
-        if let tmpUserWheelSize = userData.object(forKey: StorageKeys.wheelKey) {
-            inputWheelSize.value = Float(tmpUserWheelSize as! Int)
-            inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-            inputIndicatorWheel.sizeToFit()
-        }
-        if let tmpUserPhoto = userData.object(forKey: StorageKeys.imageKey) {
-            let myImage = UIImage(data: tmpUserPhoto as! Data)
-            imageBG.image = myImage
+
+        //Set user weight
+        inputWeight.value = Float(user.userWeight!)
+        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
+        inputIndicatorWeight.sizeToFit()
+        
+        //Set wheel size
+        inputWheelSize.value = Float(user.userWheelSize!)
+        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
+        inputIndicatorWheel.sizeToFit()
+        
+        //Set user image
+        if let image = user.profilePicture {
+            let img = UIImage(data: image)
+            imageBG.image = img
             if let profileView : UIImageView = userBarViewController?.view.viewWithTag(1) as? UIImageView {
-                profileView.image = myImage
+                profileView.image = img
             }
         }
         
-        // password: there will be inserted a random string
-        // and when it wasn't changed, password won't be overwritten/saved
-        //tmpPasswordHash = randomString(5)
-        //inputPassword.text = tmpPasswordHash
-        //inputPasswordRepeat.text = tmpPasswordHash
-        
+        //Bind textfields to validator
+        let surname = userBarViewController.view.viewWithTag(4) as! UITextField
+        let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
+        surname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        firstname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        inputPassword.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        inputPasswordRepeat.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
     }
+    
+    //Check if email, password, firstname and lastname are syntacticylly valid and TermSwitch is on
+    func checkInput() {
+        
+        var valid = false
+        
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
+        
+        let surname = userBarViewController.view.viewWithTag(4) as! UITextField
+        let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
+        
+        //Check input fields and TermSwitcher
+        if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
+            //Check if passwords are similar
+            if inputPassword.text?.characters.count == inputPasswordRepeat.text?.characters.count {
+                valid = true
+            }
+        }
+        
+        //If all inputs are valid, enable the done button
+        if valid == true {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
+    }
+    
     
     func handleImagePicker(button: UIButton) {
         print("image picked!")
@@ -319,7 +257,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     func randomString(_ length: Int) -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$"
         let len = UInt32(letters.length)
-
+        
         var randomString = ""
         
         for _ in 0 ..< length {
@@ -365,6 +303,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
     }
     
+    
     //Two functions for moving the screens content up so the keyboard doesn't mask the content and down
     func keyboardWillShow(notification: NSNotification) {
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
@@ -385,24 +324,151 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         return true;
     }
     
-    // MARK: Actions 
+    // MARK: Actions
     
+    // save button pressed
+    @IBAction func saveRequest(_ sender: UIBarButtonItem) {
+        
+        let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        
+        if (inputPassword.text == inputPasswordRepeat.text) {
+            
+            if (inputPassword.text != tmpPasswordHash) {
+                
+                if (inputPassword.text != "") {
+                    
+                }
+                else {
+                    // password empty
+                    passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
+                    passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
+                    passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
+                    self.present(passwordAlert, animated: true, completion: nil)
+                    print("password empty")
+                    return
+                }
+            }
+            else {
+                // password not changed
+                print("password didnt change, so wont be overwritten")
+            }
+        }
+        else {
+            // passwords dont match
+            passwordAlert.title = NSLocalizedString("passwordMismatchDialogTitle", comment: "")
+            passwordAlert.message = NSLocalizedString("passwordMismatchDialogMsg", comment: "")
+            passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
+            self.present(passwordAlert, animated: true, completion: nil)
+            print("passwords dont match")
+            return
+        }
+        
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
+        
+        let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
+        let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
+        
+        let user = User.getUser()
+        
+        //Upload updated user to Hana
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersBurned" : user.burgersBurned!, "wheelRotation" : user.wheelRotation!, "distanceMade" : user.distanceMade!, "co2Saved" : user.co2Saved!]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+        
+        //Try update user profile
+        ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+            if error == nil {
+                
+                let code = httpCode!
+                
+                switch code {
+                case 201: //User successfully updated
+                    
+                    //Save email and password in KeyChain
+                    if let mail = self.inputEmail.text as NSString? {
+                        KeychainService.saveEmail(token: mail)
+                    }
+                    if let password = self.inputPassword.text as NSString? {
+                        KeychainService.savePassword(token: password)
+                    }
+                    
+                    //Update User class
+                    let user = User.getUser()
+                    user.surname = surname.text!
+                    user.firstName = firstname.text!
+                    user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
+                    user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
+                    
+                    if self.inputActivity.isOn {
+                        user.shareInfo = 1
+                    } else {
+                        user.shareInfo = 0
+                    }
+                    
+                    user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
+                    
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                    break
+                default: //For http error codes: 0, 400 and 404
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            else
+            {
+                //Dismiss activity indicator
+                activityAlert.dismiss(animated: false, completion: nil)
+                
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            }
+        }
+    }
     
+    // weight slider indicator update
+    @IBAction func weightChanged(_ sender: UISlider) {
+        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
+        inputIndicatorWeight.sizeToFit()
+    }
+    
+    // wheelsize slider indicator update
+    @IBAction func wheelChanged(_ sender: UISlider) {
+        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
+        inputIndicatorWheel.sizeToFit()
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 class UserBarViewController: UIViewController {
-    // has to stick here...
-    // ...because i need the class in EditProfileViewController!
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
+    @IBOutlet weak var surnameLabel: UILabel!
+    @IBOutlet weak var firstnameLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Set text
+        surnameLabel.text = NSLocalizedString("surnameLabel", comment: "")
+        firstnameLabel.text = NSLocalizedString("firstnameLabel", comment: "")
     }
 }

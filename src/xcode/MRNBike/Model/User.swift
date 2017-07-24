@@ -1,44 +1,74 @@
-
-
 import Foundation
 
-class User : NSObject {
+class User {
     
-    var accountName: String!
-    var accountPassword: String? = nil
-    var accountSurname: String? = nil
-    var accountFirstName: String? = nil
-    var accountUserWeight: Float? = nil
-    var accountUserWheelSize: Float? = nil
-    var accountShareInfo: Bool? = true
-    var accountProfilePicture : Data? = nil // as JPEG data stream of UIImage
-    //var accountPicturePath: String? = nil
+    var surname: String?
+    var firstName: String?
+    var userWeight: Int?
+    var userWheelSize: Int?
+    var shareInfo: Int?
+    var profilePicture : Data? // as JPEG data stream of UIImage
+    //private var accountPicturePath: String? = nil
+    
+    var wheelRotation: Int?
+    var burgersBurned: Double?
+    var distanceMade: Double?
+    var co2Saved: Int?
+    
+    private static var isSingleton: Bool = false
+    private static var singletonUser: User? = nil
+    
+    private init(userData: [String: AnyObject]?) {
 
-    static func getUser(mail: String) {
-        StorageHelper.dpqueue.async {
-            let urlEnding = "user/readUser.xsjs?email=" + mail
-            let returnObj = StorageHelper.prepareRequest(scriptName: urlEnding)
+        if let userArray = userData?["entity"] as? [[String: AnyObject]] {
             
-            // TODO: User as a Singleton and set properties
-            // TODO: Get back to main queue -> avoid inconsistencies
-            let defaults = UserDefaults.standard
-            if let surname = returnObj["lastname"] as? String {
-                defaults.set(surname, forKey: StorageKeys.nameKey)
+            for user in userArray {
+                
+                if let surname = user["lastname"] as? String {
+                    self.surname = surname
+                }
+                if let firstname = user["firstname"] as? String {
+                    self.firstName = firstname
+                }
+                if let weight = user["weight"] as? Int {
+                    self.userWeight = weight
+                }
+                if let wsize = user["wheelSize"] as? Int {
+                    self.userWheelSize = wsize
+                }
+                if let wheelRotation = user["wheelRotation"] as? Int {
+                    self.wheelRotation = wheelRotation
+                }
+                if let burgersBurned = user["burgersBurned"] as? Double {
+                    self.burgersBurned = burgersBurned
+                }
+                if let distanceMade = user["distanceMade"] as? Double {
+                    self.distanceMade = distanceMade
+                }
+                if let co2Saved = user["co2Saved"] as? Int {
+                    self.co2Saved = co2Saved
+                }
+                if let allow = user["allowShare"] as? Int {
+                    self.shareInfo = allow
+                    
+                }
+                User.isSingleton = true
             }
-            if let firstname = returnObj["firstname"] as? String {
-                defaults.set(firstname, forKey: StorageKeys.firstnameKey)
-            }
-            if let wheel = returnObj["wheelSize"] as? Int {
-                defaults.set(wheel, forKey: StorageKeys.wheelKey)
-            }
-            if let weight = returnObj["weight"] as? Int {
-                defaults.set(weight, forKey: StorageKeys.weightKey)
-            }
-            if let allow = returnObj["allowShare"] as? NSNumber{
-                defaults.set(Bool(allow), forKey: StorageKeys.shareKey)
-            }
-            
-            // TODO: load image from backend
         }
+    }
+    
+    static func createSingletonUser(userData: [String: AnyObject]?) {
+        if User.isSingleton != true {
+            let user = User(userData: userData)
+            User.singletonUser = user
+        }
+    }
+    
+    static func getUser() -> User {
+        return singletonUser!
+    }
+    
+    static func deleteSingleton() {
+        User.isSingleton = false
     }
 }

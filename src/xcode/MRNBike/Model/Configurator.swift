@@ -13,8 +13,8 @@ class Configurator : NSObject {
     public var greenColor: UIColor
     public var redColor: UIColor
     public var yellowColor: UIColor
-    public var hanaUser: String
-    public var hanaPW: String
+    public var hanaUser: String = ""
+    public var hanaPW: String = ""
     
 
     /* e.g.: FF6666 returns a red UIColor */
@@ -62,9 +62,37 @@ class Configurator : NSObject {
         self.redColor = Configurator.createColor(hex: list["red"] as! String)
         self.greenColor = Configurator.createColor(hex: list["green"] as! String)
         self.yellowColor = Configurator.createColor(hex: list["yellow"] as! String)
-        self.hanaUser = list["username"] as! String
-        self.hanaPW = list["password"] as! String
         self.backendBaseURL = list["backend base url"] as! String
+        
+        // loading credentials
+        if let path = Bundle.main.path(forResource: "Credentials", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                
+                let jsonObj = try? JSONSerialization.jsonObject(with: data, options: [])
+                if  let object = jsonObj as? [String: Any] {
+                    if let user = object["username"] as? String {
+                        self.hanaUser = user
+                    } else {
+                        print("No valid user (String) found in credentials.json")
+                    }
+                    if let pass = object["password"] as? String {
+                        self.hanaPW = pass
+                    } else {
+                        print("No valid password (String) found in credentials.json")
+                    }
+
+                } else {
+                    print("Could not get json from file, make sure that file contains valid json.")
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("Invalid filename/path for credentials.")
+        }
+
+        
         super.init()
         
         

@@ -1,8 +1,106 @@
+//Start Page Scene
+"takeTourHeader"="Radle • Gewinne • Schütze";
+"takeTourDescription"="Mit unserer App trägst du dazu bei, Fahrradfahren für alle angenehmer zu machen. Erhalte Auszeichnungen für das Erreichen von Zielen und schone unsere Umwelt!";
+"startRidingButton"="Los geht's";
+//Take Tour Scene
+"start"="START";
+"takeTour"="Mache einen Rundgang";
 
+//Login Scene
+"signIn"="Einloggen";
+"rememberPassword"="Merke mein Passwort";
+"loginButton"="LOG IN";
+"registerButton"="REGISTRIEREN";
+"passwordUserWrongDialogTitle"="Nutzername oder Passwort falsch";
+"passwordUserDialogMsg"="Überprüfe deinen Nutzernamen / dein Passwort";
 
-"noLogin"="Bitte zuerst einloggen";
-"upload_button_text"="Daten hochladen";
-"upload_Info"="Anzahl hochgeladener Routen:";
-"Stop_Tracking"="Ortung beenden";
-"Start_Tracking"="Ortung starten";
-"center"="Karte zentrieren";
+//Home Scene
+"startTracking"="Ortung starten";
+"myProfile"="Mein Profil";
+"burgersBurned"="Burger verbrannt";
+"distanceKM"="Distanz (km)";
+
+//Create/Edit Profile Scene
+"surnameLabel"="NACHNAME";
+"firstnameLabel"="VORNAME";
+"createProfile"="Profil erstellen";
+"editProfile"="Profil bearbeiten";
+"emailLabel"="EMAIL";
+"emailExample"="john.doe@mrn.com";
+"passwordLabel"="PASSWORT";
+"repeatPasswordLabel"="PASSWORT WIEDERHOLEN";
+"shareInfoLabel"="MEINE AKTIVITÄTEN TEILEN";
+"agreeTermCondition"="ICH STIMME DEN NUTZUNGSBEDINGUNGEN ZU";
+"personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
+"weightLabel"="GEWICHT";
+"wheelSizeLabel"="RADGRÖßE";
+"passwordValidationHint"="muss aus 10 bis 15 großen und kleinen Buchstaben sowie Sonderzeichen und Zahlen bestehen";
+
+"passwordEmptyDialogTitle"="KEIN PASSWORT EINGEGEBEN";
+"passwordEmptyDialogMsg"="BITTE GEBE DEIN PASSWORT EIN.";
+
+"passwordMismatchDialogTitle"="Falsches Passwort";
+"passwordMismatchDialogMsg"="Gebe zwei Mal das gleiche Passwort ein.";
+
+"noEmailDialogTitle"="Keine E-Mail";
+"noEmailDialogMsg"="Bitte lass uns deine E-Mail Adresse wissen!";
+
+"noTermConditionDialogTitle"="Nutzungsbedingungen";
+"noTermConditionDialogMsg"="Stimme bitte den Nutzungsbedingungen zu!";
+
+"userExistsDialogTitle"="E-Mail vergeben";
+"userExistsDialogMsg"="Die von Dir angegebene E-Mail ist schon vergeben.";
+
+"errorOccuredDialogTitle"="Fehlermeldung";
+"errorOccuredDialogMsg"="Ooops! Ein Fehler ist aufgetreten.";
+
+"dialogActionGotIt"="Verstanden!";
+
+//Term Scene
+"termConditionHeader"="Generic Terms and Conditions of MRN Bike mobile application";
+
+// The original repo contains the right terms and conditions
+"termConditionText"="Terms and Conditions (\"Terms\") Last updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this)  (\"us\", \"we\", or \"our\"). Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service. By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Links To Other Web Sites Our Service may contain links to third-party web sites or services that are not owned or controlled by  My Company (change this). My Company (change this)  has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that  My Company (change this)  shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services. Changes We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 3  0 (change this)  days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. Contact Us If you have any questions about these Terms, please contact us.";
+"agreeButton"="ICH STIMME ZU";
+"disagreeButton"="ICH LEHNE AB";
+
+"dismissConfDialogTitle"="Verwerfen";
+"dismissConfDialogMsg"="Wenn du den Nutzungsbedingungen nicht zustimmst, kannst du die App nicht verwenden und der aktuelle Fortschritt geht verloren. Bist du sicher?";
+
+"dialogActionNo"="Fortfahren";
+"termAlertAction"="Verwerfen";
+
+//Tracking Scene
+"wheelRotation"="RADUMDREHUNGEN";
+"burgers"="BURGER";
+"distance"="DISTANZ";
+"co2Saved"="CO2 GESPART";
+"saveRoute"="Route speichern";
+"dismiss"="Verwerfen";
+"reportLocation"="Stelle melden";
+"dashboard"="Dashboard";
+"routeUploadDialogTitle"="Route hochladen";
+"routeUploadDialogMsgPositive"="Route erfolgreich hochgeladen";
+"routeUploadDialogMsgNegative"="Fehler beim Hochladen der Route";
+
+//Marks & Routes Scene
+"marksAndRoutesTitle"="Routen und Anmerkungen";
+"routeInformation"="Routeninformation";
+"myRoutes"="MEINE ROUTEN";
+
+//Add Route Mark Scene
+"addRouteMarkTitle"="Anmerkung hinzufügen";
+"whatDidYouSee"="WAS HAST DU GESEHEN?";
+"recommendation"="Empfehlung";
+"warning"="Warnung";
+"danger"="Gefahr";
+"writeMessage"="Kommentar...";
+
+//Alert strings
+"pleaseWait"="Bitte warten...";
+
+"reportUploadDialogTitle"="Anmerkung hochladen";
+"reportUploadDialogMsgPositive"="Anmerkung wurde erfolgreich hochgeladen.";
+
+"userUpdatedDialogTitle"="Profil aktualisiert";
+"userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
