@@ -99,7 +99,6 @@ class ClientService {
         
     }
     
-    
     //Upload report to backend (Hana)
     static func uploadReportToHana(reportInfo: Data, completion: @escaping (ClientServiceError?)->()) {
         
@@ -231,7 +230,36 @@ class ClientService {
             }
         }
     }
+
+    //Get routes from backend
+    static func getRoutes(routeKeys: Data,completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        
+        generateRequest(scriptName: "routes/queryRoutes.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    var json = [String: AnyObject]()
+                    
+                    do {
+                        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
+                        completion(json, nil)
+                    } catch {
+                        completion(nil, ClientServiceError.jsonSerializationError)
+                    }
+                    
+                    }.resume()
+                
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
     
+    //Get xcsdf-token for post requests
     static func fetchXCSRFToken(completion: @escaping((String?, ClientServiceError?) -> ())) {
         
         let session = SessionFactory.shared().getSession()
@@ -266,6 +294,7 @@ class ClientService {
         }
     }
     
+    //Generate the http request with http headers and body
     static func generateRequest(scriptName: String, httpMethod: String, data: Data?, route: [String: Any]?, completion: @escaping((URLRequest?, ClientServiceError?) -> ())) {
         
         let configurator = Configurator()
