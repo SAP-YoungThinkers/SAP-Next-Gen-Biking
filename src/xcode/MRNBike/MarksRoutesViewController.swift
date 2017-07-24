@@ -83,11 +83,51 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         // remove annotations
         mapView.removeAnnotations(annotations!)
         
+        //Show activity indicator
+        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        present(activityAlert, animated: false, completion: nil)
         
-        //TODO: Add my Routes
-        
-        
-        //TODO: focus map around routes
+        do {
+            
+            //ToDo: create array dynamically
+            let savedData = [100, 101]
+            
+            let jsonObject: [String: Any] = [
+                "routeIds": savedData
+            ]
+            
+            var jsonData: Data
+            
+            jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
+            
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            
+            
+            ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
+                if error == nil {
+                    print("ok")
+                    print(routes as Any)
+                    
+                    //ToDo: Code for showing routes
+                    
+                    //ToDo: focus map around routes
+                } else {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
+            }
+            
+        } catch {
+            //Dismiss activity indicator
+            activityAlert.dismiss(animated: false, completion: nil)
+            
+            //An error occured in the app
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+        }
     }
     
     
