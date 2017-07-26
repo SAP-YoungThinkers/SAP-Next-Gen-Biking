@@ -6,7 +6,7 @@ class User {
     var firstName: String?
     var userWeight: Int?
     var userWheelSize: Int?
-    var shareInfo: Bool?
+    var shareInfo: Int?
     var profilePicture : Data? // as JPEG data stream of UIImage
     //private var accountPicturePath: String? = nil
     
@@ -50,11 +50,7 @@ class User {
                 }
                 
                 if let allow = user["allowShare"] as? Int {
-                    if allow == 1 {
-                        self.shareInfo = true
-                    } else {
-                        self.shareInfo = false
-                    }
+                    self.shareInfo = allow
                 }
                 User.isSingleton = true
             }

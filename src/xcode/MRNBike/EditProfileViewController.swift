@@ -178,8 +178,12 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Set share option
-        inputActivity.isOn = user.shareInfo!
-
+        if user.shareInfo == 0 {
+            inputActivity.isOn = false
+        } else {
+            inputActivity.isOn = true
+        }
+        
         //Set user weight
         inputWeight.value = Float(user.userWeight!)
         inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
@@ -396,7 +400,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
                     user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
-                    user.shareInfo = self.inputActivity.isOn
+                    if self.inputActivity.isOn {
+                        user.shareInfo = 1
+                    } else {
+                        user.shareInfo = 0
+                    }
                     
                     user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
                     

@@ -173,7 +173,11 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
-                    user.shareInfo = self.shareSwitch.isOn
+                    if self.shareSwitch.isOn {
+                        user.shareInfo = 1
+                    } else {
+                        user.shareInfo = 0
+                    }
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
@@ -225,7 +229,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         if let controller = storyboard.instantiateViewController(withIdentifier: "TermScene") as? TermConditionsViewController {
             
             controller.complete = {
-               self.termSwitch.isOn = false
+                self.termSwitch.isOn = false
             }
             
             self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
