@@ -10,6 +10,43 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var myRoutesList: UIView!
     @IBOutlet weak var helperSubView: UIView!
+    @IBOutlet weak var myRoutesTable: UITableView!
+    
+    @IBAction func minimizePressed(_ sender: UIButton) {
+        let minSize = 31
+        let maxSize = 210
+        
+        if(myRoutesList.frame.size.height > CGFloat(minSize)) {
+            // minimize
+            
+            let yPos = myRoutesList.frame.origin.y
+            let sizes = myRoutesList.frame.size
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.imageView?.layer.transform = CATransform3DRotate((sender.imageView?.layer.transform)!, CGFloat(Double.pi), 1, 0, 0)
+                self.myRoutesList.frame.origin.y = yPos + (sizes.height - CGFloat(minSize))
+                self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(minSize))
+                self.myRoutesList.layoutIfNeeded()
+            })
+            
+        }
+        else {
+            // maximize
+            
+            let yPos = myRoutesList.frame.origin.y
+            let sizes = myRoutesList.frame.size
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.imageView?.layer.transform = CATransform3DRotate((sender.imageView?.layer.transform)!, CGFloat(Double.pi), 1, 0, 0)
+                self.myRoutesList.frame.origin.y = yPos - (CGFloat(maxSize) - sizes.height)
+                self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(maxSize))
+                self.myRoutesList.layoutIfNeeded()
+            })
+            
+        }
+        
+    }
+    
     
     let config = Configurator()
     
@@ -19,6 +56,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     var annotations : [RouteReport]? = [RouteReport]()
     
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
+    var userRoutes  = [[Int(), [[Double(), Double()]]]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +119,13 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         helperLayer.path = maskPath
         helperSubView.clipsToBounds = true
         helperSubView.layer.mask = helperLayer
+        
+        // Table insets
+        myRoutesTable.separatorInset = UIEdgeInsets.zero
+        myRoutesTable.layoutMargins = UIEdgeInsets.zero
+        
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,10 +151,35 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         mapView.removeAnnotations(annotations!)
         
         
-        //TODO: Add my Routes
+        //TODO: Get Routes
+        var coorArray = [CLLocationCoordinate2D]()
+        coorArray.append(CLLocationCoordinate2D.init(latitude: 4.222, longitude: 222.111))
+        let route1 : MKPolyline = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
+        mapView.add(route1)
         
+        // zoom out to everything
+        var zoomRect = MKMapRectNull;
+        for annotation in mapView.annotations {
+            let annotationPoint : MKMapPoint = MKMapPointForCoordinate(annotation.coordinate);
+            let pointRect : MKMapRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
+            if (MKMapRectIsNull(zoomRect)) {
+                zoomRect = pointRect;
+            } else {
+                zoomRect = MKMapRectUnion(zoomRect, pointRect);
+            }
+        }
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10), animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.blue
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
         
-        //TODO: focus map around routes
+        return MKOverlayRenderer()
     }
     
     
