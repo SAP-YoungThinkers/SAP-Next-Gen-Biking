@@ -10,6 +10,8 @@ import UIKit
 
 class RouteTableCell: UITableViewCell {
     
+    @IBOutlet weak var rtDate: UILabel!
+    @IBOutlet weak var rtTime: UILabel!
     
     
     override func awakeFromNib() {

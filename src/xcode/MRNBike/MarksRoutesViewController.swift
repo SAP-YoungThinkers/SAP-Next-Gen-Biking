@@ -2,7 +2,7 @@ import UIKit
 import CoreGraphics
 import MapKit
 
-class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarDelegate {
+class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var topBar: UITabBar!
     @IBOutlet weak var routeInformation: UITabBarItem!
@@ -124,6 +124,27 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         myRoutesTable.separatorInset = UIEdgeInsets.zero
         myRoutesTable.layoutMargins = UIEdgeInsets.zero
         
+        
+        
+        
+        /*--------------------
+         
+         T E S T D A T A
+         
+        ---------------------*/
+
+         let testdata = "{\r\n   \"100\": [\r\n      {\r\n         \"latitude\":\"49.29484758065016\",\r\n         \"longitude\":\"8.40395436622985\",\r\n         \"timestamp\":\"2017-04-14T10:37:38.968Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"49.29484758065016\",\r\n         \"longitude\":\"8.40395436622985\",\r\n         \"timestamp\":\"2017-04-14T10:37:38.978Z\"\r\n      }\r\n   ],\r\n   \"101\": [\r\n      {\r\n         \"latitude\":\"37.785834\",\r\n         \"longitude\":\"-122.406417\",\r\n         \"timestamp\":\"2017-04-25T14:07:11.194Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.785834\",\r\n         \"longitude\":\"-122.406417\",\r\n         \"timestamp\":\"2017-04-25T14:07:13.493Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.785834\",\r\n         \"longitude\":\"-122.406417\",\r\n         \"timestamp\":\"2017-04-25T14:07:14.203Z\"\r\n      }\r\n   ]\r\n}"
+        
+        // convert String to NSData
+        let output = testdata.toJSON()
+        
+        print(output ?? "empty")
+        
+        /*--------------------
+         
+         T E S T D A T A
+         
+         ---------------------*/
         
 
     }
@@ -398,6 +419,39 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             })
         }
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userRoutes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "RouteTableCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RouteTableCell  else {
+            fatalError("The dequeued cell is not an instance of RouteTableCell.")
+        }
+        
+        // Fetches the appropriate meal for the data source layout.
+        let currentRoute = userRoutes[indexPath.row]
+        
+        
+        //TODO: CELL TIMESTAMP AUSEINANDERKLAMÖSERN!!!!
+        
+        // cell.rtDate.text = currentRoute[0]
+        // cell.rtTime.text = currentRoute[1] as! String
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // cell selected code here
+    }
 }
 
 extension UIImage {
@@ -408,5 +462,12 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+extension String {
+    func toJSON() -> Any? {
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 }
