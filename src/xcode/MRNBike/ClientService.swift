@@ -152,7 +152,7 @@ class ClientService {
     }
     
     //Upload route to backend (Hana)
-    static func uploadRouteToHana(route: [String: Any], completion: @escaping (Int?, [Int]?, ClientServiceError?)->()) {
+    static func uploadRouteToHana(route: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
         
@@ -170,49 +170,44 @@ class ClientService {
         
         let routeData: [String: Any] = ["tracks": content]
         
-        generateRequest(scriptName: "saveRoutes.xsjs", httpMethod: "POST", data: nil, route: routeData) { (urlRequest, error) in
+        generateRequest(scriptName: "saveRoute.xsjs", httpMethod: "POST", data: nil, route: routeData) { (urlRequest, error) in
             
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
                     guard let status = (response as? HTTPURLResponse)?.statusCode else {
-                        completion(nil, nil, ClientServiceError.httpError)
+                        completion(nil, ClientServiceError.httpError)
                         return
                     }
                     
                     if status == 200 {
                         
                         guard let responseData = data else {
-                            completion(nil, nil, ClientServiceError.httpError)
+                            completion(nil, ClientServiceError.httpError)
                             return
                         }
                         
                         do {
                             let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
                             
-                            guard let code = jsonBody?["code"] as? Int else {
-                                completion(nil, nil, ClientServiceError.httpError)
+                            guard let keys = jsonBody?["id"] as? [Int] else {
+                                completion(nil, ClientServiceError.httpError)
                                 return
                             }
                             
-                            guard let keys = jsonBody?["keys"] as? [Int] else {
-                                completion(nil, nil, ClientServiceError.httpError)
-                                return
-                            }
-                            
-                            completion(code, keys, nil)
+                            completion(keys, nil)
                         } catch {
-                            completion(nil, nil, ClientServiceError.jsonSerializationError)
+                            completion(nil, ClientServiceError.jsonSerializationError)
                         }
                     } else {
-                        completion(nil, nil, ClientServiceError.httpError)
+                        completion(nil, ClientServiceError.httpError)
                         return
                     }
 
                     }.resume()
             } else {
-                completion(nil, nil, error)
+                completion(nil, error)
             }
         }
     }
@@ -228,17 +223,26 @@ class ClientService {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
-                    var json = [String: AnyObject]()
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
                     
-                    do {
-                        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
-                        completion(json, nil)
-                    } catch {
-                        completion(nil, ClientServiceError.jsonSerializationError)
+                    if status == 200 {
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    } else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
                     }
                     
                     }.resume()
-                
             } else {
                 completion(nil, error)
             }

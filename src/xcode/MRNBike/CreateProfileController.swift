@@ -149,8 +149,14 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
         present(activityAlert, animated: false, completion: nil)
         
+         var shareInfo = 0
+        
+        if shareSwitch.isOn {
+            shareInfo = 1
+        }
+        
         //Collect data for creating user
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value, "burgersburned": 0.0,
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value, "burgersburned": 0.0,
             "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
         
         //Generate json data for upload
@@ -174,14 +180,16 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
-                    if self.shareSwitch.isOn {
-                        user.shareInfo = 1
-                    } else {
-                        user.shareInfo = 0
-                    }
+                    
+                    user.shareInfo = shareInfo
+                    
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
+                    user.burgersBurned = 0.0
+                    user.wheelRotation = 0
+                    user.distanceMade = 0.0
+                    user.co2Saved = 0
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)

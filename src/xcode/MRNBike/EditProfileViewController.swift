@@ -372,8 +372,14 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         let user = User.getUser()
         
+        var shareInfo = 0
+        
+        if inputActivity.isOn {
+            shareInfo = 1
+        }
+        
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
@@ -398,11 +404,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
                     user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
-                    if self.inputActivity.isOn {
-                        user.shareInfo = 1
-                    } else {
-                        user.shareInfo = 0
-                    }
+                    
+                    user.shareInfo = shareInfo
                     
                     user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
                     

@@ -158,7 +158,7 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (code, keys, error) in
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (keys, error) in
                 if error == nil {
                     
                     let user = User.getUser()
@@ -167,7 +167,7 @@ class TrackingViewController: UIViewController {
                     let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
                     
                     let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-                    
+                  
                     //Try update user profile
                     ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
                         if error == nil {
@@ -182,7 +182,7 @@ class TrackingViewController: UIViewController {
                                 self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
                                 
                                 //Set new user attributes
-                                //let user = User.getUser()
+                                let user = User.getUser()
                                 
                                 if let currentWheelRotation = user.wheelRotation {
                                     let newWheelRotation = Int(self.wheelRotationLabel.text!)

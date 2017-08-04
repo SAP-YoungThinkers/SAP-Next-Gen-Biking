@@ -197,7 +197,7 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
             type = "Dangerous"
         }
         
-        let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
         
         var annotations = mapView.annotations.filter { $0 !== mapView.userLocation }
         if annotations.count == 0 {

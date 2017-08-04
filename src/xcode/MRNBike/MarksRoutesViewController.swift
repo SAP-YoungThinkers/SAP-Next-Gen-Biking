@@ -96,6 +96,14 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 "routeIds": savedData
             ]
             
+            /*
+            let keys = KeychainService.loadIDs()
+            
+            let jsonObject: [String: Any] = [
+                "routeIds": keys!
+            ]
+            */
+            
             var jsonData: Data
             
             jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
@@ -133,8 +141,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     func routesInfoContent() {
         //Show activity indicator
-        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(activityAlert, animated: true, completion: nil)
+        //let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+        //present(activityAlert, animated: true, completion: nil)
         
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
@@ -170,7 +178,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                     self.mapView.addAnnotations(self.annotations!)
                     
                     //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
+                    //activityAlert.dismiss(animated: false, completion: nil)
                     
                     //center map around points
                     let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
@@ -178,7 +186,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 }
             } else {
                 //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
+                //activityAlert.dismiss(animated: false, completion: nil)
                 
                 //An error occured in the app
                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
