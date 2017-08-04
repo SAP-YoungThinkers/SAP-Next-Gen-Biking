@@ -76,13 +76,11 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
 
-        ClientService.postUser(scriptName: "user/verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
+        ClientService.postUser(scriptName: "verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
-                let code = httpCode!
-
-                switch code {
-                case 201: //User verified
+                switch httpCode! {
+                case 200: //User verified
                     
                     if self.rememberSwitch.isOn {
                         KeychainService.saveRemember(token: "yes")
@@ -126,7 +124,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
                     
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
                     break
-                default: //JSON wrong or empty (Code 0, 400 or 500)
+                default: //JSON wrong or empty: 500
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     

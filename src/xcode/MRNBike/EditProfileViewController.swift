@@ -373,18 +373,16 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         let user = User.getUser()
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersBurned" : user.burgersBurned!, "wheelRotation" : user.wheelRotation!, "distanceMade" : user.distanceMade!, "co2Saved" : user.co2Saved!]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
         //Try update user profile
-        ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
-                let code = httpCode!
-                
-                switch code {
-                case 201: //User successfully updated
+                switch httpCode! {
+                case 200: //User successfully updated
                     
                     //Save email and password in KeyChain
                     if let mail = self.inputEmail.text as NSString? {
@@ -418,7 +416,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     alert.addAction(gotItAction)
                     self.present(alert, animated: true, completion: nil)
                     break
-                default: //For http error codes: 0, 400 and 404
+                default: //For http error codes: 500
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     

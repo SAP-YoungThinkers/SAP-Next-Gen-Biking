@@ -164,21 +164,16 @@ class TrackingViewController: UIViewController {
                     let user = User.getUser()
                     
                     //Upload updated user to Hana
-                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersBurned" : user.burgersBurned!, "wheelRotation" : user.wheelRotation!, "distanceMade" : user.distanceMade!, "co2Saved" : user.co2Saved!]
+                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
                     
                     let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
                     
-                    
-                    
-                    
                     //Try update user profile
-                    ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                    ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
                         if error == nil {
                             
-                            let code = httpCode!
-                            
-                            switch code {
-                            case 201: //User successfully updated
+                            switch httpCode! {
+                            case 200: //User successfully updated
                                 StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
                                 StorageHelper.clearCollectedGPS()
                                 
@@ -215,7 +210,7 @@ class TrackingViewController: UIViewController {
                                 //Upload was successfully alert
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
                                 break
-                            default: //For http error codes: 0, 400 and 404
+                            default: //For http error code: 500
                                 //Dismiss activity indicator
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured in the app

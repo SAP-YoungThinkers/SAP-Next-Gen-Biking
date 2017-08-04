@@ -1,11 +1,3 @@
-//
-//  ClientService.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 28.06.17.
-//
-//
-
 import Foundation
 
 enum ClientServiceError: Error {
@@ -28,31 +20,14 @@ class ClientService {
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
-                    
-                    guard (response as? HTTPURLResponse) != nil else {
+    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
+                    completion(status, nil)
                     
-                    guard let responseData = data else {
-                        completion(nil, ClientServiceError.httpError)
-                        return
-                    }
-                    
-                    do {
-                        let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                        
-                        guard let code = jsonBody?["code"] as? Int else {
-                            completion(nil, ClientServiceError.httpError)
-                            return
-                        }
-                        completion(code, nil)
-                        
-                    } catch {
-                        completion(nil, ClientServiceError.jsonSerializationError)
-                    }
                     }.resume()
-                
             } else {
                 completion(nil, error)
             }
@@ -63,33 +38,37 @@ class ClientService {
     static func getUser(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
-        let scriptName = "user/readUser.xsjs?email=" + mail
-
+        let scriptName = "readUser.xsjs?email=" + mail
+        
         generateRequest(scriptName: scriptName, httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
             
             if error == nil {
-  
+                
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
-                    guard (response as? HTTPURLResponse) != nil else {
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
                     
-                    guard let responseData = data else {
+                    if status == 200 {
+                        guard let responseData = data else {
+                            completion(nil, ClientServiceError.httpError)
+                            return
+                        }
+                        
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    } else {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
-                    
-                    var json = [String: AnyObject]()
-                    
-                    do {
-                        json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
-                        completion(json, nil)
-                    } catch {
-                        completion(nil, ClientServiceError.jsonSerializationError)
-                    }
-                    
                     }.resume()
                 
             } else {
@@ -104,39 +83,25 @@ class ClientService {
         
         let session = SessionFactory.shared().getSession()
         
-        generateRequest(scriptName: "report/createReport.xsjs", httpMethod: "POST", data : reportInfo, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "createReport.xsjs", httpMethod: "POST", data : reportInfo, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
-                    guard (response as? HTTPURLResponse) != nil else {
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
                         completion(ClientServiceError.httpError)
                         return
                     }
                     
-                    guard let responseData = data else {
+                    if status == 200 {
+                       completion(nil)
+                    } else {
                         completion(ClientServiceError.httpError)
                         return
                     }
                     
-                    do {
-                        let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                        
-                        if let code = jsonBody?["code"] {
-                            if code as? Int == 201 {
-                                completion(nil)
-                            }
-                            else {
-                                completion(ClientServiceError.httpError)
-                            }
-                        }
-                        
-                    } catch {
-                        completion(ClientServiceError.jsonSerializationError)
-                    }
                     }.resume()
-                
             } else {
                 completion(error)
             }
@@ -148,23 +113,38 @@ class ClientService {
         
         let session = SessionFactory.shared().getSession()
         
-        generateRequest(scriptName: "report/queryReport.xsjs", httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "queryReport.xsjs", httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
-                    var json = [String: AnyObject]()
-                    
-                    do {
-                        json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
-                        completion(json, nil)
-                    } catch {
-                        completion(nil, ClientServiceError.jsonSerializationError)
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
                     }
                     
+                    if status == 200 {
+                        
+                        guard let responseData = data else {
+                            completion(nil, ClientServiceError.httpError)
+                            return
+                        }
+                        
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    } else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+
                     }.resume()
-                
             } else {
                 completion(nil, error)
             }
@@ -190,53 +170,59 @@ class ClientService {
         
         let routeData: [String: Any] = ["tracks": content]
         
-        generateRequest(scriptName: "importData/bringItToHana.xsjs", httpMethod: "POST", data: nil, route: routeData) { (urlRequest, error) in
+        generateRequest(scriptName: "saveRoutes.xsjs", httpMethod: "POST", data: nil, route: routeData) { (urlRequest, error) in
             
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
                     
-                    guard (response as? HTTPURLResponse) != nil else {
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
                         completion(nil, nil, ClientServiceError.httpError)
                         return
                     }
                     
-                    guard let responseData = data else {
+                    if status == 200 {
+                        
+                        guard let responseData = data else {
+                            completion(nil, nil, ClientServiceError.httpError)
+                            return
+                        }
+                        
+                        do {
+                            let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
+                            
+                            guard let code = jsonBody?["code"] as? Int else {
+                                completion(nil, nil, ClientServiceError.httpError)
+                                return
+                            }
+                            
+                            guard let keys = jsonBody?["keys"] as? [Int] else {
+                                completion(nil, nil, ClientServiceError.httpError)
+                                return
+                            }
+                            
+                            completion(code, keys, nil)
+                        } catch {
+                            completion(nil, nil, ClientServiceError.jsonSerializationError)
+                        }
+                    } else {
                         completion(nil, nil, ClientServiceError.httpError)
                         return
                     }
-                    
-                    do {
-                        let jsonBody = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                        
-                        guard let code = jsonBody?["code"] as? Int else {
-                            completion(nil, nil, ClientServiceError.httpError)
-                            return
-                        }
-                        
-                        guard let keys = jsonBody?["keys"] as? [Int] else {
-                            completion(nil, nil, ClientServiceError.httpError)
-                            return
-                        }
-                        
-                        completion(code, keys, nil)
-                    } catch {
-                        completion(nil, nil, ClientServiceError.jsonSerializationError)
-                    }
+
                     }.resume()
-                
             } else {
                 completion(nil, nil, error)
             }
         }
     }
-
+    
     //Get routes from backend
     static func getRoutes(routeKeys: Data,completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
         
-        generateRequest(scriptName: "routes/queryRoutes.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "queryRoutes.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
@@ -269,25 +255,27 @@ class ClientService {
                 
                 session.dataTask(with: urlRequest!) { data, response, error in
                     
-                    if error != nil{
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                   
+                    if error == nil && status == 200 {
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            completion(nil,ClientServiceError.httpError)
+                            return
+                        }
+                        guard let csrfToken = httpResponse.allHeaderFields["x-csrf-token"] as? String else {
+                            completion(nil, ClientServiceError.csrfTokenError)
+                            return
+                        }
+                        completion(csrfToken, nil)
+                    } else {
                         completion(nil,ClientServiceError.httpError)
                         return
                     }
-                    
-                    guard let httpResponse = response as? HTTPURLResponse else {
-                        completion(nil,ClientServiceError.httpError)
-                        return
-                    }
-                    
-                    guard let csrfToken = httpResponse.allHeaderFields["x-csrf-token"] as? String else {
-                        completion(nil, ClientServiceError.csrfTokenError)
-                        return
-                    }
-                    
-                    completion(csrfToken, nil)
-                    
+
                     }.resume()
-                
             } else {
                 completion(nil, error)
             }

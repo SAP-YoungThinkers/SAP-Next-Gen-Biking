@@ -150,18 +150,19 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         present(activityAlert, animated: false, completion: nil)
         
         //Collect data for creating user
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value, "burgersburned": 0.0,
+            "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
         
         //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
         //Try create user in backend
-        ClientService.postUser(scriptName: "user/createUser.xsjs", userData: jsonData) { (httpCode, error) in
+        ClientService.postUser(scriptName: "createUser.xsjs", userData: jsonData) { (httpCode, error) in
             
             if error == nil {
                 
                 switch httpCode! {
-                case 201: //User created
+                case 200: //User created
                     
                     //Save email and password in KeyChain
                     KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
@@ -199,7 +200,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
                     self.doneButton.isEnabled = false
                     break
-                default: //For http error codes: 0 or 400
+                default: //For http error codes: 500
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     
