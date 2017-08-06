@@ -165,7 +165,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
          TODO: T E S T D A T A (turn into request)
          >>>>>>>>>>>>>>>>>>>>>*/
         
-        let testdata = "{\r\n   \"100\": [\r\n      {\r\n         \"latitude\":\"49.2150001\",\r\n         \"longitude\":\"8.423952\",\r\n         \"timestamp\":\"2017-04-14T10:37:38.968Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"49.294990\",\r\n         \"longitude\":\"8.443951\",\r\n         \"timestamp\":\"2017-04-14T10:37:38.978Z\"\r\n      }\r\n   ],\r\n   \"101\": [\r\n      {\r\n         \"latitude\":\"37.785831\",\r\n         \"longitude\":\"-122.409417\",\r\n         \"timestamp\":\"2017-04-25T14:07:11.194Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.785832\",\r\n         \"longitude\":\"-122.406407\",\r\n         \"timestamp\":\"2017-04-25T14:07:13.493Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.789835\",\r\n         \"longitude\":\"-122.410417\",\r\n         \"timestamp\":\"2017-04-25T14:07:14.203Z\"\r\n      }\r\n   ]\r\n}"
+        let testdata = "{\r\n   \"100\": [\r\n      {\r\n         \"latitude\":\"49.2150001\",\r\n         \"longitude\":\"8.423952\",\r\n         \"timestamp\":\"2017-04-14T10:33:00.118Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"49.294990\",\r\n         \"longitude\":\"8.443951\",\r\n         \"timestamp\":\"2017-04-14T11:34:00.118Z\"\r\n      }\r\n   ],\r\n   \"101\": [\r\n      {\r\n         \"latitude\":\"37.785831\",\r\n         \"longitude\":\"-122.409417\",\r\n         \"timestamp\":\"2017-04-25T14:05:00.000Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.785832\",\r\n         \"longitude\":\"-122.406407\",\r\n         \"timestamp\":\"2017-04-25T14:09:00.000Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.789835\",\r\n         \"longitude\":\"-122.410417\",\r\n         \"timestamp\":\"2017-04-25T14:28:00.000Z\"\r\n      }\r\n   ]\r\n}"
         userRoutes = testdata.toJSON() as? [String : Any]
         
         /*<<<<<<<<<<<<<<<<<<<<
@@ -208,7 +208,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 isFirstPoint = false
                 maxDate = formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
             }
-            let pin = RouteLineAnnotation(title: String(maxDate.timeIntervalSince(minDate2)), message: formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
+            let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
+            let pin = RouteLineAnnotation(title: "\(formatTwo(timeDifference.hour!)):\(formatTwo(timeDifference.minute!))", message: formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
             mapView.addAnnotation(pin)
             let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
             x.title = String(key)
@@ -227,7 +228,19 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         let currentPath = IndexPath(row: 0, section: 0)
         self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
         
+        
     }
+    
+    func formatTwo(_ input: Int) -> String {
+        if (String(input).characters.count == 1) {
+            return "0\(input)"
+        }
+        else {
+            return "\(input)"
+        }
+    }
+    
+
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
