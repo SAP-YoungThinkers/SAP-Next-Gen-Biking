@@ -23,19 +23,26 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet private(set) var confirmPasswordLabel: UITextField!
     @IBOutlet private(set) var shareSwitch: UISwitch!
     @IBOutlet private(set) var weightSlider: UISlider!
- 
+    
     
     @IBOutlet private(set) var wheelSizeSlider: UISlider!
-
+    
     let imagePicker = UIImagePickerController()
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var imagePickerButton: UIButton!
     
-    @IBOutlet var TemSwitch: UISwitch!
+    @IBOutlet var termSwitch: UISwitch!
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    @IBOutlet var profileTableView: UITableView!
+    @IBOutlet weak var tableCellPassword: UITableViewCell!
+    @IBOutlet weak var passwordHint: UILabel!
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,13 +91,13 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         //Set done button disabled
         doneButton.isEnabled = false
         
-        //Bind textfields and TemSwitch to validator
+        //Bind textfields and self.termSwitch to validator
         surnameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         firstNameLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         emailLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         passwordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
         confirmPasswordLabel.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
-        TemSwitch.addTarget(self, action: #selector(CreateProfileController.checkInput), for: UIControlEvents.valueChanged)
+        self.termSwitch.addTarget(self, action: #selector(CreateProfileController.checkInput), for: UIControlEvents.valueChanged)
         
         /* Password Hints */
         passwordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
@@ -98,13 +105,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         passwordHint.isHidden = true
         passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
-        
-        
     }
     
-    @IBOutlet var profileTableView: UITableView!
-    @IBOutlet weak var tableCellPassword: UITableViewCell!
-    @IBOutlet weak var passwordHint: UILabel!
+    //MARK: -
     
     func passwordValidate() {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
@@ -114,8 +117,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             return
         }
         passwordHint.isHidden = false
-        
-        
     }
     
     // Slider value changes
@@ -126,7 +127,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         currentWeightLabel.text = "\(currentWeight) " + " kg"
         currentWeightLabel.sizeToFit()
     }
-
+    
     @IBOutlet private(set) var currentWheelSize: UILabel!
     
     @IBAction func wheelSliderValueChanged(_ sender: UISlider) {
@@ -134,7 +135,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         currentWheelSize.text = "\(currentWheel) " + " Inches"
         currentWheelSize.sizeToFit()
     }
-
+    
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
         
         //Show alert that passwords are not similar
@@ -143,25 +144,32 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             doneButton.isEnabled = false
             return
         }
-    
+        
         //Show activity indicator
         let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
         present(activityAlert, animated: false, completion: nil)
         
+         var shareInfo = 0
+        
+        if shareSwitch.isOn {
+            shareInfo = 1
+        }
+        
         //Collect data for creating user
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareSwitch.isOn, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value]
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value, "burgersburned": 0.0,
+            "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
         
         //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
         //Try create user in backend
-        ClientService.postUser(scriptName: "user/createUser.xsjs", userData: jsonData) { (httpCode, error) in
-    
+        ClientService.postUser(scriptName: "createUser.xsjs", userData: jsonData) { (httpCode, error) in
+            
             if error == nil {
                 
                 switch httpCode! {
-                case 201: //User created
-    
+                case 200: //User created
+                    
                     //Save email and password in KeyChain
                     KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
                     KeychainService.savePassword(token: self.passwordLabel.text! as NSString)
@@ -172,10 +180,16 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = 1 //self.weightSlider.value //Change to int
                     user.userWheelSize = 2 //self.wheelSizeSlider.value
-                    user.shareInfo = self.shareSwitch.isOn
+                    
+                    user.shareInfo = shareInfo
+                    
                     if let tmpPhoto = self.photoImageView.image {
                         user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
                     }
+                    user.burgersBurned = 0.0
+                    user.wheelRotation = 0
+                    user.distanceMade = 0.0
+                    user.co2Saved = 0
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
@@ -194,7 +208,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
                     self.doneButton.isEnabled = false
                     break
-                default: //For http error codes: 0 or 400
+                default: //For http error codes: 500
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     
@@ -214,17 +228,26 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             }
         }
     }
-
+    
+    // MARK: - Switch action
+    
     @IBAction func openTerm(_ sender: Any) {
-        if TemSwitch.isOn == true {
-        let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Term")
-        self.present(controller, animated: true, completion: nil)
-        }
+        guard self.termSwitch.isOn else { return }
         
+        let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "TermScene") as? TermConditionsViewController {
+            
+            controller.complete = {
+                self.termSwitch.isOn = false
+            }
+            
+            self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            self.present(controller, animated: true, completion:nil)
+        }
     }
-
-
+    
+    // MARK: -
+    
     @IBAction func imageButtonPressed(_ sender: UIButton) {
         print("image is going to be picked!")
         imagePicker.allowsEditing = false
@@ -242,23 +265,18 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
         
         //Check input fields and TermSwitcher
-        if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && TemSwitch.isOn {
-    
+        if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && self.termSwitch.isOn {
+            
             //Check if passwords are similar
             if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count  {
                 valid = true
             }
         }
         
-        //If all inputs are valid, enable the done button
-        if valid == true {
-            doneButton.isEnabled = true
-        } else {
-           doneButton.isEnabled = false
-        }
+        doneButton.isEnabled = valid
     }
-
-
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             updateProfileBG(pickedImage: pickedImage)
@@ -297,5 +315,4 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.view.endEditing(true)
         return true
     }
-    
 }

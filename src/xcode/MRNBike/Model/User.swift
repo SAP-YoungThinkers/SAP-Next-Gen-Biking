@@ -6,7 +6,7 @@ class User {
     var firstName: String?
     var userWeight: Int?
     var userWheelSize: Int?
-    var shareInfo: Bool?
+    var shareInfo: Int?
     var profilePicture : Data? // as JPEG data stream of UIImage
     //private var accountPicturePath: String? = nil
     
@@ -36,29 +36,21 @@ class User {
                 if let wsize = user["wheelSize"] as? Int {
                     self.userWheelSize = wsize
                 }
-                /*
                 if let wheelRotation = user["wheelRotation"] as? Int {
-                    self.userWeight = wheelRotation
+                    self.wheelRotation = wheelRotation
                 }
- */
-                self.wheelRotation = 33
-                
-                if let burgersBurned = user["burgersBurned"] as? Int {
-                    self.userWeight = burgersBurned
+                if let burgersBurned = user["burgersBurned"] as? Double {
+                    self.burgersBurned = burgersBurned
                 }
-                if let distanceMade = user["distanceMade"] as? Int {
-                    self.userWeight = distanceMade
+                if let distanceMade = user["distanceMade"] as? Double {
+                    self.distanceMade = distanceMade
                 }
                 if let co2Saved = user["co2Saved"] as? Int {
-                    self.userWeight = co2Saved
+                    self.co2Saved = co2Saved
                 }
                 
                 if let allow = user["allowShare"] as? Int {
-                    if allow == 1 {
-                        self.shareInfo = true
-                    } else {
-                        self.shareInfo = false
-                    }
+                    self.shareInfo = allow
                 }
                 User.isSingleton = true
             }

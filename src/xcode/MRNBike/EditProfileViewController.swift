@@ -178,7 +178,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Set share option
-        inputActivity.isOn = user.shareInfo!
+        if user.shareInfo == 0 {
+            inputActivity.isOn = false
+        } else {
+            inputActivity.isOn = true
+        }
         
         //Set user weight
         inputWeight.value = Float(user.userWeight!)
@@ -218,7 +222,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
-
+        
         //Check input fields and TermSwitcher
         if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
             //Check if passwords are similar
@@ -366,23 +370,25 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
         let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
         
+        let user = User.getUser()
+        
+        var shareInfo = 0
+        
+        if inputActivity.isOn {
+            shareInfo = 1
+        }
+        
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : inputActivity.isOn, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value)]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
         //Try update user profile
-        ClientService.postUser(scriptName: "user/updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
                 
-                let code = httpCode!
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
-                    print("user uploaded")
-                }
-                
-                switch code {
-                case 201: //User successfully updated
+                switch httpCode! {
+                case 200: //User successfully updated
                     
                     //Save email and password in KeyChain
                     if let mail = self.inputEmail.text as NSString? {
@@ -398,7 +404,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
                     user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
-                    user.shareInfo = self.inputActivity.isOn
+                    
+                    user.shareInfo = shareInfo
+                    
                     user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
                     
                     //Dismiss activity indicator
@@ -411,7 +419,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     alert.addAction(gotItAction)
                     self.present(alert, animated: true, completion: nil)
                     break
-                default: //For http error codes: 0, 400 and 404
+                default: //For http error codes: 500
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     

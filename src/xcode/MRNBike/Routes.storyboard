@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a6R-Ad-dlt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a6R-Ad-dlt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -230,7 +230,7 @@
                                         </constraints>
                                         <state key="normal" image="Send_Report"/>
                                         <connections>
-                                            <segue destination="HUi-DD-idU" kind="unwind" unwindAction="saveReportWithSegue:" id="CBd-6B-BMG"/>
+                                            <action selector="onPressSend:" destination="xVH-8u-D9r" eventType="touchUpInside" id="5wK-gH-e0H"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CD6-NC-RXX">
@@ -271,7 +271,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dangerousness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-jD-whg">
+<<<<<<< HEAD
                                 <rect key="frame" x="215.5" y="526" width="121.5" height="20"/>
+=======
+                                <rect key="frame" x="215" y="526" width="122" height="20"/>
+>>>>>>> Development
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -367,7 +371,7 @@
                     <navigationItem key="navigationItem" title="Add Route Mark" id="2ZO-G0-4Wv">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RvN-03-7mM">
                             <connections>
-                                <segue destination="HUi-DD-idU" kind="unwind" unwindAction="cancelToMarksRoutesViewControllerWithSegue:" id="OzT-uy-Aw4"/>
+                                <action selector="onPressCancel:" destination="xVH-8u-D9r" id="akR-0w-lTl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -386,7 +390,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fr-36-mVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="HUi-DD-idU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1909.5999999999999" y="1247.2263868065968"/>
         </scene>
