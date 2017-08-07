@@ -12,14 +12,23 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var helperSubView: UIView!
     @IBOutlet weak var myRoutesTable: UITableView!
 
+    // Variables
     let minSize = 31
     let maxSize = 210
+    let config = Configurator()
+    var tempPlaceholder : UIView?
+    var locationManager = CLLocationManager()
+    var currentLocation: MKUserLocation?
+    var annotations : [RouteReport]? = [RouteReport]()
+    let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
+    
+    // My Routes
+    var userRoutes : [String: Any]? = nil
+    var userRoutesKeys = [Int]()
 
     @IBAction func minimizePressed(_ sender: UIButton) {
-
         if(myRoutesList.frame.size.height > CGFloat(minSize)) {
             // minimize
-
             let yPos = myRoutesList.frame.origin.y
             let sizes = myRoutesList.frame.size
 
@@ -29,11 +38,9 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(self.minSize))
                 self.myRoutesList.layoutIfNeeded()
             })
-
         }
         else {
             // maximize
-
             let yPos = myRoutesList.frame.origin.y
             let sizes = myRoutesList.frame.size
 
@@ -43,22 +50,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(self.maxSize))
                 self.myRoutesList.layoutIfNeeded()
             })
-
         }
-
     }
-
-
-    let config = Configurator()
-
-    var tempPlaceholder : UIView?
-    var locationManager = CLLocationManager()
-    var currentLocation: MKUserLocation?
-    var annotations : [RouteReport]? = [RouteReport]()
-
-    let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
-    var userRoutes : [String: Any]? = nil
-    var userRoutesKeys = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +65,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         myRoutes.title = NSLocalizedString("myRoutes", comment: "")
 
         topBar.delegate = self
-
         topBar.selectedItem = routeInformation
 
         //Mark: - Authorization
@@ -129,7 +121,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         myRoutesTable.separatorInset = UIEdgeInsets.zero
         myRoutesTable.layoutMargins = UIEdgeInsets.zero
 
-
         DispatchQueue.main.async {
             self.myRoutesTable.reloadData()
         }
@@ -152,7 +143,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
 
     func myRoutesContent() {
         myRoutesList.isHidden = false
-
         mapView.showsUserLocation = false
 
         // remove annotations
@@ -160,65 +150,96 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         mapView.removeOverlays(mapView.overlays)
 
 
-        /*--------------------
-
-         TODO: T E S T D A T A (turn into request)
-         >>>>>>>>>>>>>>>>>>>>>*/
-
-        let testdata = "{\r\n   \"100\": [\r\n      {\r\n         \"latitude\":\"49.2150001\",\r\n         \"longitude\":\"8.423952\",\r\n         \"timestamp\":\"2017-04-14T10:33:00.118Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"49.294990\",\r\n         \"longitude\":\"8.443951\",\r\n         \"timestamp\":\"2017-04-14T11:34:00.118Z\"\r\n      }\r\n   ],\r\n   \"101\": [\r\n      {\r\n         \"latitude\":\"37.785831\",\r\n         \"longitude\":\"-122.409417\",\r\n         \"timestamp\":\"2017-04-25T14:05:00.000Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.785832\",\r\n         \"longitude\":\"-122.406407\",\r\n         \"timestamp\":\"2017-04-25T14:09:00.000Z\"\r\n      },\r\n      {\r\n         \"latitude\":\"37.789835\",\r\n         \"longitude\":\"-122.410417\",\r\n         \"timestamp\":\"2017-04-25T14:28:00.000Z\"\r\n      }\r\n   ]\r\n}"
-        userRoutes = testdata.toJSON() as? [String : Any]
-
-        /*<<<<<<<<<<<<<<<<<<<<
-         TODO: T E S T D A T A (turn into request)
-
-         ---------------------*/
-
         //Show activity indicator
         let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
         present(activityAlert, animated: false, completion: nil)
 
-
-        // create each route (sort first)
+        // route keys from keychain
         userRoutesKeys.removeAll()
-        for (key, _) in userRoutes! {
-            userRoutesKeys.append(Int(key)!)
-        }
+        // let keys = KeychainService.loadIDs()
+        //test
+        let keys : [Int]? = [100, 101]
+        userRoutesKeys.append(contentsOf: keys!)
         userRoutesKeys.sort(by: >)
-
-        // not asynchronous because of handling (see below)!
-        self.myRoutesTable.reloadData()
-
-        // create each route (with sorted keys)
-        for key in userRoutesKeys {
-
-            var coorArray = [CLLocationCoordinate2D]()
-            var isFirstPoint = true
-            var minDate2 = Date()
-            var maxDate = Date()
-            var cc = CLLocationCoordinate2D()
-            var ct = String()
-
-            // for every point in that sorted array
-            for obj in ((userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                return formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-            })) {
-                coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
-                if(isFirstPoint) {
-                    // create annotation at first point of each route
-                    cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
-                    minDate2 = formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
-                    ct = obj["timestamp"] as! String
+        
+        //format for request
+        let requestIDs: [String: Any] = [
+            "routeIds": userRoutesKeys
+        ]
+        
+        // request and handling
+        var handling = false
+        do {
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
+            
+            ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
+                
+                if error == nil {
+                    
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    self.userRoutes = routes
+                    handling = true
+                    print("returned: ")
+                    print(routes ?? "nothing...")
+                    
+                } else {
+                    
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
-                isFirstPoint = false
-                maxDate = formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
             }
-            let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
-            let pin = RouteLineAnnotation(title: "\(formatTwo(timeDifference.hour!)):\(formatTwo(timeDifference.minute!))", message: formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
-            mapView.addAnnotation(pin)
-            let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
-            x.title = String(key)
-            mapView.add(x)
+            
+            
+        } catch {
+            //Dismiss activity indicator
+            activityAlert.dismiss(animated: false, completion: nil)
+            
+            //An error occured in the app
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+        }
 
+        if(handling) {
+            
+            // not asynchronous because of handling (see below)!
+            self.myRoutesTable.reloadData()
+            
+            // create each route (with sorted keys)
+            for key in userRoutesKeys {
+                
+                var coorArray = [CLLocationCoordinate2D]()
+                var isFirstPoint = true
+                var minDate2 = Date()
+                var maxDate = Date()
+                var cc = CLLocationCoordinate2D()
+                var ct = String()
+                
+                // for every point in that sorted array
+                for obj in ((userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
+                    return formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
+                })) {
+                    coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
+                    if(isFirstPoint) {
+                        // create annotation at first point of each route
+                        cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
+                        minDate2 = formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                        ct = obj["timestamp"] as! String
+                    }
+                    isFirstPoint = false
+                    maxDate = formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                }
+                let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
+                let pin = RouteLineAnnotation(title: "\(formatTwo(timeDifference.hour!)):\(formatTwo(timeDifference.minute!))", message: formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
+                mapView.addAnnotation(pin)
+                let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
+                x.title = String(key)
+                mapView.add(x)
+                
+            }
+            
         }
 
         // zoom out to everything
@@ -231,57 +252,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         // set first as selected
         let currentPath = IndexPath(row: 0, section: 0)
         self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
-
-        do {
-
-            //ToDo: create array dynamically
-            let savedData = [100, 101]
-
-            let jsonObject: [String: Any] = [
-                "routeIds": savedData
-            ]
-
-            /*
-            let keys = KeychainService.loadIDs()
-
-            let jsonObject: [String: Any] = [
-                "routeIds": keys!
-            ]
-            */
-
-            var jsonData: Data
-
-            jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
-
-            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-            print(jsonString)
-
-
-            ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
-                if error == nil {
-                    print("ok")
-                    print(routes as Any)
-
-                    //ToDo: Code for showing routes
-
-                    //ToDo: focus map around routes
-                } else {
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-
-                    //An error occured in the app
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                }
-            }
-
-        } catch {
-            //Dismiss activity indicator
-            activityAlert.dismiss(animated: false, completion: nil)
-
-            //An error occured in the app
-            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-        }
-
 
     }
 
@@ -299,7 +269,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor(red: 192.0/255, green: 57.0/255, blue: 43.0/255, alpha: 1.0)
+            polylineRenderer.strokeColor = primaryColor
             polylineRenderer.lineWidth = 5
             return polylineRenderer
         }
@@ -414,9 +384,12 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             else if (reportAnnotation.title == "Recommendation") {
                 annotationView!.image = UIImage(named: "recommendation")
             }
-            else {
-                // Warning
+            else if (reportAnnotation.title == "Warning") {
                 annotationView!.image = UIImage(named: "warning")
+            }
+            else {
+                // Route Line
+                annotationView!.image = nil
             }
         }
 
@@ -603,26 +576,32 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // selected table row
-        print("selected id: \(String(userRoutesKeys[indexPath.row])) with elements: \(((userRoutes![String(userRoutesKeys[indexPath.row])]) as! [[String: Any]]).count)")
-
-        // select first point according to row
-        for anno in mapView.annotations {
-
-            var isFirstPoint = true
-            // for every point in that sorted array
-            for obj in ((userRoutes![String(userRoutesKeys[indexPath.row])] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                return formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-            })) {
-                if(isFirstPoint) {
-                    if(anno.coordinate.latitude == Double(obj["latitude"] as! String) && anno.coordinate.longitude == Double(obj["longitude"] as! String)) {
-                        mapView.selectAnnotation(anno, animated: true)
+        
+        if(userRoutes != nil) {
+            
+            // selected table row
+            print("selected id: \(String(userRoutesKeys[indexPath.row])) with elements: \(((userRoutes![String(userRoutesKeys[indexPath.row])]) as! [[String: Any]]).count)")
+            
+            // select first point according to row
+            for anno in mapView.annotations {
+                
+                var isFirstPoint = true
+                // for every point in that sorted array
+                for obj in ((userRoutes![String(userRoutesKeys[indexPath.row])] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
+                    return formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
+                })) {
+                    if(isFirstPoint) {
+                        if(anno.coordinate.latitude == Double(obj["latitude"] as! String) && anno.coordinate.longitude == Double(obj["longitude"] as! String)) {
+                            mapView.selectAnnotation(anno, animated: true)
+                        }
                     }
+                    isFirstPoint = false
                 }
-                isFirstPoint = false
+                
             }
-
+            
         }
+
     }
 }
 
