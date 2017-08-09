@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -554,6 +554,7 @@
                     <navigationItem key="navigationItem" id="Fbr-Px-wQ1"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="actualWeather" destination="3tK-IM-88S" id="Fu3-LJ-T88"/>
                         <outlet property="burgerLabel" destination="ZfF-LI-Ocv" id="jfy-U3-WSi"/>
                         <outlet property="burgersLabel" destination="aeu-QM-sjW" id="ZFD-u4-VAZ"/>
                         <outlet property="co2Label" destination="grr-BS-QkH" id="STI-jf-bSt"/>
@@ -663,7 +664,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lk8-tz-v6K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lk8-tz-v6K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

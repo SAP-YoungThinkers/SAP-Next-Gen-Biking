@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var co2Label: UILabel!
     @IBOutlet weak var distanceText: UILabel!
     
+    /* Weather */
+    @IBOutlet weak var actualWeather: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,13 @@ class HomeViewController: UIViewController {
         co2Label.text = NSLocalizedString("co2Saved", comment: "")
         myProfileButton.setTitle(NSLocalizedString("myProfile", comment: ""), for: .normal)
         startTrackingButton.setTitle(NSLocalizedString("startTracking", comment: ""), for: .normal)
+        
+        /* Weather */
+        // get user location
+        
+        // add parameters for location and use user location
+        // currentWeather(a: 0.0, b: 0.0)
+        forecastWeather()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -43,44 +52,113 @@ class HomeViewController: UIViewController {
     
     
     
-    func WeatherAPI() {
-    print("weather: ---------")
-    let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
-    var lat = "12.222"
-    var long = "12.22"
-    let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
-    print(requestURL)
-    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-    let session = URLSession.shared
-    let task = session.dataTask(with: urlRequest as URLRequest) {
-    (data, response, error) -> Void in
-    
-    let httpResponse = response as! HTTPURLResponse
-    let statusCode = httpResponse.statusCode
-    
-    if (statusCode == 200) {
-    print("JSON Downloaded Sucessfully.")
-    
-    do {
-    
-    // json
-    
-    
+    func currentWeather(a : Double, b : Double) {
+        print("weather: ---------")
+        let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
+        var lat = "12.222"
+        var long = "12.22"
+        let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
+        print(requestURL)
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("JSON Downloaded Sucessfully.")
+                
+                do {
+                    
+                    let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+                    print(jsonData)
+                    
+                    for (key, value) in jsonData as! [String: Any] {
+                        if(key == "main") {
+                            for (subkey, subvalue) in value as! [String: Any] {
+                                if (subkey == "temp") {
+                                    self.actualWeather.text = String(self.convertKtoC(subvalue as! Double))
+                                }
+                                // ...
+                            }
+                        }
+                        // ...
+                    }
+                    
+                    
+                }
+                    
+                catch {
+                    print("Error with Json: \(error)")
+                }
+                
+            }
+            else {
+                print("error: \(statusCode)")
+            }
+            
+            
+        }
+        
+        task.resume()
     }
     
-    catch {
-    print("Error with Json: \(error)")
+    func forecastWeather() {
+        print("weather: ---------")
+        let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
+        var lat = "12.222"
+        var long = "12.22"
+        let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(lat)&lon=\(long)&appid=\(appKey)&cnt=5")!
+        print(requestURL)
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("JSON Downloaded Sucessfully.")
+                
+                do {
+                    
+                    let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+                    print(jsonData)
+                    
+                    for (key, value) in jsonData as! [String: Any] {
+                        if(key == "list") {
+                            for subkey in value as! [[String: Any]] {
+                                print((subkey["temp"] as! [String: Any])["day"]!)
+                                print((subkey["weather"] as! [String: [String: Any]]).first?.value["main"]!)
+                                // ...
+                            }
+                        }
+                        // ...
+                    }
+                    
+                    
+                }
+                    
+                catch {
+                    print("Error with Json: \(error)")
+                }
+                
+            }
+            else {
+                print("error: \(statusCode)")
+            }
+            
+            
+        }
+        
+        task.resume()
     }
     
-    }
-    else {
-    print("error: \(statusCode)")
-    }
-    
-    
-    }
-    
-    task.resume()
+    func convertKtoC(_ f: Double) -> Double {
+        return (f-273.15)
     }
     
     
