@@ -42,6 +42,48 @@ class HomeViewController: UIViewController {
     }
     
     
+    
+    func WeatherAPI() {
+    print("weather: ---------")
+    let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
+    var lat = "12.222"
+    var long = "12.22"
+    let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
+    print(requestURL)
+    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+    let session = URLSession.shared
+    let task = session.dataTask(with: urlRequest as URLRequest) {
+    (data, response, error) -> Void in
+    
+    let httpResponse = response as! HTTPURLResponse
+    let statusCode = httpResponse.statusCode
+    
+    if (statusCode == 200) {
+    print("JSON Downloaded Sucessfully.")
+    
+    do {
+    
+    // json
+    
+    
+    }
+    
+    catch {
+    print("Error with Json: \(error)")
+    }
+    
+    }
+    else {
+    print("error: \(statusCode)")
+    }
+    
+    
+    }
+    
+    task.resume()
+    }
+    
+    
     //Method to be called each time the screen appears to update the UI.
     private func updateUI() {
         // Setting The Username to the Label in Home Screen.
