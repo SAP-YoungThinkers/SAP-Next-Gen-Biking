@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NoF-Nw-mDQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NoF-Nw-mDQ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -229,7 +229,7 @@
                         <outlet property="password" destination="3UX-6B-WnM" id="KRi-7z-2sl"/>
                         <outlet property="personalInfo" destination="gwA-jh-Pcy" id="V68-Ls-RPL"/>
                         <outlet property="repeatPassword" destination="2Mm-BH-I4Q" id="PVL-1W-Fwd"/>
-                        <outlet property="saveButton" destination="sDz-NX-6YT" id="bwH-H3-H5Z"/>
+                        <outlet property="saveButton" destination="sDz-NX-6YT" id="gYN-mm-3qD"/>
                         <outlet property="scrollView" destination="Hcd-ft-WfM" id="ERg-0K-Lof"/>
                         <outlet property="userBar" destination="uN6-zh-n08" id="p1W-xn-eSm"/>
                         <outlet property="weight" destination="lp6-6r-hwL" id="2mX-uy-hQn"/>
@@ -352,6 +352,10 @@
                             <constraint firstItem="jyD-ou-mWU" firstAttribute="leading" secondItem="rQl-os-aSJ" secondAttribute="trailing" id="zah-n3-O1L"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstnameLabel" destination="rQl-os-aSJ" id="UTV-ae-Ofq"/>
+                        <outlet property="surnameLabel" destination="h29-qB-boy" id="ZPm-Om-CwU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMW-qU-WEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

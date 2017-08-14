@@ -1,7 +1,107 @@
+//Start Page Scene
+"takeTourHeader"="Ride • Award • Protect";
+"takeTourDescription"="With our App you will not only ride bike for yourself, but even to make riding more comfortable for all of us. Award by reaching goals, protect our enironment!";
+"startRidingButton"="START RIDING";
+//Take Tour Scene
+"start"="START";
+"takeTour"="TAKE THE TOUR";
+
+//Login Scene
+"signIn"="Sign in";
+"rememberPassword"="Remember Password";
+"loginButton"="LOG IN";
+"registerButton"="REGISTER";
+"passwordUserWrongDialogTitle"="Username/Password is wrong";
+"passwordUserDialogMsg"="Please check your username/password.";
+
+//Home Scene
+"startTracking"="Start Tracking";
+"myProfile"="My Profile";
+"burgersBurned"="Burgers Burned";
+"distanceKM"="Distance (km)";
+
+//Create/Edit Profile Scene
+"surnameLabel"="SURNAME";
+"firstnameLabel"="FIRSTNAME";
+"createProfile"="Create Profile";
+"editProfile"="Edit Profile";
+"emailLabel"="EMAIL";
+"emailExample"="john.doe@mrn.com";
+"passwordLabel"="PASSWORD";
+"repeatPasswordLabel"="REPEAT PASSWORD";
+"shareInfoLabel"="SHARE ACTIVITY INFORMATION";
+"agreeTermCondition"="I AGREE WITH THE TERMS AND CONDITIONS";
+"personalInfoLabel"="PERSONAL INFORMATION";
+"weightLabel"="Weight";
+"wheelSizeLabel"="Wheel Size";
+"passwordValidationHint"="must consist of 10 to 15 uppercase and lowercase letters, special characters and numbers";
+
+"passwordEmptyDialogTitle"="Password empty";
+"passwordEmptyDialogMsg"="Please fill in your password.";
+
+"passwordMismatchDialogTitle"="Password Mismatch";
+"passwordMismatchDialogMsg"="Please repeat the same password!";
+
+"noEmailDialogTitle"="No email";
+"noEmailDialogMsg"="Please let us know your email!";
+
+"noTermConditionDialogTitle"="Terms and Conditions";
+"noTermConditionDialogMsg"="Accept the terms and conditions, please!";
+
+"userExistsDialogTitle"="User Exists";
+"userExistsDialogMsg"="A user with the provided email address already exists!";
+
+"errorOccuredDialogTitle"="Error Occured";
+"errorOccuredDialogMsg"="Ooops! An error occured.";
+
+"dialogActionGotIt"="Got it!";
+
+//Term Scene
+"termConditionHeader"="Terms & Conditions";
+"termConditionText"="Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this) Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobil";
+
+"agreeButton"="I AGREE";
+"disagreeButton"="I DISAGREE";
+
+"dismissConfDialogTitle"="Dismiss conformation";
+"dismissConfDialogMsg"="If you disagree with the terms and conditions, you can't continue working with the app and your current progress will be lost. Are you sure about this?";
+
+"dialogActionNo"="No";
+"termAlertAction"="Dismiss";
+
+//Tracking Scene
+"wheelRotation"="WHEEL ROTATIONS";
+"burgers"="BURGERS";
+"distance"="DISTANCE";
+"co2Saved"="CO2 SAVED";
+"saveRoute"="Save Route";
+"dismiss"="Dismiss";
+"reportLocation"="Report Location";
+"dashboard"="Dashboard";
+"routeUploadDialogTitle"="Route Upload";
+"routeUploadDialogMsgPositive"="Route uploaded successfully.";
+"routeUploadDialogMsgNegative"="Uploading route failed.";
+
+//Marks & Routes Scene
+"marksAndRoutesTitle"="Marks & Routes";
+"routeInformation"="ROUTE INFO";
+"myRoutes"="MY ROUTES";
+
+//Add Route Mark Scene
+"addRouteMarkTitle"="Add Route Mark";
+"whatDidYouSee"="WHAT DID YOU SEE?";
+"recommendation"="Recommendation";
+"warning"="Warning";
+"danger"="Danger";
+"writeMessage"="Message...";
+
+//Alert strings
+"pleaseWait"="Please wait...";
+
+"reportUploadDialogTitle"="Report Upload";
+"reportUploadDialogMsgPositive"="Report uploaded successfully.";
+
+"userUpdatedDialogTitle"="Profile Updated";
+"userUpdatedDialogMsg"="Profile was successfully updated!";
 
 
-"upload_button_text"="Upload data";
-"upload_Info"="Number of uploaded routes:";
-"Stop_Tracking"="Stop tracking";
-"Start_Tracking"="Start tracking";
-"center"="Center map";

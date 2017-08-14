@@ -1,5 +1,3 @@
-
-
 import Foundation
 import Security
 
@@ -16,6 +14,7 @@ let accessGroup = "SecuritySerivice"
 let emailKey = "KeyForEmail"
 let passwordKey = "KeyForPassword"
 let routeKey = "KeyForRouteIDs"
+let rememberMeKey = "no"
 
 
 // Arguments for the keychain queries
@@ -34,6 +33,7 @@ public class KeychainService: NSObject {
      * Exposed methods to perform save and load queries.
      */
     
+    //EMail
     public class func saveEmail(token: NSString) {
         self.save(service: emailKey as NSString, data: token)
     }
@@ -42,6 +42,7 @@ public class KeychainService: NSObject {
         return self.load(service: emailKey as NSString)
     }
     
+    //Password
     public class func savePassword(token: NSString) {
         self.save(service: passwordKey as NSString, data: token)
     }
@@ -49,7 +50,17 @@ public class KeychainService: NSObject {
     public class func loadPassword() -> NSString? {
         return self.load(service: passwordKey as NSString)
     }
+
+    //RememberMe
+    public class func saveRemember(token: NSString) {
+        self.save(service: rememberMeKey as NSString, data: token)
+    }
     
+    public class func loadRemember() -> NSString? {
+        return self.load(service: rememberMeKey as NSString)
+    }
+    
+    //IDs
     public class func saveIDs(IDs: [Int]) {
         let IDsAsString = IDs.map{ String($0) }.joined(separator: ",") as NSString
 
@@ -65,6 +76,18 @@ public class KeychainService: NSObject {
     /**
      * Internal methods for querying the keychain.
      */
+    
+    private class func delete(service: NSString) {
+        // Instantiate a new default keychain query
+        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue])
+        
+        // Delete any existing items
+        let status = SecItemDelete(keychainQuery as CFDictionary)
+        if (status != errSecSuccess) {
+            print("Delete failed")
+        }
+        
+    }
     
     private class func save(service: NSString, data: NSString) {
         let dataFromString: NSData = data.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)! as NSData

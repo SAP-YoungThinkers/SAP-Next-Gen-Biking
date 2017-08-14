@@ -1,0 +1,30 @@
+
+/* Class = "UINavigationItem"; title = "Add Route Mark"; ObjectID = "2ZO-G0-4Wv"; */
+"2ZO-G0-4Wv.title" = "Markierung erstellen";
+
+/* Class = "UILabel"; text = "WHAT DID YOU SEE?"; ObjectID = "4ss-zy-0rX"; */
+"4ss-zy-0rX.text" = "Was möchtest du melden?";
+
+/* Class = "UITabBarItem"; title = "ROUTE INFO"; ObjectID = "Edq-7N-qUc"; */
+"Edq-7N-qUc.title" = "Strecken Info";
+
+/* Class = "UITabBarItem"; title = "MY ROUTES"; ObjectID = "PZD-gx-7om"; */
+"PZD-gx-7om.title" = "Meine Strecken";
+
+/* Class = "UILabel"; text = "Dangerousness"; ObjectID = "X0t-jD-whg"; */
+"X0t-jD-whg.text" = "Gefahr";
+
+/* Class = "UIViewController"; title = "MarksAndRoutes"; ObjectID = "ZLe-Hw-C3c"; */
+"ZLe-Hw-C3c.title" = "Strecken & Markierungen";
+
+/* Class = "UILabel"; text = "Recomendation"; ObjectID = "deP-ff-Q14"; */
+"deP-ff-Q14.text" = "Empfehlung";
+
+/* Class = "UILabel"; text = "Warning"; ObjectID = "nse-nj-yhq"; */
+"nse-nj-yhq.text" = "Warnung";
+
+/* Class = "UITextView"; text = "Write Message"; ObjectID = "tKJ-nR-ER3"; */
+"tKJ-nR-ER3.text" = "Beschreibung hinzufügen";
+
+/* Class = "UINavigationItem"; title = "Marks & Routes"; ObjectID = "xDB-N6-Rkq"; */
+"xDB-N6-Rkq.title" = "Strecken und Markierungen";

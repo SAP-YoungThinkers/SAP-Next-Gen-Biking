@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>username</key>
-	<string>GBI_030</string>
-	<key>password</key>
-	<string>[MobileApp]</string>
 	<key>yellow</key>
 	<string>#f0ab00</string>
 	<key>red</key>
@@ -19,6 +15,6 @@
 	<key>zoom level</key>
 	<string>0.02</string>
 	<key>distance filter</key>
-	<string>3.0</string>
+	<string>10.0</string>
 </dict>
 </plist>
