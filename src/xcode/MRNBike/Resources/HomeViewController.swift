@@ -1,6 +1,10 @@
-import UIKit
 
-class HomeViewController: UIViewController {
+
+import UIKit
+import CoreLocation
+
+
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var wheelRotationValue: UILabel!
@@ -14,7 +18,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var burgersLabel: UILabel!
     @IBOutlet weak var co2Label: UILabel!
     @IBOutlet weak var distanceText: UILabel!
+    @IBOutlet weak var labelCurrentDate: UILabel!
     
+    var locationManager: CLLocationManager = CLLocationManager()
+
     /* Weather */
     @IBOutlet weak var actualWeather: UILabel!
     
@@ -35,8 +42,25 @@ class HomeViewController: UIViewController {
         // add parameters for location and use user location
         // currentWeather(a: 0.0, b: 0.0)
         forecastWeather()
-        
+        setupLocation()
+        setupDate()
     }
+    
+    func setupLocation() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func setupDate() {
+        let formatter = DateFormatter()
+        // Saturday. 6 May
+        formatter.dateFormat = "EEEE.dd MMM"
+        let currentDate = formatter.string(from: Date())
+        labelCurrentDate.text = currentDate
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -50,13 +74,20 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.actualWeather.text = "-"
+        if let lastLocation: CLLocation = locations.last {
+            let lat = String(format: "%.6f", lastLocation.coordinate.latitude)
+            let long = String(format: "%.6f", lastLocation.coordinate.longitude)
+            currentWeather(lat: lat, long: long)
+            locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingHeading()
+        }
+    }
     
-    
-    func currentWeather(a : Double, b : Double) {
+    func currentWeather(lat: String, long: String) {
         print("weather: ---------")
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
-        var lat = "12.222"
-        var long = "12.22"
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
         print(requestURL)
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
@@ -80,6 +111,7 @@ class HomeViewController: UIViewController {
                             for (subkey, subvalue) in value as! [String: Any] {
                                 if (subkey == "temp") {
                                     self.actualWeather.text = String(self.convertKtoC(subvalue as! Double))
+                                    break
                                 }
                                 // ...
                             }
@@ -110,7 +142,7 @@ class HomeViewController: UIViewController {
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
         var lat = "12.222"
         var long = "12.22"
-        let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(lat)&lon=\(long)&appid=\(appKey)&cnt=5")!
+        let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(lat)&lon=\(long)&appid=\(appKey)&cnt=6")!
         print(requestURL)
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared
@@ -132,7 +164,7 @@ class HomeViewController: UIViewController {
                         if(key == "list") {
                             for subkey in value as! [[String: Any]] {
                                 print((subkey["temp"] as! [String: Any])["day"]!)
-                                print((subkey["weather"] as! [String: [String: Any]]).first?.value["main"]!)
+                                //print((subkey["weather"] as! [String: [String: Any]]).first?.value["main"]!)
                                 // ...
                             }
                         }
@@ -157,8 +189,8 @@ class HomeViewController: UIViewController {
         task.resume()
     }
     
-    func convertKtoC(_ f: Double) -> Double {
-        return (f-273.15)
+    func convertKtoC(_ f: Double) -> Int {
+        return Int(f-273.15)
     }
     
     

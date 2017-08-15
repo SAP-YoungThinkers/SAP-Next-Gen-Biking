@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GOE-25-Xjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -106,7 +106,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtk-Id-tqA">
                                                         <rect key="frame" x="0.0" y="251" width="375" height="91"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tK-IM-88S">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3tK-IM-88S">
                                                                 <rect key="frame" x="28" y="0.0" width="72" height="91"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="55"/>
@@ -276,7 +276,7 @@
                                                         <rect key="frame" x="313" y="0.0" width="62" height="95"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-vB-T8A">
-                                                                <rect key="frame" x="12" y="8" width="38" height="21"/>
+                                                                <rect key="frame" x="12.5" y="8" width="38" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="4WQ-cp-zxm"/>
                                                                 </constraints>
@@ -560,6 +560,7 @@
                         <outlet property="co2Label" destination="grr-BS-QkH" id="STI-jf-bSt"/>
                         <outlet property="distanceLabel" destination="mXV-Nv-uYt" id="iWc-tk-8Fs"/>
                         <outlet property="distanceText" destination="iVM-Ra-sKB" id="rfh-3i-lRs"/>
+                        <outlet property="labelCurrentDate" destination="3qB-ip-zkt" id="r2b-dE-n2L"/>
                         <outlet property="myProfileButton" destination="R0u-xp-rLY" id="o40-ze-657"/>
                         <outlet property="startTrackingButton" destination="CTY-BR-AdT" id="Gxw-XT-c2B"/>
                         <outlet property="treesSavedLabel" destination="Bcx-3X-xHM" id="sa0-UD-WOv"/>
@@ -664,7 +665,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lk8-tz-v6K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lk8-tz-v6K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
