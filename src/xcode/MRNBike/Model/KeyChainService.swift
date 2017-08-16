@@ -62,7 +62,17 @@ public class KeychainService: NSObject {
     
     //IDs
     public class func saveIDs(IDs: [Int]) {
-        let IDsAsString = IDs.map{ String($0) }.joined(separator: ",") as NSString
+        
+        // no dublicates
+        var newIDs = IDs
+        if let x = loadIDs() {
+            for z in x {
+                if (!x.contains(z)) {
+                    newIDs.append(z)
+                }
+            }
+        }
+        let IDsAsString = newIDs.map{ String($0) }.joined(separator: ",") as NSString
 
         self.save(service: routeKey as NSString, data: IDsAsString)
     }

@@ -174,7 +174,7 @@ class TrackingViewController: UIViewController {
                             
                             switch httpCode! {
                             case 200: //User successfully updated
-                                StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
+                                KeychainService.saveIDs(IDs: keys!)
                                 StorageHelper.clearCollectedGPS()
                                 
                                 self.reportLocation.isHidden = false
