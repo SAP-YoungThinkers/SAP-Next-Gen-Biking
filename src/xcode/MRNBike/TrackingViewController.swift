@@ -58,8 +58,8 @@ class TrackingViewController: UIViewController {
         if let wheelSize = user.userWheelSize {
             userWheelSize = wheelSize
         }
-        
-        wheelInCm = Double(userWheelSize) * 0.0254
+        // U = 2 * pi * r to get the perimeter
+        wheelInCm = Double(userWheelSize) * 0.393701 * 2 * Double.pi
         
         navItem.title = "Record Route"
         
@@ -280,7 +280,7 @@ class TrackingViewController: UIViewController {
             coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
             
             metersDistance += coordinateLast.distance(from: coordinateNew)
-            wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
+            wheelRotationLabel.text = String(Int(Double(metersDistance / (wheelInCm / 100))))
             //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
