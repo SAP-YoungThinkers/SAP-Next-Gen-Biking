@@ -35,6 +35,8 @@ class TrackingViewController: UIViewController {
     var coordinateNew = CLLocation()
     var coordinateLast = CLLocation()
     var metersDistance: Double = 0.0
+    var savedCO2 : Double?
+    var co2 : Double?
     
     //Users wheel size
     var userWheelSize: Int = 0
@@ -57,6 +59,9 @@ class TrackingViewController: UIViewController {
         let user = User.getUser()
         if let wheelSize = user.userWheelSize {
             userWheelSize = wheelSize
+        }
+        if let co2 = user.co2Emissions {
+            self.co2 = co2
         }
         // U = 2 * pi * r to get the perimeter
         wheelInCm = Double(userWheelSize) * 0.393701 * 2 * Double.pi
@@ -285,7 +290,15 @@ class TrackingViewController: UIViewController {
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
             //(Distance/1609.34*45)/12.97
-            co2SavedLabel.text = String(round(10*(metersDistance / 464))/10)
+            if co2 != nil {
+                // saved KG per Kilometer
+                if savedCO2 == nil {
+                    savedCO2 = co2! * (metersDistance / 1000)
+                } else {
+                    savedCO2 = savedCO2! + ( co2! * (metersDistance / 1000))
+                }
+                co2SavedLabel.text = "\(round(10 * savedCO2! ) / 10)"
+            }
             
             coordinateLast = coordinateNew
         }

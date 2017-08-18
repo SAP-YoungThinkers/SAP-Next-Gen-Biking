@@ -14,9 +14,16 @@ class User {
     var burgersBurned: Double?
     var distanceMade: Double?
     var co2Saved: Int?
+    var co2Emissions : Double?
     
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
+    
+    /*
+     CO2 values from http://www.co2nnect.org/help_sheets/?op_id=602&opt_id=98
+     values mean: only DIRECT emissions, without fuel / food / production
+     in KILOGRAMMS PER KILOMETER!
+    */
     
     private init(userData: [String: AnyObject]?) {
 
@@ -53,6 +60,29 @@ class User {
                     self.shareInfo = allow
                 }
                 User.isSingleton = true
+                
+                
+                struct co2ComparedObject {
+                    static let car = 0.133
+                    static let bus = 0.069
+                    static let train = 0.065
+                }
+                
+                if let co2Emissions = user["co2Emissions"] as? String {
+                    switch co2Emissions {
+                    case "car":
+                        self.co2Emissions = co2ComparedObject.car
+                    case "bus":
+                        self.co2Emissions = co2ComparedObject.bus
+                    case "train":
+                        self.co2Emissions = co2ComparedObject.train
+                    default:
+                        self.co2Emissions = co2ComparedObject.car
+                    }
+                }
+                else {
+                    self.co2Emissions = co2ComparedObject.car
+                }
             }
         }
     }
