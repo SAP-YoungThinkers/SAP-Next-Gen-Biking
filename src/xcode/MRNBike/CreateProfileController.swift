@@ -166,7 +166,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         ClientService.postUser(scriptName: "createUser.xsjs", userData: jsonData) { (httpCode, error) in
             
             if error == nil {
-                
+
                 switch httpCode! {
                 case 200: //User created
                     
