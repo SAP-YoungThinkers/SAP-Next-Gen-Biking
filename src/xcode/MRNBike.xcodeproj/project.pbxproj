@@ -24,6 +24,8 @@
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
+		102F268F1F4BD294001D9907 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 102F268E1F4BD294001D9907 /* Credentials.json */; };
+		102F26911F4BD2AF001D9907 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102F26901F4BD2AF001D9907 /* Settings.swift */; };
 		108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D1CC61F2569E100023F2D /* CreateProfileController.swift */; };
 		108D1CC91F256AED00023F2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D1CC81F256AED00023F2D /* ViewController.swift */; };
 		10B2ABCB1F2553BA00847AA6 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */; };
@@ -88,6 +90,8 @@
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
+		102F268E1F4BD294001D9907 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		102F26901F4BD2AF001D9907 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		108D1CC61F2569E100023F2D /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileController.swift; sourceTree = "<group>"; };
 		108D1CC81F256AED00023F2D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
+				102F268E1F4BD294001D9907 /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
+				102F26901F4BD2AF001D9907 /* Settings.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
+				102F268F1F4BD294001D9907 /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
@@ -452,6 +459,7 @@
 				108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
+				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
 				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
