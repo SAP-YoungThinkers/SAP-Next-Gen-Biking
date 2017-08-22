@@ -64,7 +64,7 @@ class TrackingViewController: UIViewController {
             self.co2 = co2
         }
         // U = 2 * pi * r to get the perimeter
-        wheelInCm = Double(userWheelSize) * 0.393701 * 2 * Double.pi
+        wheelInCm = Double(userWheelSize) * 2.54 * 2 * Double.pi
         
         navItem.title = "Record Route"
         
