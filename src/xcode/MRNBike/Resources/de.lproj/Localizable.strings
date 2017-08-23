@@ -35,6 +35,7 @@
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
 "passwordValidationHint"="muss aus 10 bis 15 großen und kleinen Buchstaben sowie Sonderzeichen und Zahlen bestehen";
+"passwordRepeatValidationHint"="Passwörter müssen gleich sein";
 "weightUnity"="Zoll";
 
 "passwordEmptyDialogTitle"="KEIN PASSWORT EINGEGEBEN";

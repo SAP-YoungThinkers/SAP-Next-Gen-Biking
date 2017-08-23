@@ -40,6 +40,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var profileTableView: UITableView!
     @IBOutlet weak var tableCellPassword: UITableViewCell!
     @IBOutlet weak var passwordHint: UILabel!
+    @IBOutlet weak var passwordRepeatHint: UILabel!
     
     @IBAction func wheelInputChanged(_ sender: Any) {
         guard let tf = sender as? UITextField else {
@@ -124,20 +125,30 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         /* Password Hints */
         passwordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
-        confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
+        confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordRepeatValidate), for: UIControlEvents.editingDidEnd)
         
         passwordHint.isHidden = true
         passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
+        passwordRepeatHint.isHidden = true
+        passwordRepeatHint.text = NSLocalizedString("passwordRepeatValidationHint", comment: "")
     }
     
     func passwordValidate() {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
         
-        if passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) {
+        if passwordTest.evaluate(with: passwordLabel.text) {
             passwordHint.isHidden = true
             return
         }
         passwordHint.isHidden = false
+    }
+    
+    func passwordRepeatValidate() {
+        if passwordLabel.text == confirmPasswordLabel.text {
+            passwordRepeatHint.isHidden = true
+            return
+        }
+        passwordRepeatHint.isHidden = false
     }
     
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {

@@ -39,7 +39,7 @@ class TrackingViewController: UIViewController {
     var co2 : Double?
     
     //Users wheel size
-    var userWheelSize: Int = 0
+    var userWheelSize: Double = 0
     var wheelInCm: Double = 0.0
     
     //MARK: Functions
