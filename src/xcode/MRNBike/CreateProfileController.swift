@@ -54,7 +54,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             if numberStarts {
                 decimalCount += 1
             }
-            if character == "." {
+            if character == "." || character == "," {
                 numberStarts = true
             }
         }
@@ -63,7 +63,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             _ = array.popLast()
             tf.text = String(array)
         }
-        if tf.text! == "." {
+        if tf.text! == "." || tf.text! == "," {
             tf.text = "0."
         }
         checkInput()
@@ -170,8 +170,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             shareInfo = 1
         }
         
-        //Collect data for creating user
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : Double(wheelSizeInput.text!)!, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
+        //Collect data for creating user        
+        var number = wheelSizeInput.text!.doubleValue
+        if number == nil {
+            number = 0.0
+        }
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number!, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
             "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
         
         //Generate json data for upload
@@ -193,8 +197,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     let user = User.getUser()
                     user.firstName = self.firstNameLabel.text
                     user.surname = self.surnameLabel.text
-                    user.userWeight = 1 //self.weightSlider.value //Change to int
-                    user.userWheelSize = 2 //self.wheelSizeSlider.value
+                    user.userWeight = Int(self.weightInput.text!)
+                    user.userWheelSize = number!
                     
                     user.shareInfo = shareInfo
                     
@@ -284,7 +288,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             
             //Check if passwords are similar
             if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count  {
-                if Double(wheelSizeInput.text!) != nil && Int(weightInput.text!) != nil {
+                if wheelSizeInput.text!.doubleValue != nil && Int(weightInput.text!) != nil {
                     valid = true
                 }
             }
@@ -331,5 +335,22 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+}
+
+extension String {
+    // because of seperators like "." or ","
+    static let numberFormatter = NumberFormatter()
+    var doubleValue: Double? {
+        String.numberFormatter.decimalSeparator = "."
+        if let result =  String.numberFormatter.number(from: self) {
+            return result.doubleValue
+        } else {
+            String.numberFormatter.decimalSeparator = ","
+            if let result = String.numberFormatter.number(from: self) {
+                return result.doubleValue
+            }
+        }
+        return nil
     }
 }

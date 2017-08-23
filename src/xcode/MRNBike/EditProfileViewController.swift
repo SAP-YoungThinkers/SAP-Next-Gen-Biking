@@ -274,7 +274,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
             //Check if passwords are similar
             if inputPassword.text?.characters.count == inputPasswordRepeat.text?.characters.count {
-                if Double(wheelSizeInput.text!) != nil && Int(weightInput.text!) != nil {
+                let number = wheelSizeInput.text!.doubleValue
+                if number != nil && Int(weightInput.text!) != nil {
                     valid = true
                 }
             }
@@ -318,7 +319,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         } else {
             print("Something went wrong")
         }
-        
+        checkInput()
         dismiss(animated: true, completion: nil)
     }
     
@@ -423,7 +424,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Double(wheelSizeInput.text!)!, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+        var number = wheelSizeInput.text!.doubleValue
+        if number == nil {
+            number = 0.0
+        }
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number!, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
@@ -447,7 +452,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.surname = surname.text!
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = Double(self.wheelSizeInput.text!)
+                    user.userWheelSize = number!
                     
                     user.shareInfo = shareInfo
                     
