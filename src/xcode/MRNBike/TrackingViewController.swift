@@ -58,7 +58,7 @@ class TrackingViewController: UIViewController {
         //Get user wheel size attribute
         let user = User.getUser()
         if let wheelSize = user.userWheelSize {
-            userWheelSize = wheelSize
+            userWheelSize = Double(wheelSize / 10)
         }
         if let co2 = user.co2Emissions {
             self.co2 = co2

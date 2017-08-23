@@ -178,7 +178,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         //Set wheel size
         let y = Double(user.userWheelSize!)
-        wheelSizeInput.text = String(y)
+        wheelSizeInput.text = String(y / 10)
         
         weight.text = NSLocalizedString("weightLabel", comment: "")
         wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
@@ -424,11 +424,12 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Upload updated user to Hana
-        var number = wheelSizeInput.text!.doubleValue
-        if number == nil {
-            number = 0.0
+        var numberDouble = wheelSizeInput.text!.doubleValue
+        if numberDouble == nil {
+            numberDouble = 0.0
         }
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number!, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+        let number = Int(numberDouble! * 10)
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
@@ -452,7 +453,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.surname = surname.text!
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = number!
+                    user.userWheelSize = number
                     
                     user.shareInfo = shareInfo
                     

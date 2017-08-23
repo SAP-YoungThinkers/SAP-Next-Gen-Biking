@@ -5,7 +5,7 @@ class User {
     var surname: String?
     var firstName: String?
     var userWeight: Int?
-    var userWheelSize: Double?
+    var userWheelSize: Int? // 10 times actual value
     var shareInfo: Int?
     var profilePicture : Data? // as JPEG data stream of UIImage
     //private var accountPicturePath: String? = nil
@@ -40,7 +40,8 @@ class User {
                 if let weight = user["weight"] as? Int {
                     self.userWeight = weight
                 }
-                if let wsize = user["wheelSize"] as? Double {
+                if let wsize = user["wheelSize"] as? Int {
+                    // 10 times actual value
                     self.userWheelSize = wsize
                 }
                 if let wheelRotation = user["wheelRotation"] as? Int {

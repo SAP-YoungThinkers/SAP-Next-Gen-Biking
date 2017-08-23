@@ -171,12 +171,16 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         }
         
         //Collect data for creating user        
-        var number = wheelSizeInput.text!.doubleValue
-        if number == nil {
-            number = 0.0
+        var numberDouble = wheelSizeInput.text!.doubleValue
+        if numberDouble == nil {
+            numberDouble = 0.0
         }
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number!, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
+        /* CONVERT TO INT BY MULTIPLYING WITH 10 */
+        let number = Int(numberDouble! * 10.0)
+        
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
             "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
+        print(uploadData)
         
         //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
@@ -198,7 +202,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.firstName = self.firstNameLabel.text
                     user.surname = self.surnameLabel.text
                     user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = number!
+                    user.userWheelSize = number
                     
                     user.shareInfo = shareInfo
                     
