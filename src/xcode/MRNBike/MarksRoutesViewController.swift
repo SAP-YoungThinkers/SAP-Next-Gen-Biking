@@ -60,7 +60,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         myRoutesTable.delegate = self
 
         //Set text
-        self.title = NSLocalizedString("marksAndRoutesTitle", comment: "")
+        self.navigationItem.title = NSLocalizedString("marksAndRoutesTitle", comment: "")
         routeInformation.title = NSLocalizedString("routeInformation", comment: "")
         myRoutes.title = NSLocalizedString("myRoutes", comment: "")
 
@@ -155,6 +155,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             userRoutesKeys.append(contentsOf: keys)
             userRoutesKeys.sort(by: >)
         }
+        print(userRoutesKeys)
         
         // request and handling
         if(userRoutesKeys.count != 0) {
