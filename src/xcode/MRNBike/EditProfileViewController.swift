@@ -456,7 +456,9 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     
                     user.shareInfo = shareInfo
                     
-                    user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
+                    if let tmpImage = self.imageBG.image {
+                        user.profilePicture = UIImageJPEGRepresentation(tmpImage, 1.0)
+                    }
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
