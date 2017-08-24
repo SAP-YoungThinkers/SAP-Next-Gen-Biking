@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,36 +30,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfO-RQ-GQF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfO-RQ-GQF">
                                 <rect key="frame" x="30" y="28" width="314" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9MP-nj-qr8">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9MP-nj-qr8">
                                 <rect key="frame" x="0.0" y="73" width="375" height="545"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose comparable object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYu-aE-QFv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose comparable object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYu-aE-QFv">
                                         <rect key="frame" x="50" y="8" width="274" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-XO-Hfe" userLabel="Car">
-                                        <rect key="frame" x="81" y="66" width="218" height="113"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-XO-Hfe" userLabel="Car">
+                                        <rect key="frame" x="78.333333333333371" y="66" width="218" height="113"/>
                                         <accessibility key="accessibilityConfiguration" label="Car"/>
                                         <state key="normal" backgroundImage="CarBlack"/>
                                         <connections>
                                             <action selector="carObject_press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="BIz-Ch-4gP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxS-5R-XCB" userLabel="Train">
-                                        <rect key="frame" x="81" y="187" width="218" height="113"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxS-5R-XCB" userLabel="Train">
+                                        <rect key="frame" x="78" y="187" width="218" height="113"/>
                                         <state key="normal" backgroundImage="TrainBlack"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -69,22 +65,12 @@
                                             <action selector="trainObject_press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="dYt-kx-cc4"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMf-le-pPk" userLabel="Bus">
-                                        <rect key="frame" x="81" y="308" width="218" height="113"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="BusBlack"/>
-                                        <connections>
-                                            <action selector="busObject_press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="XXy-yh-XH2"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7P5-4w-04H" userLabel="SettingsUnderline">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7P5-4w-04H" userLabel="SettingsUnderline">
                                         <rect key="frame" x="0.0" y="443" width="375" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTb-aV-Iro">
-                                        <rect key="frame" x="63" y="460" width="248" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTb-aV-Iro">
+                                        <rect key="frame" x="125" y="460" width="125" height="48"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <state key="normal" title="LOG OUT">
                                             <color key="titleColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,11 +90,45 @@
                                             <action selector="Logout_Press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="teb-t4-dwx"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMf-le-pPk" userLabel="Bus">
+                                        <rect key="frame" x="78" y="308" width="218" height="113"/>
+                                        <state key="normal" backgroundImage="BusBlack"/>
+                                        <connections>
+                                            <action selector="busObject_press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="XXy-yh-XH2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="qmR-XO-Hfe" firstAttribute="leading" secondItem="9MP-nj-qr8" secondAttribute="leading" constant="81" id="2sr-SG-cVs"/>
+                                    <constraint firstAttribute="trailing" secondItem="qmR-XO-Hfe" secondAttribute="trailing" constant="76" id="9gc-dZ-e0t"/>
+                                    <constraint firstAttribute="trailing" secondItem="vMf-le-pPk" secondAttribute="trailing" constant="76" id="JPs-LW-1la"/>
+                                    <constraint firstItem="vMf-le-pPk" firstAttribute="leading" secondItem="9MP-nj-qr8" secondAttribute="leading" constant="81" id="KpP-CP-6fg"/>
+                                    <constraint firstItem="FTb-aV-Iro" firstAttribute="top" relation="lessThanOrEqual" secondItem="7P5-4w-04H" secondAttribute="bottom" constant="16" id="Nok-Z9-qQL"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="FTb-aV-Iro" secondAttribute="bottom" constant="37" id="QIU-wM-isE"/>
+                                    <constraint firstAttribute="bottom" secondItem="vMf-le-pPk" secondAttribute="bottom" constant="124" id="bCe-KI-oMd"/>
+                                    <constraint firstAttribute="trailing" secondItem="zxS-5R-XCB" secondAttribute="trailing" constant="76" id="bXh-1Z-2of"/>
+                                    <constraint firstItem="FTb-aV-Iro" firstAttribute="leading" secondItem="9MP-nj-qr8" secondAttribute="leading" constant="125" id="cR6-Om-EkW"/>
+                                    <constraint firstItem="vYu-aE-QFv" firstAttribute="leading" secondItem="9MP-nj-qr8" secondAttribute="leading" constant="50" id="hTl-BW-f7T"/>
+                                    <constraint firstItem="vMf-le-pPk" firstAttribute="top" secondItem="9MP-nj-qr8" secondAttribute="top" constant="308" id="jqc-cp-ca1"/>
+                                    <constraint firstItem="zxS-5R-XCB" firstAttribute="leading" secondItem="9MP-nj-qr8" secondAttribute="leading" constant="81" id="sj3-HB-bBx"/>
+                                    <constraint firstAttribute="trailing" secondItem="FTb-aV-Iro" secondAttribute="trailing" constant="125" id="td1-x7-dfu"/>
+                                    <constraint firstAttribute="trailing" secondItem="vYu-aE-QFv" secondAttribute="trailing" constant="51" id="x9Z-W5-CI8"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7P5-4w-04H" firstAttribute="leading" secondItem="OCw-h8-3kr" secondAttribute="leadingMargin" constant="-16" id="198-vS-qee"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7P5-4w-04H" secondAttribute="trailing" constant="-16" id="6yA-xl-Rds"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yfO-RQ-GQF" secondAttribute="trailing" constant="15" id="A3g-jX-az3"/>
+                            <constraint firstItem="9MP-nj-qr8" firstAttribute="centerX" secondItem="OCw-h8-3kr" secondAttribute="centerX" id="AKi-Jq-NIQ"/>
+                            <constraint firstItem="yfO-RQ-GQF" firstAttribute="leading" secondItem="OCw-h8-3kr" secondAttribute="leadingMargin" constant="14" id="DXU-nw-VE6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9MP-nj-qr8" secondAttribute="trailing" constant="-16" id="Ir3-HA-k3M"/>
+                            <constraint firstItem="9MP-nj-qr8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yfO-RQ-GQF" secondAttribute="bottom" constant="8" id="QpO-qJ-DSS"/>
+                            <constraint firstItem="9MP-nj-qr8" firstAttribute="leading" secondItem="OCw-h8-3kr" secondAttribute="leadingMargin" constant="-16" id="RzV-JS-XsD"/>
+                            <constraint firstItem="vYu-aE-QFv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yfO-RQ-GQF" secondAttribute="bottom" constant="16" id="rsl-rO-DJK"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="settings-1x" selectedImage="selected_settings-1x" id="qhH-VD-iVN">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>

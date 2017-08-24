@@ -14,6 +14,7 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 
+                // Identify setted object
                 let user = User.getUser()
                 
                 if let co2Choice = user.co2Choice {
