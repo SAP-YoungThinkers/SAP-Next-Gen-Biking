@@ -30,8 +30,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfO-RQ-GQF">
-                                <rect key="frame" x="30" y="28" width="314" height="36.666666666666671"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="30" y="28" width="314" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,15 +51,7 @@
                                         <rect key="frame" x="81" y="66" width="218" height="113"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" label="Car"/>
-                                        <state key="normal" backgroundImage="Car"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <state key="normal" backgroundImage="CarBlack"/>
                                         <connections>
                                             <action selector="carObject_press:" destination="a4F-nt-SMi" eventType="touchUpInside" id="BIz-Ch-4gP"/>
                                         </connections>
@@ -135,7 +127,7 @@
     </scenes>
     <resources>
         <image name="BusBlack" width="620" height="417"/>
-        <image name="Car" width="740" height="452"/>
+        <image name="CarBlack" width="740" height="452"/>
         <image name="TrainBlack" width="640" height="360"/>
         <image name="selected_settings-1x" width="20" height="20"/>
         <image name="settings-1x" width="20" height="20"/>

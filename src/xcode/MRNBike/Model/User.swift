@@ -15,6 +15,7 @@ class User {
     var distanceMade: Double?
     var co2Saved: Int?
     var co2Emissions : Double?
+    var co2Choice: Int?
     
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
@@ -54,6 +55,9 @@ class User {
                 }
                 if let co2Saved = user["co2Saved"] as? Int {
                     self.co2Saved = co2Saved
+                }
+                if let co2Choice = user["co2Choice"] as? Int {
+                    self.co2Choice = co2Choice
                 }
                 
                 if let allow = user["allowShare"] as? Int {
