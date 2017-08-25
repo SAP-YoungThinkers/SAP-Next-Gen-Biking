@@ -163,7 +163,7 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (keys, error) in
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), distance: metersDistance, calories: Int(round(100*(metersDistance / 9048))/100), completion: { (keys, error) in
                 if error == nil {
                     
                     let user = User.getUser()
