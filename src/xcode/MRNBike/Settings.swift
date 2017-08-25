@@ -14,8 +14,7 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 
-                let image1Clicked = UITapGestureRecognizer(target: self, action: #selector(imageFunc1(tabgesture:)))
-                image1.addGestureRecognizer(image1Clicked)
+                
                 
                 // Identify setted object
                 let user = User.getUser()
@@ -49,9 +48,7 @@
             
             }
             
-            func imageFunc1(tabgesture : UITapGestureRecognizer) {
-                let tappedImage = tabgesture.view as! UIImageView
-            }
+
             
             @IBAction func carObject_press(_ sender: Any) {
                 let user = User.getUser()
@@ -68,7 +65,6 @@
                 CO2HANASend() // update user info at backend
                 
             }
-            @IBOutlet weak var image1: UIImageView!
             
             @IBAction func trainObject_press(_ sender: Any) {
                 let user = User.getUser()
