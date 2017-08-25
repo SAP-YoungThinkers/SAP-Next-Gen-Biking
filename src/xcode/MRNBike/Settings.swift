@@ -14,6 +14,9 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 
+                let image1Clicked = UITapGestureRecognizer(target: self, action: #selector(imageFunc1(tabgesture:)))
+                image1.addGestureRecognizer(image1Clicked)
+                
                 // Identify setted object
                 let user = User.getUser()
                 
@@ -23,6 +26,7 @@
                          CarButton.setBackgroundImage(#imageLiteral(resourceName: "Car"), for: tempstate)
                          CarButton.borderWidth = 2
                          CarButton.borderColor = selcolor
+                                                //user.co2Emissions
                     case 69:
                         trainButton.setBackgroundImage(#imageLiteral(resourceName: "Train"), for: tempstate)
                         trainButton.borderWidth = 2
@@ -45,6 +49,10 @@
             
             }
             
+            func imageFunc1(tabgesture : UITapGestureRecognizer) {
+                let tappedImage = tabgesture.view as! UIImageView
+            }
+            
             @IBAction func carObject_press(_ sender: Any) {
                 let user = User.getUser()
                 user.co2Emissions = 0.133 // hardcode for co2ComparedObject.train
@@ -52,6 +60,7 @@
                 CarButton.setBackgroundImage(#imageLiteral(resourceName: "Car"), for: tempstate)
                 trainButton.setBackgroundImage(#imageLiteral(resourceName: "TrainBlack"), for: tempstate)
                 busButton.setBackgroundImage(#imageLiteral(resourceName: "BusBlack"), for: tempstate)
+                //user.co2Emissions = User.co2ComparedObject.car
                 CarButton.borderWidth = 2
                 CarButton.borderColor = selcolor
                 trainButton.borderWidth = 0
@@ -59,6 +68,7 @@
                 CO2HANASend() // update user info at backend
                 
             }
+            @IBOutlet weak var image1: UIImageView!
             
             @IBAction func trainObject_press(_ sender: Any) {
                 let user = User.getUser()
@@ -68,6 +78,7 @@
                 CarButton.setBackgroundImage(#imageLiteral(resourceName: "CarBlack"), for: tempstate)
                 trainButton.setBackgroundImage(#imageLiteral(resourceName: "Train"), for: tempstate)
                 busButton.setBackgroundImage(#imageLiteral(resourceName: "BusBlack"), for: tempstate)
+                //user.co2Emissions = User.co2ComparedObject.train
                 trainButton.borderWidth = 2
                 trainButton.borderColor = selcolor
                 CarButton.borderWidth = 0
@@ -82,6 +93,7 @@
                 CarButton.setBackgroundImage(#imageLiteral(resourceName: "CarBlack"), for: tempstate)
                 trainButton.setBackgroundImage(#imageLiteral(resourceName: "TrainBlack"), for: tempstate)
                 busButton.setBackgroundImage (#imageLiteral(resourceName: "Bus"), for: tempstate)
+                //user.co2Emissions = User.co2ComparedObject.bus
                 busButton.borderWidth = 2
                 busButton.borderColor = selcolor
                 trainButton.borderWidth = 0

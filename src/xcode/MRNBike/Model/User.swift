@@ -72,6 +72,8 @@ class User {
                     static let train = 0.065
                 }
                 
+                
+                
                 if let co2Emissions = user["co2Emissions"] as? String {
                     switch co2Emissions {
                     case "car":
