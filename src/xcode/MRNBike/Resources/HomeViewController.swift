@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     func setupDate() {
         let formatter = DateFormatter()
         // Saturday. 6 May
-        formatter.dateFormat = "EEEE.dd MMM"
+        formatter.dateFormat = "EEEE, dd MMM"
         let currentDate = formatter.string(from: Date())
         labelCurrentDate.text = currentDate
     }
