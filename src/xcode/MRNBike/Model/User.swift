@@ -19,6 +19,12 @@ class User {
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
     
+    public struct co2ComparedObject {
+        static let car = 0.133
+        static let bus = 0.069
+        static let train = 0.065
+    }
+    
     /*
      CO2 values from http://www.co2nnect.org/help_sheets/?op_id=602&opt_id=98
      values mean: only DIRECT emissions, without fuel / food / production
@@ -61,13 +67,6 @@ class User {
                     self.shareInfo = allow
                 }
                 User.isSingleton = true
-                
-                
-                struct co2ComparedObject {
-                    static let car = 0.133
-                    static let bus = 0.069
-                    static let train = 0.065
-                }
                 
                 if let co2Emissions = user["co2Emissions"] as? String {
                     switch co2Emissions {
