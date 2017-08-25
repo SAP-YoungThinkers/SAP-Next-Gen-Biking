@@ -39,7 +39,7 @@ class TrackingViewController: UIViewController {
     var co2 : Double?
     
     //Users wheel size
-    var userWheelSize: Int = 0
+    var userWheelSize: Double = 0
     var wheelInCm: Double = 0.0
     
     //MARK: Functions
@@ -58,13 +58,13 @@ class TrackingViewController: UIViewController {
         //Get user wheel size attribute
         let user = User.getUser()
         if let wheelSize = user.userWheelSize {
-            userWheelSize = wheelSize
+            userWheelSize = Double(wheelSize / 10)
         }
         if let co2 = user.co2Emissions {
             self.co2 = co2
         }
         // U = 2 * pi * r to get the perimeter
-        wheelInCm = Double(userWheelSize) * 0.393701 * 2 * Double.pi
+        wheelInCm = Double(userWheelSize) * 2.54 * 2 * Double.pi
         
         navItem.title = "Record Route"
         
@@ -163,7 +163,7 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (keys, error) in
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), distance: metersDistance, calories: Int(round(100*(metersDistance / 9048))/100), completion: { (keys, error) in
                 if error == nil {
                     
                     let user = User.getUser()

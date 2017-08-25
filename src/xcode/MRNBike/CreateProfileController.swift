@@ -12,9 +12,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var activityShareDescription: UILabel!
     @IBOutlet weak var agreementTermCondition: UILabel!
     @IBOutlet weak var personalInfoLabel: UILabel!
-    @IBOutlet weak var weight: UILabel!
-    @IBOutlet weak var wheelSize: UILabel!
-    
     
     @IBOutlet private(set) var surnameLabel: UITextField!
     @IBOutlet weak var firstNameLabel: UITextField!
@@ -22,10 +19,13 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet private(set) var passwordLabel: UITextField!
     @IBOutlet private(set) var confirmPasswordLabel: UITextField!
     @IBOutlet private(set) var shareSwitch: UISwitch!
-    @IBOutlet private(set) var weightSlider: UISlider!
     
-    
-    @IBOutlet private(set) var wheelSizeSlider: UISlider!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var wheelSize: UILabel!
+    @IBOutlet weak var weightInput: UITextField!
+    @IBOutlet weak var weightUnity: UILabel!
+    @IBOutlet weak var wheelSizeInput: UITextField!
+    @IBOutlet weak var wheelSizeUnity: UILabel!
     
     let imagePicker = UIImagePickerController()
     
@@ -40,7 +40,34 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var profileTableView: UITableView!
     @IBOutlet weak var tableCellPassword: UITableViewCell!
     @IBOutlet weak var passwordHint: UILabel!
+    @IBOutlet weak var passwordRepeatHint: UILabel!
     
+    @IBAction func wheelInputChanged(_ sender: Any) {
+        guard let tf = sender as? UITextField else {
+            checkInput()
+            return
+        }
+        var array: [Character] = Array(tf.text!.characters)
+        var decimalCount = 0
+        var numberStarts = false
+        for character in array {
+            if numberStarts {
+                decimalCount += 1
+            }
+            if character == "." || character == "," {
+                numberStarts = true
+            }
+        }
+        
+        if decimalCount > 1 {
+            _ = array.popLast()
+            tf.text = String(array)
+        }
+        if tf.text! == "." || tf.text! == "," {
+            tf.text = "0."
+        }
+        checkInput()
+    }
     
     //MARK: - Lifecycle
     
@@ -57,8 +84,11 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         activityShareDescription.text = NSLocalizedString("shareInfoLabel", comment: "")
         agreementTermCondition.text = NSLocalizedString("agreeTermCondition", comment: "")
         personalInfoLabel.text = NSLocalizedString("personalInfoLabel", comment: "")
+        
         weight.text = NSLocalizedString("weightLabel", comment: "")
         wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
+        weightUnity.text = "kg"
+        wheelSizeUnity.text = NSLocalizedString("weightUnity", comment: "")
         
         surnameLabel.placeholder = NSLocalizedString("surnameLabel", comment: "")
         firstNameLabel.placeholder = NSLocalizedString("firstnameLabel", comment: "")
@@ -82,12 +112,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
         navBar.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 17)!], for: .normal)
         
-        //Set default values
-        currentWeightLabel.text = "\(Int(weightSlider.value)) " + " kg"
-        currentWeightLabel.sizeToFit()
-        currentWheelSize.text = "\(Int(wheelSizeSlider.value)) " + " Inches"
-        currentWheelSize.sizeToFit()
-        
         //Set done button disabled
         doneButton.isEnabled = false
         
@@ -101,39 +125,30 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         /* Password Hints */
         passwordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
-        confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
+        confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordRepeatValidate), for: UIControlEvents.editingDidEnd)
         
         passwordHint.isHidden = true
         passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
+        passwordRepeatHint.isHidden = true
+        passwordRepeatHint.text = NSLocalizedString("passwordRepeatValidationHint", comment: "")
     }
-    
-    //MARK: -
     
     func passwordValidate() {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
         
-        if passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) {
+        if passwordTest.evaluate(with: passwordLabel.text) {
             passwordHint.isHidden = true
             return
         }
         passwordHint.isHidden = false
     }
     
-    // Slider value changes
-    @IBOutlet private(set) var currentWeightLabel: UILabel!
-    
-    @IBAction func weightSliderValueChanged(_ sender: UISlider) {
-        let currentWeight = Int (sender.value)
-        currentWeightLabel.text = "\(currentWeight) " + " kg"
-        currentWeightLabel.sizeToFit()
-    }
-    
-    @IBOutlet private(set) var currentWheelSize: UILabel!
-    
-    @IBAction func wheelSliderValueChanged(_ sender: UISlider) {
-        let currentWheel = Int (sender.value)
-        currentWheelSize.text = "\(currentWheel) " + " Inches"
-        currentWheelSize.sizeToFit()
+    func passwordRepeatValidate() {
+        if passwordLabel.text == confirmPasswordLabel.text {
+            passwordRepeatHint.isHidden = true
+            return
+        }
+        passwordRepeatHint.isHidden = false
     }
     
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
@@ -155,9 +170,17 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             shareInfo = 1
         }
         
-        //Collect data for creating user
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : wheelSizeSlider.value, "weight" : weightSlider.value, "burgersburned": 0.0,
+        //Collect data for creating user        
+        var numberDouble = wheelSizeInput.text!.doubleValue
+        if numberDouble == nil {
+            numberDouble = 0.0
+        }
+        /* CONVERT TO INT BY MULTIPLYING WITH 10 */
+        let number = Int(numberDouble! * 10.0)
+        
+        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
             "wheelrotation": 0, "distancemade": 0.0, "co2saved": 0]
+        print(uploadData)
         
         //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
@@ -178,8 +201,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     let user = User.getUser()
                     user.firstName = self.firstNameLabel.text
                     user.surname = self.surnameLabel.text
-                    user.userWeight = 1 //self.weightSlider.value //Change to int
-                    user.userWheelSize = 2 //self.wheelSizeSlider.value
+                    user.userWeight = Int(self.weightInput.text!)
+                    user.userWheelSize = number
                     
                     user.shareInfo = shareInfo
                     
@@ -269,7 +292,9 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             
             //Check if passwords are similar
             if passwordLabel.text?.characters.count == confirmPasswordLabel.text?.characters.count  {
-                valid = true
+                if wheelSizeInput.text!.doubleValue != nil && Int(weightInput.text!) != nil {
+                    valid = true
+                }
             }
         }
         
@@ -314,5 +339,22 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+}
+
+extension String {
+    // because of seperators like "." or ","
+    static let numberFormatter = NumberFormatter()
+    var doubleValue: Double? {
+        String.numberFormatter.decimalSeparator = "."
+        if let result =  String.numberFormatter.number(from: self) {
+            return result.doubleValue
+        } else {
+            String.numberFormatter.decimalSeparator = ","
+            if let result = String.numberFormatter.number(from: self) {
+                return result.doubleValue
+            }
+        }
+        return nil
     }
 }

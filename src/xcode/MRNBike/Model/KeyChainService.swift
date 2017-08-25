@@ -66,9 +66,9 @@ public class KeychainService: NSObject {
         // no dublicates
         var newIDs = IDs
         if let x = loadIDs() {
-            for z in x {
-                if (!x.contains(z)) {
-                    newIDs.append(z)
+            for item in x {
+                if !newIDs.contains(item) {
+                    newIDs.append(item)
                 }
             }
         }
