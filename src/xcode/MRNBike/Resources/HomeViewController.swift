@@ -186,10 +186,33 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                     break
                                 }
 
-                                // ...
+                                
                             }
                         }
-                        // ...
+                        if (key == "cod") {
+                           
+                            switch value as! Int {
+                                
+                            case 200...299, 300...399,500...599, 906: //Rain
+                                self.CurrentDate_Pic.image = UIImage(named:"big_rainy-1x")!
+                                
+                            case 700...799, 802,803,804,900,901,902,903,905,951...962: //Clouds
+                                self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-1x")!
+                                
+                            case  800,904: //Sunny
+                                self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
+                                
+                            case 801: //Overcast
+                                
+                                self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-sunny-1x")!
+                                
+                            default:
+                                self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
+
+                            }
+                            
+
+                        }
                     }
                     
                     
@@ -302,21 +325,21 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     func getImage(forName imageName: String) -> UIImage {
         
-        if imageName == "Clouds" {
+        if imageName == "Clouds" || imageName == "Mist" || imageName == "Fog" {
             
             return UIImage(named: "cloudy-1x")!
             
-        } else if imageName == "" {
+        } else if imageName == "Clear" {
             
             return UIImage(named: "sunny-1x")!
             
         }
-        else if imageName == "" {
+        else if imageName == "Rain" || imageName == "Thunderstorm" || imageName == "Drizzle" {
             
-            return UIImage(named: "cloudy-sunny-1x")!
+            return UIImage(named: "rainy")!
             
         }
-      return UIImage(named: "rainy")!
+      return UIImage(named: "cloudy-sunny")!
     }
 
     
