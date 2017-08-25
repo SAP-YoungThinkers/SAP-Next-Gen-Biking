@@ -2,7 +2,7 @@
         
         import UIKit
         
-        class SettingsViewController: UIViewController   {
+        class SettingsViewController: UIViewController {
             
             @IBOutlet weak var busButton: UIButton!
             @IBOutlet weak var trainButton: UIButton!
