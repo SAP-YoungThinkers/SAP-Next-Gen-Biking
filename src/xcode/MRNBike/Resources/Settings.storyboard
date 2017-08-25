@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -28,26 +28,26 @@
                         <viewControllerLayoutGuide type="bottom" id="EpL-Ko-3ty"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OCw-h8-3kr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfO-RQ-GQF">
-                                <rect key="frame" x="30" y="28" width="314" height="37"/>
+                                <rect key="frame" x="30" y="28" width="259" height="37"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9MP-nj-qr8">
-                                <rect key="frame" x="0.0" y="73" width="375" height="545"/>
+                                <rect key="frame" x="0.0" y="73" width="320" height="446"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose comparable object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYu-aE-QFv">
-                                        <rect key="frame" x="50" y="30.5" width="274" height="18.5"/>
+                                        <rect key="frame" x="50" y="30.5" width="219" height="18.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-XO-Hfe" userLabel="Car">
-                                        <rect key="frame" x="81" y="57" width="216" height="122"/>
+                                        <rect key="frame" x="81" y="57" width="161" height="122"/>
                                         <accessibility key="accessibilityConfiguration" label="Car"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="122" id="jcK-a9-FfZ"/>
@@ -58,7 +58,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxS-5R-XCB" userLabel="Train">
-                                        <rect key="frame" x="81" y="187" width="216" height="113"/>
+                                        <rect key="frame" x="81" y="187" width="161" height="113"/>
                                         <state key="normal" backgroundImage="TrainBlack"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -70,7 +70,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMf-le-pPk" userLabel="Bus">
-                                        <rect key="frame" x="81" y="308" width="216" height="113"/>
+                                        <rect key="frame" x="81" y="308" width="161" height="113"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="113" id="C6f-Y6-zGa"/>
                                         </constraints>
@@ -80,11 +80,11 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7P5-4w-04H" userLabel="SettingsUnderline">
-                                        <rect key="frame" x="0.0" y="443" width="375" height="1"/>
+                                        <rect key="frame" x="0.0" y="443" width="320" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTb-aV-Iro">
-                                        <rect key="frame" x="125" y="460" width="125" height="48"/>
+                                        <rect key="frame" x="125" y="460" width="70" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FTb-aV-Iro" secondAttribute="height" multiplier="125:48" id="iYx-vY-7aQ"/>
                                         </constraints>
