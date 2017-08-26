@@ -1,6 +1,4 @@
-        
-        
-        import UIKit
+import UIKit
         
         class SettingsViewController: UIViewController {
             
@@ -28,10 +26,10 @@
                 if let co2Choice = user.co2Type {
                     switch co2Choice {
                     case User.co2ComparedObject.car:
-                         CarButton.setBackgroundImage(CarColorimage, for: tempstate)
-                         CarButton.borderWidth = 2
-                         CarButton.borderColor = selcolor
-                                                //user.co2Emissions
+                        CarButton.setBackgroundImage(CarColorimage, for: tempstate)
+                        CarButton.borderWidth = 2
+                        CarButton.borderColor = selcolor
+                    //user.co2Emissions
                     case User.co2ComparedObject.train:
                         trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                         trainButton.borderWidth = 2
@@ -51,49 +49,46 @@
                     CarButton.borderWidth = 2
                     CarButton.borderColor = selcolor
                 }
-            
+                
             }
             
-
+            
             
             @IBAction func carObject_press(_ sender: Any) {
-                let user = User.getUser()
                 CarButton.setBackgroundImage(CarColorimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.car
                 CarButton.borderWidth = 2
                 CarButton.borderColor = selcolor
                 trainButton.borderWidth = 0
                 busButton.borderWidth = 0
-                CO2HANASend() // update user info at backend
+                
+                CO2HANASend(type: "car")
                 
             }
             
             @IBAction func trainObject_press(_ sender: Any) {
-                let user = User.getUser()
-                CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.train
                 trainButton.borderWidth = 2
                 trainButton.borderColor = selcolor
                 CarButton.borderWidth = 0
                 busButton.borderWidth = 0
+                
+                CO2HANASend(type: "train")
             }
             
             @IBAction func busObject_press(_ sender: Any) {
-                let user = User.getUser()
-                CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage (BusColorimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.bus
                 busButton.borderWidth = 2
                 busButton.borderColor = selcolor
                 trainButton.borderWidth = 0
                 CarButton.borderWidth = 0
+                
+                CO2HANASend(type: "bus")
             }
             
             
@@ -111,15 +106,18 @@
             }
             
             // TODO: ADD code for sending co2Choice to SAP HANA
-             func CO2HANASend () {
+            func CO2HANASend(type: String) {
+                
+                let user = User.getUser()
+                user.co2Type = User.co2ComparedObject.car
                 
                 // update user info at backend
                 //Upload updated user to Hana
                 //let uploadData : [String: Any] = [
-                    /*
-                     "email" : firstname.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!,
-                     */
-                   // "co2Emissions" : "car"]
+                /*
+                 "email" : firstname.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!,
+                 */
+                // "co2Emissions" : "car"]
                 
                 /*    let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
                  

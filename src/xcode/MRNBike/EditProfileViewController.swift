@@ -428,8 +428,23 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if numberDouble == nil {
             numberDouble = 0.0
         }
+        
+        var co2Type = ""
+        
+        switch user.co2Type! {
+        case 0.133:
+            co2Type = "car"
+        case 0.069:
+            co2Type = "bus"
+        case 0.065:
+            co2Type = "train"
+        default:
+            co2Type = "car"
+        }
+
+        
         let number = Int(numberDouble! * 10)
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         

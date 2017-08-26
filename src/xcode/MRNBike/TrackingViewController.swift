@@ -168,8 +168,22 @@ class TrackingViewController: UIViewController {
                     
                     let user = User.getUser()
                     
+                    var co2Type = ""
+                    
+                    switch user.co2Type! {
+                    case 0.133:
+                        co2Type = "car"
+                    case 0.069:
+                        co2Type = "bus"
+                    case 0.065:
+                        co2Type = "train"
+                    default:
+                        co2Type = "car"
+                    }
+
+                    
                     //Upload updated user to Hana
-                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
                     
                     let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
                   
@@ -202,11 +216,6 @@ class TrackingViewController: UIViewController {
                                 if let currentDistanceMade = user.distanceMade {
                                     let newDistanceMade = Double(self.distanceLabel.text!)
                                     user.distanceMade = currentDistanceMade + newDistanceMade!
-                                }
-                                
-                                if let currentCo2Saved = user.co2Saved {
-                                    let newCo2Saved = Double(self.co2SavedLabel.text!)
-                                    user.co2Saved = currentCo2Saved + Int(newCo2Saved!)
                                 }
                                 
                                 //Dismiss activity indicator
