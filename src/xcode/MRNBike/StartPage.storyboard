@@ -420,7 +420,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURNAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-X2-2zc">
-                                                    <rect key="frame" x="24" y="24" width="166" height="19"/>
+                                                    <rect key="frame" x="24" y="23.5" width="166" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="Y3N-9V-DCu"/>
                                                     </constraints>
@@ -430,7 +430,8 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SURNAME" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Sm-Ch-Jd5">
 
-                                                    <rect key="frame" x="198" y="23" width="151" height="21"/>
+                                                    <rect key="frame" x="198" y="22.5" width="151" height="22"/>
+
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -453,7 +454,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-pc-K3k">
-                                                    <rect key="frame" x="24" y="24" width="166" height="19"/>
+                                                    <rect key="frame" x="24" y="23.5" width="166" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="CzI-Rl-GhZ"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="166" id="Ewj-WC-AV8"/>
@@ -464,7 +465,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FIRST NAME" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eed-C5-ugC">
 
-                                                    <rect key="frame" x="198" y="23" width="151" height="21"/>
+                                                    <rect key="frame" x="198" y="22.5" width="151" height="22"/>
 
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
@@ -497,7 +498,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhq-LV-Mh5">
-                                                    <rect key="frame" x="24" y="24" width="150" height="19"/>
+                                                    <rect key="frame" x="24" y="23.5" width="150" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="qGe-qh-H2t"/>
                                                     </constraints>
@@ -507,7 +508,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@mail.com" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-YX-rMb">
 
-                                                    <rect key="frame" x="174" y="24" width="175" height="19"/>
+                                                    <rect key="frame" x="174" y="23.5" width="175" height="20"/>
 
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
@@ -564,7 +565,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXO-Fs-rfD">
                                                     <rect key="frame" x="25" y="14" width="160" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Zu6-ms-7uF"/>
@@ -574,7 +575,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
 
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ph-5V-3uA">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ph-5V-3uA">
+
                                                     <rect key="frame" x="185" y="24" width="165" height="20"/>
 
                                                     <nil key="textColor"/>
@@ -593,11 +595,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7Ph-5V-3uA" firstAttribute="centerY" secondItem="Ps7-hm-giQ" secondAttribute="centerY" id="MD9-Tk-2Hq"/>
+                                                <constraint firstItem="7Ph-5V-3uA" firstAttribute="centerY" secondItem="Ps7-hm-giQ" secondAttribute="centerY" constant="-10.75" id="MD9-Tk-2Hq"/>
                                                 <constraint firstItem="7Ph-5V-3uA" firstAttribute="leading" secondItem="mXO-Fs-rfD" secondAttribute="trailing" id="NLU-GJ-cXZ"/>
-                                                <constraint firstItem="mXO-Fs-rfD" firstAttribute="leading" secondItem="Ps7-hm-giQ" secondAttribute="leading" constant="24" id="RyR-TO-zQL"/>
-                                                <constraint firstAttribute="trailing" secondItem="7Ph-5V-3uA" secondAttribute="trailing" constant="26" id="fh0-F0-4xA"/>
-                                                <constraint firstItem="mXO-Fs-rfD" firstAttribute="centerY" secondItem="Ps7-hm-giQ" secondAttribute="centerY" id="hRv-UT-fGv"/>
+                                                <constraint firstItem="mXO-Fs-rfD" firstAttribute="leading" secondItem="Ps7-hm-giQ" secondAttribute="leading" constant="25" id="RyR-TO-zQL"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Ph-5V-3uA" secondAttribute="trailing" constant="25" id="fh0-F0-4xA"/>
+                                                <constraint firstItem="mXO-Fs-rfD" firstAttribute="centerY" secondItem="Ps7-hm-giQ" secondAttribute="centerY" constant="-11" id="hRv-UT-fGv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -618,7 +620,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE ACTIVITY INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-XC-mqv">
-                                                    <rect key="frame" x="24" y="23.5" width="250" height="19"/>
+                                                    <rect key="frame" x="24" y="13.5" width="250" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="c2V-J3-qSc"/>
                                                     </constraints>
@@ -646,7 +648,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I AGREE WITH TERM CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfB-dE-XI6">
-                                                    <rect key="frame" x="24" y="14.5" width="250" height="37.5"/>
+                                                    <rect key="frame" x="24" y="13.5" width="250" height="39.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="zk3-Mw-Y6w"/>
                                                     </constraints>
