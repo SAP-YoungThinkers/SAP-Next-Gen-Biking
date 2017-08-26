@@ -1,12 +1,13 @@
-        
-        
-        import UIKit
+import UIKit
         
         class SettingsViewController: UIViewController {
             
             @IBOutlet weak var busButton: UIButton!
             @IBOutlet weak var trainButton: UIButton!
             @IBOutlet weak var CarButton: UIButton!
+            @IBOutlet weak var LogoutButton: UIButton!
+            @IBOutlet weak var infoLabel: UILabel!
+            @IBOutlet weak var settingsLabel: UILabel!
             let BusColorimage = UIImage(named: "Bus") as UIImage?
             let BusBlackimage = UIImage(named: "BusBlack") as UIImage?
             let CarColorimage = UIImage(named: "Car") as UIImage?
@@ -20,7 +21,9 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 
-                
+                LogoutButton.setTitle(NSLocalizedString("logout", comment: ""), for: .normal)
+                infoLabel.text = NSLocalizedString("chooseCo2Type", comment: "")
+                settingsLabel.text = NSLocalizedString("settingsTitle", comment: "")
                 
                 // Identify setted object
                 let user = User.getUser()
@@ -28,10 +31,10 @@
                 if let co2Choice = user.co2Type {
                     switch co2Choice {
                     case User.co2ComparedObject.car:
-                         CarButton.setBackgroundImage(CarColorimage, for: tempstate)
-                         CarButton.borderWidth = 2
-                         CarButton.borderColor = selcolor
-                                                //user.co2Emissions
+                        CarButton.setBackgroundImage(CarColorimage, for: tempstate)
+                        CarButton.borderWidth = 2
+                        CarButton.borderColor = selcolor
+                    //user.co2Emissions
                     case User.co2ComparedObject.train:
                         trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                         trainButton.borderWidth = 2
@@ -51,52 +54,45 @@
                     CarButton.borderWidth = 2
                     CarButton.borderColor = selcolor
                 }
-            
+                
             }
             
-
-            
             @IBAction func carObject_press(_ sender: Any) {
-                let user = User.getUser()
                 CarButton.setBackgroundImage(CarColorimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.car
                 CarButton.borderWidth = 2
                 CarButton.borderColor = selcolor
                 trainButton.borderWidth = 0
                 busButton.borderWidth = 0
-                CO2HANASend() // update user info at backend
+                
+                CO2HANASend(type: "car")
                 
             }
             
             @IBAction func trainObject_press(_ sender: Any) {
-                let user = User.getUser()
-                CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.train
                 trainButton.borderWidth = 2
                 trainButton.borderColor = selcolor
                 CarButton.borderWidth = 0
                 busButton.borderWidth = 0
+                
+                CO2HANASend(type: "train")
             }
             
             @IBAction func busObject_press(_ sender: Any) {
-                let user = User.getUser()
-                CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage (BusColorimage, for: tempstate)
-                user.co2Type = User.co2ComparedObject.bus
                 busButton.borderWidth = 2
                 busButton.borderColor = selcolor
                 trainButton.borderWidth = 0
                 CarButton.borderWidth = 0
+                
+                CO2HANASend(type: "bus")
             }
-            
-            
             
             @IBAction func Logout_Press(_ sender: Any) {
                 //Remove user singleton
@@ -107,72 +103,61 @@
                 let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
                 let controller = storyboard.instantiateInitialViewController()!
                 self.present(controller, animated: true, completion: nil)
-                
             }
             
             // TODO: ADD code for sending co2Choice to SAP HANA
-             func CO2HANASend () {
+            func CO2HANASend(type: String) {
                 
-                // update user info at backend
+                let user = User.getUser()
+                user.co2Type = User.co2ComparedObject.car
+                
                 //Upload updated user to Hana
-                //let uploadData : [String: Any] = [
-                    /*
-                     "email" : firstname.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!,
-                     */
-                   // "co2Emissions" : "car"]
+                let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : type]
                 
-                /*    let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-                 
-                 //Try update user profile
-                 ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
-                 if error == nil {
-                 
-                 switch httpCode! {
-                 case 200: //User successfully updated
-                 
-                 //Save email and password in KeyChain
-                 if let mail = self.inputEmail.text as NSString? {
-                 KeychainService.saveEmail(token: mail)
-                 }
-                 if let password = self.inputPassword.text as NSString? {
-                 KeychainService.savePassword(token: password)
-                 }
-                 
-                 //Update User class
-                 let user = User.getUser()
-                 user.co2Emissions = 0.133 // hardcode for co2ComparedObject.car
-                 
-                 //Dismiss activity indicator
-                 activityAlert.dismiss(animated: false, completion: nil)
-                 
-                 let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
-                 let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                 (action) -> Void in self.navigationController?.popViewController(animated: true)
-                 })
-                 alert.addAction(gotItAction)
-                 self.present(alert, animated: true, completion: nil)
-                 break
-                 default: //For http error codes: 500
-                 //Dismiss activity indicator
-                 activityAlert.dismiss(animated: false, completion: nil)
-                 
-                 let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                 let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                 (action) -> Void in self.navigationController?.popViewController(animated: true)
-                 })
-                 alert.addAction(gotItAction)
-                 self.present(alert, animated: true, completion: nil)
-                 }
-                 }
-                 else
-                 {
-                 //Dismiss activity indicator
-                 activityAlert.dismiss(animated: false, completion: nil)
-                 
-                 //An error occured in the app
-                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                 }
-                 }
-                 */
+                let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+                
+                //Show activity indicator
+                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+                present(activityAlert, animated: false, completion: nil)
+                
+                //Try update user profile
+                ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                    if error == nil {
+                        
+                        switch httpCode! {
+                        case 200: //User successfully updated
+                            switch type {
+                            case "car":
+                                user.co2Type = User.co2ComparedObject.car
+                            case "bus":
+                                user.co2Type = User.co2ComparedObject.bus
+                            case "train":
+                                user.co2Type = User.co2ComparedObject.train
+                            default:
+                                user.co2Type = User.co2ComparedObject.car
+                            }
+
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //Upload was successfully alert
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: "")), animated: true, completion: nil)
+                            break
+                        default: //For http error code: 500
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            //An error occured in the app
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    }
+                    else
+                    {
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        //An error occured in the app
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                }
             }
         }

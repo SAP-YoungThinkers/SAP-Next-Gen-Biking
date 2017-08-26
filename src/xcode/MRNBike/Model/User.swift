@@ -13,7 +13,6 @@ class User {
     var wheelRotation: Int?
     var burgersBurned: Double?
     var distanceMade: Double?
-    var co2Saved: Int?
     var co2Type : Double?
     
     private static var isSingleton: Bool = false
@@ -59,15 +58,12 @@ class User {
                 if let distanceMade = user["distanceMade"] as? Double {
                     self.distanceMade = distanceMade
                 }
-                if let co2Saved = user["co2Saved"] as? Int {
-                    self.co2Saved = co2Saved
-                }
                 if let allow = user["allowShare"] as? Int {
                     self.shareInfo = allow
                 }
                 User.isSingleton = true
 
-                if let co2Emissions = user["co2Emissions"] as? String {
+                if let co2Emissions = user["co2Type"] as? String {
                     switch co2Emissions {
                     case "car":
                         self.co2Type = co2ComparedObject.car

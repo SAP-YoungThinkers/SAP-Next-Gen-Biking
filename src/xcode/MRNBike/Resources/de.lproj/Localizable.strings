@@ -98,6 +98,12 @@
 "danger"="Gefahr";
 "writeMessage"="Kommentar...";
 
+//Settings Scene
+//Settings Scene
+"logout"="Ausloggen";
+"chooseCo2Type"="CO2 Vergleich auswählen";
+"settingsTitle"="Einstellungen";
+
 //Alert strings
 "pleaseWait"="Bitte warten...";
 
