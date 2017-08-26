@@ -71,13 +71,6 @@ class User {
                     self.shareInfo = allow
                 }
                 User.isSingleton = true
-            
-                
-                struct co2ComparedObject {
-                    static let car = 0.133
-                    static let bus = 0.069
-                    static let train = 0.065
-                }
 
                 if let co2Emissions = user["co2Emissions"] as? String {
                     switch co2Emissions {
