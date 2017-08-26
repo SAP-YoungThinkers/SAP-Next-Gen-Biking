@@ -152,7 +152,7 @@ class ClientService {
     }
     
     //Upload route to backend (Hana)
-    static func uploadRouteToHana(route: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
+    static func uploadRouteToHana(route: [String: Any], distance: Double, calories: Int, completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
         
@@ -164,6 +164,9 @@ class ClientService {
                 jsonList.append(jsonEntry)
             }
             content.append(jsonList)
+            // let tmp = ["String": ["distance":distance, "calories": calories] as [String : Any]] as! [[String: Any]]
+            // content.append([tmp])
+            print(content)
         }
         
         let session = SessionFactory.shared().getSession()

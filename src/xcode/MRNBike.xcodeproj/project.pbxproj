@@ -24,6 +24,7 @@
 		01FBE20A1EC3C603008903C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FBE2091EC3C603008903C1 /* Assets.xcassets */; };
 		01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */; };
 		0A259E621EBFBE950050AC0F /* Tracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A259E611EBFBE950050AC0F /* Tracking.storyboard */; };
+		102F26911F4BD2AF001D9907 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102F26901F4BD2AF001D9907 /* Settings.swift */; };
 		108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D1CC61F2569E100023F2D /* CreateProfileController.swift */; };
 		108D1CC91F256AED00023F2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D1CC81F256AED00023F2D /* ViewController.swift */; };
 		10B2ABCB1F2553BA00847AA6 /* StartPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */; };
@@ -36,7 +37,9 @@
 		10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DF1EC614A000CC7027 /* CornerView.swift */; };
 		10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E01EC614A000CC7027 /* Inspectable.swift */; };
 		10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */; };
+		373490441F3492F3005BA684 /* RouteLineAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373490431F3492F3005BA684 /* RouteLineAnnotation.swift */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
+		3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */; };
 		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
 		37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E21EB0B68000870844 /* Montserrat-Bold.otf */; };
 		37B601F51EB0B68000870844 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */; };
@@ -57,6 +60,7 @@
 		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
+		4EEF5E911F51CF73003F092E /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF5E901F51CF73003F092E /* Credentials.json */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
@@ -86,6 +90,7 @@
 		01FBE2091EC3C603008903C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		01FBE20D1EC3CC18008903C1 /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		0A259E611EBFBE950050AC0F /* Tracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tracking.storyboard; path = Resources/Tracking.storyboard; sourceTree = "<group>"; };
+		102F26901F4BD2AF001D9907 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		108D1CC61F2569E100023F2D /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileController.swift; sourceTree = "<group>"; };
 		108D1CC81F256AED00023F2D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10B2ABCA1F2553BA00847AA6 /* StartPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartPage.storyboard; sourceTree = "<group>"; };
@@ -98,7 +103,9 @@
 		10B9D4DF1EC614A000CC7027 /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
 		10B9D4E01EC614A000CC7027 /* Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspectable.swift; sourceTree = "<group>"; };
 		10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationExtensions.swift; sourceTree = "<group>"; };
+		373490431F3492F3005BA684 /* RouteLineAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLineAnnotation.swift; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableCell.swift; sourceTree = "<group>"; };
 		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		37B601E31EB0B68000870844 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -122,6 +129,7 @@
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		4EEF5E901F51CF73003F092E /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
+				4EEF5E901F51CF73003F092E /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -262,7 +271,9 @@
 				4E046DD91EFC77F100187B23 /* Routes.storyboard */,
 				37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */,
 				37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */,
+				373490431F3492F3005BA684 /* RouteLineAnnotation.swift */,
 				4E975A531EB49BC500D3765C /* AddReportViewController.swift */,
+				3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */,
 			);
 			name = "Marks&Routes";
 			sourceTree = "<group>";
@@ -329,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				D25F5ADA1EAFFFCD00850388 /* Settings.storyboard */,
+				102F26901F4BD2AF001D9907 /* Settings.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -426,6 +438,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
+				4EEF5E911F51CF73003F092E /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
@@ -446,6 +459,8 @@
 				108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
+				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
+				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */,
@@ -465,6 +480,7 @@
 				10B9D4E31EC614A000CC7027 /* Button.swift in Sources */,
 				37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */,
 				0137F1681EA2778100FCA949 /* AppDelegate.swift in Sources */,
+				373490441F3492F3005BA684 /* RouteLineAnnotation.swift in Sources */,
 				10B9D4E41EC614A000CC7027 /* Color.swift in Sources */,
 				D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */,
 				4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */,

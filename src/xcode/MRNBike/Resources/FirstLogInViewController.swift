@@ -32,12 +32,18 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         
+        //ToDo: Uncomment the 2 lines of code later!!!
         //Bind textfields to regex validator
-        userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
-        userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
+        //userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
+        //userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         
-        rememberSwitch.isOn = true
-        loginButton.isEnabled = false
+        //ToDo: Remove this 2 lines of code!!!
+        loginButton.isEnabled = true
+        loginButton.alpha = 1.0
+        
+        
+        //rememberSwitch.isOn = true
+        //loginButton.isEnabled = false
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
@@ -78,7 +84,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
 
         ClientService.postUser(scriptName: "verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
             if error == nil {
-                
+   
                 switch httpCode! {
                 case 200: //User verified
                     

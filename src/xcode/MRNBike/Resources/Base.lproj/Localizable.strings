@@ -35,6 +35,8 @@
 "weightLabel"="Weight";
 "wheelSizeLabel"="Wheel Size";
 "passwordValidationHint"="must consist of 10 to 15 uppercase and lowercase letters, special characters and numbers";
+"passwordRepeatValidationHint"="passwords must be identical";
+"weightUnity"="Inches";
 
 "passwordEmptyDialogTitle"="Password empty";
 "passwordEmptyDialogMsg"="Please fill in your password.";
@@ -95,6 +97,12 @@
 "danger"="Danger";
 "writeMessage"="Message...";
 
+//Settings Scene
+"logout"="Logout";
+"chooseCo2Type"="Choose comparable object";
+"settingsTitle"="Settings";
+
+
 //Alert strings
 "pleaseWait"="Please wait...";
 
@@ -103,5 +111,11 @@
 
 "userUpdatedDialogTitle"="Profile Updated";
 "userUpdatedDialogMsg"="Profile was successfully updated!";
+
+
+
+
+
+
 
 

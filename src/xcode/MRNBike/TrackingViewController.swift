@@ -35,9 +35,11 @@ class TrackingViewController: UIViewController {
     var coordinateNew = CLLocation()
     var coordinateLast = CLLocation()
     var metersDistance: Double = 0.0
+    var savedCO2 : Double?
+    var co2 : Double?
     
     //Users wheel size
-    var userWheelSize: Int = 0
+    var userWheelSize: Double = 0
     var wheelInCm: Double = 0.0
     
     //MARK: Functions
@@ -56,10 +58,13 @@ class TrackingViewController: UIViewController {
         //Get user wheel size attribute
         let user = User.getUser()
         if let wheelSize = user.userWheelSize {
-            userWheelSize = wheelSize
+            userWheelSize = Double(wheelSize / 10)
         }
-        
-        wheelInCm = Double(userWheelSize) * 0.0254
+        if let co2 = user.co2Type {
+            self.co2 = co2
+        }
+        // U = 2 * pi * r to get the perimeter
+        wheelInCm = Double(userWheelSize) * 2.54 * 2 * Double.pi
         
         navItem.title = "Record Route"
         
@@ -158,13 +163,27 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (keys, error) in
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), distance: metersDistance, calories: Int(round(100*(metersDistance / 9048))/100), completion: { (keys, error) in
                 if error == nil {
                     
                     let user = User.getUser()
                     
+                    var co2Type = ""
+                    
+                    switch user.co2Type! {
+                    case 0.133:
+                        co2Type = "car"
+                    case 0.069:
+                        co2Type = "bus"
+                    case 0.065:
+                        co2Type = "train"
+                    default:
+                        co2Type = "car"
+                    }
+
+                    
                     //Upload updated user to Hana
-                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
                     
                     let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
                   
@@ -174,7 +193,7 @@ class TrackingViewController: UIViewController {
                             
                             switch httpCode! {
                             case 200: //User successfully updated
-                                StorageHelper.updateLocalRouteKeys(routeIDs: keys!)
+                                KeychainService.saveIDs(IDs: keys!)
                                 StorageHelper.clearCollectedGPS()
                                 
                                 self.reportLocation.isHidden = false
@@ -197,11 +216,6 @@ class TrackingViewController: UIViewController {
                                 if let currentDistanceMade = user.distanceMade {
                                     let newDistanceMade = Double(self.distanceLabel.text!)
                                     user.distanceMade = currentDistanceMade + newDistanceMade!
-                                }
-                                
-                                if let currentCo2Saved = user.co2Saved {
-                                    let newCo2Saved = Double(self.co2SavedLabel.text!)
-                                    user.co2Saved = currentCo2Saved + Int(newCo2Saved!)
                                 }
                                 
                                 //Dismiss activity indicator
@@ -280,12 +294,20 @@ class TrackingViewController: UIViewController {
             coordinateNew = CLLocation(latitude: (trackpointNew?.latitude)!, longitude: (trackpointNew?.longitude)!)
             
             metersDistance += coordinateLast.distance(from: coordinateNew)
-            wheelRotationLabel.text = String(Int(metersDistance / wheelInCm))
+            wheelRotationLabel.text = String(Int(Double(metersDistance / (wheelInCm / 100))))
             //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
             burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
             //(Distance/1609.34*45)/12.97
-            co2SavedLabel.text = String(round(10*(metersDistance / 464))/10)
+            if co2 != nil {
+                // saved KG per Kilometer
+                if savedCO2 == nil {
+                    savedCO2 = co2! * (metersDistance / 1000)
+                } else {
+                    savedCO2 = savedCO2! + ( co2! * (metersDistance / 1000))
+                }
+                co2SavedLabel.text = "\(round(10 * savedCO2! ) / 10)"
+            }
             
             coordinateLast = coordinateNew
         }
