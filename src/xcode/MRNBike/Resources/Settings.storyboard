@@ -131,7 +131,7 @@
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-Pc-Tw4">
-                                <rect key="frame" x="81" y="28" width="252" height="37"/>
+                                <rect key="frame" x="60" y="28" width="294" height="37"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zKc-WR-YKp" secondAttribute="trailing" id="3jy-KX-N3V"/>
                             <constraint firstItem="3eX-Pc-Tw4" firstAttribute="centerX" secondItem="zKc-WR-YKp" secondAttribute="centerX" id="ML7-cP-2dy"/>
-                            <constraint firstItem="3eX-Pc-Tw4" firstAttribute="leading" secondItem="Ow8-SI-a4n" secondAttribute="leadingMargin" constant="61" id="NiV-6O-NfS"/>
+                            <constraint firstItem="3eX-Pc-Tw4" firstAttribute="leading" secondItem="Ow8-SI-a4n" secondAttribute="leadingMargin" constant="40" id="NiV-6O-NfS"/>
                             <constraint firstAttribute="bottom" secondItem="zKc-WR-YKp" secondAttribute="bottom" id="bty-tu-0Vy"/>
                             <constraint firstItem="zKc-WR-YKp" firstAttribute="top" secondItem="3eX-Pc-Tw4" secondAttribute="bottom" constant="16" id="cGd-Yw-Ajt"/>
                             <constraint firstItem="3eX-Pc-Tw4" firstAttribute="top" secondItem="70s-9K-VYl" secondAttribute="bottom" constant="8" symbolic="YES" id="dfI-FV-Uxe"/>
@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOu-VU-D8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="149.77511244377811"/>
+            <point key="canvasLocation" x="163.768115942029" y="149.18478260869566"/>
         </scene>
     </scenes>
     <resources>
