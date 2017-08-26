@@ -365,8 +365,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         if let distanceMade = user.distanceMade {
             distanceLabel.text = String(distanceMade)
         }
-        if let co2Saved = user.co2Saved {
-            treesSavedLabel.text = String(co2Saved)
+        if let co2Type = user.co2Type {
+            if let distanceMade = user.distanceMade {
+                distanceLabel.text = String(distanceMade)
+                treesSavedLabel.text = String(Double(round(10 * (co2Type * distanceMade) ) / 10))
+            }
         }
         //Updating the Picture in Homescreen.
         if let image = user.profilePicture {

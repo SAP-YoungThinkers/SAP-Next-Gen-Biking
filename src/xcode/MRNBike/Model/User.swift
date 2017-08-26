@@ -14,8 +14,7 @@ class User {
     var burgersBurned: Double?
     var distanceMade: Double?
     var co2Saved: Int?
-    var co2Emissions : Double?
-    var co2Choice: Int?
+    var co2Type : Double?
     
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
@@ -63,10 +62,6 @@ class User {
                 if let co2Saved = user["co2Saved"] as? Int {
                     self.co2Saved = co2Saved
                 }
-                if let co2Choice = user["co2Choice"] as? Int {
-                    self.co2Choice = co2Choice
-                }
-                
                 if let allow = user["allowShare"] as? Int {
                     self.shareInfo = allow
                 }
@@ -75,17 +70,17 @@ class User {
                 if let co2Emissions = user["co2Emissions"] as? String {
                     switch co2Emissions {
                     case "car":
-                        self.co2Emissions = co2ComparedObject.car
+                        self.co2Type = co2ComparedObject.car
                     case "bus":
-                        self.co2Emissions = co2ComparedObject.bus
+                        self.co2Type = co2ComparedObject.bus
                     case "train":
-                        self.co2Emissions = co2ComparedObject.train
+                        self.co2Type = co2ComparedObject.train
                     default:
-                        self.co2Emissions = co2ComparedObject.car
+                        self.co2Type = co2ComparedObject.car
                     }
                 }
                 else {
-                    self.co2Emissions = co2ComparedObject.car
+                    self.co2Type = co2ComparedObject.car
                 }
             }
         }

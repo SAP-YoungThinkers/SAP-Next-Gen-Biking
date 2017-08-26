@@ -60,7 +60,7 @@ class TrackingViewController: UIViewController {
         if let wheelSize = user.userWheelSize {
             userWheelSize = Double(wheelSize / 10)
         }
-        if let co2 = user.co2Emissions {
+        if let co2 = user.co2Type {
             self.co2 = co2
         }
         // U = 2 * pi * r to get the perimeter

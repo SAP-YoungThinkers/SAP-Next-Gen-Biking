@@ -164,7 +164,7 @@ class ClientService {
                 jsonList.append(jsonEntry)
             }
             content.append(jsonList)
-            let tmp = ["String": ["distance":distance, "calories": calories] as [String : Any]] as! [[String: Any]]
+            // let tmp = ["String": ["distance":distance, "calories": calories] as [String : Any]] as! [[String: Any]]
             // content.append([tmp])
             print(content)
         }

@@ -25,18 +25,18 @@
                 // Identify setted object
                 let user = User.getUser()
                 
-                if let co2Choice = user.co2Choice {
+                if let co2Choice = user.co2Type {
                     switch co2Choice {
-                    case 133:
+                    case User.co2ComparedObject.car:
                          CarButton.setBackgroundImage(CarColorimage, for: tempstate)
                          CarButton.borderWidth = 2
                          CarButton.borderColor = selcolor
                                                 //user.co2Emissions
-                    case 69:
+                    case User.co2ComparedObject.train:
                         trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                         trainButton.borderWidth = 2
                         trainButton.borderColor = selcolor
-                    case 65:
+                    case User.co2ComparedObject.bus:
                         busButton.setBackgroundImage (BusColorimage, for: tempstate)
                         busButton.borderWidth = 2
                         busButton.borderColor = selcolor
@@ -58,12 +58,10 @@
             
             @IBAction func carObject_press(_ sender: Any) {
                 let user = User.getUser()
-                user.co2Emissions = 0.133 // hardcode for co2ComparedObject.train
-                let co2Choice = "133"
                 CarButton.setBackgroundImage(CarColorimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Emissions = User.co2ComparedObject.car
+                user.co2Type = User.co2ComparedObject.car
                 CarButton.borderWidth = 2
                 CarButton.borderColor = selcolor
                 trainButton.borderWidth = 0
@@ -74,13 +72,11 @@
             
             @IBAction func trainObject_press(_ sender: Any) {
                 let user = User.getUser()
-                user.co2Emissions = 0.069 // hardcode for co2ComparedObject.train
-                let co2Choice = "69"
                 CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                user.co2Emissions = User.co2ComparedObject.train
+                user.co2Type = User.co2ComparedObject.train
                 trainButton.borderWidth = 2
                 trainButton.borderColor = selcolor
                 CarButton.borderWidth = 0
@@ -89,13 +85,11 @@
             
             @IBAction func busObject_press(_ sender: Any) {
                 let user = User.getUser()
-                user.co2Emissions = 0.065 // hardcode for co2ComparedObject.bus
-                let co2Choice = "65"
                 CO2HANASend() // update user info at backend
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage (BusColorimage, for: tempstate)
-                user.co2Emissions = User.co2ComparedObject.bus
+                user.co2Type = User.co2ComparedObject.bus
                 busButton.borderWidth = 2
                 busButton.borderColor = selcolor
                 trainButton.borderWidth = 0
