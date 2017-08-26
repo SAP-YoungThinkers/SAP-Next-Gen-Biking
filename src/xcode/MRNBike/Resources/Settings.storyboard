@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="81" width="414" height="655"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAn-6X-TeW" userLabel="Train">
-                                        <rect key="frame" x="79" y="225.66666666666669" width="255" height="157"/>
+                                        <rect key="frame" x="79" y="226" width="255" height="157"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="uAn-6X-TeW" secondAttribute="height" multiplier="216:133" id="4Sp-F9-4g9"/>
                                         </constraints>
@@ -50,7 +50,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-Dc-Jtu" userLabel="Bus">
-                                        <rect key="frame" x="79" y="405.66666666666674" width="255" height="158.33333333333326"/>
+                                        <rect key="frame" x="79" y="406" width="255" height="158"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8jm-Dc-Jtu" secondAttribute="height" multiplier="108:67" id="JgE-4B-35L"/>
                                         </constraints>
@@ -67,7 +67,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TV7-gO-oxN">
-                                        <rect key="frame" x="144.66666666666669" y="608" width="125.00000000000006" height="48"/>
+                                        <rect key="frame" x="145" y="608" width="125" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="2hN-Pw-XVR"/>
                                             <constraint firstAttribute="height" constant="48" id="ui4-nb-tEa"/>
@@ -92,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDc-Qv-nAF" userLabel="Car">
-                                        <rect key="frame" x="79" y="34.666666666666671" width="255" height="170"/>
+                                        <rect key="frame" x="79" y="35" width="255" height="170"/>
                                         <accessibility key="accessibilityConfiguration" label="Car"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eDc-Qv-nAF" secondAttribute="height" multiplier="3:2" id="M2N-T2-jWR"/>
@@ -103,7 +103,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose comparable object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcJ-9L-MEl">
-                                        <rect key="frame" x="107" y="8" width="201.66666666666669" height="18.666666666666671"/>
+                                        <rect key="frame" x="107" y="8" width="202" height="19"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -154,7 +154,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CarButton" destination="eDc-Qv-nAF" id="Bg1-Qx-VdR"/>
+                        <outlet property="LogoutButton" destination="TV7-gO-oxN" id="6dU-g7-tMy"/>
                         <outlet property="busButton" destination="8jm-Dc-Jtu" id="pFB-PZ-rzT"/>
+                        <outlet property="infoLabel" destination="bcJ-9L-MEl" id="L85-De-2pt"/>
+                        <outlet property="settingsLabel" destination="3eX-Pc-Tw4" id="H1v-Tj-Dfc"/>
                         <outlet property="trainButton" destination="uAn-6X-TeW" id="JdM-BY-RC0"/>
                     </connections>
                 </viewController>
