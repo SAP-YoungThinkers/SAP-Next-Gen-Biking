@@ -63,7 +63,7 @@
                 CarButton.setBackgroundImage(CarColorimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                //user.co2Emissions = User.co2ComparedObject.car
+                user.co2Emissions = User.co2ComparedObject.car
                 CarButton.borderWidth = 2
                 CarButton.borderColor = selcolor
                 trainButton.borderWidth = 0
@@ -80,7 +80,7 @@
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainColorimage, for: tempstate)
                 busButton.setBackgroundImage(BusBlackimage, for: tempstate)
-                //user.co2Emissions = User.co2ComparedObject.train
+                user.co2Emissions = User.co2ComparedObject.train
                 trainButton.borderWidth = 2
                 trainButton.borderColor = selcolor
                 CarButton.borderWidth = 0
@@ -95,7 +95,7 @@
                 CarButton.setBackgroundImage(CarBlackimage, for: tempstate)
                 trainButton.setBackgroundImage(TrainBlackimage, for: tempstate)
                 busButton.setBackgroundImage (BusColorimage, for: tempstate)
-                //user.co2Emissions = User.co2ComparedObject.bus
+                user.co2Emissions = User.co2ComparedObject.bus
                 busButton.borderWidth = 2
                 busButton.borderColor = selcolor
                 trainButton.borderWidth = 0
