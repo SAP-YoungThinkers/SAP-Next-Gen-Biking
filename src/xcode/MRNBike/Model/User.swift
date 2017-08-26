@@ -15,6 +15,7 @@ class User {
     var distanceMade: Double?
     var co2Saved: Int?
     var co2Emissions : Double?
+    var co2Choice: Int?
     
     private static var isSingleton: Bool = false
     private static var singletonUser: User? = nil
@@ -62,12 +63,22 @@ class User {
                 if let co2Saved = user["co2Saved"] as? Int {
                     self.co2Saved = co2Saved
                 }
+                if let co2Choice = user["co2Choice"] as? Int {
+                    self.co2Choice = co2Choice
+                }
                 
                 if let allow = user["allowShare"] as? Int {
                     self.shareInfo = allow
                 }
                 User.isSingleton = true
+            
                 
+                struct co2ComparedObject {
+                    static let car = 0.133
+                    static let bus = 0.069
+                    static let train = 0.065
+                }
+
                 if let co2Emissions = user["co2Emissions"] as? String {
                     switch co2Emissions {
                     case "car":
