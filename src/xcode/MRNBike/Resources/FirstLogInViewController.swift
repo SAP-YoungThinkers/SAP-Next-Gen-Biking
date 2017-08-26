@@ -83,8 +83,9 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
 
         ClientService.postUser(scriptName: "verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
+            print(error)
             if error == nil {
-                
+                print(httpCode)
                 switch httpCode! {
                 case 200: //User verified
                     
