@@ -152,7 +152,7 @@ class ClientService {
     }
     
     //Upload route to backend (Hana)
-    static func uploadRouteToHana(route: [String: Any], distance: Double, calories: Int, completion: @escaping ([Int]?, ClientServiceError?)->()) {
+    static func uploadRouteToHana(route: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
         
