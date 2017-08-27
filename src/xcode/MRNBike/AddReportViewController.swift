@@ -177,11 +177,11 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     @IBAction func onPressCancel(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
         
-        /*let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
         self.present(newViewController, animated: true, completion: nil)
         self.close()
- */
+ 
     }
     
     @IBAction func onPressSend(_ sender: UIButton) {
