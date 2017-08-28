@@ -52,6 +52,7 @@
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
 		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
+		3C25A6B12A0E80E326033B52 /* Pods_MRNBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130860630B622C376A527D21 /* Pods_MRNBike.framework */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
@@ -103,6 +104,8 @@
 		10B9D4DF1EC614A000CC7027 /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
 		10B9D4E01EC614A000CC7027 /* Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspectable.swift; sourceTree = "<group>"; };
 		10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationExtensions.swift; sourceTree = "<group>"; };
+		130860630B622C376A527D21 /* Pods_MRNBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MRNBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.debug.xcconfig"; sourceTree = "<group>"; };
 		373490431F3492F3005BA684 /* RouteLineAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLineAnnotation.swift; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableCell.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		4EEF5E941F51F0DC003F092E /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			files = (
 				3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */,
 				491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */,
+				3C25A6B12A0E80E326033B52 /* Pods_MRNBike.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,12 +242,22 @@
 			path = ../Resources/Fonts;
 			sourceTree = "<group>";
 		};
+		4465D6E66E9EDB3AB8CF9EC9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */,
+				BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		491EC4F91DE421940077BF82 = {
 			isa = PBXGroup;
 			children = (
 				0137F14A1EA2778100FCA949 /* MRNBike */,
 				491EC5031DE421940077BF82 /* Products */,
 				491EC5191DE441430077BF82 /* Frameworks */,
+				4465D6E66E9EDB3AB8CF9EC9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,6 +276,7 @@
 				493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */,
 				493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */,
 				491EC51A1DE441430077BF82 /* MapKit.framework */,
+				130860630B622C376A527D21 /* Pods_MRNBike.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -361,9 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "MRNBike" */;
 			buildPhases = (
+				700702A6D281A5195D29794C /* [CP] Check Pods Manifest.lock */,
 				491EC4FE1DE421940077BF82 /* Sources */,
 				491EC4FF1DE421940077BF82 /* Frameworks */,
 				491EC5001DE421940077BF82 /* Resources */,
+				1B768207C7082586570310A7 /* [CP] Embed Pods Frameworks */,
+				9A8AFA9807FCACD3BC514829 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -449,6 +468,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B768207C7082586570310A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		700702A6D281A5195D29794C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MRNBike-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A8AFA9807FCACD3BC514829 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		491EC4FE1DE421940077BF82 /* Sources */ = {
@@ -606,6 +679,7 @@
 		};
 		491EC5171DE421950077BF82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -626,6 +700,7 @@
 		};
 		491EC5181DE421950077BF82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
