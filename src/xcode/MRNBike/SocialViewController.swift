@@ -15,6 +15,9 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //Request the friends from backend
         loadFriends()
+        
+        //title
+        self.navigationItem.title = NSLocalizedString("socialFriendsTitle", comment: "")
     }
     
     //MARK: - Table view data source
