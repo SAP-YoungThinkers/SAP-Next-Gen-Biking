@@ -28,7 +28,6 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("3")
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "FriendTableViewCell"
         
@@ -79,6 +78,7 @@ class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                     }
                     
+                    self.friendsTableView.reloadData()
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
