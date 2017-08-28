@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -208,17 +206,17 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         inputPasswordRepeat.addTarget(self, action: #selector(CreateProfileController.passwordRepeatValidate), for: UIControlEvents.editingDidEnd)
         
         // PW Hint
-        passwordHint.isHidden = true
+        passwordHint.isHidden = false
         passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
         passwordRepeatHint.isHidden = true
         passwordRepeatHint.text = NSLocalizedString("passwordRepeatValidationHint", comment: "")
     }
     
     func passwordValidate() {
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
         
         if passwordTest.evaluate(with: inputPassword.text) {
-            passwordHint.isHidden = true
+            passwordHint.isHidden = false
             return
         }
         passwordHint.isHidden = false
@@ -259,12 +257,12 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         checkInput()
     }
     
-    //Check if email, password, firstname and lastname are syntacticylly valid and TermSwitch is on
+    //Check if password, firstname and lastname are syntacticylly valid and TermSwitch is on
     func checkInput() {
         
         var valid = false
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
         let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField

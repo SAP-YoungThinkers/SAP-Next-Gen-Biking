@@ -127,17 +127,17 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         passwordLabel.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
         confirmPasswordLabel.addTarget(self, action: #selector(CreateProfileController.passwordRepeatValidate), for: UIControlEvents.editingDidEnd)
         
-        passwordHint.isHidden = true
+        passwordHint.isHidden = false
         passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
         passwordRepeatHint.isHidden = true
         passwordRepeatHint.text = NSLocalizedString("passwordRepeatValidationHint", comment: "")
     }
     
     func passwordValidate() {
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
         
         if passwordTest.evaluate(with: passwordLabel.text) {
-            passwordHint.isHidden = true
+            passwordHint.isHidden = false
             return
         }
         passwordHint.isHidden = false
@@ -283,8 +283,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         var valid = false
         
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,5}")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
         let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
         
         //Check input fields and TermSwitcher
