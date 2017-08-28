@@ -167,15 +167,14 @@ class TrackingViewController: UIViewController {
                 if error == nil {
                     print(keys as Any)
                     let user = User.getUser()
-                    
                     var co2Type = ""
                     
                     switch user.co2Type! {
-                    case 0.133:
+                    case User.co2ComparedObject.car:
                         co2Type = "car"
-                    case 0.069:
+                    case User.co2ComparedObject.bus:
                         co2Type = "bus"
-                    case 0.065:
+                    case User.co2ComparedObject.train:
                         co2Type = "train"
                     default:
                         co2Type = "car"
