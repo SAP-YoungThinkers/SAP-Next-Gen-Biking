@@ -34,7 +34,7 @@
 "personalInfoLabel"="PERSONAL INFORMATION";
 "weightLabel"="Weight";
 "wheelSizeLabel"="Wheel Size";
-"passwordValidationHint"="must consist of 10 to 15 uppercase and lowercase letters, special characters and numbers";
+"passwordValidationHint"="8-25 characters + at least one uppercase letter, one lowercase letter and one number";
 "passwordRepeatValidationHint"="passwords must be identical";
 "weightUnity"="Inches";
 
