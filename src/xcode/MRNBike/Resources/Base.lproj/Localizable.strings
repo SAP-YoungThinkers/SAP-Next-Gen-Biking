@@ -102,6 +102,8 @@
 "chooseCo2Type"="Choose comparable object";
 "settingsTitle"="Settings";
 
+//Statistics
+"statisticsTitle"="Statistics";
 
 //Alert strings
 "pleaseWait"="Please wait...";

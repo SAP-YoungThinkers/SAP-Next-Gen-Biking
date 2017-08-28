@@ -98,6 +98,9 @@
 "danger"="Gefahr";
 "writeMessage"="Kommentar...";
 
+//Statistics
+"statisticsTitle"="Statistiken";
+
 //Settings Scene
 //Settings Scene
 "logout"="Ausloggen";
