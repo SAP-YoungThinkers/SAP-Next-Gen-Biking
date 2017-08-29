@@ -113,6 +113,9 @@
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
 
+"noFriendsDialogTitle"="404 - Freunde nicht gefunden";
+"noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
+
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";
 "frindsTabBarItem"="Freunde";

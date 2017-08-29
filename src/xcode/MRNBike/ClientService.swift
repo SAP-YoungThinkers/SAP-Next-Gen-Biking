@@ -4,6 +4,7 @@ enum ClientServiceError: Error {
     case httpError
     case csrfTokenError
     case jsonSerializationError
+    case notFound
 }
 
 class ClientService {
@@ -27,7 +28,8 @@ class ClientService {
                         return
                     }
                     
-                    if status == 200 {
+                    switch status {
+                    case 200:
                         guard let responseData = data else {
                             completion(nil, ClientServiceError.httpError)
                             return
@@ -41,12 +43,14 @@ class ClientService {
                         } catch {
                             completion(nil, ClientServiceError.jsonSerializationError)
                         }
-                    } else {
+                    case 404:
+                        completion(nil, ClientServiceError.notFound)
+                        return
+                    default:
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
                     }.resume()
-                
             } else {
                 completion(nil, error)
             }

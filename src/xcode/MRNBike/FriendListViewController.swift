@@ -78,6 +78,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
                         for friend in friendList {
                             guard let friendEntity = Friend(firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
+  
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -88,18 +89,26 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                     
                     self.friendsTableView.reloadData()
-                    
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                 } else {
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                
-                    //An error occured in the app
-                    DispatchQueue.main.async {
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    if error == ClientServiceError.notFound {
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        //An error occured in the app
+                        DispatchQueue.main.async {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noFriendsDialogTitle", comment: ""), message: NSLocalizedString("noFriendsDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    } else {
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+            
+                        //An error occured in the app
+                        DispatchQueue.main.async {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
                     }
-                    
                 }
             })
         }
