@@ -329,7 +329,13 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 //activityAlert.dismiss(animated: false, completion: nil)
 
                 //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
+                
+                DispatchQueue.global().async {
+                    <#code#>
+                }
             }
         }
     }
