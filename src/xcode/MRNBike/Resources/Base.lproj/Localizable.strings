@@ -114,8 +114,9 @@
 
 
 //Social Scene
-"socialFriendsTitle"="Social";
-
+"socialFriendsTitle"="Social Activity";
+"frindsTabBarItem"="FRIENDS";
+"groupsTabBarItem"="GROUPS";
 
 
 

@@ -1,98 +1,105 @@
 import UIKit
 
-class SocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SocialViewController: UIViewController, UITabBarDelegate {
     
     //MARK: Properties
-    var friends = [Friend]()
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var friendsBarItem: UITabBarItem!
+    @IBOutlet weak var groupsBarItem: UITabBarItem!
+    @IBOutlet weak var friendsContainer: UIView!
+    @IBOutlet weak var groupsContainer: UIView!
     
-    @IBOutlet weak var friendsTableView: UITableView!
+    var tempPlaceholder : UIView?
+    let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendsTableView.dataSource = self
-        friendsTableView.delegate = self
-        
-        //Request the friends from backend
-        loadFriends()
-        
-        //title
+        //Set text
         self.navigationItem.title = NSLocalizedString("socialFriendsTitle", comment: "")
-    }
-    
-    //MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "FriendTableViewCell"
+        friendsBarItem.title = NSLocalizedString("frindsTabBarItem", comment: "")
+        groupsBarItem.title = NSLocalizedString("groupsTabBarItem", comment: "")
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        tabBar.delegate = self
+        tabBar.selectedItem = friendsBarItem
+        
+        // Remove Grey Lines by initialising empty Image
+        tabBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        
+        // Set Font, Size for Items
+        for item in tabBar.items! {
+            item.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)], for: UIControlState.normal)
+            item.titlePositionAdjustment = UIOffset.init(horizontal: 0, vertical: -17)
         }
         
-        // Fetches the appropriate meal for the data source layout.
-        let friend = friends[indexPath.row]
+        // fix size errors
+        tabBar.bounds.size.width = UIScreen.main.bounds.width
+        tabBar.itemWidth = CGFloat(tabBar.bounds.size.width/CGFloat(tabBar.items!.count))
+        tabBar.updateConstraints()
         
-        cell.firstnameLabel.text = friend.firstname
-        cell.lastnameLabel.text = friend.lastname
-        cell.friendImage.image = friend.photo
+        // display line on selected
+        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: primaryColor, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
         
-        return cell
+        // add seperator
+        tempPlaceholder = setupTabBarSeparators()
+        
     }
     
-    //MARK: Private Methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     
-    private func loadFriends() {
+        if(tabBar.selectedItem == friendsBarItem) {
+            loadFriendsContent()
+        } else {
+            loadGroupsContent()
+        }
+    }
+    
+    //This method will be called when user changes tab.
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if(tabBar.selectedItem == friendsBarItem) {
+            loadFriendsContent()
+        } else {
+            loadGroupsContent()
+        }
+    }
+    
+    func loadFriendsContent() {
+        groupsContainer.isHidden = true
+        friendsContainer.isHidden = false
+    }
+    
+    func loadGroupsContent() {
+        friendsContainer.isHidden = true
+        groupsContainer.isHidden = false
+    }
+    
+    func updateTapBar() {
+        // remove seperators and images
+        self.tempPlaceholder?.removeFromSuperview()
+        tabBar.selectionIndicatorImage = UIImage()
         
-        if let userMail = KeychainService.loadEmail() as String? {
-            
-            //Show activity indicator
-            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-            present(activityAlert, animated: false, completion: nil)
-            
-            ClientService.getFriendList(mail: userMail, completion: { (data, error) in
-                if error == nil {
-                    
-                    guard let responseData = data else {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        //An error occured
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                        return
-                    }
+        // add again
+        self.tempPlaceholder? = setupTabBarSeparators()
+        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: primaryColor, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
+    }
 
-                    if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
-                        for friend in friendList {
-                            guard let friendEntity = Friend(firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: nil) else {
-                                activityAlert.dismiss(animated: false, completion: nil)
-                                //An error occured
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                                return
-                            }
-                            self.friends.append(friendEntity)
-                        }
-                    }
-                    
-                    self.friendsTableView.reloadData()
-                    
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                } else {
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    //An error occured
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                }
-            })
-        }
+    func setupTabBarSeparators() -> UIView {
+        let itemWidth = floor(self.tabBar.frame.width / CGFloat(self.tabBar.items!.count))
+        
+        // this is the separator width.  0.5px matches the line at the top of the tab bar
+        let separatorWidth: CGFloat = 0.5
+        
+        // make a new separator at the end of each tab bar item
+        let separator = UIView(frame: CGRect(x: itemWidth + 0.5 - CGFloat(separatorWidth / 2), y: 0, width: CGFloat(separatorWidth), height: self.tabBar.frame.height))
+        
+        // set the color to light gray (default line color for tab bar)
+        separator.backgroundColor = UIColor(red: (170/255.0), green: (170/255.0), blue: (170/255.0), alpha: 1.0)
+        
+        self.tabBar.insertSubview(separator, at: 1)
+        
+        return separator
     }
 }

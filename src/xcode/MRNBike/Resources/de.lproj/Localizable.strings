@@ -114,7 +114,8 @@
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
 
 //Social Scene
-"socialFriendsTitle"="Social";
-
+"socialFriendsTitle"="Freunde & Gruppen";
+"frindsTabBarItem"="Freunde";
+"groupsTabBarItem"="Gruppen";
 
 
