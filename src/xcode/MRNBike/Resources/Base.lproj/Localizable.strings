@@ -113,9 +113,10 @@
 "userUpdatedDialogMsg"="Profile was successfully updated!";
 
 
-
-
-
+//Social Scene
+"socialFriendsTitle"="Social Activity";
+"frindsTabBarItem"="FRIENDS";
+"groupsTabBarItem"="GROUPS";
 
 
 
