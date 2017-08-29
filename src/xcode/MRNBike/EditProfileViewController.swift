@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -13,20 +11,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     @IBOutlet weak var userBar: UIView!
     @IBOutlet weak var scrollView : UIScrollView!
-    
-    /* =======================
-     
-     USER DATA
-     
-     - Surname
-     - First Name
-     - Email
-     - Password, Password Repeat
-     - Weight
-     - Wheelsize
-     - Image
-     
-     ======================= */
     
     //User Bar View
     var tmpPasswordHash : String!       // only local
@@ -46,10 +30,14 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var inputPassword : UITextField!
     @IBOutlet weak var inputPasswordRepeat : UITextField!
     @IBOutlet weak var inputActivity: UISwitch!
-    @IBOutlet weak var inputIndicatorWeight: UILabel!
-    @IBOutlet weak var inputWeight: UISlider!
-    @IBOutlet weak var inputIndicatorWheel: UILabel!
-    @IBOutlet weak var inputWheelSize: UISlider!
+    
+    @IBOutlet weak var passwordHint: UILabel!
+    @IBOutlet weak var passwordRepeatHint: UILabel!
+    
+    @IBOutlet weak var weightInput: UITextField!
+    @IBOutlet weak var wheelSizeInput: UITextField!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var wheelSizeLabel: UILabel!
     
     
     var userBarViewController : UserBarViewController!
@@ -145,9 +133,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         repeatPassword.sizeToFit()
         activityShare.sizeToFit()
         personalInfo.sizeToFit()
-        inputIndicatorWeight.sizeToFit()
         weight.sizeToFit()
-        inputIndicatorWheel.sizeToFit()
         wheelSize.sizeToFit()
         
         // Read user instance and set values
@@ -185,14 +171,17 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Set user weight
-        inputWeight.value = Float(user.userWeight!)
-        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-        inputIndicatorWeight.sizeToFit()
+        let x  = user.userWeight!
+        weightInput.text = String(x)
         
         //Set wheel size
-        inputWheelSize.value = Float(user.userWheelSize!)
-        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-        inputIndicatorWheel.sizeToFit()
+        let y = Double(user.userWheelSize!)
+        wheelSizeInput.text = String(y / 10)
+        
+        weight.text = NSLocalizedString("weightLabel", comment: "")
+        wheelSize.text = NSLocalizedString("wheelSizeLabel", comment: "")
+        weightLabel.text = "kg"
+        wheelSizeLabel.text = NSLocalizedString("weightUnity", comment: "")
         
         //Set user image
         if let image = user.profilePicture {
@@ -210,14 +199,70 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         firstname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
         inputPassword.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
         inputPasswordRepeat.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        
+        
+        /* Password Hints */
+        inputPassword.addTarget(self, action: #selector(CreateProfileController.passwordValidate), for: UIControlEvents.editingDidEnd)
+        inputPasswordRepeat.addTarget(self, action: #selector(CreateProfileController.passwordRepeatValidate), for: UIControlEvents.editingDidEnd)
+        
+        // PW Hint
+        passwordHint.isHidden = false
+        passwordHint.text = NSLocalizedString("passwordValidationHint", comment: "")
+        passwordRepeatHint.isHidden = true
+        passwordRepeatHint.text = NSLocalizedString("passwordRepeatValidationHint", comment: "")
     }
     
-    //Check if email, password, firstname and lastname are syntacticylly valid and TermSwitch is on
+    func passwordValidate() {
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
+        
+        if passwordTest.evaluate(with: inputPassword.text) {
+            passwordHint.isHidden = false
+            return
+        }
+        passwordHint.isHidden = false
+    }
+    
+    func passwordRepeatValidate() {
+        if inputPasswordRepeat.text == inputPassword.text {
+            passwordRepeatHint.isHidden = true
+            return
+        }
+        passwordRepeatHint.isHidden = false
+    }
+    
+    @IBAction func wheelInputChanged(_ sender: Any) {
+        guard let tf = sender as? UITextField else {
+            checkInput()
+            return
+        }
+        var array: [Character] = Array(tf.text!.characters)
+        var decimalCount = 0
+        var numberStarts = false
+        for character in array {
+            if numberStarts {
+                decimalCount += 1
+            }
+            if character == "." {
+                numberStarts = true
+            }
+        }
+        
+        if decimalCount > 1 {
+            _ = array.popLast()
+            tf.text = String(array)
+        }
+        if tf.text! == "." {
+            tf.text = "0."
+        }
+        checkInput()
+    }
+    
+    //Check if password, firstname and lastname are syntacticylly valid and TermSwitch is on
     func checkInput() {
         
         var valid = false
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[$@$!%*?&])(?=.*[0-9])(?=.*[a-z]).{10,15}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
         let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
@@ -227,16 +272,14 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         if nameTest.evaluate(with: surname.text) && nameTest.evaluate(with: firstname.text) && passwordTest.evaluate(with: inputPassword.text) && passwordTest.evaluate(with: inputPasswordRepeat.text) {
             //Check if passwords are similar
             if inputPassword.text?.characters.count == inputPasswordRepeat.text?.characters.count {
-                valid = true
+                let number = wheelSizeInput.text!.doubleValue
+                if number != nil && Int(weightInput.text!) != nil {
+                    valid = true
+                }
             }
         }
         
-        //If all inputs are valid, enable the done button
-        if valid == true {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+        saveButton.isEnabled = valid
     }
     
     
@@ -274,7 +317,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         } else {
             print("Something went wrong")
         }
-        
+        checkInput()
         dismiss(animated: true, completion: nil)
     }
     
@@ -379,7 +422,27 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
         
         //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : Int(inputWheelSize.value), "weight" : Int(inputWeight.value), "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2saved" : user.co2Saved!]
+        var numberDouble = wheelSizeInput.text!.doubleValue
+        if numberDouble == nil {
+            numberDouble = 0.0
+        }
+        
+        var co2Type = ""
+        
+        switch user.co2Type! {
+        case User.co2ComparedObject.car:
+            co2Type = "car"
+        case User.co2ComparedObject.bus:
+            co2Type = "bus"
+        case User.co2ComparedObject.train:
+            co2Type = "train"
+        default:
+            co2Type = "car"
+        }
+
+        
+        let number = Int(numberDouble! * 10)
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         
@@ -402,12 +465,14 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     let user = User.getUser()
                     user.surname = surname.text!
                     user.firstName = firstname.text!
-                    user.userWeight = Int(self.inputWeight.value) //self.weightSlider.value //Change to int
-                    user.userWheelSize = Int(self.inputWheelSize.value) //self.wheelSizeSlider.value
+                    user.userWeight = Int(self.weightInput.text!)
+                    user.userWheelSize = number
                     
                     user.shareInfo = shareInfo
                     
-                    user.profilePicture = UIImageJPEGRepresentation(self.imageBG.image!, 1.0)
+                    if let tmpImage = self.imageBG.image {
+                        user.profilePicture = UIImageJPEGRepresentation(tmpImage, 1.0)
+                    }
                     
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
@@ -440,18 +505,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
             }
         }
-    }
-    
-    // weight slider indicator update
-    @IBAction func weightChanged(_ sender: UISlider) {
-        inputIndicatorWeight.text = "\(Int(inputWeight.value)) kg"
-        inputIndicatorWeight.sizeToFit()
-    }
-    
-    // wheelsize slider indicator update
-    @IBAction func wheelChanged(_ sender: UISlider) {
-        inputIndicatorWheel.text = "\(Int(inputWheelSize.value)) Inches"
-        inputIndicatorWheel.sizeToFit()
     }
     
     @IBAction func backAction(_ sender: Any) {

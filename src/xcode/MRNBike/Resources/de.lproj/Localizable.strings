@@ -34,7 +34,9 @@
 "personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
-"passwordValidationHint"="muss aus 10 bis 15 großen und kleinen Buchstaben sowie Sonderzeichen und Zahlen bestehen";
+"passwordValidationHint"="8-25 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
+"passwordRepeatValidationHint"="Passwörter müssen gleich sein";
+"weightUnity"="Zoll";
 
 "passwordEmptyDialogTitle"="KEIN PASSWORT EINGEGEBEN";
 "passwordEmptyDialogMsg"="BITTE GEBE DEIN PASSWORT EIN.";
@@ -85,7 +87,7 @@
 
 //Marks & Routes Scene
 "marksAndRoutesTitle"="Routen und Anmerkungen";
-"routeInformation"="Routeninformation";
+"routeInformation"="ROUTEN INFOS";
 "myRoutes"="MEINE ROUTEN";
 
 //Add Route Mark Scene
@@ -95,6 +97,12 @@
 "warning"="Warnung";
 "danger"="Gefahr";
 "writeMessage"="Kommentar...";
+
+//Settings Scene
+//Settings Scene
+"logout"="Ausloggen";
+"chooseCo2Type"="CO2 Vergleich auswählen";
+"settingsTitle"="Einstellungen";
 
 //Alert strings
 "pleaseWait"="Bitte warten...";

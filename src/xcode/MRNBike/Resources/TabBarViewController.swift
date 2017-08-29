@@ -15,45 +15,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
-    // Open Login screen
-    func logOut (){
-        //Remove user singleton
-        User.deleteSingleton()
-        
-        KeychainService.saveRemember(token: "no" as NSString)
-        
-        let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
-        let controller = storyboard.instantiateInitialViewController()!
-        self.present(controller, animated: true, completion: nil)
-    }
-    // Open dashboard
-    func logOutCancel (){
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-        self.present(controller, animated: true, completion: nil)
-    }
 
-    // Open Login screen, when the user chose LogOut button
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-
-        let tabBarIndex = tabBarController.selectedIndex
-        if tabBarIndex == 4 {
-            let LogOutAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-            LogOutAlert.title = "LogOut conformation"
-            LogOutAlert.message = "Do you really want to sign out?"
-            LogOutAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {action in
-                self.logOutCancel()
-            }))
-            LogOutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
-                self.logOut()
-            }))
-            self.present(LogOutAlert, animated: true, completion: nil)
-            return
-
-        }
-    }
-    
-    
     // Adding Separatos between TabBarItems
     
     func setupTabBarSeparators() {
