@@ -34,7 +34,7 @@
 "personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
-"passwordValidationHint"="8-25 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
+"passwordValidationHint"="8-50 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
 "passwordRepeatValidationHint"="Passwörter müssen gleich sein";
 "weightUnity"="Zoll";
 
