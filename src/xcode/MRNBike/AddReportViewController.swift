@@ -176,11 +176,12 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     
     @IBAction func onPressCancel(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
-
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-        self.present(newViewController, animated: true, completion: nil)
-        self.close()
+//
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+//        self.present(newViewController, animated: true, completion: nil)
+//        self.close()
+        self.dismiss(animated: true)
     }
     
     @IBAction func onPressSend(_ sender: UIButton) {
@@ -222,10 +223,12 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
                 let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: ""))
                 let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
                     (action) -> Void in
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-                    self.present(newViewController, animated: true, completion: nil)
-                    self.close()
+//                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+//                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+//                    self.present(newViewController, animated: true, completion: nil)
+//                    self.close()
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true)
                 })
                 alert.addAction(gotItAction)
                 self.present(alert, animated: true, completion: nil)
@@ -238,10 +241,12 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
                 let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
                 let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
                     (action) -> Void in
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-                    self.present(newViewController, animated: true, completion: nil)
-                    self.close()
+//                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+//                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+//                    self.present(newViewController, animated: true, completion: nil)
+//                    self.close()
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true)
                 })
                 alert.addAction(gotItAction)
                 self.present(alert, animated: true, completion: nil)
