@@ -12,6 +12,8 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var distanceTab: UITabBarItem!
     @IBOutlet weak var caloriesTab: UITabBarItem!
+    @IBOutlet weak var totalWheels: UILabel!
+    @IBOutlet weak var totalWheelsLabel: UILabel!
     
     var tempPlaceholder : UIView?
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
@@ -24,6 +26,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         self.navigationItem.title = NSLocalizedString("statisticsTitle", comment: "")
         distanceTab.title = NSLocalizedString("distanceTitle", comment: "")
         caloriesTab.title = NSLocalizedString("caloriesTitle", comment: "")
+        totalWheelsLabel.text = NSLocalizedString("totalWheelsTitle", comment: "")
         
         // Design
         tabBar.delegate = self

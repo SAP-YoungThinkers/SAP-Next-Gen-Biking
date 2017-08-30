@@ -106,6 +106,7 @@
 "statisticsTitle"="Statistics";
 "distanceTitle"="DISTANCE";
 "caloriesTitle"="CALORIES";
+"totalWheelsTitle"="TOTAL WHEELS ROTATED";
 
 //Alert strings
 "pleaseWait"="Please wait...";
