@@ -75,13 +75,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKg-pd-1gZ">
-                                <rect key="frame" x="0.0" y="124" width="320" height="67"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <connections>
-                                    <segue destination="Kro-MQ-BJU" kind="embed" id="VdG-vJ-5vT"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -120,20 +113,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzI-08-no3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="173.59999999999999" y="87.706146926536732"/>
-        </scene>
-        <!--Pager View Controller-->
-        <scene sceneID="b4h-Dv-1FV">
-            <objects>
-                <viewController id="Kro-MQ-BJU" customClass="PagerViewController" customModule="MRNBike" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gju-yp-8Ta">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zm1-Ae-miq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1898" y="-107"/>
         </scene>
     </scenes>
     <resources>

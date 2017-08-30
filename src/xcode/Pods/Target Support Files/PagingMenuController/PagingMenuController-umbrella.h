@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "FXPageControl.h"
 
-FOUNDATION_EXPORT double XLPagerTabStripVersionNumber;
-FOUNDATION_EXPORT const unsigned char XLPagerTabStripVersionString[];
+FOUNDATION_EXPORT double PagingMenuControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char PagingMenuControllerVersionString[];
 

@@ -9,17 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PagingMenuController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MRNBike.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLPagerTabStrip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1D14E94D92903D01DE5789142C5D2CDB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2E2E65E5E47C15E3D4D373FA695AA068</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>962A93457FA965F3AD844FE768A2D342</key>
+		<key>6ADB3656BDFD85FB77E0CAB44BFF61E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F307B842FF76B2DE6C55DB67C0885325</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF5D9AA1F920DC3096D76B248F392848</key>
 		<dict>
 			<key>primary</key>
 			<true/>
