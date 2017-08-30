@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PagingMenuController
 
 class StatisticsViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var tabBar: UITabBar!
@@ -38,6 +39,45 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         // Set Font, Size for Items
         for item in tabBar.items! {
             item.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)], for: UIControlState.normal)
+        }
+        
+        struct MenuItem1: MenuItemViewCustomizable {}
+        struct MenuItem2: MenuItemViewCustomizable {}
+        
+        struct MenuOptions: MenuViewCustomizable {
+            var itemsOptions: [MenuItemViewCustomizable] {
+                return [MenuItem1(), MenuItem2()]
+            }
+        }
+        
+        struct PagingMenuOptions: PagingMenuControllerCustomizable {
+            var componentType: ComponentType {
+                return .all(menuOptions: MenuOptions(), pagingControllers: [UIViewController(), UIViewController()])
+            }
+        }
+        
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        let options = PagingMenuOptions()
+        pagingMenuController.setup(options)
+        pagingMenuController.onMove = { state in
+            switch state {
+            case let .willMoveController(menuController, previousMenuController):
+                print(previousMenuController)
+                print(menuController)
+            case let .didMoveController(menuController, previousMenuController):
+                print(previousMenuController)
+                print(menuController)
+            case let .willMoveItem(menuItemView, previousMenuItemView):
+                print(previousMenuItemView)
+                print(menuItemView)
+            case let .didMoveItem(menuItemView, previousMenuItemView):
+                print(previousMenuItemView)
+                print(menuItemView)
+            case .didScrollStart:
+                print("Scroll start")
+            case .didScrollEnd:
+                print("Scroll end")
+            }
         }
     }
 
