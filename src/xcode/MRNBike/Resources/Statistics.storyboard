@@ -20,6 +20,30 @@
                     <view key="view" contentMode="scaleToFill" id="xK3-G7-Cns">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZR4-m8-zKw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="ROUTE INFO" id="bv6-a6-qu5">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-17"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="MY ROUTES" id="apU-Ks-vic">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-17"/>
+                                    </tabBarItem>
+                                </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                        <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="statistics-1x" selectedImage="selected_statistics-1x" id="2v9-xd-C0s">
@@ -27,6 +51,11 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="2rX-5h-tv7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="caloriesTab" destination="apU-Ks-vic" id="JvI-6b-boO"/>
+                        <outlet property="distanceTab" destination="bv6-a6-qu5" id="j9L-tB-oSj"/>
+                        <outlet property="tabBar" destination="ZR4-m8-zKw" id="gds-aZ-gbQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yg-1k-vRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,6 +69,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="on0-dY-BXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

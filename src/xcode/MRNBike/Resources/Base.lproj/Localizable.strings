@@ -104,6 +104,8 @@
 
 //Statistics
 "statisticsTitle"="Statistics";
+"distanceTitle"="DISTANCE";
+"caloriesTitle"="CALORIES";
 
 //Alert strings
 "pleaseWait"="Please wait...";
