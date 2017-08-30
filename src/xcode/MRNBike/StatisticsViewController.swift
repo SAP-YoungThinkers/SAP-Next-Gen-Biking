@@ -6,6 +6,7 @@
 //
 //
 
+import UIKit
 import PagingMenuController
 
 class StatisticsViewController: UIViewController, UITabBarDelegate {
@@ -14,9 +15,10 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var caloriesTab: UITabBarItem!
     @IBOutlet weak var totalWheels: UILabel!
     @IBOutlet weak var totalWheelsLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
-    var tempPlaceholder : UIView?
-    let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
+    private var tempPlaceholder : UIView?
+    private let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     private var shadowImageView: UIImageView?
     
     override func viewDidLoad() {
@@ -40,39 +42,52 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             item.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)], for: UIControlState.normal)
         }
         
-        struct MenuItem1: MenuItemViewCustomizable {}
-        struct MenuItem2: MenuItemViewCustomizable {}
-        struct MenuItem3: MenuItemViewCustomizable {}
+        
+        struct menuPrev: MenuItemViewCustomizable {}
+        struct menuActual: MenuItemViewCustomizable {}
+        struct menuNext: MenuItemViewCustomizable {}
         
         struct MenuOptions: MenuViewCustomizable {
+            var itemWidth : CGFloat
+            var height : CGFloat
             var itemsOptions: [MenuItemViewCustomizable] {
-                return [MenuItem1(), MenuItem3(), MenuItem2()]
+                return [menuPrev(), menuActual(), menuNext()]
             }
-            var MenuFocusMode : MenuFocusMode {
+            var focusMode : MenuFocusMode {
                 return .none
             }
-            var MenuDisplayMode : MenuDisplayMode {
-                return .standard(widthMode: MenuItemWidthMode.flexible, centerItem: true, scrollingMode: MenuScrollingMode.pagingEnabled)
+            var displayMode : MenuDisplayMode {
+                return .standard(widthMode: MenuItemWidthMode.fixed(width: itemWidth), centerItem: true, scrollingMode: MenuScrollingMode.pagingEnabled)
             }
-            
-            
+            var backgroundColor: UIColor = UIColor.clear
+            var selectedBackgroundColor: UIColor = UIColor.clear
+            init(_ width : CGFloat, height: CGFloat) {
+                self.itemWidth = width
+                self.height = height
+            }
         }
+        
         
         struct PagingMenuOptions: PagingMenuControllerCustomizable {
+            var width : CGFloat
+            var height : CGFloat
             var componentType: ComponentType {
-                return .all(menuOptions: MenuOptions(), pagingControllers: [UIViewController(),UIViewController(), UIViewController()])
+                return .menuView(menuOptions: MenuOptions(width, height: height))
+            }
+            var backgroundColor: UIColor = UIColor.clear
+            var defaultPage: Int = 1 // Mitte!
+            init(_ width: CGFloat, height: CGFloat) {
+                self.width = width
+                self.height = height
             }
         }
-        
-        let options = PagingMenuOptions()
+    
+        let options = PagingMenuOptions(view.bounds.width * 0.33, height: CGFloat(67.0))
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.setup(options)
-        pagingMenuController.move(toPage: 3, animated: true)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        containerView.backgroundColor = UIColor.clear
+        
     }
     
     override func viewWillLayoutSubviews() {

@@ -75,11 +75,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUf-OT-ca9">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-Vm-OY9">
                                 <rect key="frame" x="0.0" y="124" width="320" height="67"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="O3B-BF-L66" kind="embed" id="yJl-ja-Qeu"/>
+                                    <segue destination="7pT-Iw-7Lu" kind="embed" id="jy6-fS-YPq"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -92,6 +92,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="caloriesTab" destination="apU-Ks-vic" id="JvI-6b-boO"/>
+                        <outlet property="containerView" destination="gsg-Vm-OY9" id="76m-an-qVV"/>
                         <outlet property="distanceTab" destination="bv6-a6-qu5" id="j9L-tB-oSj"/>
                         <outlet property="tabBar" destination="ZR4-m8-zKw" id="gds-aZ-gbQ"/>
                         <outlet property="totalWheels" destination="i2s-f6-eZB" id="e2E-ld-ao5"/>
@@ -122,18 +123,18 @@
             <point key="canvasLocation" x="173.59999999999999" y="87.706146926536732"/>
         </scene>
         <!--Paging Menu Controller-->
-        <scene sceneID="JxE-bE-ryq">
+        <scene sceneID="qKV-yp-D7g">
             <objects>
-                <viewController id="O3B-BF-L66" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DVF-as-apf">
+                <viewController id="7pT-Iw-7Lu" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OQO-oO-jEX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O80-3a-mKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="crh-dm-Tbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="211"/>
+            <point key="canvasLocation" x="1943" y="190"/>
         </scene>
     </scenes>
     <resources>
