@@ -37,6 +37,7 @@
 		10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4DF1EC614A000CC7027 /* CornerView.swift */; };
 		10B9D4E61EC614A000CC7027 /* Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E01EC614A000CC7027 /* Inspectable.swift */; };
 		10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */; };
+		3711C88D1F56ACED002EECC5 /* PagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3711C88C1F56ACED002EECC5 /* PagerViewController.swift */; };
 		373490441F3492F3005BA684 /* RouteLineAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373490431F3492F3005BA684 /* RouteLineAnnotation.swift */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
 		375A69191F545184006D7EB2 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375A69181F545184006D7EB2 /* StatisticsViewController.swift */; };
@@ -107,6 +108,7 @@
 		10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationExtensions.swift; sourceTree = "<group>"; };
 		130860630B622C376A527D21 /* Pods_MRNBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MRNBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.debug.xcconfig"; sourceTree = "<group>"; };
+		3711C88C1F56ACED002EECC5 /* PagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerViewController.swift; sourceTree = "<group>"; };
 		373490431F3492F3005BA684 /* RouteLineAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLineAnnotation.swift; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		375A69181F545184006D7EB2 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
 				375A69181F545184006D7EB2 /* StatisticsViewController.swift */,
+				3711C88C1F56ACED002EECC5 /* PagerViewController.swift */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
 				108D1CC91F256AED00023F2D /* ViewController.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
+				3711C88D1F56ACED002EECC5 /* PagerViewController.swift in Sources */,
 				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
 				D2D955A61EBD0C3B00E5CACE /* UIImage+color.swift in Sources */,
