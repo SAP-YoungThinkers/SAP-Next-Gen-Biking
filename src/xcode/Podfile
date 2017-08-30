@@ -7,5 +7,6 @@ target 'MRNBike' do
 
   # Pods for MRNBike
 pod 'Charts'
+pod 'XLPagerTabStrip', '~> 7.0'
 
 end
