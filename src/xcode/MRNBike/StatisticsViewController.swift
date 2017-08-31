@@ -21,28 +21,48 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     private let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     private var shadowImageView: UIImageView?
     
+    
+    // Menu handling from outside view
+    @IBAction func swipedLeft(_ sender: UISwipeGestureRecognizer) {
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.move(toPage: (pagingMenuController.currentPage+1), animated: true)
+    }
+    @IBAction func swipedRight(_ sender: UISwipeGestureRecognizer) {
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.move(toPage: (pagingMenuController.currentPage-1), animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Titles
+        /*  ------------------------ *\
+         *      LANGUAGE & TEXT
+        \*  ------------------------ */
         self.navigationItem.title = NSLocalizedString("statisticsTitle", comment: "")
         distanceTab.title = NSLocalizedString("distanceTitle", comment: "")
         caloriesTab.title = NSLocalizedString("caloriesTitle", comment: "")
         totalWheelsLabel.text = NSLocalizedString("totalWheelsTitle", comment: "")
+        let user = User.getUser()
+        totalWheels.text = String(user.wheelRotation!)
         
-        // Design
+        /*  ------------------------ *\
+         *      DESIGN
+        \*  ------------------------ */
         tabBar.delegate = self
         tabBar.selectedItem = distanceTab
         tabBar.shadowImage = UIImage()
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: primaryColor, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
         tempPlaceholder = setupTabBarSeparators()
+        self.childViewControllers.first!.view.backgroundColor = UIColor.clear
         
         // Set Font, Size for Items
         for item in tabBar.items! {
             item.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)], for: UIControlState.normal)
         }
         
-        
+        /*  ------------------------ *\
+         *      SWIPE MENU
+        \*  ------------------------ */
         struct menuPrev: MenuItemViewCustomizable {}
         struct menuActual: MenuItemViewCustomizable {}
         struct menuNext: MenuItemViewCustomizable {}
@@ -67,7 +87,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             }
         }
         
-        
         struct PagingMenuOptions: PagingMenuControllerCustomizable {
             var width : CGFloat
             var height : CGFloat
@@ -86,7 +105,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.setup(options)
         
-        containerView.backgroundColor = UIColor.clear
         
     }
     
