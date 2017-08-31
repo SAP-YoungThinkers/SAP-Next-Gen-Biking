@@ -43,6 +43,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     private let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     private var shadowImageView: UIImageView?
     
+    var currentWeekStart : Date!
     
     // Menu handling from outside view
     @IBAction func swipedLeft(_ sender: UISwipeGestureRecognizer) {
@@ -104,9 +105,11 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         
         var tmpWeeks = [[Date]]()
         
-        var mondaysDate: Date {
-            return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
+        var weekStartDay: Date {
+            return calendar.date(byAdding: .day, value: (-(weekDay-1)), to: today)!
         }
+        
+        currentWeekStart = weekStartDay
         
         // if current day = monday, append 5 weeks, else only 4 weeks!
         var weekCount : Int {
@@ -118,7 +121,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         }
         
         for menuItem in 0...weekCount {
-            let startDay = calendar.date(byAdding: .day, value: (-7*menuItem), to: mondaysDate)!
+            let startDay = calendar.date(byAdding: .day, value: (-7*menuItem), to: weekStartDay)!
             let endDay = calendar.date(byAdding: .day, value: 6, to: startDay)!
             tmpWeeks.append([startDay, endDay])
         }
@@ -191,27 +194,20 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.setup(options)
         
+        pagingMenuController.onMove = { state in
+            switch state {
+            case .didMoveItem(to: _, from: _):
+                self.currentWeekStart = tmpWeeks[pagingMenuController.currentPage][0]
+                self.updateDateBar()
+            default: break
+            }
+        }
         
-        /*  ------------------------ *\
-         *      DATE FIELDS (able to consider german or english dates (-: )
-        \*  ------------------------ */
-        let fieldForm = DateFormatter()
-        fieldForm.dateFormat = "eee"
-        monL.text = fieldForm.string(from: mondaysDate).uppercased()
-        tueL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 1, to: mondaysDate)!).uppercased()
-        wedL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 2, to: mondaysDate)!).uppercased()
-        thuL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 3, to: mondaysDate)!).uppercased()
-        friL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 4, to: mondaysDate)!).uppercased()
-        satL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 5, to: mondaysDate)!).uppercased()
-        sunL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 6, to: mondaysDate)!).uppercased()
-        fieldForm.dateFormat = "d"
-        monD.text = fieldForm.string(from: mondaysDate)
-        tueD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 1, to: mondaysDate)!)
-        wedD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 2, to: mondaysDate)!)
-        thuD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 3, to: mondaysDate)!)
-        friD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 4, to: mondaysDate)!)
-        satD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 5, to: mondaysDate)!)
-        sunD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 6, to: mondaysDate)!)
+        /*  ------------------------------------------------ *\
+         *      DATE FIELDS
+         *      (able to consider german or english dates)
+        \*  ------------------------------------------------ */
+        updateDateBar()
         
         /*  ------------------------ *\
          *      CHART
@@ -314,6 +310,27 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         super.viewWillDisappear(animated)
         
         shadowImageView?.isHidden = false
+    }
+    
+    func updateDateBar() {
+        let calendar = Calendar.current
+        let fieldForm = DateFormatter()
+        fieldForm.dateFormat = "eee"
+        monL.text = fieldForm.string(from: currentWeekStart).uppercased()
+        tueL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 1, to: currentWeekStart)!).uppercased()
+        wedL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 2, to: currentWeekStart)!).uppercased()
+        thuL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 3, to: currentWeekStart)!).uppercased()
+        friL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 4, to: currentWeekStart)!).uppercased()
+        satL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 5, to: currentWeekStart)!).uppercased()
+        sunL.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 6, to: currentWeekStart)!).uppercased()
+        fieldForm.dateFormat = "d"
+        monD.text = fieldForm.string(from: currentWeekStart)
+        tueD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 1, to: currentWeekStart)!)
+        wedD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 2, to: currentWeekStart)!)
+        thuD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 3, to: currentWeekStart)!)
+        friD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 4, to: currentWeekStart)!)
+        satD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 5, to: currentWeekStart)!)
+        sunD.text = fieldForm.string(from: calendar.date(byAdding: .day, value: 6, to: currentWeekStart)!)
     }
     
     func distancePressed() {
