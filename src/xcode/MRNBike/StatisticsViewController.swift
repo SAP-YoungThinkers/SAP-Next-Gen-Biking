@@ -42,6 +42,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     private var tempPlaceholder : UIView?
     private let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     private var shadowImageView: UIImageView?
+    private var userRoutesKeys = [Int]()
     
     var currentWeekStart : Date!
     
@@ -57,7 +58,48 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*  ------------------------ *\
+         *      LOAD STATISTICS
+         *      UPDATE DATA
+        \*  ------------------------ */
+        userRoutesKeys.removeAll()
+        if let keys = KeychainService.loadIDs() {
+            userRoutesKeys.append(contentsOf: keys)
+            userRoutesKeys.sort(by: >)
+        }
+        
+        if(userRoutesKeys.count != 0) {
+            
+            let requestIDs: [String: Any] = ["routeIds": userRoutesKeys]
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
+            
+            do {
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
+                
+                ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
+                    
+                    if error == nil {
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        print(routes)
+                        
+                        
+                    } else {
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                }
+            } catch {
+                activityAlert.dismiss(animated: false, completion: nil)
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            }
+        
+        }
 
+    
         /*  ------------------------ *\
          *      LANGUAGE & TEXT
         \*  ------------------------ */
