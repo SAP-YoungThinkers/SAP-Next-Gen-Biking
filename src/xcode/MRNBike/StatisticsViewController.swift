@@ -63,6 +63,11 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
          *      LOAD STATISTICS
          *      UPDATE DATA
         \*  ------------------------ */
+        
+        
+        // temporarily
+        KeychainService.saveIDs(IDs: [271])
+        
         userRoutesKeys.removeAll()
         if let keys = KeychainService.loadIDs() {
             userRoutesKeys.append(contentsOf: keys)
@@ -85,7 +90,13 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
                         activityAlert.dismiss(animated: false, completion: nil)
                         
                         print(stats)
-                        
+                        var returnDates = [Date]()
+                        let rDF = DateFormatter()
+                        rDF.timeZone = TimeZone(abbreviation: "GMT")
+                        rDF.dateFormat = "eee MMM dd yyyy"
+                        for date in stats!["days"]! as! [String] {
+                            returnDates.append(rDF.date(from: date)!)
+                        }
                         
                     } else {
                         activityAlert.dismiss(animated: false, completion: nil)
