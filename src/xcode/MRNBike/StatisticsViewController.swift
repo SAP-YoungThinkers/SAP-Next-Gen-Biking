@@ -79,12 +79,12 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
                 
                 let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
                 
-                ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
+                ClientService.getRouteInfos(routeKeys: jsonData) { (stats, error) in
                     
                     if error == nil {
                         activityAlert.dismiss(animated: false, completion: nil)
                         
-                        print(routes)
+                        print(stats)
                         
                         
                     } else {
@@ -240,6 +240,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             switch state {
             case .didMoveItem(to: _, from: _):
                 self.currentWeekStart = tmpWeeks[pagingMenuController.currentPage][0]
+                self.chart(withData: [[1,8], [2,4], [3,4], [4,2], [5,36], [6,40], [7,20]])
                 self.updateDateBar()
             default: break
             }
@@ -255,9 +256,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
          *      CHART
         \*  ------------------------ */
         chartView.animate(yAxisDuration: 0.7, easingOption: ChartEasingOption.easeOutQuart)
-        let bar = UIColor(red: 192/255.0, green: 57/255.0, blue: 43/255.0, alpha: 1)
-        let bg = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
-        let gre = UIColor(red: 39/255.0, green: 174/255.0, blue: 96/255.0, alpha: 1)
         chartView.chartDescription?.enabled = false
         chartView.drawGridBackgroundEnabled = false
         chartView.drawValueAboveBarEnabled = false
@@ -287,43 +285,8 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         x.labelFont = UIFont(name: "Montserrat-Regular", size: 13) ?? UIFont.systemFont(ofSize: 15)
         
         // Data
-        var dataEntries: [BarChartDataEntry] = []
-        let data = [[1,19], [2,4], [3,0], [4,42], [5,17], [6,20], [7,1]]
-        for i in 0..<data.count {
-            let dataEntry = BarChartDataEntry(x: Double(data[i][0]), y: Double(data[i][1]))
-            dataEntries.append(dataEntry)
-        }
+        chart(withData: [[1,19], [2,4], [3,0], [4,42], [5,17], [6,20], [7,1]])
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Visitor count")
-        chartDataSet.setColor(bar, alpha: 1)
-        chartDataSet.barShadowColor = bg
-        chartDataSet.drawValuesEnabled = false
-        chartDataSet.highlightColor = gre
-        chartDataSet.highlightAlpha = 1
-        
-        let chartData = BarChartData(dataSet: chartDataSet)
-        chartData.barWidth = (chartData.barWidth * 0.425)
-        chartView.data = chartData
-        
-        // highlight maximum(s)
-        var maxi = 0
-        var maxKey = [Int]()
-        var highlights = [Highlight]()
-        for value in data {
-            if value[1] > maxi {
-                maxKey = [value[0]]
-                maxi = value[1]
-            } else if value[1] == maxi {
-                maxKey.append(value[0])
-            }
-        }
-        for key in maxKey {
-            highlights.append(Highlight(x: Double(key), dataSetIndex: 0, stackIndex: 0))
-        }
-        chartView.highlightValues(highlights)
-        
-        // refresh
-        chartView.invalidateIntrinsicContentSize()
         
     }
     
@@ -352,6 +315,49 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         super.viewWillDisappear(animated)
         
         shadowImageView?.isHidden = false
+    }
+    
+    func chart(withData data : [[Int]]) {
+        var dataEntries: [BarChartDataEntry] = []
+        for i in 0..<data.count {
+            let dataEntry = BarChartDataEntry(x: Double(data[i][0]), y: Double(data[i][1]))
+            dataEntries.append(dataEntry)
+        }
+        let bar = UIColor(red: 192/255.0, green: 57/255.0, blue: 43/255.0, alpha: 1)
+        let bg = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
+        let gre = UIColor(red: 39/255.0, green: 174/255.0, blue: 96/255.0, alpha: 1)
+        
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "")
+        chartDataSet.setColor(bar, alpha: 1)
+        chartDataSet.barShadowColor = bg
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.highlightColor = gre
+        chartDataSet.highlightAlpha = 1
+        
+        let chartData = BarChartData(dataSet: chartDataSet)
+        chartData.barWidth = (chartData.barWidth * 0.425)
+        chartView.data = chartData
+        
+        // highlight maximum(s)
+        var maxi = 0
+        var maxKey = [Int]()
+        var highlights = [Highlight]()
+        for value in data {
+            if value[1] > maxi {
+                maxKey = [value[0]]
+                maxi = value[1]
+            } else if value[1] == maxi {
+                maxKey.append(value[0])
+            }
+        }
+        for key in maxKey {
+            highlights.append(Highlight(x: Double(key), dataSetIndex: 0, stackIndex: 0))
+        }
+        chartView.highlightValues(highlights)
+        
+        // refresh
+        chartView.notifyDataSetChanged()
+        chartView.invalidateIntrinsicContentSize()
     }
     
     func updateDateBar() {
