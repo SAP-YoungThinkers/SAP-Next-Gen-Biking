@@ -149,10 +149,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
          *      UPDATE DATA
         \*  ------------------------ */
         
-        
-        // temporarily
-        KeychainService.saveIDs(IDs: [271])
-        
         userRoutesKeys.removeAll()
         if let keys = KeychainService.loadIDs() {
             userRoutesKeys.append(contentsOf: keys)
