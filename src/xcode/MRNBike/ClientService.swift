@@ -299,6 +299,43 @@ class ClientService {
             }
         }
     }
+
+    //Get statistics from backend
+    static func getRouteInfos(routeKeys: Data,completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        
+        generateRequest(scriptName: "get4WeeksStatistics.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    if status == 200 {
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    } else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
     
     //Get xcsdf-token for post requests
     static func fetchXCSRFToken(completion: @escaping((String?, ClientServiceError?) -> ())) {

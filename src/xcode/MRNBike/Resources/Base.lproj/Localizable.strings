@@ -102,6 +102,11 @@
 "chooseCo2Type"="Choose comparable object";
 "settingsTitle"="Settings";
 
+//Statistics
+"statisticsTitle"="Statistics";
+"distanceTitle"="DISTANCE";
+"caloriesTitle"="CALORIES";
+"totalWheelsTitle"="TOTAL WHEELS ROTATED";
 
 //Alert strings
 "pleaseWait"="Please wait...";
