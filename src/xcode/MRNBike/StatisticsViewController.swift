@@ -49,6 +49,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     private var currentWeekStart : Date!
     private var stats : [String: Any]? = nil
     private var pagingMenuController : PagingMenuController?
+    private var selectedUnit = "distance"
     
     // Menu handling from outside view
     @IBAction func swipedLeft(_ sender: UISwipeGestureRecognizer) {
@@ -88,12 +89,19 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         dc.month = calendar.component(.month, from: tmpToday)
         dc.day = calendar.component(.day, from: tmpToday)
         dc.timeZone = TimeZone(abbreviation: "GMT")
+        
         let today = calendar.date(from: dc)!
         
         let weekDay = calendar.component(.weekday, from: today)
         
         var weekStartDay: Date {
-            return calendar.date(byAdding: .day, value: (-(weekDay-1)), to: today)!
+            if Locale.current.identifier.contains("de_") {
+                // German week starts with monday
+                return calendar.date(byAdding: .day, value: ((-(weekDay-1))+1), to: today)!
+            } else {
+                // English week starts with sunday
+                return calendar.date(byAdding: .day, value: (-(weekDay-1)), to: today)!
+            }
         }
         
         currentWeekStart = weekStartDay
@@ -169,6 +177,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
                         // extract dates from json
                         self.stats = stats
                         let rDF = DateFormatter()
+                        rDF.locale = Locale(identifier: "en_US")
                         rDF.timeZone = TimeZone(abbreviation: "GMT")
                         rDF.dateFormat = "eee MMM dd yyyy"
                         for date in (self.stats!["days"]! as! [String]) {
@@ -344,7 +353,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         let z = self.weekKeys[currentPage]
         var statValues = Array(repeating: 0, count: 7)
         var labels = [""]
-        if let stats = self.stats?["distance"] as? [Int] {
+        if let stats = self.stats?[selectedUnit] as? [Int] {
             // stats not empty
             for i in 0...6 {
                 switch z[i] {
@@ -446,11 +455,13 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     }
     
     func distancePressed() {
-        
+        selectedUnit = "distance"
+        setChartData(currentPage: pagingMenuController!.currentPage)
     }
     
     func caloriesPressed() {
-        
+        selectedUnit = "calories"
+        setChartData(currentPage: pagingMenuController!.currentPage)
     }
     
     func setupTabBarSeparators() -> UIView {
