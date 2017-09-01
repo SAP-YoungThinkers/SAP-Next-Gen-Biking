@@ -201,11 +201,13 @@ class ClientService {
     }
     
     //Upload route to backend (Hana)
-    static func uploadRouteToHana(route: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
+    static func uploadRouteToHana(route: [String: Any], statistics: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
         
+        var statsContent = [[String: Any]]()
         var content = [[[String: Any]]]()
+        
         for track in tracks {
             var jsonList = [[String: Any]]()
             for entry in track {
@@ -213,15 +215,37 @@ class ClientService {
                 jsonList.append(jsonEntry)
             }
             content.append(jsonList)
-            // let tmp = ["String": ["distance":distance, "calories": calories] as [String : Any]] as! [[String: Any]]
-            // content.append([tmp])
+            statsContent.append(statistics)
         }
+        
+        /*
+ 
+            Because of statistics, we will upload body containing the route json, followed by seperator:
+            ###
+            and then followed by statistics json
+         
+         */
         
         let session = SessionFactory.shared().getSession()
         
         let routeData: [String: Any] = ["tracks": content]
+        var tmpRouteData : Data = Data()
         
-        generateRequest(scriptName: "saveRoute.xsjs", httpMethod: "POST", data: nil, route: routeData) { (urlRequest, error) in
+        do {
+            tmpRouteData = try JSONSerialization.data(withJSONObject: routeData)
+            tmpRouteData.append("###".data(using: .utf8)!)
+            let statsData = [
+                "statistics" : statsContent
+            ]
+            let appendData = try JSONSerialization.data(withJSONObject: statsData)
+            tmpRouteData.append(appendData)
+        } catch {
+            // other way
+        }
+        
+        print(String.init(data: tmpRouteData, encoding: String.Encoding.utf8) ?? "empty")
+        
+        generateRequest(scriptName: "saveRoute.xsjs", httpMethod: "POST", data: tmpRouteData, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
