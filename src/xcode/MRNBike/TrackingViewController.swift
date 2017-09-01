@@ -324,7 +324,6 @@ class TrackingViewController: UIViewController {
                 met = 3.5
             }
             let kcal = met * 3.5 * uW / 200.0 * minutes
-            print("min: \(minutes) speed: \(speed) x: \(kcal)")
             
             burgersLabel.text = String(round(100*(kcal / 253))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
