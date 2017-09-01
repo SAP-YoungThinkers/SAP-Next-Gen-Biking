@@ -43,8 +43,12 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     private let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     private var shadowImageView: UIImageView?
     private var userRoutesKeys = [Int]()
-    
-    var currentWeekStart : Date!
+    private var returnDates = [Date]()
+    private var weekKeys : [[Int]] = Array(repeating: Array(repeating: -1, count: 7), count: 5) // weekKey[week][day] = position in json array
+    private var weekIntervals = [[Date]]()
+    private var currentWeekStart : Date!
+    private var stats : [String: Any]? = nil
+    private var pagingMenuController : PagingMenuController?
     
     // Menu handling from outside view
     @IBAction func swipedLeft(_ sender: UISwipeGestureRecognizer) {
@@ -58,6 +62,79 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pagingMenuController = self.childViewControllers.first as? PagingMenuController
+        
+        /*  ------------------------ *\
+         *      WEEKS SETUP
+        \*  ------------------------ */
+        let weeksFont = UIFont(name: "Montserrat-Light", size: 18) ?? UIFont.systemFont(ofSize: 13)
+        struct MenuItemView : MenuItemViewCustomizable {
+            var title = ""
+            var displayMode : MenuItemDisplayMode {
+                return .text(title: MenuItemText.init(text: self.title, color: UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 0.5), selectedColor: UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1), font: font, selectedFont: font))
+            }
+            var font : UIFont
+            init(title : String, font : UIFont) {
+                self.title = title
+                self.font = font
+            }
+        }
+        
+        // Today without time!
+        let tmpToday = Date()
+        let calendar = Calendar.current
+        var dc = DateComponents()
+        dc.year = calendar.component(.year, from: tmpToday)
+        dc.month = calendar.component(.month, from: tmpToday)
+        dc.day = calendar.component(.day, from: tmpToday)
+        dc.timeZone = TimeZone(abbreviation: "GMT")
+        let today = calendar.date(from: dc)!
+        
+        let weekDay = calendar.component(.weekday, from: today)
+        
+        var weekStartDay: Date {
+            return calendar.date(byAdding: .day, value: (-(weekDay-1)), to: today)!
+        }
+        
+        currentWeekStart = weekStartDay
+        
+        // if current day = monday, append 5 weeks, else only 4 weeks!
+        var weekCount : Int {
+            if weekDay == 1 {
+                return 4
+            } else {
+                return 3
+            }
+        }
+        
+        for menuItem in 0...weekCount {
+            let startDay = calendar.date(byAdding: .day, value: (-7*menuItem), to: weekStartDay)!
+            let endDay = calendar.date(byAdding: .day, value: 6, to: startDay)!
+            weekIntervals.append([startDay, endDay])
+        }
+        weekIntervals = weekIntervals.reversed()
+        
+        var weekViews = [MenuItemView]()
+        for week in weekIntervals {
+            let dateForm = DateFormatter()
+            dateForm.dateFormat = "MMMM"
+            var title = ""
+            // same month or not?
+            if dateForm.string(from: week[0]) == dateForm.string(from: week[1]) {
+                // JUNI 17-24
+                dateForm.dateFormat = "MMMM dd"
+                title = dateForm.string(from: week[0])+"-"
+                dateForm.dateFormat = "dd"
+                title += dateForm.string(from: week[1])
+            } else {
+                // FEB 30 - MÄR 6
+                dateForm.dateFormat = "MMM dd"
+                title = "\(dateForm.string(from: week[0])) - \(dateForm.string(from: week[1]))"
+            }
+            weekViews.append(MenuItemView(title: title.uppercased(), font: weeksFont))
+            
+        }
+        
         
         /*  ------------------------ *\
          *      LOAD STATISTICS
@@ -89,14 +166,17 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
                     if error == nil {
                         activityAlert.dismiss(animated: false, completion: nil)
                         
-                        print(stats)
-                        var returnDates = [Date]()
+                        // extract dates from json
+                        self.stats = stats
                         let rDF = DateFormatter()
                         rDF.timeZone = TimeZone(abbreviation: "GMT")
                         rDF.dateFormat = "eee MMM dd yyyy"
-                        for date in stats!["days"]! as! [String] {
-                            returnDates.append(rDF.date(from: date)!)
+                        for date in (self.stats!["days"]! as! [String]) {
+                            self.returnDates.append(rDF.date(from: date)!)
                         }
+                        
+                        self.statisticsDataBase()
+                        
                         
                     } else {
                         activityAlert.dismiss(animated: false, completion: nil)
@@ -134,70 +214,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         // Set Font, Size for Items
         for item in tabBar.items! {
             item.setTitleTextAttributes([NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)], for: UIControlState.normal)
-        }
-        
-        /*  ------------------------ *\
-         *      WEEKS SETUP
-        \*  ------------------------ */
-        let weeksFont = UIFont(name: "Montserrat-Light", size: 18) ?? UIFont.systemFont(ofSize: 13)
-        struct MenuItemView : MenuItemViewCustomizable {
-            var title = ""
-            var displayMode : MenuItemDisplayMode {
-                return .text(title: MenuItemText.init(text: self.title, color: UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 0.5), selectedColor: UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1), font: font, selectedFont: font))
-            }
-            var font : UIFont
-            init(title : String, font : UIFont) {
-                self.title = title
-                self.font = font
-            }
-        }
-        
-        let today = Date()
-        let calendar = Calendar.current
-        let weekDay = Calendar.current.component(.weekday, from: today)
-        
-        var tmpWeeks = [[Date]]()
-        
-        var weekStartDay: Date {
-            return calendar.date(byAdding: .day, value: (-(weekDay-1)), to: today)!
-        }
-        
-        currentWeekStart = weekStartDay
-        
-        // if current day = monday, append 5 weeks, else only 4 weeks!
-        var weekCount : Int {
-            if weekDay == 1 {
-                return 4
-            } else {
-                return 3
-            }
-        }
-        
-        for menuItem in 0...weekCount {
-            let startDay = calendar.date(byAdding: .day, value: (-7*menuItem), to: weekStartDay)!
-            let endDay = calendar.date(byAdding: .day, value: 6, to: startDay)!
-            tmpWeeks.append([startDay, endDay])
-        }
-        tmpWeeks = tmpWeeks.reversed()
-        
-        var weeks = [MenuItemView]()
-        for week in tmpWeeks {
-            let dateForm = DateFormatter()
-            dateForm.dateFormat = "MMMM"
-            var title = ""
-            // same month or not?
-            if dateForm.string(from: week[0]) == dateForm.string(from: week[1]) {
-                // JUNI 17-24
-                dateForm.dateFormat = "MMMM dd"
-                title = dateForm.string(from: week[0])+"-"
-                dateForm.dateFormat = "dd"
-                title += dateForm.string(from: week[1])
-            } else {
-                // FEB 30 - MÄR 6
-                dateForm.dateFormat = "MMM dd"
-                title = "\(dateForm.string(from: week[0])) - \(dateForm.string(from: week[1]))"
-            }
-            weeks.append(MenuItemView(title: title.uppercased(), font: weeksFont))
         }
         
         
@@ -243,15 +259,13 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             }
         }
     
-        let options = PagingMenuOptions(view.bounds.width * 0.375, height: CGFloat(67.0), weeks: weeks)
-        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-        pagingMenuController.setup(options)
+        let options = PagingMenuOptions(view.bounds.width * 0.375, height: CGFloat(67.0), weeks: weekViews)
+        pagingMenuController!.setup(options)
         
-        pagingMenuController.onMove = { state in
+        pagingMenuController!.onMove = { state in
             switch state {
             case .didMoveItem(to: _, from: _):
-                self.currentWeekStart = tmpWeeks[pagingMenuController.currentPage][0]
-                self.chart(withData: [[1,8], [2,4], [3,4], [4,2], [5,36], [6,40], [7,20]])
+                self.setChartData(currentPage: self.pagingMenuController!.currentPage)
                 self.updateDateBar()
             default: break
             }
@@ -278,7 +292,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         chartView.drawBarShadowEnabled = true
         chartView.drawBordersEnabled = false
         chartView.pinchZoomEnabled = false
-        chartView.extraBottomOffset = 20
+        chartView.extraBottomOffset = 26
         let yr = chartView.rightAxis
         let yl = chartView.leftAxis
         let leg = chartView.legend
@@ -295,10 +309,7 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         x.labelPosition = XAxis.LabelPosition.bottom
         x.labelFont = UIFont(name: "Montserrat-Regular", size: 13) ?? UIFont.systemFont(ofSize: 15)
         
-        // Data
-        chart(withData: [[1,19], [2,4], [3,0], [4,42], [5,17], [6,20], [7,1]])
-        
-        
+        setChartData(currentPage: pagingMenuController!.currentPage)
     }
     
     override func viewWillLayoutSubviews() {
@@ -326,6 +337,48 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         super.viewWillDisappear(animated)
         
         shadowImageView?.isHidden = false
+    }
+    
+    func setChartData(currentPage: Int) {
+        self.currentWeekStart = self.weekIntervals[currentPage][0]
+        let z = self.weekKeys[currentPage]
+        var statValues = Array(repeating: 0, count: 7)
+        var labels = [""]
+        if let stats = self.stats?["distance"] as? [Int] {
+            // stats not empty
+            for i in 0...6 {
+                switch z[i] {
+                case let x where x >= 0:
+                    statValues[i] = stats[x]
+                    labels.append("\n\(stats[x])")
+                default:
+                    // day not in statistics data base
+                    labels.append("\n-")
+                }
+            }
+        }
+        let x = chartView.xAxis
+        x.valueFormatter = IndexAxisValueFormatter(values: labels)
+        self.chart(withData: [[1, statValues[0]], [2, statValues[1]], [3, statValues[2]], [4, statValues[3]], [5, statValues[4]], [6, statValues[5]], [7, statValues[6]]])
+    }
+    
+    func statisticsDataBase() {
+        
+        for (weekIndex, week) in weekIntervals.enumerated() {
+            // restructure array with statistics per weeks
+            let cal = Calendar.current
+            for (dateKey, date) in returnDates.enumerated() {
+                let dif = cal.dateComponents([.day], from: week[0], to: date).day!
+                switch dif {
+                case 0...6:
+                    weekKeys[weekIndex][dif] = dateKey
+                default:
+                    break
+                }
+            }
+        }
+        
+        setChartData(currentPage: self.pagingMenuController!.currentPage)
     }
     
     func chart(withData data : [[Int]]) {
