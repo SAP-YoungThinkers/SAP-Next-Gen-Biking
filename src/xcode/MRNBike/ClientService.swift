@@ -4,11 +4,60 @@ enum ClientServiceError: Error {
     case httpError
     case csrfTokenError
     case jsonSerializationError
+    case notFound
 }
 
 class ClientService {
     
     static let config = Configurator()
+    
+    //Get user from backend (Hana)
+    static func getFriendList(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "getFriendList.xsjs?userId=" + mail
+        
+        generateRequest(scriptName: scriptName, httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    switch status {
+                    case 200:
+                        guard let responseData = data else {
+                            completion(nil, ClientServiceError.httpError)
+                            return
+                        }
+                        
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    case 404:
+                        completion(nil, ClientServiceError.notFound)
+                        return
+                    default:
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+
     
     //Create, edit or verify a user on backend (Hana)
     static func postUser(scriptName: String, userData: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
@@ -166,7 +215,6 @@ class ClientService {
             content.append(jsonList)
             // let tmp = ["String": ["distance":distance, "calories": calories] as [String : Any]] as! [[String: Any]]
             // content.append([tmp])
-            print(content)
         }
         
         let session = SessionFactory.shared().getSession()

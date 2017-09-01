@@ -34,7 +34,7 @@
 "personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
-"passwordValidationHint"="muss aus 10 bis 15 großen und kleinen Buchstaben sowie Sonderzeichen und Zahlen bestehen";
+"passwordValidationHint"="8-50 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
 "passwordRepeatValidationHint"="Passwörter müssen gleich sein";
 "weightUnity"="Zoll";
 
@@ -118,3 +118,13 @@
 
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
+
+"noFriendsDialogTitle"="404 - Freunde nicht gefunden";
+"noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
+
+//Social Scene
+"socialFriendsTitle"="Freunde & Gruppen";
+"frindsTabBarItem"="Freunde";
+"groupsTabBarItem"="Gruppen";
+
+
