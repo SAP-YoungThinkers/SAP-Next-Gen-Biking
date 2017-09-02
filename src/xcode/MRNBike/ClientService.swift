@@ -11,7 +11,156 @@ class ClientService {
     
     static let config = Configurator()
     
-    //Get user from backend (Hana)
+    //Create, update and add friends to group on backend
+    //Create: createGroup.xsjs
+    //Edit: updateGroupInfo.xsjs
+    //AddFriends: addFriendsToGroup.xsjs
+    static func postGroup(scriptName: String, groupData: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        
+        generateRequest(scriptName: scriptName, httpMethod: "POST", data : groupData, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    //Get group list for a user from backend
+    static func getGroupList(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "getGroups.xsjs?email=" + mail
+        
+        generateRequest(scriptName: scriptName, httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    
+                    switch status {
+                    case 200:
+                        guard let responseData = data else {
+                            completion(nil, ClientServiceError.httpError)
+                            return
+                        }
+                        
+                        var json = [String: AnyObject]()
+                        
+                        do {
+                            json = try JSONSerialization.jsonObject(with: responseData, options:.allowFragments) as! [String: AnyObject]
+                            completion(json, nil)
+                        } catch {
+                            completion(nil, ClientServiceError.jsonSerializationError)
+                        }
+                    case 404:
+                        completion(nil, ClientServiceError.notFound)
+                        return
+                    default:
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+    
+    //Delete user from group
+    static func deleteUserFromGroup(userId: String, groupId: String, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "deleteUserFromGroup.xsjs?groupId=" + groupId + "&userID=" + userId
+        
+        generateRequest(scriptName: scriptName, httpMethod: "DELETE", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    //Delete group
+    static func deleteGroup(groupId: String, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "deleteGroup.xsjs?groupId=" + groupId
+        
+        generateRequest(scriptName: scriptName, httpMethod: "DELETE", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    //Send friend request to another user: sendFriendRequest.xsjs
+    //Answer friend request: answerFriendRequest.xsjs
+    static func postFriendRequest(scriptName: String, relationship: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        
+        generateRequest(scriptName: scriptName, httpMethod: "POST", data : relationship, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    //Get friendlist of a user from backend
     static func getFriendList(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
@@ -57,9 +206,36 @@ class ClientService {
         }
         
     }
-
     
-    //Create, edit or verify a user on backend (Hana)
+    //Delete friendship
+    static func deleteFriend(userId: String, friendId: String, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "deleteFriend.xsjs?userId=" + userId + "&friendId=" + friendId
+        
+        generateRequest(scriptName: scriptName, httpMethod: "DELETE", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    //Create, edit or verify a user on backend
+    //Create: createUser.xsjs
+    //Edit: updateUser.xsjs
+    //Verify: verifyUser.xsjs
     static func postUser(scriptName: String, userData: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
@@ -83,7 +259,7 @@ class ClientService {
         }
     }
     
-    //Get user from backend (Hana)
+    //Get user from backend
     static func getUser(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
@@ -127,7 +303,7 @@ class ClientService {
         
     }
     
-    //Upload report to backend (Hana)
+    //Upload report to backend
     static func uploadReportToHana(reportInfo: Data, completion: @escaping (ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
@@ -157,7 +333,7 @@ class ClientService {
         }
     }
     
-    //Get all reports from backend (Hana)
+    //Get all reports from backend
     static func getReports(completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
@@ -200,7 +376,7 @@ class ClientService {
         }
     }
     
-    //Upload route to backend (Hana)
+    //Upload route to backend
     static func uploadRouteToHana(route: [String: Any], statistics: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
@@ -417,7 +593,7 @@ class ClientService {
             request.setValue("Fetch", forHTTPHeaderField: "X-Csrf-Token")
         }
         
-        if httpMethod == "POST" {
+        if httpMethod != "GET" {
             
             fetchXCSRFToken(completion: { (token, error) in
                 if error == nil {
