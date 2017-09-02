@@ -11,6 +11,31 @@ class ClientService {
     
     static let config = Configurator()
     
+    //Send friend request to another user: sendFriendRequest.xsjs
+    //Answer friend request: answerFriendRequest.xsjs
+    static func postFriendRequest(scriptName: String, relationship: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        
+        generateRequest(scriptName: scriptName, httpMethod: "POST", data : relationship, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
     //Get user from backend (Hana)
     static func getFriendList(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
@@ -57,9 +82,36 @@ class ClientService {
         }
         
     }
-
     
+    //Delete friendship
+    static func deleteFriend(userId: String, friendId: String, completion: @escaping (Int?, ClientServiceError?)->()) {
+        
+        let session = SessionFactory.shared().getSession()
+        let scriptName = "deleteFriend.xsjs?userId=" + userId + "&friendId=" + friendId
+        
+        generateRequest(scriptName: scriptName, httpMethod: "POST", data: nil, route: nil) { (urlRequest, error) in
+            
+            if error == nil {
+                
+                session.dataTask(with: urlRequest!) {data, response, error in
+                    
+                    guard let status = (response as? HTTPURLResponse)?.statusCode else {
+                        completion(nil, ClientServiceError.httpError)
+                        return
+                    }
+                    completion(status, nil)
+                    
+                    }.resume()
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
     //Create, edit or verify a user on backend (Hana)
+    //Create: createUser.xsjs
+    //Edit: updateUser.xsjs
+    //Verify: verifyUser.xsjs
     static func postUser(scriptName: String, userData: Data, completion: @escaping (Int?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
