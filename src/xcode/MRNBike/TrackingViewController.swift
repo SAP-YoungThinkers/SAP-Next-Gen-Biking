@@ -173,7 +173,7 @@ class TrackingViewController: UIViewController {
             
             let tmpStats = StorageHelper.loadStats()
             
-            print("tmpstats: \(tmpStats?.count)")
+            print("tmpstats: \(tmpStats?.count ?? 0)")
             print("loadedData: \(loadedData.count)")
             
             ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
