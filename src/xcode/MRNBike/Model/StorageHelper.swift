@@ -9,6 +9,20 @@ class StorageHelper : NSObject {
     
     // MARK: Local Storage
     
+    static func loadStats() -> [[String: Any]]? {
+        
+        if let loadedStats = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.StatisticsURL.path) as? [[String: Any]]
+        {
+            
+            if loadedStats.count < 1 {
+                return nil
+            }
+            return loadedStats
+        }
+        
+        return nil
+    }
+    
     static func loadGPS() -> [[TrackPoint]]? {
         
         if let loadedGPS = NSKeyedUnarchiver.unarchiveObject(withFile: TrackPoint.ArchiveURL.path) as? [[TrackPoint]]
@@ -28,6 +42,26 @@ class StorageHelper : NSObject {
             try FileManager.default.removeItem(atPath: TrackPoint.ArchiveURL.path)
         } catch {
             print(error)
+        }
+    }
+    
+    
+    static func storeStatsLocally(trackPointsArray: [String: Any]) -> Bool {
+        
+        var concatenatedData = [[String: Any]]()
+        
+        
+        if let localData = loadStats() {
+            concatenatedData.append(contentsOf: localData)
+        }
+        concatenatedData.append(trackPointsArray)
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(concatenatedData , toFile: TrackPoint.StatisticsURL.path)
+        
+        if !isSuccessfulSave {
+            return false
+        } else {
+            return true
         }
     }
     

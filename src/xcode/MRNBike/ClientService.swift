@@ -377,21 +377,21 @@ class ClientService {
     }
     
     //Upload route to backend
-    static func uploadRouteToHana(route: [String: Any], statistics: [String: Any], completion: @escaping ([Int]?, ClientServiceError?)->()) {
+    static func uploadRouteToHana(route: [String: Any], statistics: [[String: Any]], completion: @escaping ([Int]?, ClientServiceError?)->()) {
         
         let tracks = route["tracks"] as! [[TrackPoint]]
         
         var statsContent = [[String: Any]]()
         var content = [[[String: Any]]]()
         
-        for track in tracks {
+        for (index, track) in tracks.enumerated() {
             var jsonList = [[String: Any]]()
             for entry in track {
                 let jsonEntry = entry.dictionary()
                 jsonList.append(jsonEntry)
             }
             content.append(jsonList)
-            statsContent.append(statistics)
+            statsContent.append(statistics[index])
         }
         
         /*

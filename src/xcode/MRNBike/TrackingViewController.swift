@@ -110,7 +110,11 @@ class TrackingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        self.saveCollectedDataLocally() // stores collected data in local storage
+        let currentStat = [
+            "distance": (round(100*(metersDistance / 1000))/100),
+            "calories": Double(self.burgersLabel.text!)! * 253.0
+        ]
+        self.saveCollectedDataLocally(input: currentStat) // stores collected data in local storage
     }
     
     
@@ -155,7 +159,11 @@ class TrackingViewController: UIViewController {
     @IBAction func saveRouteButton(_ sender: UIButton) {
         
         //TODO: Check for connection -> what if there is bad connection?
-        saveCollectedDataLocally()
+        let currentStat = [
+            "distance": (round(100*(metersDistance / 1000))/100),
+            "calories": Double(self.burgersLabel.text!)! * 253.0
+        ]
+        saveCollectedDataLocally(input: currentStat)
         
         if let loadedData = StorageHelper.loadGPS() {
             
@@ -163,12 +171,12 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            let tmpStats = [
-                "distance" : (round(100*(metersDistance / 1000))/100),
-                "calories" : Double(self.burgersLabel.text!)! * 253.0
-            ]
+            let tmpStats = StorageHelper.loadStats()
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats, completion: { (keys, error) in
+            print("tmpstats: \(tmpStats?.count)")
+            print("loadedData: \(loadedData.count)")
+            
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
                 if error == nil {
                     print(keys as Any)
                     let user = User.getUser()
@@ -260,9 +268,12 @@ class TrackingViewController: UIViewController {
     }
     
     // MARK: - NSCoding
-    func saveCollectedDataLocally(){
+    func saveCollectedDataLocally(input : [String: Any]){
         if StorageHelper.storeLocally(trackPointsArray: trackPointsArray) {
             trackPointsArray.removeAll() // in order to dispose used memory
+        }
+        if StorageHelper.storeStatsLocally(trackPointsArray: input) {
+            print("saved \(input.count) stats locally!")
         }
     }
     
