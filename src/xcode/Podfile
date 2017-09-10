@@ -8,6 +8,7 @@ target 'MRNBike' do
   # Pods for MRNBike
 pod 'Charts'
 pod "PagingMenuController"
+pod 'PopupDialog', '~> 0.5'
 
 post_install do |installer|
  installer.pods_project.targets.each do |target|

@@ -1,6 +1,7 @@
 import UIKit
+import PopupDialog
 
-class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     //MARK: Properties
     var friends = [Friend]()
@@ -116,48 +117,15 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func openAddFriendPopup(_ sender: Any) {
-        //get email adress from textfield
-        //get user email from keychain.loademail
-        
-        let uploadData : [String: Any] = ["userId" : KeychainService.loadEmail(), "friendId" : emailTextfield]
-        
-        //Generate json data for upload
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Try create user in backend
-        ClientService.postFriendRequest(scriptName: "sendFriendRequest.xsjs", relationship: jsonData) { (httpCode, error) in
-            
-            if error == nil {
-                
-                switch httpCode! {
-                case 200: //Successful
-                    
-                    
-                    
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("addedSuccessfullyTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
-                    
-                    
-                    break
-                default: //For http error codes: 500
-                    //Dismiss activity indicator
-                    
-                    
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                    
-                    return
-                }
-            }
-            else
-            {
-                
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-            }
 
-        }
+        let storyboard = UIStoryboard(name: "Social", bundle: nil)
+        let ratingVC = storyboard.instantiateViewController(withIdentifier: "AddFriendPopupViewController")
         
-    }
+        // Create the dialog
+        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        
+        // Present dialog
+        present(popup, animated: true, completion: nil)
 
-        
     }
 }

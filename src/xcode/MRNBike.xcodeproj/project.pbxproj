@@ -68,6 +68,7 @@
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25AB5F21F62FF340046D220 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = D25AB5F11F62FF340046D220 /* Credentials.json */; };
+		D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
@@ -145,6 +146,7 @@
 		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25AB5F11F62FF340046D220 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendPopupViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
 		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Resources/Profile.storyboard; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				4EAF10B71F5323300000B70D /* Friend.swift */,
 				4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */,
 				4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */,
+				D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -494,11 +497,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -552,6 +557,7 @@
 				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
 				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */,
 				10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */,
