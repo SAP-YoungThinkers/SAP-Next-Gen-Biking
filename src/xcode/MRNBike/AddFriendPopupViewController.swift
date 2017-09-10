@@ -1,11 +1,3 @@
-//
-//  AddFriendPopupViewController.swift
-//  MRNBike
-//
-//  Created by Ziad Abdelkader on 9/10/17.
-//
-//
-
 import UIKit
 
 class AddFriendPopupViewController: UIViewController {
@@ -40,7 +32,7 @@ class AddFriendPopupViewController: UIViewController {
         //get email adress from textfield
         //get user email from keychain.loademail
         
-        let uploadData : [String: Any] = ["userId" : KeychainService.loadEmail(), "friendId" : textFieldEmail.text]
+        let uploadData : [String: Any] = ["userId" : KeychainService.loadEmail() ?? "", "friendId" : textFieldEmail.text ?? ""]
         
         //Generate json data for upload
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
