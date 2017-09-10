@@ -33,6 +33,9 @@ class AddFriendPopupViewController: UIViewController {
         invite()
     }
     
+    
+    //Add user in the backend
+    
     func invite() {
         //get email adress from textfield
         //get user email from keychain.loademail
@@ -50,7 +53,7 @@ class AddFriendPopupViewController: UIViewController {
                 switch httpCode! {
                 case 200: //Successful
 
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("addedSuccessfullyTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: {
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("addedSuccessfullyTitle", comment: ""), message: NSLocalizedString("addedSuccessfullyMsg", comment: "")), animated: true, completion: {
                         self.textFieldEmail.text = ""
                     })
                     
@@ -58,7 +61,7 @@ class AddFriendPopupViewController: UIViewController {
                 default: //For http error codes: 500
                     //Dismiss activity indicator
 
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("incorrectEmailTitle", comment: ""), message: NSLocalizedString("incorrectEmailMsg", comment: "")), animated: true, completion: nil)
                     
                     return
                 }

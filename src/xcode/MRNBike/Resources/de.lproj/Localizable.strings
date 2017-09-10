@@ -122,6 +122,13 @@
 "noFriendsDialogTitle"="404 - Freunde nicht gefunden";
 "noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
 
+"addedSuccessfullyTitle"="Success";
+"addedSuccessfulyMsg"="Friend has been added successfully.";
+
+"incorrectEmailTitle"="Incorrect Email";
+"incorrectEmailMsg"="User's email is incorrect, please try again.";
+
+
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";
 "frindsTabBarItem"="Freunde";

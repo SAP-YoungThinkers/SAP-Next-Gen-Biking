@@ -14,14 +14,31 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        // TODO: Just for Testing, delete this function
+//        mockFriendsData()
+
+        
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
+        friendsTableView.allowsMultipleSelectionDuringEditing = false;
+
+        friendsTableView.tableFooterView = UIView()
     }
+    
+//    // TODO: Just for Testing, delete this function
+//    func mockFriendsData() {
+//        let friend = Friend(firstname: "Ziad", lastname: "Ziad", photo: nil)
+//        for _ in 0 ..< 10 {
+//            friends.append(friend!)
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Request the friends from backend
-        loadFriends()
+        
+        // TODO: Just for testing, uncomment this line
+//        loadFriends()
     }
 
     //MARK: - Table view data source
@@ -50,6 +67,44 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.friendImage.image = friend.photo
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    
+    //Delete Friend action
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: " x        ", handler: { (action, indexPath) in
+            
+            //Delete Alert
+            let deleteAlert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete that user?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                
+                // Put your delete code here !
+                
+
+                self.friends.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+               
+            }))
+            
+            self.present(deleteAlert, animated: true, completion: nil)
+
+        })
+        deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
+
+        
+        return [deleteAction]
+
     }
     
     //MARK: Private Methods

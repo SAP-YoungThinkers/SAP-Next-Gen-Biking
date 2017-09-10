@@ -120,8 +120,11 @@
 "noFriendsDialogTitle"="404 - Friends not found";
 "noFriendsDialogMsg"="Please add friends to you list!";
 
-//"addedSuccessfullyTitle"="Friend added"
+"addedSuccessfullyTitle"="Success";
+"addedSuccessfulyMsg"="Friend has been added successfully.";
 
+"incorrectEmailTitle"="Incorrect Email";
+"incorrectEmailMsg"="User's email is incorrect, please try again.";
 
 //Social Scene
 "socialFriendsTitle"="Social";
