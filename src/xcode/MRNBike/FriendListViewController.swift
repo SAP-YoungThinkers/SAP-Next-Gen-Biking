@@ -22,6 +22,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
 
+        //Remove separters if no friends
         friendsTableView.tableFooterView = UIView()
     }
     
@@ -170,6 +171,9 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
     }
+    
+    
+    //Added Library, PopupDialagoue
     
     @IBAction func openAddFriendPopup(_ sender: Any) {
 
