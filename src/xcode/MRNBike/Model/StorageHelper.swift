@@ -45,6 +45,13 @@ class StorageHelper : NSObject {
         }
     }
     
+    static func clearStatistics() {
+        do {
+            try FileManager.default.removeItem(atPath: TrackPoint.StatisticsURL.path)
+        } catch {
+            print(error)
+        }
+    }
     
     static func storeStatsLocally(trackPointsArray: [String: Any]) -> Bool {
         

@@ -207,6 +207,7 @@ class TrackingViewController: UIViewController {
                             case 200: //User successfully updated
                                 KeychainService.saveIDs(IDs: keys!)
                                 StorageHelper.clearCollectedGPS()
+                                StorageHelper.clearStatistics()
                                 
                                 self.reportLocation.isHidden = false
                                 self.SaveRouteButton.isHidden = true
