@@ -34,7 +34,7 @@
 "personalInfoLabel"="PERSÖNLICHE INFORMATIONEN";
 "weightLabel"="GEWICHT";
 "wheelSizeLabel"="RADGRÖßE";
-"passwordValidationHint"="8-25 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
+"passwordValidationHint"="8-50 Zeichen + Mindestens ein Großbuchstabe, ein Kleinbuchstabe und eine Zahl (0-9)";
 "passwordRepeatValidationHint"="Passwörter müssen gleich sein";
 "weightUnity"="Zoll";
 
@@ -98,6 +98,12 @@
 "danger"="Gefahr";
 "writeMessage"="Kommentar...";
 
+//Statistics
+"statisticsTitle"="Statistiken";
+"distanceTitle"="DISTANZ";
+"caloriesTitle"="KALORIEN";
+"totalWheelsTitle"="RADUMDREHUNGEN INSGESAMT";
+
 //Settings Scene
 //Settings Scene
 "logout"="Ausloggen";
@@ -112,3 +118,36 @@
 
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
+
+"noFriendsDialogTitle"="Keine Freunde gefunden";
+"noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
+
+"noGroupsDialogTitle"="Keine Gruppen gefunden";
+"noGroupsDialogMsg"="Erstelle deine eigene Gruppe!";
+
+"addedSuccessfullyTitle"="Hinzufügen erfolgreich";
+"addedSuccessfulyMsg"="Ein neuer Freund wurde hinzugefügt.";
+
+"incorrectEmailTitle"="E-Mail falsch";
+"incorrectEmailMsg"="Die angegebene E-Mail ist falsch.";
+
+"deleteFriendTitle"="Freund löschen";
+"deleteFriendMsg"="Freundschaft wirklich beenden?";
+
+"friendDeletedTitle"="Freundschaft beendet";
+"friendDeletedMsg"="Du hast die Freundschaft beendet!";
+
+
+//Social Scene
+"socialFriendsTitle"="Freunde & Gruppen";
+"frindsTabBarItem"="Freunde";
+"groupsTabBarItem"="Gruppen";
+"createGroupBtn"="Erstellen";
+"createGroupTitle"="Gruppe erstellen";
+"yes"="Ja";
+"cancel"="Abbrechen";
+"add"="Adden";
+"addFriend"="Freund hinzufügen";
+"enterEmail"="E-Mail eingeben:";
+"emailPlaceholder"="E-Mail...";
+

@@ -34,7 +34,7 @@
 "personalInfoLabel"="PERSONAL INFORMATION";
 "weightLabel"="Weight";
 "wheelSizeLabel"="Wheel Size";
-"passwordValidationHint"="8-25 characters + at least one uppercase letter, one lowercase letter and one number";
+"passwordValidationHint"="8-50 characters + at least one uppercase letter, one lowercase letter and one number";
 "passwordRepeatValidationHint"="passwords must be identical";
 "weightUnity"="Inches";
 
@@ -102,6 +102,11 @@
 "chooseCo2Type"="Choose comparable object";
 "settingsTitle"="Settings";
 
+//Statistics
+"statisticsTitle"="Statistics";
+"distanceTitle"="DISTANCE";
+"caloriesTitle"="CALORIES";
+"totalWheelsTitle"="TOTAL WHEELS ROTATED";
 
 //Alert strings
 "pleaseWait"="Please wait...";
@@ -112,10 +117,36 @@
 "userUpdatedDialogTitle"="Profile Updated";
 "userUpdatedDialogMsg"="Profile was successfully updated!";
 
+"noFriendsDialogTitle"="No friends found";
+"noFriendsDialogMsg"="Please add friends!";
 
+"noGroupsDialogTitle"="No groups found";
+"noGroupsDialogMsg"="Create your own group!";
 
+"addedSuccessfullyTitle"="Success";
+"addedSuccessfulyMsg"="Friend has been added successfully.";
 
+"incorrectEmailTitle"="Incorrect Email";
+"incorrectEmailMsg"="User's email is incorrect, please try again.";
 
+"deleteFriendTitle"="Delete Friend";
+"deleteFriendMsg"="Are you sure you want to quit this friendship?";
+
+"friendDeletedTitle"="Friend deleted";
+"friendDeletedMsg"="Friend was successfully deleted.";
+
+//Social Scene
+"socialFriendsTitle"="Social";
+"frindsTabBarItem"="FRIENDS";
+"groupsTabBarItem"="GROUPS";
+"createGroupBtn"="Create";
+"createGroupTitle"="Create Group";
+"yes"="Yes";
+"cancel"="Cancel";
+"add"="Add";
+"addFriend"="Add Friend";
+"enterEmail"="Enter email:";
+"emailPlaceholder"="email...";
 
 
 

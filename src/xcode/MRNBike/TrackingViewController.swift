@@ -110,7 +110,11 @@ class TrackingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        self.saveCollectedDataLocally() // stores collected data in local storage
+        let currentStat = [
+            "distance": (round(100*(metersDistance / 1000))/100),
+            "calories": Double(self.burgersLabel.text!)! * 253.0
+        ]
+        self.saveCollectedDataLocally(input: currentStat) // stores collected data in local storage
     }
     
     
@@ -155,7 +159,11 @@ class TrackingViewController: UIViewController {
     @IBAction func saveRouteButton(_ sender: UIButton) {
         
         //TODO: Check for connection -> what if there is bad connection?
-        saveCollectedDataLocally()
+        let currentStat = [
+            "distance": (round(100*(metersDistance / 1000))/100),
+            "calories": Double(self.burgersLabel.text!)! * 253.0
+        ]
+        saveCollectedDataLocally(input: currentStat)
         
         if let loadedData = StorageHelper.loadGPS() {
             
@@ -163,7 +171,12 @@ class TrackingViewController: UIViewController {
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), completion: { (keys, error) in
+            let tmpStats = StorageHelper.loadStats()
+            
+            print("tmpstats: \(tmpStats?.count ?? 0)")
+            print("loadedData: \(loadedData.count)")
+            
+            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
                 if error == nil {
                     print(keys as Any)
                     let user = User.getUser()
@@ -194,6 +207,7 @@ class TrackingViewController: UIViewController {
                             case 200: //User successfully updated
                                 KeychainService.saveIDs(IDs: keys!)
                                 StorageHelper.clearCollectedGPS()
+                                StorageHelper.clearStatistics()
                                 
                                 self.reportLocation.isHidden = false
                                 self.SaveRouteButton.isHidden = true
@@ -255,9 +269,12 @@ class TrackingViewController: UIViewController {
     }
     
     // MARK: - NSCoding
-    func saveCollectedDataLocally(){
+    func saveCollectedDataLocally(input : [String: Any]){
         if StorageHelper.storeLocally(trackPointsArray: trackPointsArray) {
             trackPointsArray.removeAll() // in order to dispose used memory
+        }
+        if StorageHelper.storeStatsLocally(trackPointsArray: input) {
+            print("saved \(input.count) stats locally!")
         }
     }
     
@@ -294,10 +311,35 @@ class TrackingViewController: UIViewController {
             
             metersDistance += coordinateLast.distance(from: coordinateNew)
             wheelRotationLabel.text = String(Int(Double(metersDistance / (wheelInCm / 100))))
-            //253 are the calories for 1 hamburger from McDonalds 9048 = (Distance/1609.34*45)/253
-            burgersLabel.text = String(round(100*(metersDistance / 9048))/100)
+            
+            // Match speed to Metabolic Equivalent of Task (MET)
+            let uW = Double(User.getUser().userWeight!)
+            let minutes = Double(elapsedSeconds) / 60.0
+            var met = 0.0
+            let speed = closestSpeed((metersDistance*1000 / minutes) * 37.28227152)
+            switch speed {
+            case 5.5:
+                met = 3.5
+            case 9.4:
+                met = 5.8
+            case 10:
+                met = 6.8
+            case 12:
+                met = 8
+            case 14:
+                met = 10
+            case 16:
+                met = 12
+            case 20:
+                met = 15.8
+            default:
+                met = 3.5
+            }
+            let kcal = met * 3.5 * uW / 200.0 * minutes
+            
+            burgersLabel.text = String(round(100*(kcal / 253))/100)
             distanceLabel.text = String(round(100*(metersDistance / 1000))/100)
-            //(Distance/1609.34*45)/12.97
+
             if co2 != nil {
                 // saved KG per Kilometer
                 if savedCO2 == nil {
@@ -311,6 +353,26 @@ class TrackingViewController: UIViewController {
             coordinateLast = coordinateNew
         }
         
+    }
+    
+    func closestSpeed(_ a : Double) -> Double {
+        
+        // according to:
+        // https://caloriesburnedhq.com/calories-burned-biking/
+        
+        var knownSpeeds : [Double] = [5.5, 9.4, 10, 12, 14, 16, 20]
+        var curr = knownSpeeds[0]
+        var diff = abs(a - curr)
+        
+        for i in 0..<knownSpeeds.count {
+            let newDiff = abs(a-knownSpeeds[i])
+            if newDiff < diff {
+                diff = newDiff
+                curr = knownSpeeds[i]
+            }
+        }
+        
+        return curr
     }
 }
 

@@ -14,6 +14,8 @@ class TrackPoint: NSObject, NSCoding {
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("tp")
+    static let StatisticsURL = DocumentsDirectory.appendingPathComponent("stat")
+    
     // MARK: Types
     struct PropertyKey {
         static let latKey = "lat"

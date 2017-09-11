@@ -32,10 +32,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-WR-YKp">
-                                <rect key="frame" x="0.0" y="81" width="414" height="655"/>
+                                <rect key="frame" x="0.0" y="80.666666666666686" width="414" height="655.33333333333326"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAn-6X-TeW" userLabel="Train">
-                                        <rect key="frame" x="79" y="226" width="255" height="157"/>
+                                        <rect key="frame" x="79" y="224.66666666666663" width="255" height="157"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="uAn-6X-TeW" secondAttribute="height" multiplier="216:133" id="4Sp-F9-4g9"/>
                                         </constraints>
@@ -50,7 +50,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-Dc-Jtu" userLabel="Bus">
-                                        <rect key="frame" x="79" y="406" width="255" height="158"/>
+                                        <rect key="frame" x="79" y="404.66666666666663" width="255" height="158.00000000000011"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8jm-Dc-Jtu" secondAttribute="height" multiplier="108:67" id="JgE-4B-35L"/>
                                         </constraints>
@@ -60,14 +60,14 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-gS-B8C" userLabel="SettingsUnderline">
-                                        <rect key="frame" x="0.0" y="582" width="414" height="1"/>
+                                        <rect key="frame" x="0.0" y="580.66666666666674" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="3o3-Gk-C9E"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TV7-gO-oxN">
-                                        <rect key="frame" x="145" y="608" width="125" height="48"/>
+                                        <rect key="frame" x="145" y="606.66666666666674" width="125" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="2hN-Pw-XVR"/>
                                             <constraint firstAttribute="height" constant="48" id="ui4-nb-tEa"/>
@@ -92,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDc-Qv-nAF" userLabel="Car">
-                                        <rect key="frame" x="79" y="35" width="255" height="170"/>
+                                        <rect key="frame" x="79" y="33.666666666666657" width="255" height="170"/>
                                         <accessibility key="accessibilityConfiguration" label="Car"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eDc-Qv-nAF" secondAttribute="height" multiplier="3:2" id="M2N-T2-jWR"/>
@@ -103,7 +103,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose comparable object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcJ-9L-MEl">
-                                        <rect key="frame" x="107" y="8" width="202" height="19"/>
+                                        <rect key="frame" x="107.33333333333334" y="8" width="201.66666666666666" height="17.666666666666657"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -131,7 +131,7 @@
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-Pc-Tw4">
-                                <rect key="frame" x="60" y="28" width="294" height="37"/>
+                                <rect key="frame" x="60" y="28" width="294" height="36.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

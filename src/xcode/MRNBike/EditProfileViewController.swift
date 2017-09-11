@@ -213,7 +213,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     }
     
     func passwordValidate() {
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,50}$")
         
         if passwordTest.evaluate(with: inputPassword.text) {
             passwordHint.isHidden = false

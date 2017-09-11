@@ -39,6 +39,7 @@
 		10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */; };
 		373490441F3492F3005BA684 /* RouteLineAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373490431F3492F3005BA684 /* RouteLineAnnotation.swift */; };
 		3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3734A7521EB27BE900970749 /* CoreLocation.framework */; };
+		375A69191F545184006D7EB2 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375A69181F545184006D7EB2 /* StatisticsViewController.swift */; };
 		3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */; };
 		37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E11EB0B68000870844 /* Montserrat-Black.otf */; };
 		37B601F41EB0B68000870844 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37B601E21EB0B68000870844 /* Montserrat-Bold.otf */; };
@@ -52,16 +53,26 @@
 		37B6D7D81EB0C1B700CAB733 /* MarksRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6D7D71EB0C1B700CAB733 /* MarksRoutesViewController.swift */; };
 		37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F2FF3B1EB24AEE00ECF6C6 /* RouteReport.swift */; };
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
+		3C25A6B12A0E80E326033B52 /* Pods_MRNBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130860630B622C376A527D21 /* Pods_MRNBike.framework */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
+		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
+		4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */; };
+		4E8A112A1F658E9000B34405 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11291F658E9000B34405 /* Group.swift */; };
+		4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */; };
+		4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */; };
+		4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
+		4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B51F531F410000B70D /* SocialViewController.swift */; };
+		4EAF10B81F5323300000B70D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B71F5323300000B70D /* Friend.swift */; };
 		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
-		4EEF5E951F51F0DC003F092E /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF5E941F51F0DC003F092E /* Credentials.json */; };
+		4EEE90B71F66AA37001CC35D /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EEE90B61F66AA37001CC35D /* Credentials.json */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
+		D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
@@ -103,8 +114,11 @@
 		10B9D4DF1EC614A000CC7027 /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
 		10B9D4E01EC614A000CC7027 /* Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspectable.swift; sourceTree = "<group>"; };
 		10B9D4E11EC614A000CC7027 /* LocalizationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationExtensions.swift; sourceTree = "<group>"; };
+		130860630B622C376A527D21 /* Pods_MRNBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MRNBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.debug.xcconfig"; sourceTree = "<group>"; };
 		373490431F3492F3005BA684 /* RouteLineAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLineAnnotation.swift; sourceTree = "<group>"; };
 		3734A7521EB27BE900970749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		375A69181F545184006D7EB2 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		3777CBA71F2A20DF006240E1 /* RouteTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableCell.swift; sourceTree = "<group>"; };
 		37B601E11EB0B68000870844 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		37B601E21EB0B68000870844 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -123,14 +137,24 @@
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
+		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
+		4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		4E8A11291F658E9000B34405 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupPopUpViewController.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
+		4EAF10B51F531F410000B70D /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		4EAF10B71F5323300000B70D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
-		4EEF5E941F51F0DC003F092E /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		4EEE90B61F66AA37001CC35D /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
+		D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendPopupViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
 		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Resources/Profile.storyboard; sourceTree = "<group>"; };
@@ -147,6 +171,7 @@
 			files = (
 				3734A7531EB27BE900970749 /* CoreLocation.framework in Frameworks */,
 				491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */,
+				3C25A6B12A0E80E326033B52 /* Pods_MRNBike.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +224,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4EEF5E941F51F0DC003F092E /* Credentials.json */,
+				4EEE90B61F66AA37001CC35D /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -237,12 +262,22 @@
 			path = ../Resources/Fonts;
 			sourceTree = "<group>";
 		};
+		4465D6E66E9EDB3AB8CF9EC9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */,
+				BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		491EC4F91DE421940077BF82 = {
 			isa = PBXGroup;
 			children = (
 				0137F14A1EA2778100FCA949 /* MRNBike */,
 				491EC5031DE421940077BF82 /* Products */,
 				491EC5191DE441430077BF82 /* Frameworks */,
+				4465D6E66E9EDB3AB8CF9EC9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,6 +296,7 @@
 				493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */,
 				493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */,
 				491EC51A1DE441430077BF82 /* MapKit.framework */,
+				130860630B622C376A527D21 /* Pods_MRNBike.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */,
+				375A69181F545184006D7EB2 /* StatisticsViewController.swift */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -332,6 +369,15 @@
 			isa = PBXGroup;
 			children = (
 				D25F5AD61EAFF7B700850388 /* Social.storyboard */,
+				4EAF10B51F531F410000B70D /* SocialViewController.swift */,
+				4EAF10B71F5323300000B70D /* Friend.swift */,
+				4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */,
+				4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */,
+				D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */,
+				4E8A11291F658E9000B34405 /* Group.swift */,
+				4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */,
+				4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */,
+				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -361,9 +407,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 491EC5161DE421950077BF82 /* Build configuration list for PBXNativeTarget "MRNBike" */;
 			buildPhases = (
+				700702A6D281A5195D29794C /* [CP] Check Pods Manifest.lock */,
 				491EC4FE1DE421940077BF82 /* Sources */,
 				491EC4FF1DE421940077BF82 /* Frameworks */,
 				491EC5001DE421940077BF82 /* Resources */,
+				1B768207C7082586570310A7 /* [CP] Embed Pods Frameworks */,
+				9A8AFA9807FCACD3BC514829 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -438,7 +487,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
-				4EEF5E951F51F0DC003F092E /* Credentials.json in Resources */,
+				4EEE90B71F66AA37001CC35D /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
@@ -449,6 +498,64 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B768207C7082586570310A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		700702A6D281A5195D29794C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MRNBike-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A8AFA9807FCACD3BC514829 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		491EC4FE1DE421940077BF82 /* Sources */ = {
@@ -462,16 +569,26 @@
 				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
 				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
+				4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */,
 				10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */,
 				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
+				4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
+				4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */,
+				4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
+				4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */,
+				375A69191F545184006D7EB2 /* StatisticsViewController.swift in Sources */,
 				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
+				4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */,
+				4E8A112A1F658E9000B34405 /* Group.swift in Sources */,
 				108D1CC91F256AED00023F2D /* ViewController.swift in Sources */,
+				4EAF10B81F5323300000B70D /* Friend.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,
 				10B9D4E51EC614A000CC7027 /* CornerView.swift in Sources */,
 				37F2FF3D1EB24AEE00ECF6C6 /* RouteReport.swift in Sources */,
@@ -606,6 +723,7 @@
 		};
 		491EC5171DE421950077BF82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E5E7D50E0D2BAE34AB25AFA /* Pods-MRNBike.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -626,6 +744,7 @@
 		};
 		491EC5181DE421950077BF82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
