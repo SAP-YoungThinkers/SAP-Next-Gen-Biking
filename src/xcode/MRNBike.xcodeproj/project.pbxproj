@@ -60,7 +60,11 @@
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */; };
-		4E7F36C81F55BEA2002220B5 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E7F36C71F55BEA2002220B5 /* Credentials.json */; };
+		4E8A11281F658E0700B34405 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E8A11271F658E0700B34405 /* Credentials.json */; };
+		4E8A112A1F658E9000B34405 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11291F658E9000B34405 /* Group.swift */; };
+		4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */; };
+		4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */; };
+		4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
 		4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B51F531F410000B70D /* SocialViewController.swift */; };
 		4EAF10B81F5323300000B70D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B71F5323300000B70D /* Friend.swift */; };
@@ -68,6 +72,7 @@
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
+		D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
 		D25F5AD01EAFF6A000850388 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */; };
 		D25F5AD31EAFF76400850388 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AD21EAFF76400850388 /* Profile.storyboard */; };
@@ -136,16 +141,20 @@
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		4E7F36C71F55BEA2002220B5 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		4E8A11271F658E0700B34405 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
+		4E8A11291F658E9000B34405 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupPopUpViewController.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		4EAF10B51F531F410000B70D /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		4EAF10B71F5323300000B70D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
-		4EEF5E941F51F0DC003F092E /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
+		D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendPopupViewController.swift; sourceTree = "<group>"; };
 		D25F5ACD1EAFF5C900850388 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Resources/Home.storyboard; sourceTree = "<group>"; };
 		D25F5ACF1EAFF6A000850388 /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Resources/Statistics.storyboard; sourceTree = "<group>"; };
 		D25F5AD21EAFF76400850388 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Resources/Profile.storyboard; sourceTree = "<group>"; };
@@ -215,7 +224,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4E7F36C71F55BEA2002220B5 /* Credentials.json */,
+				4E8A11271F658E0700B34405 /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -364,6 +373,11 @@
 				4EAF10B71F5323300000B70D /* Friend.swift */,
 				4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */,
 				4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */,
+				D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */,
+				4E8A11291F658E9000B34405 /* Group.swift */,
+				4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */,
+				4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */,
+				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -473,7 +487,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
-				4E7F36C81F55BEA2002220B5 /* Credentials.json in Resources */,
+				4E8A11281F658E0700B34405 /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
@@ -495,11 +509,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -553,12 +569,16 @@
 				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
 				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
+				D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */,
 				4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */,
 				4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */,
 				10B2ABCD1F2553F000847AA6 /* TermConditionsViewController.swift in Sources */,
 				4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */,
+				4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
+				4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */,
+				4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
@@ -566,6 +586,7 @@
 				375A69191F545184006D7EB2 /* StatisticsViewController.swift in Sources */,
 				10B9D4E71EC614A000CC7027 /* LocalizationExtensions.swift in Sources */,
 				4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */,
+				4E8A112A1F658E9000B34405 /* Group.swift in Sources */,
 				108D1CC91F256AED00023F2D /* ViewController.swift in Sources */,
 				4EAF10B81F5323300000B70D /* Friend.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,

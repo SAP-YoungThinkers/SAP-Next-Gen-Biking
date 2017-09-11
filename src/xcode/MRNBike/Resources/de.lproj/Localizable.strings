@@ -119,12 +119,24 @@
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
 
-"noFriendsDialogTitle"="404 - Freunde nicht gefunden";
+"noFriendsDialogTitle"="Keine Freunde gefunden";
 "noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
+
+"noGroupsDialogTitle"="Keine Gruppen gefunden";
+"noGroupsDialogMsg"="Erstelle deine eigene Gruppe!";
+
+"addedSuccessfullyTitle"="Success";
+"addedSuccessfulyMsg"="Friend has been added successfully.";
+
+"incorrectEmailTitle"="Incorrect Email";
+"incorrectEmailMsg"="User's email is incorrect, please try again.";
+
 
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";
 "frindsTabBarItem"="Freunde";
 "groupsTabBarItem"="Gruppen";
+"createGroupBtn"="Erstellen";
+"createGroupTitle"="Gruppe erstellen";
 
 

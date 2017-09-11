@@ -1,19 +1,25 @@
 import UIKit
+import PopupDialog
 
-class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     //MARK: Properties
     var friends = [Friend]()
     
     @IBOutlet weak var friendsTableView: UITableView!
     
+    
     //MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
+        friendsTableView.allowsMultipleSelectionDuringEditing = false;
+
+        //Remove separters if no friends
+        //friendsTableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +54,44 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.friendImage.image = friend.photo
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    
+    //Delete Friend action
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: " x        ", handler: { (action, indexPath) in
+            
+            //Delete Alert
+            let deleteAlert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete that user?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                
+                // Put your delete code here !
+                
+
+                self.friends.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+               
+            }))
+            
+            self.present(deleteAlert, animated: true, completion: nil)
+
+        })
+        deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
+
+        
+        return [deleteAction]
+
     }
     
     //MARK: Private Methods
@@ -112,5 +156,21 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             })
         }
+    }
+    
+    
+    //Added Library, PopupDialagoue
+    
+    @IBAction func openAddFriendPopup(_ sender: Any) {
+
+        let storyboard = UIStoryboard(name: "Social", bundle: nil)
+        let ratingVC = storyboard.instantiateViewController(withIdentifier: "AddFriendPopupViewController")
+        
+        // Create the dialog
+        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        
+        // Present dialog
+        present(popup, animated: true, completion: nil)
+
     }
 }
