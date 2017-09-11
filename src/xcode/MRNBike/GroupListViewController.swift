@@ -1,33 +1,33 @@
 import UIKit
 import PopupDialog
 
-class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+class GroupListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     //MARK: Properties
-    var friends = [Friend]()
-    
-    @IBOutlet weak var friendsTableView: UITableView!
+    var groups = [Group]()
     
     
-    //MARK: Functions
+    @IBOutlet weak var groupTableView: UITableView!
+    @IBOutlet weak var createGroupBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        friendsTableView.dataSource = self
-        friendsTableView.delegate = self
-        friendsTableView.allowsMultipleSelectionDuringEditing = false;
-
-        //Remove separters if no friends
-        //friendsTableView.tableFooterView = UIView()
+        
+        createGroupBtn.setTitle(NSLocalizedString("createGroupBtn", comment: ""), for: .normal)
+        
+        groupTableView.dataSource = self
+        groupTableView.delegate = self
+        
+        loadGroups()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //Request the friends from backend
-        loadFriends()
+        //Request the groups from backend
+        
+        //loadGroups()
     }
-
+    
     //MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,80 +35,41 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return groups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "FriendTableViewCell"
+        let cellIdentifier = "GroupTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GroupTableViewCell  else {
             fatalError("Fatal Error")
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = friends[indexPath.row]
+        let friend = groups[indexPath.row]
         
-        cell.firstnameLabel.text = friend.firstname
-        cell.lastnameLabel.text = friend.lastname
-        cell.friendImage.image = friend.photo
+        cell.nameLabel.text = friend.name
+        cell.timeLocationLabel.text = friend.time
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    
-    
-    //Delete Friend action
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        
-        let deleteAction = UITableViewRowAction(style: .default, title: " x        ", handler: { (action, indexPath) in
-            
-            //Delete Alert
-            let deleteAlert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete that user?", preferredStyle: UIAlertControllerStyle.alert)
-            
-            deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                
-                // Put your delete code here !
-                
-
-                self.friends.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }))
-            
-            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-               
-            }))
-            
-            self.present(deleteAlert, animated: true, completion: nil)
-
-        })
-        deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
-
-        
-        return [deleteAction]
-
-    }
-    
     //MARK: Private Methods
     
-    private func loadFriends() {
+    private func loadGroups() {
         
         if let userMail = KeychainService.loadEmail() as String? {
-            
+            print(userMail)
             //Show activity indicator
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            ClientService.getFriendList(mail: userMail, completion: { (data, error) in
+            ClientService.getGroupList(mail: userMail, completion: { (data, error) in
+                print(error)
                 if error == nil {
-                    
                     //Clear friends array
-                    self.friends.removeAll()
+                    self.groups.removeAll()
                     
                     guard let responseData = data else {
                         //Dismiss activity indicator
@@ -118,36 +79,38 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                         return
                     }
                     
-                    //Construct friends array
-                    if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
-                        for friend in friendList {
-                            guard let friendEntity = Friend(firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
-  
+                    //Construct group array
+                    if let groupList = responseData["groups"] as? [[String: AnyObject]] {
+                        
+                        for group in groupList {
+                            guard let groupEntity = Group(name: (group["name"] as? String)!, time: (group["startLocation"] as? String)!) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                                 return
                             }
-                            self.friends.append(friendEntity)
+                            self.groups.append(groupEntity)
                         }
                     }
                     
-                    self.friendsTableView.reloadData()
+                    self.groupTableView.reloadData()
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
+                    
                 } else {
                     if error == ClientServiceError.notFound {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        //An error occured in the app
+                        /*
+                        //No groups found
                         DispatchQueue.main.async {
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noFriendsDialogTitle", comment: ""), message: NSLocalizedString("noFriendsDialogMsg", comment: "")), animated: true, completion: nil)
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noGroupsDialogTitle", comment: ""), message: NSLocalizedString("noGroupsDialogMsg", comment: "")), animated: true, completion: nil)
                         }
+ */
                     } else {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
-            
+                        
                         //An error occured in the app
                         DispatchQueue.main.async {
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -158,19 +121,21 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: Actions
     
-    //Added Library, PopupDialagoue
-    
-    @IBAction func openAddFriendPopup(_ sender: Any) {
-
+    @IBAction func onPressOpenCreateGroup(_ sender: Any) {
+        
+        /*
         let storyboard = UIStoryboard(name: "Social", bundle: nil)
-        let ratingVC = storyboard.instantiateViewController(withIdentifier: "AddFriendPopupViewController")
+        let ratingVC = storyboard.instantiateViewController(withIdentifier: "CreateGroupPopupViewController")
         
         // Create the dialog
         let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
         
         // Present dialog
         present(popup, animated: true, completion: nil)
-
+        */
     }
+    
+    
 }
