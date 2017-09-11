@@ -129,6 +129,9 @@
 "incorrectEmailTitle"="Incorrect Email";
 "incorrectEmailMsg"="User's email is incorrect, please try again.";
 
+"deleteFriendTitle"="Delete Friend";
+"deleteFriendMsg"="Are you sure you want to quit this friendship?";
+
 "friendDeletedTitle"="Friend deleted";
 "friendDeletedMsg"="Friend was successfully deleted.";
 
@@ -138,7 +141,12 @@
 "groupsTabBarItem"="GROUPS";
 "createGroupBtn"="Create";
 "createGroupTitle"="Create Group";
-
+"yes"="Yes";
+"cancel"="Cancel";
+"add"="Add";
+"addFriend"="Add Friend";
+"enterEmail"="Enter email:";
+"emailPlaceholder"="email...";
 
 
 

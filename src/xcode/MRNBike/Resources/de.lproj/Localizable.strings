@@ -125,11 +125,14 @@
 "noGroupsDialogTitle"="Keine Gruppen gefunden";
 "noGroupsDialogMsg"="Erstelle deine eigene Gruppe!";
 
-"addedSuccessfullyTitle"="Success";
-"addedSuccessfulyMsg"="Friend has been added successfully.";
+"addedSuccessfullyTitle"="Hinzufügen erfolgreich";
+"addedSuccessfulyMsg"="Ein neuer Freund wurde hinzugefügt.";
 
-"incorrectEmailTitle"="Incorrect Email";
-"incorrectEmailMsg"="User's email is incorrect, please try again.";
+"incorrectEmailTitle"="E-Mail falsch";
+"incorrectEmailMsg"="Die angegebene E-Mail ist falsch.";
+
+"deleteFriendTitle"="Freund löschen";
+"deleteFriendMsg"="Freundschaft wirklich beenden?";
 
 "friendDeletedTitle"="Freundschaft beendet";
 "friendDeletedMsg"="Du hast die Freundschaft beendet!";
@@ -141,5 +144,10 @@
 "groupsTabBarItem"="Gruppen";
 "createGroupBtn"="Erstellen";
 "createGroupTitle"="Gruppe erstellen";
-
+"yes"="Ja";
+"cancel"="Abbrechen";
+"add"="Adden";
+"addFriend"="Freund hinzufügen";
+"enterEmail"="E-Mail eingeben:";
+"emailPlaceholder"="E-Mail...";
 

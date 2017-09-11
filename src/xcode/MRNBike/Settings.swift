@@ -116,10 +116,6 @@ import UIKit
                 
                 let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
                 
-                //Show activity indicator
-                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-                present(activityAlert, animated: false, completion: nil)
-                
                 //Try update user profile
                 ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
                     if error == nil {
@@ -136,23 +132,14 @@ import UIKit
                             default:
                                 user.co2Type = User.co2ComparedObject.car
                             }
-
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-        
                             break
                         default: //For http error code: 500
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
                             //An error occured in the app
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     }
                     else
                     {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        
                         //An error occured in the app
                         self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     }

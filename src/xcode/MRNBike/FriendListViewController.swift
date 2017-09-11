@@ -7,29 +7,38 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     var friends = [Friend]()
     
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FriendListViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.orange
+        
+        return refreshControl
+    }()
     
     //MARK: Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addButton.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
         
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
         
-        //Remove separters if no friends
-        //friendsTableView.tableFooterView = UIView()
+        loadFriends()
+        
+        self.friendsTableView.addSubview(self.refreshControl)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //Request the friends from backend
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadFriends()
+        self.friendsTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     //MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -49,7 +58,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Fetches the appropriate friend for the data source layout.
         let friend = friends[indexPath.row]
         
-        cell.emailLabel.text = friend.eMail
         cell.firstnameLabel.text = friend.firstname
         cell.lastnameLabel.text = friend.lastname
         cell.friendImage.image = friend.photo
@@ -64,15 +72,15 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     //Delete Friend action
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let deleteAction = UITableViewRowAction(style: .default, title: " x        ", handler: { (action, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .default, title: " X        ", handler: { (action, indexPath) in
             
             //Delete Alert
-            let deleteAlert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete that user?", preferredStyle: UIAlertControllerStyle.alert)
+            let deleteAlert = UIAlertController(title: NSLocalizedString("deleteFriendTitle", comment: ""), message: NSLocalizedString("deleteFriendMsg", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             
-            deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
                 
-                // Put your delete code here !
-                ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: "", completion: { (httpCode, error) in
+                //Put your delete code here!
+                ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].eMail, completion: { (httpCode, error) in
                     if error == nil {
                         if(httpCode == 200) {
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: "")), animated: true, completion: nil)
@@ -88,7 +96,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }))
             
-            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
                 
             }))
             
