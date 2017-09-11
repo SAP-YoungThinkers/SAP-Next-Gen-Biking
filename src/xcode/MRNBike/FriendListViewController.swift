@@ -2,7 +2,7 @@ import UIKit
 import PopupDialog
 
 class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+    
     //MARK: Properties
     var friends = [Friend]()
     
@@ -13,11 +13,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
-
+        
         //Remove separters if no friends
         //friendsTableView.tableFooterView = UIView()
     }
@@ -27,7 +27,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         //Request the friends from backend
         loadFriends()
     }
-
+    
     //MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,6 +49,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Fetches the appropriate friend for the data source layout.
         let friend = friends[indexPath.row]
         
+        cell.emailLabel.text = friend.eMail
         cell.firstnameLabel.text = friend.firstname
         cell.lastnameLabel.text = friend.lastname
         cell.friendImage.image = friend.photo
@@ -60,11 +61,8 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         return true
     }
     
-    
-    
     //Delete Friend action
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         
         let deleteAction = UITableViewRowAction(style: .default, title: " x        ", handler: { (action, indexPath) in
             
@@ -74,24 +72,34 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
             deleteAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 
                 // Put your delete code here !
+                ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: "", completion: { (httpCode, error) in
+                    if error == nil {
+                        if(httpCode == 200) {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: "")), animated: true, completion: nil)
+                        } else {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    } else {
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                })
                 
-
                 self.friends.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }))
             
             deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-               
+                
             }))
             
             self.present(deleteAlert, animated: true, completion: nil)
-
+            
         })
         deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
-
+        
         
         return [deleteAction]
-
+        
     }
     
     //MARK: Private Methods
@@ -121,8 +129,8 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     //Construct friends array
                     if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
                         for friend in friendList {
-                            guard let friendEntity = Friend(firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
-  
+                            guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
+                                
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -147,7 +155,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     } else {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
-            
+                        
                         //An error occured in the app
                         DispatchQueue.main.async {
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -162,7 +170,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     //Added Library, PopupDialagoue
     
     @IBAction func openAddFriendPopup(_ sender: Any) {
-
+        
         let storyboard = UIStoryboard(name: "Social", bundle: nil)
         let ratingVC = storyboard.instantiateViewController(withIdentifier: "AddFriendPopupViewController")
         
@@ -171,6 +179,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Present dialog
         present(popup, animated: true, completion: nil)
-
+        
     }
 }

@@ -131,6 +131,9 @@
 "incorrectEmailTitle"="Incorrect Email";
 "incorrectEmailMsg"="User's email is incorrect, please try again.";
 
+"friendDeletedTitle"="Freundschaft beendet";
+"friendDeletedMsg"="Du hast die Freundschaft beendet!";
+
 
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";

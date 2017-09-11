@@ -5,6 +5,7 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var firstnameLabel: UILabel!
     @IBOutlet weak var lastnameLabel: UILabel!
     @IBOutlet var friendImage: UIImageView!
+    @IBOutlet weak var emailLabel: UILabel!
     
     
     override func awakeFromNib() {

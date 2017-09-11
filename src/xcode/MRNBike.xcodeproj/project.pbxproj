@@ -60,7 +60,6 @@
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */; };
-		4E8A11281F658E0700B34405 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E8A11271F658E0700B34405 /* Credentials.json */; };
 		4E8A112A1F658E9000B34405 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11291F658E9000B34405 /* Group.swift */; };
 		4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */; };
 		4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */; };
@@ -71,6 +70,7 @@
 		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
+		4EEE90B71F66AA37001CC35D /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EEE90B61F66AA37001CC35D /* Credentials.json */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
@@ -141,7 +141,6 @@
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		4E8A11271F658E0700B34405 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		4E8A11291F658E9000B34405 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		4EEE90B61F66AA37001CC35D /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendPopupViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4E8A11271F658E0700B34405 /* Credentials.json */,
+				4EEE90B61F66AA37001CC35D /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
-				4E8A11281F658E0700B34405 /* Credentials.json in Resources */,
+				4EEE90B71F66AA37001CC35D /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,

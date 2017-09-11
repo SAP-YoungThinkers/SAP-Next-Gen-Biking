@@ -129,6 +129,9 @@
 "incorrectEmailTitle"="Incorrect Email";
 "incorrectEmailMsg"="User's email is incorrect, please try again.";
 
+"friendDeletedTitle"="Friend deleted";
+"friendDeletedMsg"="Friend was successfully deleted.";
+
 //Social Scene
 "socialFriendsTitle"="Social";
 "frindsTabBarItem"="FRIENDS";

@@ -139,9 +139,7 @@ import UIKit
 
                             //Dismiss activity indicator
                             activityAlert.dismiss(animated: false, completion: nil)
-                            
-                            //Upload was successfully alert
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: "")), animated: true, completion: nil)
+        
                             break
                         default: //For http error code: 500
                             //Dismiss activity indicator
