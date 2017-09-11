@@ -13,33 +13,19 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        // TODO: Just for Testing, delete this function
-//        mockFriendsData()
-
-        
+    
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
 
         //Remove separters if no friends
-        friendsTableView.tableFooterView = UIView()
+        //friendsTableView.tableFooterView = UIView()
     }
-    
-//    // TODO: Just for Testing, delete this function
-//    func mockFriendsData() {
-//        let friend = Friend(firstname: "Ziad", lastname: "Ziad", photo: nil)
-//        for _ in 0 ..< 10 {
-//            friends.append(friend!)
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Request the friends from backend
-        
-        // TODO: Just for testing, uncomment this line
-//        loadFriends()
+        loadFriends()
     }
 
     //MARK: - Table view data source

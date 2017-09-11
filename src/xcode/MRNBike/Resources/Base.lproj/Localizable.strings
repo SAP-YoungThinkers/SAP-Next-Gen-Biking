@@ -117,8 +117,11 @@
 "userUpdatedDialogTitle"="Profile Updated";
 "userUpdatedDialogMsg"="Profile was successfully updated!";
 
-"noFriendsDialogTitle"="404 - Friends not found";
-"noFriendsDialogMsg"="Please add friends to you list!";
+"noFriendsDialogTitle"="No friends found";
+"noFriendsDialogMsg"="Please add friends!";
+
+"noGroupsDialogTitle"="No groups found";
+"noGroupsDialogMsg"="Create your own group!";
 
 "addedSuccessfullyTitle"="Success";
 "addedSuccessfulyMsg"="Friend has been added successfully.";
@@ -131,6 +134,7 @@
 "frindsTabBarItem"="FRIENDS";
 "groupsTabBarItem"="GROUPS";
 "createGroupBtn"="Create";
+"createGroupTitle"="Create Group";
 
 
 

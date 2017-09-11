@@ -17,12 +17,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        
+        loadGroups()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Request the groups from backend
-        loadGroups()
+        
+        //loadGroups()
     }
     
     //MARK: - Table view data source
@@ -57,12 +60,13 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func loadGroups() {
         
         if let userMail = KeychainService.loadEmail() as String? {
-            
+            print(userMail)
             //Show activity indicator
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
             ClientService.getGroupList(mail: userMail, completion: { (data, error) in
+                print(error)
                 if error == nil {
                     //Clear friends array
                     self.groups.removeAll()
@@ -77,9 +81,9 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                     
                     //Construct group array
                     if let groupList = responseData["groups"] as? [[String: AnyObject]] {
+                        
                         for group in groupList {
-                            guard let groupEntity = Group(name: (group["name"] as? String)!, time: (group["datum"] as? String)!) else {
-                                
+                            guard let groupEntity = Group(name: (group["name"] as? String)!, time: (group["startLocation"] as? String)!) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -97,11 +101,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                     if error == ClientServiceError.notFound {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        //An error occured in the app
+                        /*
+                        //No groups found
                         DispatchQueue.main.async {
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noGroupsDialogTitle", comment: ""), message: NSLocalizedString("noGroupsDialogMsg", comment: "")), animated: true, completion: nil)
                         }
+ */
                     } else {
                         //Dismiss activity indicator
                         activityAlert.dismiss(animated: false, completion: nil)
@@ -120,6 +125,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func onPressOpenCreateGroup(_ sender: Any) {
         
+        /*
         let storyboard = UIStoryboard(name: "Social", bundle: nil)
         let ratingVC = storyboard.instantiateViewController(withIdentifier: "CreateGroupPopupViewController")
         
@@ -128,7 +134,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Present dialog
         present(popup, animated: true, completion: nil)
-        
+        */
     }
     
     
