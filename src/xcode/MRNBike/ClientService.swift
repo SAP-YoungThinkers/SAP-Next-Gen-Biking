@@ -159,7 +159,7 @@ class ClientService {
             }
         }
     }
-
+    
     //Get friendlist of a user from backend
     static func getFriendList(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
@@ -231,7 +231,7 @@ class ClientService {
             }
         }
     }
-
+    
     //Create, edit or verify a user on backend
     //Create: createUser.xsjs
     //Edit: updateUser.xsjs
@@ -245,7 +245,7 @@ class ClientService {
             if error == nil {
                 
                 session.dataTask(with: urlRequest!) {data, response, error in
-    
+                    
                     guard let status = (response as? HTTPURLResponse)?.statusCode else {
                         completion(nil, ClientServiceError.httpError)
                         return
@@ -320,7 +320,7 @@ class ClientService {
                     }
                     
                     if status == 200 {
-                       completion(nil)
+                        completion(nil)
                     } else {
                         completion(ClientServiceError.httpError)
                         return
@@ -368,7 +368,7 @@ class ClientService {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
-
+                    
                     }.resume()
             } else {
                 completion(nil, error)
@@ -395,10 +395,10 @@ class ClientService {
         }
         
         /*
- 
-            Because of statistics, we will upload body containing the route json, followed by seperator:
-            ###
-            and then followed by statistics json
+         
+         Because of statistics, we will upload body containing the route json, followed by seperator:
+         ###
+         and then followed by statistics json
          
          */
         
@@ -455,7 +455,7 @@ class ClientService {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
-
+                    
                     }.resume()
             } else {
                 completion(nil, error)
@@ -499,7 +499,7 @@ class ClientService {
             }
         }
     }
-
+    
     //Get statistics from backend
     static func getRouteInfos(routeKeys: Data,completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
@@ -551,7 +551,7 @@ class ClientService {
                         completion(nil, ClientServiceError.httpError)
                         return
                     }
-                   
+                    
                     if error == nil && status == 200 {
                         guard let httpResponse = response as? HTTPURLResponse else {
                             completion(nil,ClientServiceError.httpError)
@@ -566,7 +566,7 @@ class ClientService {
                         completion(nil,ClientServiceError.httpError)
                         return
                     }
-
+                    
                     }.resume()
             } else {
                 completion(nil, error)
@@ -602,10 +602,12 @@ class ClientService {
                     if data != nil {
                         request.httpBody = data
                     } else {
-                        do {
-                            request.httpBody = try JSONSerialization.data(withJSONObject: route!)
-                        } catch {
-                            completion(nil, ClientServiceError.jsonSerializationError)
+                        if(route != nil) {
+                            do {
+                                request.httpBody = try JSONSerialization.data(withJSONObject: route!)
+                            } catch {
+                                completion(nil, ClientServiceError.jsonSerializationError)
+                            }
                         }
                     }
                     
