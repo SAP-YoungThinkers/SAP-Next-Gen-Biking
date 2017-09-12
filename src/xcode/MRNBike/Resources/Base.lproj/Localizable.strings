@@ -71,6 +71,8 @@
 "dialogActionNo"="No";
 "termAlertAction"="Dismiss";
 
+"termTitle"="Terms & Conditions";
+
 //Tracking Scene
 "wheelRotation"="WHEEL ROTATIONS";
 "burgers"="BURGERS";

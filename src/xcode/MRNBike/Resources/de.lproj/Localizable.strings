@@ -72,6 +72,8 @@
 "dialogActionNo"="Fortfahren";
 "termAlertAction"="Verwerfen";
 
+"termTitle"="AGB";
+
 //Tracking Scene
 "wheelRotation"="RADUMDREHUNGEN";
 "burgers"="BURGER";
