@@ -50,7 +50,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         let friend = groups[indexPath.row]
         
         cell.nameLabel.text = friend.name
-        cell.timeLocationLabel.text = friend.time
+        let subTitle = friend.datum + ", " + friend.startLocation
+        cell.timeLocationLabel.text = subTitle
         
         return cell
     }
@@ -66,7 +67,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
             present(activityAlert, animated: false, completion: nil)
             
             ClientService.getGroupList(mail: userMail, completion: { (data, error) in
-                print(error)
                 if error == nil {
                     //Clear friends array
                     self.groups.removeAll()
@@ -83,7 +83,13 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                     if let groupList = responseData["groups"] as? [[String: AnyObject]] {
                         
                         for group in groupList {
-                            guard let groupEntity = Group(name: (group["name"] as? String)!, time: (group["startLocation"] as? String)!) else {
+                            
+                            let datumString = String(describing: group["datum"]!)
+                            let index = datumString.index(datumString.startIndex, offsetBy: 16)
+                            let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
+                            let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
+                            
+                            guard let groupEntity = Group(name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
