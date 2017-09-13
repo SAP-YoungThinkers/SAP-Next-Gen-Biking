@@ -204,7 +204,9 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         caloriesTab.title = NSLocalizedString("caloriesTitle", comment: "")
         totalWheelsLabel.text = NSLocalizedString("totalWheelsTitle", comment: "")
         let user = User.getUser()
-        totalWheels.text = String(user.wheelRotation!)
+        if let rotations = user.wheelRotation {
+            totalWheels.text = String(rotations)
+        }
         
         /*  ------------------------ *\
          *      DESIGN
