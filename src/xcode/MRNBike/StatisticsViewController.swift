@@ -340,6 +340,14 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         shadowImageView?.isHidden = true
     }
     
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if(tabBar.selectedItem == distanceTab) {
+            distancePressed()
+        } else if (tabBar.selectedItem == caloriesTab){
+            caloriesPressed()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
