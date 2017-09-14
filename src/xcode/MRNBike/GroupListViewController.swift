@@ -69,6 +69,13 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         return true
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Social", bundle: nil)
+        let showGroupViewController = storyBoard.instantiateViewController(withIdentifier: "showGroup")
+        self.present(showGroupViewController, animated: true, completion: nil)
+    }
+    
     //Unassign from group
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         

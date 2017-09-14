@@ -58,6 +58,7 @@
 		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
+		4E7DEA471F6AF2C400FB5C6E /* ShowGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */; };
 		4E7F36C61F55BCBA002220B5 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */; };
 		4E8A112A1F658E9000B34405 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11291F658E9000B34405 /* Group.swift */; };
 		4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */; };
@@ -138,6 +139,7 @@
 		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
+		4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowGroupViewController.swift; sourceTree = "<group>"; };
 		4E7F36C51F55BCBA002220B5 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		4E8A11291F658E9000B34405 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */,
 				4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */,
 				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
+				4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
+				4E7DEA471F6AF2C400FB5C6E /* ShowGroupViewController.swift in Sources */,
 				102F26911F4BD2AF001D9907 /* Settings.swift in Sources */,
 				3777CBA81F2A20DF006240E1 /* RouteTableCell.swift in Sources */,
 				01279A2F1EA4D9DF000505AA /* RouteKeys.swift in Sources */,
