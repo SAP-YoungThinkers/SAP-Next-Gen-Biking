@@ -59,18 +59,6 @@
 "dialogActionGotIt"="Got it!";
 
 //Term Scene
-"termConditionHeader"="Terms & Conditions";
-"termConditionText"="Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this) Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobil";
-
-"agreeButton"="I AGREE";
-"disagreeButton"="I DISAGREE";
-
-"dismissConfDialogTitle"="Dismiss conformation";
-"dismissConfDialogMsg"="If you disagree with the terms and conditions, you can't continue working with the app and your current progress will be lost. Are you sure about this?";
-
-"dialogActionNo"="No";
-"termAlertAction"="Dismiss";
-
 "termTitle"="Terms & Conditions";
 
 //Tracking Scene
@@ -136,6 +124,12 @@
 
 "friendDeletedTitle"="Friend deleted";
 "friendDeletedMsg"="Friend was successfully deleted.";
+
+"unassignGroupTitle"="Unassign";
+"unassignGroupMsg"="Are you sure you want to unassign?";
+
+"unassignedTitle"="Unassigned";
+"unassignedMsg"="You left the group.";
 
 //Social Scene
 "socialFriendsTitle"="Social";

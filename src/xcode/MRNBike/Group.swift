@@ -3,6 +3,7 @@ import UIKit
 class Group: NSObject {
     //MARK: Properties
     
+    var id: Int
     var name: String
     var datum: String
     var startLocation: String
@@ -13,8 +14,9 @@ class Group: NSObject {
     
     //MARK: Initialization
     
-    init?(name: String, datum: String, startLocation: String, destination: String, text: String, owner: String, privateGroup: Int) {
+    init?(id: Int, name: String, datum: String, startLocation: String, destination: String, text: String, owner: String, privateGroup: Int) {
         // Initialize stored properties.
+        self.id = id
         self.name = name
         self.datum = datum
         self.startLocation = startLocation

@@ -10,6 +10,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var groupTableView: UITableView!
     @IBOutlet weak var createGroupBtn: UIButton!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(GroupListViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.orange
+        
+        return refreshControl
+    }()
+    
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,17 +28,17 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         groupTableView.delegate = self
         
         loadGroups()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //Request the groups from backend
         
-        //loadGroups()
+        self.groupTableView.addSubview(self.refreshControl)
     }
     
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        loadGroups()
+        self.groupTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
     //MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -56,19 +65,62 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //Unassign from group
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: " X        ", handler: { (action, indexPath) in
+            
+            //Delete Alert
+            let deleteAlert = UIAlertController(title: NSLocalizedString("unassignGroupTitle", comment: ""), message: NSLocalizedString("unassignGroupMsg", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                
+                let id = String(self.groups[indexPath.row].id)
+                
+                ClientService.deleteUserFromGroup(userId: (KeychainService.loadEmail() ?? "") as String, groupId: id, completion: { (httpCode, error) in
+                    if error == nil {
+                        if(httpCode == 200) {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("unassignedTitle", comment: ""), message: NSLocalizedString("unassignedMsg", comment: "")), animated: true, completion: nil)
+                        } else {
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    } else {
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                })
+                
+                self.groups.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            
+            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                
+            }))
+            
+            self.present(deleteAlert, animated: true, completion: nil)
+            
+        })
+        deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
+        
+        return [deleteAction]
+    }
+    
     //MARK: Private Methods
     
     private func loadGroups() {
         
         if let userMail = KeychainService.loadEmail() as String? {
-            print(userMail)
             //Show activity indicator
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
             ClientService.getGroupList(mail: userMail, completion: { (data, error) in
                 if error == nil {
-                    //Clear friends array
+                    //Clear groups array
                     self.groups.removeAll()
                     
                     guard let responseData = data else {
@@ -89,7 +141,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                             let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
                             let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
                             
-                            guard let groupEntity = Group(name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!) else {
+                            guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -127,8 +179,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //MARK: Actions
     
+    //MARK: Actions
     @IBAction func onPressOpenCreateGroup(_ sender: Any) {
         
         /*
