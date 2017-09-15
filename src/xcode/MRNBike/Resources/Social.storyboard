@@ -249,7 +249,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2j-R5-Uev">
-                                        <rect key="frame" x="117" y="22" width="106" height="21"/>
+                                        <rect key="frame" x="117.5" y="22" width="106" height="21"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -405,21 +405,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJo-2U-SbD">
-                                <rect key="frame" x="164" y="207" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="dismiss:" destination="cOi-aQ-xkX" eventType="touchUpInside" id="tub-hN-yrC"/>
-                                </connections>
-                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o3n-Co-ZJc">
+                                <rect key="frame" x="0.0" y="31" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="PbM-fB-BkY">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ux2-lz-NwV">
+                                            <connections>
+                                                <action selector="backButton:" destination="cOi-aQ-xkX" id="9uK-pr-wPE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="jwK-td-89O"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s8-Cx-Hto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="457"/>
+            <point key="canvasLocation" x="3042" y="415"/>
         </scene>
         <!--Group List View Controller-->
         <scene sceneID="9T2-Bb-jhV">
@@ -512,6 +518,7 @@
                     <connections>
                         <outlet property="createGroupBtn" destination="kj9-be-lIA" id="5HA-VW-yxT"/>
                         <outlet property="groupTableView" destination="9JQ-xj-CEy" id="E4m-yl-73w"/>
+                        <segue destination="cOi-aQ-xkX" kind="presentation" identifier="segueShowGroup" animates="NO" modalPresentationStyle="overCurrentContext" id="ICb-Iz-rkz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Yx-ea-dRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -544,7 +551,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="closeAction:" destination="Zkz-gS-5Ac" eventType="touchUpInside" id="H6R-aH-TWd"/>
+                                            <action selector="closePopUp:" destination="oe4-fr-60S" eventType="touchUpInside" id="uhu-QA-2g4"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaU-hP-Nrf">

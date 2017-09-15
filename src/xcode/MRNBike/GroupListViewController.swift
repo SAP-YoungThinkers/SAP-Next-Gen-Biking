@@ -5,6 +5,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: Properties
     var groups = [Group]()
+    var tempRowId = 0
     
     
     @IBOutlet weak var groupTableView: UITableView!
@@ -56,10 +57,10 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = groups[indexPath.row]
+        let group = groups[indexPath.row]
         
-        cell.nameLabel.text = friend.name
-        let subTitle = friend.datum + ", " + friend.startLocation
+        cell.nameLabel.text = group.name
+        let subTitle = group.datum + ", " + group.startLocation
         cell.timeLocationLabel.text = subTitle
         
         return cell
@@ -70,10 +71,14 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Social", bundle: nil)
-        let showGroupViewController = storyBoard.instantiateViewController(withIdentifier: "showGroup")
-        self.present(showGroupViewController, animated: true, completion: nil)
+        tempRowId = indexPath.row
+        performSegue(withIdentifier: "segueShowGroup", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let showGroupViewController = segue.destination as! ShowGroupViewController
+       
+        showGroupViewController.group = groups[tempRowId]
     }
     
     //Unassign from group
@@ -189,8 +194,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: Actions
     @IBAction func onPressOpenCreateGroup(_ sender: Any) {
-        
-        /*
         let storyboard = UIStoryboard(name: "Social", bundle: nil)
         let ratingVC = storyboard.instantiateViewController(withIdentifier: "CreateGroupPopupViewController")
         
@@ -199,7 +202,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Present dialog
         present(popup, animated: true, completion: nil)
-        */
     }
     
     
