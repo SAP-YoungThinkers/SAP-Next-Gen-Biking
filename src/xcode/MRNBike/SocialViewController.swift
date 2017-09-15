@@ -57,6 +57,14 @@ class SocialViewController: UIViewController, UITabBarDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let showGroupViewController = segue.destination as! ShowGroupViewController
+        let groupListViewController = sender as! GroupListViewController
+        
+        showGroupViewController.group = groupListViewController.groups[groupListViewController.tempRowId]
+    }
+    
+
     //This method will be called when user changes tab.
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(tabBar.selectedItem == friendsBarItem) {

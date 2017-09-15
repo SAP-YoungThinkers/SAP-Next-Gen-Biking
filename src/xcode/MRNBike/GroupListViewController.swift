@@ -71,14 +71,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tempRowId = indexPath.row
-        performSegue(withIdentifier: "segueShowGroup", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let showGroupViewController = segue.destination as! ShowGroupViewController
-       
-        showGroupViewController.group = groups[tempRowId]
+        self.parent?.performSegue(withIdentifier: "", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //Unassign from group
