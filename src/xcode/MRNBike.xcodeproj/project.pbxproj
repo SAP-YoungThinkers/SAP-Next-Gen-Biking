@@ -56,6 +56,7 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
+		4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5657D91F6D1036007032BD /* GroupMember.swift */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E7DEA471F6AF2C400FB5C6E /* ShowGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */; };
@@ -137,6 +138,7 @@
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		4E5657D91F6D1036007032BD /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowGroupViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */,
 				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
 				4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */,
+				4E5657D91F6D1036007032BD /* GroupMember.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				0137F16F1EA2778100FCA949 /* StorageHelper.swift in Sources */,
 				4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */,
 				375A69191F545184006D7EB2 /* StatisticsViewController.swift in Sources */,
+				4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */,
 				4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */,
 				4E8A112A1F658E9000B34405 /* Group.swift in Sources */,
 				108D1CC91F256AED00023F2D /* ViewController.swift in Sources */,

@@ -145,6 +145,11 @@
 "addFriend"="Freund hinzufügen";
 "enterEmail"="E-Mail eingeben:";
 "emailPlaceholder"="E-Mail...";
-
-
+"groupDetailsTitle"="Gruppendetails";
+"groupName"="Name:";
+"journeyTime"="Startzeit:";
+"startLocation"="Treffpunkt:";
+"destination"="Zielort:";
+"description"="Beschreibung:";
+"memberList"="Teilnehmer:";
 

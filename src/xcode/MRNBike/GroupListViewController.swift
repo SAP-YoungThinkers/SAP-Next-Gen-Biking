@@ -71,7 +71,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.parent?.performSegue(withIdentifier: "", sender: self)
+        self.parent?.performSegue(withIdentifier: "segueShowGroup", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -147,7 +147,26 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                             let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
                             let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
                             
-                            guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!) else {
+                            var groupMembers = [GroupMember]()
+                            
+                            //Construct group member array
+                            if let memberList = group["members"] as? [[String: AnyObject]] {
+                                for member in memberList {
+                                    print(member["email"] as? String as Any)
+                                    guard let memberEntity = GroupMember(email: (member["email"] as? String)!, firstname: (member["firstname"] as? String)!, lastname: (member["lastname"] as? String)!) else {
+                                        activityAlert.dismiss(animated: false, completion: nil)
+                                        //An error occured
+                                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                        return
+                                    }
+                                    groupMembers.append(memberEntity)
+                                    
+                                }
+                            }
+                            
+                            print(groupMembers[0].firstname)
+                            
+                            guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)

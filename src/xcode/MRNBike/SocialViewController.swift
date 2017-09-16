@@ -44,7 +44,6 @@ class SocialViewController: UIViewController, UITabBarDelegate {
         
         // add seperator
         tempPlaceholder = setupTabBarSeparators()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,10 +57,12 @@ class SocialViewController: UIViewController, UITabBarDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "segueShowGroup"){
         let showGroupViewController = segue.destination as! ShowGroupViewController
         let groupListViewController = sender as! GroupListViewController
         
         showGroupViewController.group = groupListViewController.groups[groupListViewController.tempRowId]
+        }
     }
     
 

@@ -143,6 +143,13 @@
 "addFriend"="Add Friend";
 "enterEmail"="Enter email:";
 "emailPlaceholder"="email...";
+"groupDetailsTitle"="Group Details";
+"groupName"="Name:";
+"journeyTime"="Start Time:";
+"startLocation"="Start Location:";
+"destination"="Destination:";
+"description"="Description:";
+"memberList"="Memberlist:";
 
 
 
