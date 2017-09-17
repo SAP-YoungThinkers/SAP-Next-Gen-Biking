@@ -65,7 +65,6 @@
 		4E8A112A1F658E9000B34405 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11291F658E9000B34405 /* Group.swift */; };
 		4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */; };
 		4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */; };
-		4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */; };
 		4E975A541EB49BC500D3765C /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E975A531EB49BC500D3765C /* AddReportViewController.swift */; };
 		4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B51F531F410000B70D /* SocialViewController.swift */; };
 		4EAF10B81F5323300000B70D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B71F5323300000B70D /* Friend.swift */; };
@@ -148,7 +147,6 @@
 		4E8A11291F658E9000B34405 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
-		4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupPopUpViewController.swift; sourceTree = "<group>"; };
 		4E975A531EB49BC500D3765C /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		4EAF10B51F531F410000B70D /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		4EAF10B71F5323300000B70D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -380,7 +378,6 @@
 				4E8A11291F658E9000B34405 /* Group.swift */,
 				4E8A112D1F658F0F00B34405 /* GroupListViewController.swift */,
 				4E8A112F1F658F3E00B34405 /* GroupTableViewCell.swift */,
-				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
 				4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */,
 				4E5657D91F6D1036007032BD /* GroupMember.swift */,
 				4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */,
@@ -585,7 +582,6 @@
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
 				4E578A7C1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift in Sources */,
-				4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */,
 				4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,
 				01FBE20E1EC3CC18008903C1 /* TrackingViewController.swift in Sources */,
