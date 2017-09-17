@@ -57,6 +57,7 @@
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
 		4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5657D91F6D1036007032BD /* GroupMember.swift */; };
+		4E578A7C1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */; };
 		4E5841FF1EDDBA8700FF1CF6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */; };
 		4E60E1321EB5CD7F00D96BD1 /* RadioButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */; };
 		4E7DEA471F6AF2C400FB5C6E /* ShowGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */; };
@@ -139,6 +140,7 @@
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4E5657D91F6D1036007032BD /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
+		4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMemberTableViewCell.swift; sourceTree = "<group>"; };
 		4E5841FE1EDDBA8700FF1CF6 /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4E60E1311EB5CD7F00D96BD1 /* RadioButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioButtonClass.swift; path = ../RadioButtonClass.swift; sourceTree = "<group>"; };
 		4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowGroupViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				4E8A11311F65985600B34405 /* CreateGroupPopUpViewController.swift */,
 				4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */,
 				4E5657D91F6D1036007032BD /* GroupMember.swift */,
+				4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				4E8A112E1F658F0F00B34405 /* GroupListViewController.swift in Sources */,
 				10B9D4D71EC6145100CC7027 /* StartPageViewController.swift in Sources */,
 				0137F1701EA2778100FCA949 /* TrackPoint.swift in Sources */,
+				4E578A7C1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift in Sources */,
 				4E8A11321F65985600B34405 /* CreateGroupPopUpViewController.swift in Sources */,
 				4E8A11301F658F3E00B34405 /* GroupTableViewCell.swift in Sources */,
 				0137F16E1EA2778100FCA949 /* LocationManager.swift in Sources */,

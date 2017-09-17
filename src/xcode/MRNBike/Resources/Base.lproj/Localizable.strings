@@ -150,6 +150,8 @@
 "destination"="Destination:";
 "description"="Description:";
 "memberList"="Memberlist:";
+"groupUpdatedTitle"="Group Updated";
+"groupUpdatedMsg"="Group was successfully updated!";
 
 
 

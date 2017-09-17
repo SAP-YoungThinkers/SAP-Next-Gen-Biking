@@ -49,14 +49,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "GroupTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GroupTableViewCell  else {
             fatalError("Fatal Error")
         }
         
-        // Fetches the appropriate friend for the data source layout.
         let group = groups[indexPath.row]
         
         cell.nameLabel.text = group.name
@@ -71,6 +69,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tempRowId = indexPath.row
         self.parent?.performSegue(withIdentifier: "segueShowGroup", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

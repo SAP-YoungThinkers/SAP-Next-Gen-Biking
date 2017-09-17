@@ -60,7 +60,8 @@ class SocialViewController: UIViewController, UITabBarDelegate {
         if(segue.identifier == "segueShowGroup"){
         let showGroupViewController = segue.destination as! ShowGroupViewController
         let groupListViewController = sender as! GroupListViewController
-        
+        print("hallo")
+            print(groupListViewController.tempRowId)
         showGroupViewController.group = groupListViewController.groups[groupListViewController.tempRowId]
         }
     }
