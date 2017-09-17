@@ -1,6 +1,6 @@
 import UIKit
 
-class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var groupMemberTableView: UITableView!
@@ -43,13 +43,20 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         destinationTextfield.text = group?.destination
         descriptionTextview.text = group?.text
         
+        groupNameTextfield.textColor = UIColor.lightGray
+        timeTextfield.textColor = UIColor.lightGray
+        startLocationTextfield.textColor = UIColor.lightGray
+        destinationTextfield.textColor = UIColor.lightGray
+        descriptionTextview.textColor = UIColor.lightGray
+        
+        saveButton.isEnabled = false
+        
         if(group?.owner != KeychainService.loadEmail()! as String){
             groupNameTextfield.isUserInteractionEnabled = false
             timeTextfield.isUserInteractionEnabled = false
             startLocationTextfield.isUserInteractionEnabled = false
             destinationTextfield.isUserInteractionEnabled = false
             descriptionTextview.isUserInteractionEnabled = false
-            saveButton.isEnabled = false
             saveButton.tintColor = UIColor.clear
         }
         
@@ -60,15 +67,15 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         groupNameTextfield.delegate = self
         startLocationTextfield.delegate = self
         destinationTextfield.delegate = self
-        descriptionTextview.delegate = self as? UITextViewDelegate
+        descriptionTextview.delegate = self
         
         //Hide Keyboard Extension
         self.hideKeyboardWhenTappedAround()
         
         //Bind textfields to validator
-        groupNameTextfield.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
-        startLocationTextfield.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
-        destinationTextfield.addTarget(self, action:#selector(CreateProfileController.checkInput), for:UIControlEvents.editingChanged)
+        groupNameTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        startLocationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        destinationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         
         groupMembers = (group?.members)!
     }
@@ -80,10 +87,9 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let nameTest = NSPredicate(format:"SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,40}$")
         let locationTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,50}$")
-        let descriptionTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,300}$")
         
         //Check input fields and TermSwitcher
-        if nameTest.evaluate(with: groupNameTextfield.text) && locationTest.evaluate(with: startLocationTextfield.text) && locationTest.evaluate(with: destinationTextfield.text) && descriptionTest.evaluate(with: descriptionTextview.text) {
+        if nameTest.evaluate(with: groupNameTextfield.text) && locationTest.evaluate(with: startLocationTextfield.text) && locationTest.evaluate(with: destinationTextfield.text) {
             valid = true
         }
         
@@ -93,7 +99,23 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             saveButton.isEnabled = false
         }
     }
-
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        let descriptionTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,300}$")
+        
+        var valid = false
+        
+        if descriptionTest.evaluate(with: descriptionTextview.text!) {
+            valid = true
+        }
+        
+        if valid == true {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
+    }
     
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -136,6 +158,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             if error == nil {
                 switch httpCode! {
                 case 200: //Successful
+                    self.saveButton.isEnabled = false
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("groupUpdatedTitle", comment: ""), message: NSLocalizedString("groupUpdatedMsg", comment: "")), animated: true, completion: nil)
                     break
                 default: //For http error codes: 500
