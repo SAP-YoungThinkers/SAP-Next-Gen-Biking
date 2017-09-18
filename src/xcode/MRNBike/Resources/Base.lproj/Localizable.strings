@@ -131,6 +131,12 @@
 "unassignedTitle"="Unassigned";
 "unassignedMsg"="You left the group.";
 
+"groupUpdatedTitle"="Group Updated";
+"groupUpdatedMsg"="Group was successfully updated!";
+
+"groupCreatedTitle"="Group Created";
+"groupCreatedMsg"="Group was successfully created!";
+
 //Social Scene
 "socialFriendsTitle"="Social";
 "frindsTabBarItem"="FRIENDS";
@@ -150,8 +156,8 @@
 "destination"="Destination:";
 "description"="Description:";
 "memberList"="Memberlist:";
-"groupUpdatedTitle"="Group Updated";
-"groupUpdatedMsg"="Group was successfully updated!";
-
-
-
+"createGroupTitle"="Create Group";
+"groupNamePlaceholder"="Weekend tour...";
+"groupStartLocationPlaceholder"="New York...";
+"groupDestinationPlaceholder"="San Diego...";
+"groupDescriptionPlaceholder"="This weekend...";

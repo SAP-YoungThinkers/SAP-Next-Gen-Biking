@@ -132,6 +132,11 @@
 "unassignedTitle"="Ausgetreten";
 "unassignedMsg"="Du hast die Gruppe verlassen.";
 
+"groupUpdatedTitle"="Gruppe aktualisiert";
+"groupUpdatedMsg"="Gruppeninformationen wurden aktualisiert!";
+
+"groupCreatedTitle"="Gruppe erstellt";
+"groupCreatedMsg"="Gruppe wurde erfolgreich erstellt!";
 
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";
@@ -152,5 +157,8 @@
 "destination"="Zielort:";
 "description"="Beschreibung:";
 "memberList"="Teilnehmer:";
-"groupUpdatedTitle"="Gruppe aktualisiert";
-"groupUpdatedMsg"="Gruppeninformationen wurden aktualisiert!";
+"createGroupTitle"="Neue Gruppe";
+"groupNamePlaceholder"="Wochenendtour...";
+"groupStartLocationPlaceholder"="Basel...";
+"groupDestinationPlaceholder"="Mannheim...";
+"groupDescriptionPlaceholder"="Dieses Wochenende...";

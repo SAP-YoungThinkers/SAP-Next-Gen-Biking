@@ -1,11 +1,3 @@
-//
-//  UIAlertCreator.swift
-//  MRNBike
-//
-//  Created by Bartosz Wilkusz on 08.07.17.
-//
-//
-
 import Foundation
 import UIKit
 

@@ -7,7 +7,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     var groups = [Group]()
     var tempRowId = 0
     
-    
     @IBOutlet weak var groupTableView: UITableView!
     @IBOutlet weak var createGroupBtn: UIButton!
     
@@ -151,7 +150,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                             //Construct group member array
                             if let memberList = group["members"] as? [[String: AnyObject]] {
                                 for member in memberList {
-                                    print(member["email"] as? String as Any)
                                     guard let memberEntity = GroupMember(email: (member["email"] as? String)!, firstname: (member["firstname"] as? String)!, lastname: (member["lastname"] as? String)!) else {
                                         activityAlert.dismiss(animated: false, completion: nil)
                                         //An error occured
@@ -159,11 +157,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                                         return
                                     }
                                     groupMembers.append(memberEntity)
-                                    
                                 }
                             }
-                            
-                            print(groupMembers[0].firstname)
                             
                             guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
                                 activityAlert.dismiss(animated: false, completion: nil)
@@ -206,15 +201,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: Actions
     @IBAction func onPressOpenCreateGroup(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Social", bundle: nil)
-        let ratingVC = storyboard.instantiateViewController(withIdentifier: "CreateGroupPopupViewController")
-        
-        // Create the dialog
-        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
-        
-        // Present dialog
-        present(popup, animated: true, completion: nil)
+        self.parent?.performSegue(withIdentifier: "segueCreateGroup", sender: self)
     }
-    
-    
 }

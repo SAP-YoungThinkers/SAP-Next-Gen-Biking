@@ -54,6 +54,7 @@
 		37F5B7121EBA3910006D8260 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5B7111EBA3910006D8260 /* EditProfileViewController.swift */; };
 		3C25A6B12A0E80E326033B52 /* Pods_MRNBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130860630B622C376A527D21 /* Pods_MRNBike.framework */; };
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
+		4E044F431F6EC60D00AAD861 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
 		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
 		4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5657D91F6D1036007032BD /* GroupMember.swift */; };
@@ -136,6 +137,7 @@
 		491EC51A1DE441430077BF82 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		493173EE1DED7CB0007D4A74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
 		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4E5657D91F6D1036007032BD /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				4E7DEA461F6AF2C400FB5C6E /* ShowGroupViewController.swift */,
 				4E5657D91F6D1036007032BD /* GroupMember.swift */,
 				4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */,
+				4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */,
 				4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */,
 				4E8A112A1F658E9000B34405 /* Group.swift in Sources */,
+				4E044F431F6EC60D00AAD861 /* CreateGroupViewController.swift in Sources */,
 				108D1CC91F256AED00023F2D /* ViewController.swift in Sources */,
 				4EAF10B81F5323300000B70D /* Friend.swift in Sources */,
 				0137F1711EA2778100FCA949 /* User.swift in Sources */,

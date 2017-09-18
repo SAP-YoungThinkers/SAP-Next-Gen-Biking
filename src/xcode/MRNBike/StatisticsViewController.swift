@@ -131,7 +131,6 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             if dateForm.string(from: week[0]) == dateForm.string(from: week[1]) {
                 // JUNI 17-24
                 // adaptive
-                print(UIScreen.main.bounds.width)
                 switch UIScreen.main.bounds.width {
                 case 0...340:
                     dateForm.dateFormat = "MMM dd"

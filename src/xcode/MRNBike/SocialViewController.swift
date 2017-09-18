@@ -64,7 +64,6 @@ class SocialViewController: UIViewController, UITabBarDelegate {
         }
     }
     
-
     //This method will be called when user changes tab.
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(tabBar.selectedItem == friendsBarItem) {
