@@ -155,7 +155,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         do {
             let data : [String: Any] = ["groupId": group?.id ?? "", "name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": group?.privateGroup ?? ""]
             
-            jsonData = try! JSONSerialization.data(withJSONObject: data)
+            jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {
             let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
             let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {

@@ -1,4 +1,5 @@
 import UIKit
+import PopupDialog
 
 class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -48,7 +49,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         destinationTextfield.placeholder = NSLocalizedString("groupDestinationPlaceholder", comment: "")
         descriptionTextview.text = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
         descriptionTextview.textColor = UIColor.lightGray
-        //descriptionTextview.placeholder = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
         
         createGroupButton.isEnabled = false
         
@@ -69,7 +69,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     //Check if inputs are syntactically valid
     func checkInput() {
-        
         var valid = false
         
         let nameTest = NSPredicate(format:"SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,40}$")
@@ -180,5 +179,16 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    @IBAction func openAddFriendsDialog(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Social", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AddGroupMember")
+        
+        // Create the dialog
+        let popup = PopupDialog(viewController: viewController, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: false)
+        
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
     }
 }
