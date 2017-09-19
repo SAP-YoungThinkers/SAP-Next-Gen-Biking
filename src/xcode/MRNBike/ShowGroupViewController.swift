@@ -153,7 +153,9 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         var jsonData = Data()
         
         do {
-            let data : [String: Any] = ["groupId": group?.id ?? "", "name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": group?.privateGroup ?? ""]
+            let id = group?.id
+            let privateGroup = group?.privateGroup
+            let data : [String: Any] = ["groupId": id!, "name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup!]
             
             jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {
