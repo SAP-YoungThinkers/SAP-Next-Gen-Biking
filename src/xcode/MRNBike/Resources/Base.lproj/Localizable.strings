@@ -2,6 +2,7 @@
 "takeTourHeader"="Ride • Award • Protect";
 "takeTourDescription"="With our App you will not only ride bike for yourself, but even to make riding more comfortable for all of us. Award by reaching goals, protect our enironment!";
 "startRidingButton"="START RIDING";
+"ErrorNoInternetConnection"="Please make sure your phone is connected to the internet!";
 //Take Tour Scene
 "start"="START";
 "takeTour"="TAKE THE TOUR";
@@ -73,6 +74,7 @@
 "routeUploadDialogTitle"="Route Upload";
 "routeUploadDialogMsgPositive"="Route uploaded successfully.";
 "routeUploadDialogMsgNegative"="Uploading route failed.";
+"errorLocationServicesNotALlowed"="Please allow and enable location service, otherwise we cannot record your tracking!";
 
 //Marks & Routes Scene
 "marksAndRoutesTitle"="Marks & Routes";

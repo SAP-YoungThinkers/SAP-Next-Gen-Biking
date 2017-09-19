@@ -324,6 +324,11 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         x.labelFont = UIFont(name: "Montserrat-Regular", size: 13) ?? UIFont.systemFont(ofSize: 15)
         
         setChartData(currentPage: pagingMenuController!.currentPage)
+        
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        }
     }
     
     override func viewWillLayoutSubviews() {

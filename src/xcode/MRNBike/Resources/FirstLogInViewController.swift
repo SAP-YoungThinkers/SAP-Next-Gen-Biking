@@ -75,71 +75,89 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         let uploadData : [String: Any] = ["email" : userEmailTextField.text!, "password" : userPasswordTextField.text!]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-
-        ClientService.postUser(scriptName: "verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
-            if error == nil {
-   
-                switch httpCode! {
-                case 200: //User verified
+        
+        if !(Reachability.isConnectedToNetwork()) {
+            
+            // no Internet connection
+            
+            //Dismiss activity indicator
+            activityAlert.dismiss(animated: false) {
+                self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+            }
+            
+            
+        } else {
+            
+            // Internet available
+            
+            ClientService.postUser(scriptName: "verifyUser.xsjs", userData: jsonData) { (httpCode, error) in
+                if error == nil {
                     
-                    if self.rememberSwitch.isOn {
-                        KeychainService.saveRemember(token: "yes")
-                    } else {
-                        KeychainService.saveRemember(token: "no")
-                    }
-                    
-                    //Save email and password to keychain
-                    KeychainService.saveEmail(token: self.userEmailTextField.text! as NSString)
-                    KeychainService.savePassword(token: self.userPasswordTextField.text! as NSString)
-                    
-                    ClientService.getUser(mail: self.userEmailTextField.text!, completion: { (data, error) in
-                        if error == nil {
-                            
-                            guard let responseData = data else {
+                    switch httpCode! {
+                    case 200: //User verified
+                        
+                        if self.rememberSwitch.isOn {
+                            KeychainService.saveRemember(token: "yes")
+                        } else {
+                            KeychainService.saveRemember(token: "no")
+                        }
+                        
+                        //Save email and password to keychain
+                        KeychainService.saveEmail(token: self.userEmailTextField.text! as NSString)
+                        KeychainService.savePassword(token: self.userPasswordTextField.text! as NSString)
+                        
+                        ClientService.getUser(mail: self.userEmailTextField.text!, completion: { (data, error) in
+                            if error == nil {
+                                
+                                guard let responseData = data else {
+                                    //An error occured
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                    return
+                                }
+                                
+                                User.createSingletonUser(userData: responseData)
+                                
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                                
+                                let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                                self.present(controller, animated: true, completion: nil)
+                            } else {
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                                
                                 //An error occured
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                                return
                             }
-                            
-                            User.createSingletonUser(userData: responseData)
-                            
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-                            
-                            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-                            self.present(controller, animated: true, completion: nil)
-                        } else {
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-                            
-                            //An error occured
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                        }
-                    })
-                    break
-                case 404: //Username/Password wrong or user doesn't exists
+                        })
+                        break
+                    case 404: //Username/Password wrong or user doesn't exists
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
+                        break
+                    default: //JSON wrong or empty: 500
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
+                }
+                else
+                {
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordUserWrongDialogTitle", comment: ""), message: NSLocalizedString("passwordUserDialogMsg", comment: "")), animated: true, completion: nil)
-                    break
-                default: //JSON wrong or empty: 500
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
+                    //An error occured in the app
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
             }
-            else
-            {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-            }
+            
         }
+
+
     }
     
     //MARK: Actions

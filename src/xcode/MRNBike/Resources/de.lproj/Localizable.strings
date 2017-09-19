@@ -2,6 +2,7 @@
 "takeTourHeader"="Radle • Gewinne • Schütze";
 "takeTourDescription"="Mit unserer App trägst du dazu bei, Fahrradfahren für alle angenehmer zu machen. Erhalte Auszeichnungen für das Erreichen von Zielen und schone unsere Umwelt!";
 "startRidingButton"="Los geht's";
+"ErrorNoInternetConnection"="Bitte stellen Sie sicher, dass Ihr Handy über Internetzugriff verfügt.";
 //Take Tour Scene
 "start"="START";
 "takeTour"="Mache einen Rundgang";
@@ -73,6 +74,7 @@
 "routeUploadDialogTitle"="Route hochladen";
 "routeUploadDialogMsgPositive"="Route erfolgreich hochgeladen";
 "routeUploadDialogMsgNegative"="Fehler beim Hochladen der Route";
+"errorLocationServicesNotALlowed"="Bitte stellen Sie sicher, dass diese App auf Ihren Standort zugreifen kann.";
 
 //Marks & Routes Scene
 "marksAndRoutesTitle"="Routen und Anmerkungen";

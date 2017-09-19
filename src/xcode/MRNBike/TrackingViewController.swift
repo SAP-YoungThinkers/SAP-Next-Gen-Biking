@@ -3,7 +3,7 @@ import MapKit
 import CoreLocation
 import CoreImage
 
-class TrackingViewController: UIViewController {
+class TrackingViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
@@ -120,6 +120,24 @@ class TrackingViewController: UIViewController {
     
     // MARK: - Action
     @IBAction func startTrackingEvent(_ sender: UIButton) {
+        
+        // check permissions
+        switch CLLocationManager.authorizationStatus() {
+            
+        case .notDetermined:
+            // still have to ask
+            let manager = CLLocationManager()
+            manager.delegate = self
+            manager.requestAlwaysAuthorization()
+        case.denied, .restricted:
+            // denied or offerror
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogMsg", comment: ""), message: NSLocalizedString("errorLocationServicesNotALlowed", comment: "")), animated: true, completion: nil)
+            return
+        default:
+            // .authorizedAlways, .authorizedWhenInUse
+            break
+        }
+        
         startButton?.isHidden = true
         PauseButton.isHidden = false
         
