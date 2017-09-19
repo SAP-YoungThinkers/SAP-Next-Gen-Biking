@@ -1,6 +1,6 @@
 import UIKit
 
-class AddFriendPopupViewController: UIViewController {
+class AddFriendPopupViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
@@ -14,13 +14,42 @@ class AddFriendPopupViewController: UIViewController {
         enterMailLabel.text = NSLocalizedString("enterEmail", comment: "")
         textFieldEmail.placeholder = NSLocalizedString("emailPlaceholder", comment: "")
         inviteBtn.setTitle(NSLocalizedString("addFriend", comment: ""), for: .normal)
+        
+        //Bind email textfield to validator
+        textFieldEmail.addTarget(self, action:#selector(AddFriendPopupViewController.checkEmail), for:UIControlEvents.editingChanged)
+        
+        //Delegate for hiding keyboard
+        textFieldEmail.delegate = self
+        
+        inviteBtn.isEnabled = false
+        inviteBtn.alpha = 0.5
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //Checks if email is valid
+    func checkEmail() {
+        var valid = false
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,5}")
+        
+        if emailTest.evaluate(with: textFieldEmail.text) {
+            valid = true
+        }
+        
+        if valid == true {
+            inviteBtn.isEnabled = true
+            inviteBtn.alpha = 1.0
+        } else {
+            inviteBtn.isEnabled = false
+            inviteBtn.alpha = 0.5
+        }
     }
     
+    //Close keyboard
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+
     @IBAction func closeAction(_ sender: UIButton) {
         dismiss()
     }

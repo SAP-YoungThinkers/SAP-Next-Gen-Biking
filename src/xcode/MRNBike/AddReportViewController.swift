@@ -92,7 +92,7 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     //Check if message is valid
     func checkInput() {
         
-        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()@\\s]{5,60}$")
+        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,60}$")
         
         //If message is valid, enable the send button
         if messageTest.evaluate(with: messageTextField.text) {
@@ -176,11 +176,6 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     
     @IBAction func onPressCancel(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
-//
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-//        self.present(newViewController, animated: true, completion: nil)
-//        self.close()
         self.dismiss(animated: true)
     }
     

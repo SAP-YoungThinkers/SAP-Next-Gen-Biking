@@ -32,20 +32,12 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         self.userEmailTextField.delegate = self
         self.userPasswordTextField.delegate = self
         
-        
-        //ToDo: Uncomment the 2 lines of code later!!!
         //Bind textfields to regex validator
-        //userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
-        //userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
+        userEmailTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
+        userPasswordTextField.addTarget(self, action:#selector(FirstLogInViewController.checkRegEx), for:UIControlEvents.editingChanged)
         
-        //ToDo: Remove this 2 lines of code!!!
-        loginButton.isEnabled = true
-        loginButton.alpha = 1.0
-        
-        
-        //rememberSwitch.isOn = true
-        //loginButton.isEnabled = false
- 
+        rememberSwitch.isOn = true
+        loginButton.isEnabled = false
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
@@ -56,7 +48,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         var valid = false
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,50}$")
         let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,5}")
         
         if emailTest.evaluate(with: userEmailTextField.text) && passwordTest.evaluate(with: userPasswordTextField.text) {
@@ -150,16 +142,16 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
     }
     
-    // MARK: Actions
+    //MARK: Actions
     
     //Open a help message
     @IBAction func openHelpMessage(_ sender: UIButton) {
         self.helpView.isHidden = !self.helpView.isHidden
     }
     
-    // Close keyboard
+    //Close keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        return false
+        return true
     }
 }
