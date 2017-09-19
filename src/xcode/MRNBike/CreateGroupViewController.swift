@@ -58,13 +58,13 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         privateGroupSwitch.isOn = false
         
-        // delegate for hiding keyboard
+        //Delegate for hiding keyboard
         groupNameTextfield.delegate = self
         startLocationTextfield.delegate = self
         destinationTextfield.delegate = self
         descriptionTextview.delegate = self
         
-        //Hide Keyboard Extension
+        //Hide Keyboard Extension when tapped arround
         self.hideKeyboardWhenTappedAround()
         
         //Bind textfields to validator
@@ -119,6 +119,12 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
             textView.text = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    //Close keyboard
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     //MARK: Actions

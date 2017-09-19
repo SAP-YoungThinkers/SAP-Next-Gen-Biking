@@ -131,6 +131,12 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         saveButton.isEnabled = true
     }
     
+    //Close keyboard
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+        
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
