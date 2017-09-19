@@ -159,7 +159,9 @@
 "memberList"="Teilnehmer:";
 "createGroupTitle"="Neue Gruppe";
 "groupNamePlaceholder"="Wochenendtour...";
+"timeLocationPlaceholder"="Freitag...";
 "groupStartLocationPlaceholder"="Basel...";
 "groupDestinationPlaceholder"="Mannheim...";
 "groupDescriptionPlaceholder"="Dieses Wochenende...";
 "addGroupMembersTitle"="Freunde hinzufügen";
+"privateGroup"="Private Gruppe:";

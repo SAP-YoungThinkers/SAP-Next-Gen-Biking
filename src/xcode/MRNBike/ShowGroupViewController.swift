@@ -1,10 +1,11 @@
 import UIKit
 
 class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate {
-
+    
     //MARK: Properties
     @IBOutlet weak var groupMemberTableView: UITableView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var privateGroupSwitch: UISwitch!
     
     //Label
     @IBOutlet weak var groupNameLabel: UILabel!
@@ -12,6 +13,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var startLocationLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var privateGroupLabel: UILabel!
     @IBOutlet weak var membersLabel: UILabel!
     
     //Textfields, textview
@@ -35,6 +37,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         startLocationLabel.text = NSLocalizedString("startLocation", comment: "")
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
+        privateGroupLabel.text = NSLocalizedString("privateGroup", comment: "")
         membersLabel.text = NSLocalizedString("memberList", comment: "")
         
         groupNameTextfield.text = group?.name
@@ -42,6 +45,11 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         startLocationTextfield.text = group?.startLocation
         destinationTextfield.text = group?.destination
         descriptionTextview.text = group?.text
+        if group?.privateGroup == 0 {
+            privateGroupSwitch.isOn = false
+        } else {
+            privateGroupSwitch.isOn = true
+        }
         
         groupNameTextfield.textColor = UIColor.lightGray
         timeTextfield.textColor = UIColor.lightGray
@@ -58,6 +66,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             destinationTextfield.isUserInteractionEnabled = false
             descriptionTextview.isUserInteractionEnabled = false
             saveButton.tintColor = UIColor.clear
+            privateGroupSwitch.isEnabled = false
         }
         
         groupMemberTableView.dataSource = self
@@ -76,6 +85,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         groupNameTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         startLocationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         destinationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        privateGroupSwitch.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
         
         groupMembers = (group?.members)!
     }
@@ -117,6 +127,10 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func switchValueDidChange() {
+        saveButton.isEnabled = true
+    }
+    
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -150,12 +164,17 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         let destination: String = destinationTextfield.text!
         let text: String = descriptionTextview.text!
         
+        var privateGroup = 0
+        
+        if privateGroupSwitch.isOn {
+            privateGroup = 1
+        }
+        
         var jsonData = Data()
         
         do {
             let id = group?.id
-            let privateGroup = group?.privateGroup
-            let data : [String: Any] = ["groupId": id!, "name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup!]
+            let data : [String: Any] = ["groupId": id!, "name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup]
             
             jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {

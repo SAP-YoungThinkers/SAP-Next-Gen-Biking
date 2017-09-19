@@ -6,6 +6,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     //MARK: Properties
     @IBOutlet weak var createGroupButton: UIBarButtonItem!
     @IBOutlet weak var addFriendsButton: UIButton!
+    @IBOutlet weak var privateGroupSwitch: UISwitch!
     
     //Labels
     @IBOutlet weak var timeLabel: UILabel!
@@ -13,6 +14,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var privateGroupLabel: UILabel!
     
     //Textfields, textview
     @IBOutlet weak var groupNameTextfield: UITextField!
@@ -34,6 +36,8 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         startLocationLabel.text = NSLocalizedString("startLocation", comment: "")
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
+        privateGroupLabel.text = NSLocalizedString("privateGroup", comment: "")
+        addFriendsButton.setTitle(NSLocalizedString("addGroupMembersTitle", comment: ""), for: .normal)
         
         //Textfield text color
         groupNameTextfield.textColor = UIColor.lightGray
@@ -44,13 +48,15 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         //Textfields placeholders
         groupNameTextfield.placeholder = NSLocalizedString("groupNamePlaceholder", comment: "")
-        timeTextfield.placeholder = NSLocalizedString("groupStartLocationPlaceholder", comment: "")
+        timeTextfield.placeholder = NSLocalizedString("timeLocationPlaceholder", comment: "")
         startLocationTextfield.placeholder = NSLocalizedString("groupStartLocationPlaceholder", comment: "")
         destinationTextfield.placeholder = NSLocalizedString("groupDestinationPlaceholder", comment: "")
         descriptionTextview.text = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
         descriptionTextview.textColor = UIColor.lightGray
         
         createGroupButton.isEnabled = false
+        
+        privateGroupSwitch.isOn = false
         
         // delegate for hiding keyboard
         groupNameTextfield.delegate = self
@@ -125,10 +131,16 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         var jsonData = Data()
         
+        var privateGroup = 0
+        
+        if privateGroupSwitch.isOn {
+            privateGroup = 1
+        }
+
         do {
             groupMembers.append(KeychainService.loadEmail()! as String)
             
-            let data : [String: Any] = ["name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": 0, "members": groupMembers]
+            let data : [String: Any] = ["name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
             
             jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {
