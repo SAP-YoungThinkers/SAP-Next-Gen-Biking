@@ -146,7 +146,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         do {
             groupMembers.append(KeychainService.loadEmail()! as String)
             
-            let data : [String: Any] = ["name": name, "datum": 1492173499999, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
+            let data : [String: Any] = ["name": name, "datum": 14921734, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
             
             jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {
