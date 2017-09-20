@@ -263,7 +263,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         var valid = false
         
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,50}$")
-        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß-\\s]{2,20}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z-\\s]{2,40}")
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
@@ -285,7 +285,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     func handleImagePicker(button: UIButton) {
         print("image picked!")
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
@@ -298,12 +298,19 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            updateProfileBG(pickedImage: pickedImage)
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+                self.checkInput()
+            }
+        } else if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+                self.checkInput()
+            }
         } else {
             print("Something went wrong")
         }
-        checkInput()
         dismiss(animated: true, completion: nil)
     }
     
@@ -426,6 +433,13 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             co2Type = "car"
         }
 
+        var tmpImage : Data?
+        if let ti = self.imageBG.image {
+            tmpImage = ti.shrinkedJpeg(1125)
+        }
+        
+        // TODO: insert image in request
+        // tmpImage
         
         let number = Int(numberDouble! * 10)
         let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
@@ -453,11 +467,10 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     user.firstName = firstname.text!
                     user.userWeight = Int(self.weightInput.text!)
                     user.userWheelSize = number
-                    
                     user.shareInfo = shareInfo
                     
-                    if let tmpImage = self.imageBG.image {
-                        user.profilePicture = UIImageJPEGRepresentation(tmpImage, 1.0)
+                    if tmpImage != nil  {
+                        user.profilePicture = tmpImage
                     }
                     
                     //Dismiss activity indicator

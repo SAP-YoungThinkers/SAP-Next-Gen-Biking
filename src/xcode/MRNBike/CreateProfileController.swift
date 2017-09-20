@@ -175,6 +175,15 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         if numberDouble == nil {
             numberDouble = 0.0
         }
+        
+        var tmpImage : Data?
+        if let ti = self.photoImageView.image {
+            tmpImage = ti.shrinkedJpeg(1125)
+        }
+        
+        // TODO: insert image in request
+        // tmpImage
+        
         /* CONVERT TO INT BY MULTIPLYING WITH 10 */
         let number = Int(numberDouble! * 10.0)
         
@@ -203,12 +212,12 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
                     user.surname = self.surnameLabel.text
                     user.userWeight = Int(self.weightInput.text!)
                     user.userWheelSize = number
-                    
                     user.shareInfo = shareInfo
                     
-                    if let tmpPhoto = self.photoImageView.image {
-                        user.profilePicture = UIImageJPEGRepresentation(tmpPhoto, 1.0)  // get image data
+                    if tmpImage != nil  {
+                        user.profilePicture = tmpImage
                     }
+                    
                     user.burgersBurned = 0.0
                     user.wheelRotation = 0
                     user.distanceMade = 0.0
@@ -273,7 +282,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     
     @IBAction func imageButtonPressed(_ sender: UIButton) {
         print("image is going to be picked!")
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
@@ -285,7 +294,7 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z.-_]+@[A-Z0-9a-z.-_]+\\.[A-Za-z]{2,5}")
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,50}$")
-        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß-\\s]{2,20}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z-\\s]{2,40}")
         
         //Check input fields and TermSwitcher
         if nameTest.evaluate(with: surnameLabel.text) && nameTest.evaluate(with: firstNameLabel.text) &&  emailTest.evaluate(with: emailLabel.text) && passwordTest.evaluate(with: passwordLabel.text) && passwordTest.evaluate(with: confirmPasswordLabel.text) && self.termSwitch.isOn {
@@ -303,8 +312,14 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            updateProfileBG(pickedImage: pickedImage)
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+            }
+        } else if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+            }
         } else {
             print("Something went wrong")
         }
@@ -357,4 +372,25 @@ extension String {
         }
         return nil
     }
+}
+
+extension UIImage {
+    // shrink to new width AND reduce quality by 30 percent
+    
+    func shrinkedJpeg(_ newWidth: CGFloat) -> Data? {
+        let jpgquality : CGFloat = 0.7
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+        
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        if newImage != nil {
+            return UIImageJPEGRepresentation(newImage!, jpgquality)
+        } else {
+            return UIImageJPEGRepresentation(self, jpgquality)
+        }
+    }
+    
 }
