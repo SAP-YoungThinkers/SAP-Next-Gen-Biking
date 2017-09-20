@@ -371,10 +371,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             
             if (inputPassword.text != tmpPasswordHash) {
                 
-                if (inputPassword.text != "") {
-                    
-                }
-                else {
+                if (inputPassword.text == "") {
                     // password empty
                     passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
                     passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
@@ -387,6 +384,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             else {
                 // password not changed
                 print("password didnt change, so wont be overwritten")
+                inputPassword.text = KeychainService.loadPassword()! as String
+                inputPasswordRepeat.text = KeychainService.loadPassword()! as String
             }
         }
         else {
