@@ -727,13 +727,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELZ-iv-REL">
-                                                    <rect key="frame" x="31" y="8" width="375" height="40"/>
+                                                    <rect key="frame" x="31" y="8" width="375" height="39"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkJ-X0-Pmp">
-                                                    <rect key="frame" x="31" y="56" width="375" height="20"/>
+                                                    <rect key="frame" x="31" y="55" width="375" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="S6P-Sh-3Mk"/>
                                                     </constraints>

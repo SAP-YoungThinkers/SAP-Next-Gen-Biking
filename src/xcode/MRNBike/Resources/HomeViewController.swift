@@ -286,24 +286,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                 }
                             }
                         }
-                        // ...
                     }
-                    
-                    
                 }
-                    
                 catch {
                     print("Error with Json: \(error)")
                 }
-                
             }
             else {
                 print("error: \(statusCode)")
             }
-            
-            
         }
-        
         task.resume()
     }
     

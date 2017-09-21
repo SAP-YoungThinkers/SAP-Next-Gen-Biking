@@ -28,8 +28,9 @@ class AddGroupMemberViewController: UIViewController, UITableViewDelegate, UITab
             //Show activity indicator
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
-            
+            print("hello")
             ClientService.getFriendList(mail: userMail, completion: { (data, error) in
+            
                 if error == nil {
                     
                     //Clear friends array
@@ -46,7 +47,13 @@ class AddGroupMemberViewController: UIViewController, UITableViewDelegate, UITab
                     //Construct friends array
                     if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
                         for friend in friendList {
-                            guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
+                            
+                            var img: Data?
+                            if let image = friend["image"] as? String {
+                                img = Data(base64Encoded: image)
+                            }
+                            
+                            guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: img!) else {
                                 
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
