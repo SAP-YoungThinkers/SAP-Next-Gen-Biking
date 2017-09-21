@@ -441,7 +441,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         // tmpImage
         
         let number = Int(numberDouble! * 10)
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
+        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type, "image": tmpImage?.base64EncodedString() ?? ""]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
         

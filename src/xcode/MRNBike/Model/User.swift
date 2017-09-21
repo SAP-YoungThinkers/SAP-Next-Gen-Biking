@@ -61,6 +61,10 @@ class User {
                 if let allow = user["allowShare"] as? Int {
                     self.shareInfo = allow
                 }
+                if let image = user["image"] as? String {
+                    self.profilePicture = Data(base64Encoded: image)
+                }
+                
                 User.isSingleton = true
 
                 if let co2Emissions = user["co2Type"] as? String {

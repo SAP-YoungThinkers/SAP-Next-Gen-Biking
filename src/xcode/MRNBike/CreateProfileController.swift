@@ -187,9 +187,8 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
         /* CONVERT TO INT BY MULTIPLYING WITH 10 */
         let number = Int(numberDouble! * 10.0)
         
-
         let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
-            "wheelrotation": 0, "distancemade": 0.0, "co2Type": "car", "image": tmpImage!]
+            "wheelrotation": 0, "distancemade": 0.0, "co2Type": "car", "image": tmpImage?.base64EncodedString() ?? ""]
         print(uploadData)
         
         //Generate json data for upload
