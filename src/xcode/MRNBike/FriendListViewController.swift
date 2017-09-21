@@ -60,7 +60,12 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.firstnameLabel.text = friend.firstname
         cell.lastnameLabel.text = friend.lastname
-        cell.friendImage.image = friend.photo
+        
+        //Set user image
+        if let image = friend.photo {
+            let img = UIImage(data: image)
+            cell.friendImage.image = img
+        }
         
         return cell
     }
@@ -137,7 +142,13 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     //Construct friends array
                     if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
                         for friend in friendList {
-                            guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: UIImage(named: "selectphotoback")) else {
+                            
+                            var img: Data?
+                            if let image = friend["image"] as? String {
+                                img = Data(base64Encoded: image)
+                            }
+                            
+                            guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: img!) else {
                                 
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured
