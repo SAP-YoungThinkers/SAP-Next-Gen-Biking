@@ -48,7 +48,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         //Textfields placeholders
         groupNameTextfield.placeholder = NSLocalizedString("groupNamePlaceholder", comment: "")
-        timeTextfield.placeholder = NSLocalizedString("timeLocationPlaceholder", comment: "")
+        //timeTextfield.placeholder = NSLocalizedString("timeLocationPlaceholder", comment: "")
         startLocationTextfield.placeholder = NSLocalizedString("groupStartLocationPlaceholder", comment: "")
         destinationTextfield.placeholder = NSLocalizedString("groupDestinationPlaceholder", comment: "")
         descriptionTextview.text = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
@@ -68,9 +68,9 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.hideKeyboardWhenTappedAround()
         
         //Bind textfields to validator
-        groupNameTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
-        startLocationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
-        destinationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        groupNameTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        startLocationTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        destinationTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
     }
     
     //Check if inputs are syntactically valid
@@ -127,7 +127,43 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         return true
     }
     
+    func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        timeTextfield.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func doneButton() {
+        timeTextfield.resignFirstResponder() // To resign the inputView on clicking done.
+    }
+    
     //MARK: Actions
+    
+    @IBAction func dateTextInputPressed(_ sender: UITextField) {
+        //Create the view
+        let inputView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 240.0))
+        
+        let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: 0, height: 0))
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        inputView.addSubview(datePickerView) // add date picker to UIView
+        
+        let doneButton = UIButton(frame: CGRect(x: (self.view.frame.size.width/2) - (100/2), y: 0, width: 100, height: 50))
+        doneButton.setTitle("Done", for: UIControlState.normal)
+        doneButton.setTitle("Done", for: UIControlState.highlighted)
+        doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+        
+        inputView.addSubview(doneButton) // add Button to UIView
+        
+        doneButton.addTarget(self, action: #selector(CreateGroupViewController.doneButton), for: UIControlEvents.touchUpInside) // set button click event
+        
+        sender.inputView = inputView
+        //datePickerView.addTarget(self, action: Selector(("handleDatePicker")), for: UIControlEvents.valueChanged)
+        datePickerView.addTarget(self, action: #selector(CreateGroupViewController.handleDatePicker), for: UIControlEvents.valueChanged)
+        
+        handleDatePicker(sender: datePickerView) // Set the date on start.
+    }
+    
     @IBAction func createGroup(_ sender: Any) {
         let name: String = groupNameTextfield.text!
         //let datum: String = groupNameTextfield.text!
@@ -142,7 +178,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         if privateGroupSwitch.isOn {
             privateGroup = 1
         }
-
+        
         do {
             groupMembers.append(KeychainService.loadEmail()! as String)
             
