@@ -183,102 +183,106 @@ class TrackingViewController: UIViewController, CLLocationManagerDelegate {
         ]
         saveCollectedDataLocally(input: currentStat)
         
-        if let loadedData = StorageHelper.loadGPS() {
-            
-            //Show activity indicator
-            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-            present(activityAlert, animated: false, completion: nil)
-            
-            let tmpStats = StorageHelper.loadStats()
-            
-            ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
-                if error == nil {
-                    let user = User.getUser()
-                    var co2Type = ""
-                    
-                    switch user.co2Type! {
-                    case User.co2ComparedObject.car:
-                        co2Type = "car"
-                    case User.co2ComparedObject.bus:
-                        co2Type = "bus"
-                    case User.co2ComparedObject.train:
-                        co2Type = "train"
-                    default:
-                        co2Type = "car"
-                    }
-
-                    
-                    //Upload updated user to Hana
-                    let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
-                    
-                    let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-                  
-                    //Try update user profile
-                    ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
-                        if error == nil {
-                            
-                            switch httpCode! {
-                            case 200: //User successfully updated
-                                KeychainService.saveIDs(IDs: keys!)
-                                StorageHelper.clearCollectedGPS()
-                                StorageHelper.clearStatistics()
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            if let loadedData = StorageHelper.loadGPS() {
+                
+                //Show activity indicator
+                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+                present(activityAlert, animated: false, completion: nil)
+                
+                let tmpStats = StorageHelper.loadStats()
+                
+                ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
+                    if error == nil {
+                        let user = User.getUser()
+                        var co2Type = ""
+                        
+                        switch user.co2Type! {
+                        case User.co2ComparedObject.car:
+                            co2Type = "car"
+                        case User.co2ComparedObject.bus:
+                            co2Type = "bus"
+                        case User.co2ComparedObject.train:
+                            co2Type = "train"
+                        default:
+                            co2Type = "car"
+                        }
+                        
+                        //Upload updated user to Hana
+                        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
+                        
+                        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+                        
+                        //Try update user profile
+                        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                            if error == nil {
                                 
-                                self.reportLocation.isHidden = false
-                                self.SaveRouteButton.isHidden = true
-                                self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
-                                
-                                //Set new user attributes
-                                let user = User.getUser()
-                                
-                                if let currentWheelRotation = user.wheelRotation {
-                                    let newWheelRotation = Int(self.wheelRotationLabel.text!)
-                                    user.wheelRotation = currentWheelRotation + newWheelRotation!
+                                switch httpCode! {
+                                case 200: //User successfully updated
+                                    KeychainService.saveIDs(IDs: keys!)
+                                    StorageHelper.clearCollectedGPS()
+                                    StorageHelper.clearStatistics()
+                                    
+                                    self.reportLocation.isHidden = false
+                                    self.SaveRouteButton.isHidden = true
+                                    self.DismissButton.setTitle(NSLocalizedString("dashboard", comment: ""), for: .normal)
+                                    
+                                    //Set new user attributes
+                                    let user = User.getUser()
+                                    
+                                    if let currentWheelRotation = user.wheelRotation {
+                                        let newWheelRotation = Int(self.wheelRotationLabel.text!)
+                                        user.wheelRotation = currentWheelRotation + newWheelRotation!
+                                    }
+                                    
+                                    if let currentBurgersBurned = user.burgersBurned {
+                                        let newBurgersBurned = Double(self.burgersLabel.text!)
+                                        user.burgersBurned = currentBurgersBurned + newBurgersBurned!
+                                    }
+                                    
+                                    if let currentDistanceMade = user.distanceMade {
+                                        let newDistanceMade = Double(self.distanceLabel.text!)
+                                        user.distanceMade = currentDistanceMade + newDistanceMade!
+                                    }
+                                    
+                                    //Dismiss activity indicator
+                                    activityAlert.dismiss(animated: false, completion: nil)
+                                    
+                                    //Upload was successfully alert
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
+                                    break
+                                default: //For http error code: 500
+                                    //Dismiss activity indicator
+                                    activityAlert.dismiss(animated: false, completion: nil)
+                                    //An error occured in the app
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                                 }
-                                
-                                if let currentBurgersBurned = user.burgersBurned {
-                                    let newBurgersBurned = Double(self.burgersLabel.text!)
-                                    user.burgersBurned = currentBurgersBurned + newBurgersBurned!
-                                }
-                                
-                                if let currentDistanceMade = user.distanceMade {
-                                    let newDistanceMade = Double(self.distanceLabel.text!)
-                                    user.distanceMade = currentDistanceMade + newDistanceMade!
-                                }
-                                
+                            }
+                            else
+                            {
                                 //Dismiss activity indicator
                                 activityAlert.dismiss(animated: false, completion: nil)
                                 
-                                //Upload was successfully alert
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("routeUploadDialogTitle", comment: ""), message: NSLocalizedString("routeUploadDialogMsgPositive", comment: "")), animated: true, completion: nil)
-                                break
-                            default: //For http error code: 500
-                                //Dismiss activity indicator
-                                activityAlert.dismiss(animated: false, completion: nil)
                                 //An error occured in the app
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                             }
                         }
-                        else
-                        {
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-                            
-                            //An error occured in the app
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                        }
+                        
+                    } else {
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        //An error occured in the app
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     }
-                    
-                } else {
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    //An error occured in the app
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                }
-            })
-        } else {
-            //An error occured in the app
-            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                })
+            } else {
+                //An error occured in the app
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            }
         }
     }
     

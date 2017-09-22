@@ -38,6 +38,7 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         rememberSwitch.isOn = true
         loginButton.isEnabled = false
+        loginButton.alpha = 0.5
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]

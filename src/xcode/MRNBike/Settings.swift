@@ -119,45 +119,50 @@ class SettingsViewController: UIViewController {
     
     func CO2HANASend(type: String) throws {
         
-        let user = User.getUser()
-        user.co2Type = User.co2ComparedObject.car
-        
-        guard user.userWheelSize != nil && user.wheelRotation != nil && user.distanceMade != nil && user.burgersBurned != nil && user.userWeight != nil else {
-            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-            throw NilError.nilFound
-        }
-        
-        //Upload updated user to Hana
-        let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : type, "image": ""]
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Try update user profile
-        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
-            if error == nil {
-                
-                switch httpCode! {
-                case 200: //User successfully updated
-                    switch type {
-                    case "car":
-                        user.co2Type = User.co2ComparedObject.car
-                    case "bus":
-                        user.co2Type = User.co2ComparedObject.bus
-                    case "train":
-                        user.co2Type = User.co2ComparedObject.train
-                    default:
-                        user.co2Type = User.co2ComparedObject.car
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            let user = User.getUser()
+            user.co2Type = User.co2ComparedObject.car
+            
+            guard user.userWheelSize != nil && user.wheelRotation != nil && user.distanceMade != nil && user.burgersBurned != nil && user.userWeight != nil else {
+                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                throw NilError.nilFound
+            }
+            
+            //Upload updated user to Hana
+            let uploadData : [String: Any] = ["email" : KeychainService.loadEmail()! as String, "password" : KeychainService.loadPassword()! as String, "firstname" : user.firstName!, "lastname" : user.surname! , "allowShare" : user.shareInfo!, "wheelsize" : user.userWheelSize!, "weight" : user.userWeight!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : type, "image": ""]
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+            
+            //Try update user profile
+            ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                if error == nil {
+                    
+                    switch httpCode! {
+                    case 200: //User successfully updated
+                        switch type {
+                        case "car":
+                            user.co2Type = User.co2ComparedObject.car
+                        case "bus":
+                            user.co2Type = User.co2ComparedObject.bus
+                        case "train":
+                            user.co2Type = User.co2ComparedObject.train
+                        default:
+                            user.co2Type = User.co2ComparedObject.car
+                        }
+                        break
+                    default: //For http error code: 500
+                        //An error occured in the app
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     }
-                    break
-                default: //For http error code: 500
+                }
+                else
+                {
                     //An error occured in the app
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
-            }
-            else
-            {
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
             }
         }
     }

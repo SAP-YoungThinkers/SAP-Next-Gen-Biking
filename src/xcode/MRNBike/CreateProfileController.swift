@@ -152,7 +152,6 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
     }
     
     @IBAction func doneOnPressed(_ sender: UIBarButtonItem) {
-        
         //Show alert that passwords are not similar
         if(passwordLabel.text != confirmPasswordLabel.text) {
             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("passwordMismatchDialogTitle", comment: ""), message: NSLocalizedString("passwordMicmatchDialogMsg", comment: "")), animated: true, completion: nil)
@@ -160,102 +159,104 @@ class CreateProfileController: UITableViewController, UIImagePickerControllerDel
             return
         }
         
-        //Show activity indicator
-        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(activityAlert, animated: false, completion: nil)
-        
-         var shareInfo = 0
-        
-        if shareSwitch.isOn {
-            shareInfo = 1
-        }
-        
-        //Collect data for creating user        
-        var numberDouble = wheelSizeInput.text!.doubleValue
-        if numberDouble == nil {
-            numberDouble = 0.0
-        }
-        
-        var tmpImage : Data?
-        if let ti = self.photoImageView.image {
-            tmpImage = ti.shrinkedJpeg(1125)
-        }
-        
-        // TODO: insert image in request
-        // tmpImage
-        
-        /* CONVERT TO INT BY MULTIPLYING WITH 10 */
-        let number = Int(numberDouble! * 10.0)
-        
-        let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
-            "wheelrotation": 0, "distancemade": 0.0, "co2Type": "car", "image": tmpImage?.base64EncodedString() ?? ""]
-        
-        //Generate json data for upload
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Try create user in backend
-        ClientService.postUser(scriptName: "createUser.xsjs", userData: jsonData) { (httpCode, error) in
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            //Show activity indicator
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
             
-            if error == nil {
-
-                switch httpCode! {
-                case 200: //User created
+            var shareInfo = 0
+            
+            if shareSwitch.isOn {
+                shareInfo = 1
+            }
+            
+            //Collect data for creating user
+            var numberDouble = wheelSizeInput.text!.doubleValue
+            if numberDouble == nil {
+                numberDouble = 0.0
+            }
+            
+            var tmpImage : Data?
+            if let ti = self.photoImageView.image {
+                tmpImage = ti.shrinkedJpeg(1125)
+            }
+            
+            /* CONVERT TO INT BY MULTIPLYING WITH 10 */
+            let number = Int(numberDouble! * 10.0)
+            
+            let uploadData : [String: Any] = ["email" : emailLabel.text!, "password" : passwordLabel.text!, "firstname" : firstNameLabel.text!, "lastname" : surnameLabel.text!, "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned": 0.0,
+                                              "wheelrotation": 0, "distancemade": 0.0, "co2Type": "car", "image": tmpImage?.base64EncodedString() ?? ""]
+            
+            //Generate json data for upload
+            let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+            
+            //Try create user in backend
+            ClientService.postUser(scriptName: "createUser.xsjs", userData: jsonData) { (httpCode, error) in
+                
+                if error == nil {
                     
-                    //Save email and password in KeyChain
-                    KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
-                    KeychainService.savePassword(token: self.passwordLabel.text! as NSString)
-                    
-                    User.createSingletonUser(userData: nil)
-                    let user = User.getUser()
-                    user.firstName = self.firstNameLabel.text
-                    user.surname = self.surnameLabel.text
-                    user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = number
-                    user.shareInfo = shareInfo
-                    
-                    if tmpImage != nil  {
-                        user.profilePicture = tmpImage
+                    switch httpCode! {
+                    case 200: //User created
+                        
+                        //Save email and password in KeyChain
+                        KeychainService.saveEmail(token: self.emailLabel.text! as NSString)
+                        KeychainService.savePassword(token: self.passwordLabel.text! as NSString)
+                        
+                        User.createSingletonUser(userData: nil)
+                        let user = User.getUser()
+                        user.firstName = self.firstNameLabel.text
+                        user.surname = self.surnameLabel.text
+                        user.userWeight = Int(self.weightInput.text!)
+                        user.userWheelSize = number
+                        user.shareInfo = shareInfo
+                        
+                        if tmpImage != nil  {
+                            user.profilePicture = tmpImage
+                        }
+                        
+                        user.burgersBurned = 0.0
+                        user.wheelRotation = 0
+                        user.distanceMade = 0.0
+                        user.co2Type = User.co2ComparedObject.car
+                        
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        self.view.endEditing(true)
+                        
+                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                        self.present(controller, animated: true, completion: nil)
+                        self.close()
+                        break
+                    case 409: //User already exists
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
+                        self.doneButton.isEnabled = false
+                        break
+                    default: //For http error codes: 500
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        self.doneButton.isEnabled = false
+                        return
                     }
-                    
-                    user.burgersBurned = 0.0
-                    user.wheelRotation = 0
-                    user.distanceMade = 0.0
-                    user.co2Type = User.co2ComparedObject.car
-                    
+                }
+                else
+                {
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
                     
-                    self.view.endEditing(true)
-                    
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-                    self.present(controller, animated: true, completion: nil)
-                    self.close()
-                    break
-                case 409: //User already exists
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("userExistsDialogTitle", comment: ""), message: NSLocalizedString("userExistsDialogMsg", comment: "")), animated: true, completion: nil)
-                    self.doneButton.isEnabled = false
-                    break
-                default: //For http error codes: 500
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
+                    //An error occured in the app
                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                     self.doneButton.isEnabled = false
-                    return
                 }
-            }
-            else
-            {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                self.doneButton.isEnabled = false
             }
         }
     }

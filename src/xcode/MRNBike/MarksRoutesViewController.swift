@@ -22,7 +22,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     var annotations : [RouteReport]? = [RouteReport]()
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     
-    // My Routes
+    //My Routes
     var userRoutes : [String: Any]? = nil
     var userRoutesKeys = [Int]()
 
@@ -38,8 +38,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(self.minSize))
                 self.myRoutesList.layoutIfNeeded()
             })
-        }
-        else {
+        } else {
             // maximize
             let yPos = myRoutesList.frame.origin.y
             let sizes = myRoutesList.frame.size

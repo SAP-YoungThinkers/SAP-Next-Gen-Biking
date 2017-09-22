@@ -37,7 +37,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.groupTableView.reloadData()
         refreshControl.endRefreshing()
     }
-
+    
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,20 +85,25 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 let id = String(self.groups[indexPath.row].id)
                 
-                ClientService.deleteUserFromGroup(userId: (KeychainService.loadEmail() ?? "") as String, groupId: id, completion: { (httpCode, error) in
-                    if error == nil {
-                        if(httpCode == 200) {
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("unassignedTitle", comment: ""), message: NSLocalizedString("unassignedMsg", comment: "")), animated: true, completion: nil)
+                if !(Reachability.isConnectedToNetwork()) {
+                    // no Internet connection
+                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                } else {
+                    ClientService.deleteUserFromGroup(userId: (KeychainService.loadEmail() ?? "") as String, groupId: id, completion: { (httpCode, error) in
+                        if error == nil {
+                            if(httpCode == 200) {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("unassignedTitle", comment: ""), message: NSLocalizedString("unassignedMsg", comment: "")), animated: true, completion: nil)
+                            } else {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
                         } else {
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
-                    } else {
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                    }
-                })
-                
-                self.groups.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                    })
+                    
+                    self.groups.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
             }))
             
             deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
@@ -118,86 +123,91 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func loadGroups() {
         
         if let userMail = KeychainService.loadEmail() as String? {
-            //Show activity indicator
-            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-            present(activityAlert, animated: false, completion: nil)
             
-            ClientService.getGroupList(mail: userMail, completion: { (data, error) in
-                if error == nil {
-                    //Clear groups array
-                    self.groups.removeAll()
-                    
-                    guard let responseData = data else {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        //An error occured
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                        return
-                    }
-                    
-                    //Construct group array
-                    if let groupList = responseData["groups"] as? [[String: AnyObject]] {
+            if !(Reachability.isConnectedToNetwork()) {
+                // no Internet connection
+                self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+            } else {
+                //Show activity indicator
+                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+                present(activityAlert, animated: false, completion: nil)
+                
+                ClientService.getGroupList(mail: userMail, completion: { (data, error) in
+                    if error == nil {
+                        //Clear groups array
+                        self.groups.removeAll()
                         
-                        for group in groupList {
-                            
-                            let datumString = String(describing: group["datum"]!)
-                            let index = datumString.index(datumString.startIndex, offsetBy: 16)
-                            let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
-                            let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
-                            
-                            var groupMembers = [GroupMember]()
-                            
-                            //Construct group member array
-                            if let memberList = group["members"] as? [[String: AnyObject]] {
-                                for member in memberList {
-                                    guard let memberEntity = GroupMember(email: (member["email"] as? String)!, firstname: (member["firstname"] as? String)!, lastname: (member["lastname"] as? String)!) else {
-                                        activityAlert.dismiss(animated: false, completion: nil)
-                                        //An error occured
-                                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                                        return
-                                    }
-                                    groupMembers.append(memberEntity)
-                                }
-                            }
-                            
-                            guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
-                                activityAlert.dismiss(animated: false, completion: nil)
-                                //An error occured
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                                return
-                            }
-                            self.groups.append(groupEntity)
-                        }
-                    }
-                    
-                    self.groupTableView.reloadData()
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                } else {
-                    if error == ClientServiceError.notFound {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        /*
-                        //No groups found
-                        DispatchQueue.main.async {
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noGroupsDialogTitle", comment: ""), message: NSLocalizedString("noGroupsDialogMsg", comment: "")), animated: true, completion: nil)
-                        }
- */
-                    } else {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        //An error occured in the app
-                        DispatchQueue.main.async {
+                        guard let responseData = data else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            //An error occured
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            return
+                        }
+                        
+                        //Construct group array
+                        if let groupList = responseData["groups"] as? [[String: AnyObject]] {
+                            
+                            for group in groupList {
+                                
+                                let datumString = String(describing: group["datum"]!)
+                                let index = datumString.index(datumString.startIndex, offsetBy: 16)
+                                let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
+                                let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
+                                
+                                var groupMembers = [GroupMember]()
+                                
+                                //Construct group member array
+                                if let memberList = group["members"] as? [[String: AnyObject]] {
+                                    for member in memberList {
+                                        guard let memberEntity = GroupMember(email: (member["email"] as? String)!, firstname: (member["firstname"] as? String)!, lastname: (member["lastname"] as? String)!) else {
+                                            activityAlert.dismiss(animated: false, completion: nil)
+                                            //An error occured
+                                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                            return
+                                        }
+                                        groupMembers.append(memberEntity)
+                                    }
+                                }
+                                
+                                guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
+                                    activityAlert.dismiss(animated: false, completion: nil)
+                                    //An error occured
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                    return
+                                }
+                                self.groups.append(groupEntity)
+                            }
+                        }
+                        
+                        self.groupTableView.reloadData()
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                    } else {
+                        if error == ClientServiceError.notFound {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            /*
+                             //No groups found
+                             DispatchQueue.main.async {
+                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noGroupsDialogTitle", comment: ""), message: NSLocalizedString("noGroupsDialogMsg", comment: "")), animated: true, completion: nil)
+                             }
+                             */
+                        } else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            DispatchQueue.main.async {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
                         }
                     }
-                }
-            })
+                })
+            }
         }
     }
-    
     
     //MARK: Actions
     @IBAction func onPressOpenCreateGroup(_ sender: Any) {

@@ -61,33 +61,38 @@ class AddFriendPopupViewController: UIViewController, UITextFieldDelegate {
     //Send friend request
     func invite() {
 
-        let uploadData : [String: Any] = ["userId" : KeychainService.loadEmail() ?? "", "friendId" : textFieldEmail.text ?? ""]
-        
-        //Generate json data for upload
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Send friend request
-        ClientService.postFriendRequest(scriptName: "sendFriendRequest.xsjs", relationship: jsonData) { (httpCode, error) in
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            let uploadData : [String: Any] = ["userId" : KeychainService.loadEmail() ?? "", "friendId" : textFieldEmail.text ?? ""]
             
-            if error == nil {
-                switch httpCode! {
-                case 200: //Successful
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("addedSuccessfullyTitle", comment: ""), message: NSLocalizedString("addedSuccessfullyMsg", comment: "")), animated: true, completion: {
-                        self.textFieldEmail.text = ""
-                    })
-                    break
-                default: //For http error codes: 500
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("incorrectEmailTitle", comment: ""), message: NSLocalizedString("incorrectEmailMsg", comment: "")), animated: true, completion: {
-                        self.textFieldEmail.text = ""
-                    })
-                    return
+            //Generate json data for upload
+            let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+            
+            //Send friend request
+            ClientService.postFriendRequest(scriptName: "sendFriendRequest.xsjs", relationship: jsonData) { (httpCode, error) in
+                
+                if error == nil {
+                    switch httpCode! {
+                    case 200: //Successful
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("addedSuccessfullyTitle", comment: ""), message: NSLocalizedString("addedSuccessfullyMsg", comment: "")), animated: true, completion: {
+                            self.textFieldEmail.text = ""
+                        })
+                        break
+                    default: //For http error codes: 500
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("incorrectEmailTitle", comment: ""), message: NSLocalizedString("incorrectEmailMsg", comment: "")), animated: true, completion: {
+                            self.textFieldEmail.text = ""
+                        })
+                        return
+                    }
+                }
+                else
+                {
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                 }
             }
-            else
-            {
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-            }
-        }
+         }
     }
 }

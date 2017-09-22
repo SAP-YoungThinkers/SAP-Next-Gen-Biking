@@ -360,8 +360,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     }
     
     // MARK: Actions
-    
-    // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
         
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
@@ -394,109 +392,114 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             return
         }
         
-        //Show activity indicator
-        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(activityAlert, animated: false, completion: nil)
-        
-        let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
-        let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
-        
-        let user = User.getUser()
-        
-        var shareInfo = 0
-        
-        if inputActivity.isOn {
-            shareInfo = 1
-        }
-        
-        //Upload updated user to Hana
-        var numberDouble = wheelSizeInput.text!.doubleValue
-        if numberDouble == nil {
-            numberDouble = 0.0
-        }
-        
-        var co2Type = ""
-        
-        switch user.co2Type! {
-        case User.co2ComparedObject.car:
-            co2Type = "car"
-        case User.co2ComparedObject.bus:
-            co2Type = "bus"
-        case User.co2ComparedObject.train:
-            co2Type = "train"
-        default:
-            co2Type = "car"
-        }
-
-        var tmpImage : Data?
-        if let ti = self.imageBG.image {
-            tmpImage = ti.shrinkedJpeg(1125)
-        }
-        
-        // TODO: insert image in request
-        // tmpImage
-        
-        let number = Int(numberDouble! * 10)
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type, "image": tmpImage?.base64EncodedString() ?? ""]
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Try update user profile
-        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
-            if error == nil {
-                
-                switch httpCode! {
-                case 200: //User successfully updated
-                    
-                    //Save email and password in KeyChain
-                    if let mail = self.inputEmail.text as NSString? {
-                        KeychainService.saveEmail(token: mail)
-                    }
-                    if let password = self.inputPassword.text as NSString? {
-                        KeychainService.savePassword(token: password)
-                    }
-                    
-                    //Update User class
-                    let user = User.getUser()
-                    user.surname = surname.text!
-                    user.firstName = firstname.text!
-                    user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = number
-                    user.shareInfo = shareInfo
-                    
-                    if tmpImage != nil  {
-                        user.profilePicture = tmpImage
-                    }
-                    
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
-                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                        (action) -> Void in self.navigationController?.popViewController(animated: true)
-                    })
-                    alert.addAction(gotItAction)
-                    self.present(alert, animated: true, completion: nil)
-                    break
-                default: //For http error codes: 500
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                        (action) -> Void in self.navigationController?.popViewController(animated: true)
-                    })
-                    alert.addAction(gotItAction)
-                    self.present(alert, animated: true, completion: nil)
-                }
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            //Show activity indicator
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
+            
+            let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
+            let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
+            
+            let user = User.getUser()
+            
+            var shareInfo = 0
+            
+            if inputActivity.isOn {
+                shareInfo = 1
             }
-            else
-            {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            
+            //Upload updated user to Hana
+            var numberDouble = wheelSizeInput.text!.doubleValue
+            if numberDouble == nil {
+                numberDouble = 0.0
+            }
+            
+            var co2Type = ""
+            
+            switch user.co2Type! {
+            case User.co2ComparedObject.car:
+                co2Type = "car"
+            case User.co2ComparedObject.bus:
+                co2Type = "bus"
+            case User.co2ComparedObject.train:
+                co2Type = "train"
+            default:
+                co2Type = "car"
+            }
+            
+            var tmpImage : Data?
+            if let ti = self.imageBG.image {
+                tmpImage = ti.shrinkedJpeg(1125)
+            }
+            
+            // TODO: insert image in request
+            // tmpImage
+            
+            let number = Int(numberDouble! * 10)
+            let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type, "image": tmpImage?.base64EncodedString() ?? ""]
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+            
+            //Try update user profile
+            ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                if error == nil {
+                    
+                    switch httpCode! {
+                    case 200: //User successfully updated
+                        
+                        //Save email and password in KeyChain
+                        if let mail = self.inputEmail.text as NSString? {
+                            KeychainService.saveEmail(token: mail)
+                        }
+                        if let password = self.inputPassword.text as NSString? {
+                            KeychainService.savePassword(token: password)
+                        }
+                        
+                        //Update User class
+                        let user = User.getUser()
+                        user.surname = surname.text!
+                        user.firstName = firstname.text!
+                        user.userWeight = Int(self.weightInput.text!)
+                        user.userWheelSize = number
+                        user.shareInfo = shareInfo
+                        
+                        if tmpImage != nil  {
+                            user.profilePicture = tmpImage
+                        }
+                        
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
+                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                            (action) -> Void in self.navigationController?.popViewController(animated: true)
+                        })
+                        alert.addAction(gotItAction)
+                        self.present(alert, animated: true, completion: nil)
+                        break
+                    default: //For http error codes: 500
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                            (action) -> Void in self.navigationController?.popViewController(animated: true)
+                        })
+                        alert.addAction(gotItAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                else
+                {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
             }
         }
     }
