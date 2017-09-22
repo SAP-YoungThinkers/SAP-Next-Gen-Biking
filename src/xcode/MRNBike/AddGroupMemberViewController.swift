@@ -28,7 +28,6 @@ class AddGroupMemberViewController: UIViewController, UITableViewDelegate, UITab
             //Show activity indicator
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
-            print("hello")
             ClientService.getFriendList(mail: userMail, completion: { (data, error) in
             
                 if error == nil {
@@ -111,7 +110,6 @@ class AddGroupMemberViewController: UIViewController, UITableViewDelegate, UITab
         let friend = friends[indexPath.row]
         
         let name = friend.firstname + ", " + friend.lastname
-        print(name)
         cell.friendNameLabel.text = name
         
         return cell

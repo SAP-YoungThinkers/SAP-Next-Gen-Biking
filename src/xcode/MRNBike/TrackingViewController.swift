@@ -191,12 +191,8 @@ class TrackingViewController: UIViewController, CLLocationManagerDelegate {
             
             let tmpStats = StorageHelper.loadStats()
             
-            print("tmpstats: \(tmpStats?.count ?? 0)")
-            print("loadedData: \(loadedData.count)")
-            
             ClientService.uploadRouteToHana(route: StorageHelper.generateJSON(tracks: loadedData), statistics: tmpStats!, completion: { (keys, error) in
                 if error == nil {
-                    print(keys as Any)
                     let user = User.getUser()
                     var co2Type = ""
                     

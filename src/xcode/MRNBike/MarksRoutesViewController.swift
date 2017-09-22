@@ -155,7 +155,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             userRoutesKeys.append(contentsOf: keys)
             userRoutesKeys.sort(by: >)
         }
-        print(userRoutesKeys)
         
         // request and handling
         if(userRoutesKeys.count != 0) {

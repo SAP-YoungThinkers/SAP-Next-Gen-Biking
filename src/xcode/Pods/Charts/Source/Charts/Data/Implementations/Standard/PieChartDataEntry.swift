@@ -96,13 +96,11 @@ open class PieChartDataEntry: ChartDataEntry
     {
         get
         {
-            print("Pie entries do not have x values")
             return super.x
         }
         set
         {
             super.x = newValue
-            print("Pie entries do not have x values")
         }
     }
     

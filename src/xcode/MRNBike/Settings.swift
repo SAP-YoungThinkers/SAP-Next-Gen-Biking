@@ -72,7 +72,7 @@ class SettingsViewController: UIViewController {
             trainButton.borderWidth = 0
             busButton.borderWidth = 0
         } catch {
-            print("1")
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
         }
     }
     
@@ -87,7 +87,7 @@ class SettingsViewController: UIViewController {
             CarButton.borderWidth = 0
             busButton.borderWidth = 0
         } catch {
-            print("2")
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
         }
     }
     
@@ -102,7 +102,7 @@ class SettingsViewController: UIViewController {
             trainButton.borderWidth = 0
             CarButton.borderWidth = 0
         } catch {
-            print("3")
+            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
         }
     }
     

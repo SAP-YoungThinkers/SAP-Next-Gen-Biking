@@ -419,8 +419,6 @@ class ClientService {
             // other way
         }
         
-        print(String.init(data: tmpRouteData, encoding: String.Encoding.utf8) ?? "empty")
-        
         generateRequest(scriptName: "saveRoute.xsjs", httpMethod: "POST", data: tmpRouteData, route: nil) { (urlRequest, error) in
             
             if error == nil {

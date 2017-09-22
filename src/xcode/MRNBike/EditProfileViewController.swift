@@ -284,7 +284,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     
     func handleImagePicker(button: UIButton) {
-        print("image picked!")
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         
@@ -377,13 +376,11 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
                     passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
                     passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
                     self.present(passwordAlert, animated: true, completion: nil)
-                    print("password empty")
                     return
                 }
             }
             else {
                 // password not changed
-                print("password didnt change, so wont be overwritten")
                 inputPassword.text = KeychainService.loadPassword()! as String
                 inputPasswordRepeat.text = KeychainService.loadPassword()! as String
             }
@@ -394,7 +391,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             passwordAlert.message = NSLocalizedString("passwordMismatchDialogMsg", comment: "")
             passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
-            print("passwords dont match")
             return
         }
         
