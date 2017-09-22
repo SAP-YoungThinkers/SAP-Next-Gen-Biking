@@ -66,7 +66,7 @@
 "wheelRotation"="RADUMDREHUNGEN";
 "burgers"="BURGER";
 "distance"="DISTANZ";
-"co2Saved"="CO2 GESPART";
+"co2Saved"="CO2 GESPART (kg)";
 "saveRoute"="Route speichern";
 "dismiss"="Verwerfen";
 "reportLocation"="Stelle melden";
