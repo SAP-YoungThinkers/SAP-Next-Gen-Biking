@@ -25,6 +25,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var group: Group?
     var groupMembers = [GroupMember]()
+    var datePickerValue = Date()
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -33,7 +34,6 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationItem.title = NSLocalizedString("groupDetailsTitle", comment: "")
         
         groupNameLabel.text = NSLocalizedString("groupName", comment: "")
-        timeLabel.text = NSLocalizedString("journeyTime", comment: "")
         startLocationLabel.text = NSLocalizedString("startLocation", comment: "")
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
@@ -51,6 +51,17 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             privateGroupSwitch.isOn = true
         }
         
+        let inte = Int((group?.datum)!)
+        let timeInterval = Double(inte!)
+        let date = Date(timeIntervalSince1970: timeInterval)
+ 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
+        timeTextfield.text = dateFormatter.string(from: date)
+        datePickerValue = date
+ 
         groupNameTextfield.textColor = UIColor.lightGray
         timeTextfield.textColor = UIColor.lightGray
         startLocationTextfield.textColor = UIColor.lightGray
@@ -136,6 +147,22 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.endEditing(true)
         return true
     }
+    
+    @IBAction func timeTextFieldEditing(_ sender: UITextField) {
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(CreateGroupViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
+        timeTextfield.text = dateFormatter.string(from: sender.date)
+        datePickerValue = sender.date
+    }
         
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -173,6 +200,9 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             let destination: String = destinationTextfield.text!
             let text: String = descriptionTextview.text!
             
+            let timeInterval = datePickerValue.timeIntervalSince1970
+            let timestamp = String(Int(timeInterval))
+            
             var privateGroup = 0
             
             if privateGroupSwitch.isOn {
@@ -183,7 +213,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             
             do {
                 let id = group?.id
-                let data : [String: Any] = ["groupId": id!, "name": name, "datum": 14921734, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup]
+                let data : [String: Any] = ["groupId": id!, "name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup]
                 
                 jsonData = try JSONSerialization.data(withJSONObject: data)
             } catch {

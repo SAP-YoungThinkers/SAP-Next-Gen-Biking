@@ -57,7 +57,16 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         let group = groups[indexPath.row]
         
         cell.nameLabel.text = group.name
-        let subTitle = group.datum + ", " + group.startLocation
+        
+        let timeInterval = Double(Int(group.datum)!)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
+        
+        let subTitle = dateFormatter.string(from: date) + " - " + group.startLocation
         cell.timeLocationLabel.text = subTitle
         
         return cell
@@ -149,12 +158,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                         if let groupList = responseData["groups"] as? [[String: AnyObject]] {
                             
                             for group in groupList {
-                                
-                                let datumString = String(describing: group["datum"]!)
-                                let index = datumString.index(datumString.startIndex, offsetBy: 16)
-                                let datumBefore = datumString.substring(to: index).replacingOccurrences(of: "-", with:".")
-                                let datum = datumBefore.replacingOccurrences(of: "T", with:" ")
-                                
                                 var groupMembers = [GroupMember]()
                                 
                                 //Construct group member array
@@ -170,7 +173,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                                     }
                                 }
                                 
-                                guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: datum, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
+                                guard let groupEntity = Group(id: (group["groupId"] as? Int)!, name: (group["name"] as? String)!, datum: (group["datum"] as? String)!, startLocation: (group["startLocation"] as? String)!, destination: (group["destination"] as? String)!, text: (group["description"] as? String)!, owner: (group["owner"] as? String)!, privateGroup: (group["privateGroup"] as? Int)!, members: groupMembers) else {
                                     activityAlert.dismiss(animated: false, completion: nil)
                                     //An error occured
                                     self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)

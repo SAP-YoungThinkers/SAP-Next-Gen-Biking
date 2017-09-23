@@ -24,6 +24,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var descriptionTextview: UITextView!
     
     var groupMembers = [String]()
+    var datePickerValue = Date()
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -48,11 +49,18 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         //Textfields placeholders
         groupNameTextfield.placeholder = NSLocalizedString("groupNamePlaceholder", comment: "")
-        //timeTextfield.placeholder = NSLocalizedString("timeLocationPlaceholder", comment: "")
         startLocationTextfield.placeholder = NSLocalizedString("groupStartLocationPlaceholder", comment: "")
         destinationTextfield.placeholder = NSLocalizedString("groupDestinationPlaceholder", comment: "")
         descriptionTextview.text = NSLocalizedString("groupDescriptionPlaceholder", comment: "")
         descriptionTextview.textColor = UIColor.lightGray
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
+        let date = Date()
+        timeTextfield.text = dateFormatter.string(from: date)
+        datePickerValue = date
         
         createGroupButton.isEnabled = false
         
@@ -126,50 +134,33 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.view.endEditing(true)
         return true
     }
+
+    @IBAction func timeTextFieldEditing(_ sender: UITextField) {
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(CreateGroupViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
     
-    func handleDatePicker(sender: UIDatePicker) {
+    func datePickerValueChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
         timeTextfield.text = dateFormatter.string(from: sender.date)
+        datePickerValue = sender.date
     }
-    
-    func doneButton() {
-        timeTextfield.resignFirstResponder() // To resign the inputView on clicking done.
-    }
-    
+   
     //MARK: Actions
-    
-    @IBAction func dateTextInputPressed(_ sender: UITextField) {
-        //Create the view
-        let inputView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 240.0))
-        
-        let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: 0, height: 0))
-        datePickerView.datePickerMode = UIDatePickerMode.date
-        inputView.addSubview(datePickerView) // add date picker to UIView
-        
-        let doneButton = UIButton(frame: CGRect(x: (self.view.frame.size.width/2) - (100/2), y: 0, width: 100, height: 50))
-        doneButton.setTitle("Done", for: UIControlState.normal)
-        doneButton.setTitle("Done", for: UIControlState.highlighted)
-        doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
-        
-        inputView.addSubview(doneButton) // add Button to UIView
-        
-        doneButton.addTarget(self, action: #selector(CreateGroupViewController.doneButton), for: UIControlEvents.touchUpInside) // set button click event
-        
-        sender.inputView = inputView
-        //datePickerView.addTarget(self, action: Selector(("handleDatePicker")), for: UIControlEvents.valueChanged)
-        datePickerView.addTarget(self, action: #selector(CreateGroupViewController.handleDatePicker), for: UIControlEvents.valueChanged)
-        
-        handleDatePicker(sender: datePickerView) // Set the date on start.
-    }
-    
     @IBAction func createGroup(_ sender: Any) {
         let name: String = groupNameTextfield.text!
         //let datum: String = groupNameTextfield.text!
         let startLocation: String = startLocationTextfield.text!
         let destination: String = destinationTextfield.text!
         let text: String = descriptionTextview.text!
+        
+        let timeInterval = datePickerValue.timeIntervalSince1970
+        let timestamp = String(Int(timeInterval))
         
         var jsonData = Data()
         
@@ -182,7 +173,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         do {
             groupMembers.append(KeychainService.loadEmail()! as String)
             
-            let data : [String: Any] = ["name": name, "datum": 14921734, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
+            let data : [String: Any] = ["name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
             
             jsonData = try JSONSerialization.data(withJSONObject: data)
         } catch {
@@ -236,6 +227,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     @IBAction func openAddFriendsDialog(_ sender: UIButton) {
+        /*
         let storyboard = UIStoryboard(name: "Social", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "AddGroupMember")
         
@@ -244,5 +236,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         // Present dialog
         self.present(popup, animated: true, completion: nil)
+ */
     }
 }
