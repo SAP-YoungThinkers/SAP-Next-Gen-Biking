@@ -37,33 +37,49 @@ class StartPageViewController: UIViewController {
                 let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
                 present(activityAlert, animated: false, completion: nil)
                 
-                ClientService.getUser(mail: userMail, completion: { (data, error) in
-                    if error == nil {
-                        
-                        guard let responseData = data else {
+                if !(Reachability.isConnectedToNetwork()) {
+                    
+                    // no Internet connection
+                    
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false) {
+                        self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                    }
+                    
+                    
+                } else {
+                    
+                    // bad Internet
+                    
+                    ClientService.getUser(mail: userMail, completion: { (data, error) in
+                        if error == nil {
+                            
+                            guard let responseData = data else {
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                                //An error occured
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                return
+                            }
+                            
+                            User.createSingletonUser(userData: responseData)
+                            
                             //Dismiss activity indicator
                             activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "Home")
+                            self.present(controller, animated: true, completion: nil)
+                        } else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
                             //An error occured
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                            return
                         }
-                        
-                        User.createSingletonUser(userData: responseData)
-                        
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-                        self.present(controller, animated: true, completion: nil)
-                    } else {
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        //An error occured
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                    }
-                })
+                    })
+                    
+                }
                 
             }
         }

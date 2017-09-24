@@ -92,7 +92,7 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     //Check if message is valid
     func checkInput() {
         
-        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()@\\s]{5,60}$")
+        let messageTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß0-9,.:;!-?=()\\s]{5,60}$")
         
         //If message is valid, enable the send button
         if messageTest.evaluate(with: messageTextField.text) {
@@ -176,83 +176,83 @@ class AddReportViewController: UIViewController, UITextFieldDelegate, UIGestureR
     
     @IBAction func onPressCancel(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
-//
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-//        self.present(newViewController, animated: true, completion: nil)
-//        self.close()
         self.dismiss(animated: true)
     }
     
     @IBAction func onPressSend(_ sender: UIButton) {
-        let message: String = messageTextField.text!
         
-        var type : String
-        
-        if recommendationBtn.isSelected {
-            type = "Recommendation"
-        } else if warningBtn.isSelected {
-            type = "Warning"
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
         } else {
-            type = "Dangerous"
+            let message: String = messageTextField.text!
+            
+            var type : String
+            
+            if recommendationBtn.isSelected {
+                type = "Recommendation"
+            } else if warningBtn.isSelected {
+                type = "Warning"
+            } else {
+                type = "Dangerous"
+            }
+            
+            let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+            
+            var annotations = mapView.annotations.filter { $0 !== mapView.userLocation }
+            if annotations.count == 0 {
+                annotations = mapView.annotations.filter { $0 === mapView.userLocation } }
+            
+            let location: MKAnnotation = annotations[0]
+            let latitude: Double = location.coordinate.latitude
+            let longitude: Double = location.coordinate.longitude
+            
+            let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: data)
+            
+            //Show activity indicator
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
+            
+            ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
+                if error == nil {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in
+                        //                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+                        //                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+                        //                    self.present(newViewController, animated: true, completion: nil)
+                        //                    self.close()
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                        (action) -> Void in
+                        //                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
+                        //                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
+                        //                    self.present(newViewController, animated: true, completion: nil)
+                        //                    self.close()
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true)
+                    })
+                    alert.addAction(gotItAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
         }
-        
-        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
-        
-        var annotations = mapView.annotations.filter { $0 !== mapView.userLocation }
-        if annotations.count == 0 {
-            annotations = mapView.annotations.filter { $0 === mapView.userLocation } }
-        
-        let location: MKAnnotation = annotations[0]
-        let latitude: Double = location.coordinate.latitude
-        let longitude: Double = location.coordinate.longitude
-        
-        let data : [String: Any] = ["type" : type, "description" : message, "timestamp" : timestamp, "longitude" : longitude, "latitude" : latitude]
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: data)
-        
-        //Show activity indicator
-        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(activityAlert, animated: false, completion: nil)
-        
-        ClientService.uploadReportToHana(reportInfo: jsonData, completion: { (error) in
-            if error == nil {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("reportUploadDialogTitle", comment: ""), message: NSLocalizedString("reportUploadDialogMsgPositive", comment: ""))
-                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                    (action) -> Void in
-//                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-//                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-//                    self.present(newViewController, animated: true, completion: nil)
-//                    self.close()
-                    self.navigationController?.popViewController(animated: true)
-                    self.dismiss(animated: true)
-                })
-                alert.addAction(gotItAction)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else
-            {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                    (action) -> Void in
-//                    let storyBoard: UIStoryboard = UIStoryboard(name: "Routes", bundle: nil)
-//                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "RoutesStoryboard") as UIViewController
-//                    self.present(newViewController, animated: true, completion: nil)
-//                    self.close()
-                    self.navigationController?.popViewController(animated: true)
-                    self.dismiss(animated: true)
-                })
-                alert.addAction(gotItAction)
-                self.present(alert, animated: true, completion: nil)
-            }
-        })
-        
     }
     
     @IBAction func refreshLocation(_ sender: UIButton) {

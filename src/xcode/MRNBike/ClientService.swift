@@ -263,7 +263,7 @@ class ClientService {
     static func getUser(mail: String, completion: @escaping ([String: AnyObject]?, ClientServiceError?)->()) {
         
         let session = SessionFactory.shared().getSession()
-        let scriptName = "readUser.xsjs?email=" + mail
+        let scriptName = "getUser.xsjs?email=" + mail
         
         generateRequest(scriptName: scriptName, httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
             
@@ -338,7 +338,7 @@ class ClientService {
         
         let session = SessionFactory.shared().getSession()
         
-        generateRequest(scriptName: "queryReport.xsjs", httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "getReports.xsjs", httpMethod: "GET", data: nil, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
@@ -419,9 +419,7 @@ class ClientService {
             // other way
         }
         
-        print(String.init(data: tmpRouteData, encoding: String.Encoding.utf8) ?? "empty")
-        
-        generateRequest(scriptName: "saveRouteTest.xsjs", httpMethod: "POST", data: tmpRouteData, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "saveRoute.xsjs", httpMethod: "POST", data: tmpRouteData, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 
@@ -468,7 +466,7 @@ class ClientService {
         
         let session = SessionFactory.shared().getSession()
         
-        generateRequest(scriptName: "queryRoutes.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
+        generateRequest(scriptName: "getRoutes.xsjs", httpMethod: "POST", data: routeKeys, route: nil) { (urlRequest, error) in
             
             if error == nil {
                 

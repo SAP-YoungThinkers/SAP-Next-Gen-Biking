@@ -262,8 +262,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         
         var valid = false
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,25}$")
-        let nameTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[a-zA-ZäÄüÜöÖß\\s]{2,20}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,50}$")
+        let nameTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z-\\s]{2,40}")
         
         let surname = userBarViewController.view.viewWithTag(4) as! UITextField
         let firstname = userBarViewController.view.viewWithTag(5) as! UITextField
@@ -284,8 +284,7 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     
     
     func handleImagePicker(button: UIButton) {
-        print("image picked!")
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
@@ -297,27 +296,20 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         }
     }
     
-    func randomString(_ length: Int) -> String {
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$"
-        let len = UInt32(letters.length)
-        
-        var randomString = ""
-        
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        return randomString
-    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            updateProfileBG(pickedImage: pickedImage)
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+                self.checkInput()
+            }
+        } else if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            DispatchQueue.main.async {
+                self.updateProfileBG(pickedImage: pickedImage)
+                self.checkInput()
+            }
         } else {
             print("Something went wrong")
         }
-        checkInput()
         dismiss(animated: true, completion: nil)
     }
     
@@ -368,8 +360,6 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
     }
     
     // MARK: Actions
-    
-    // save button pressed
     @IBAction func saveRequest(_ sender: UIBarButtonItem) {
         
         let passwordAlert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
@@ -378,22 +368,19 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             
             if (inputPassword.text != tmpPasswordHash) {
                 
-                if (inputPassword.text != "") {
-                    
-                }
-                else {
+                if (inputPassword.text == "") {
                     // password empty
                     passwordAlert.title = NSLocalizedString("passwordEmptyDialogTitle", comment: "")
                     passwordAlert.message = NSLocalizedString("passwordEmptyDialogMsg", comment: "")
                     passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
                     self.present(passwordAlert, animated: true, completion: nil)
-                    print("password empty")
                     return
                 }
             }
             else {
                 // password not changed
-                print("password didnt change, so wont be overwritten")
+                inputPassword.text = KeychainService.loadPassword()! as String
+                inputPasswordRepeat.text = KeychainService.loadPassword()! as String
             }
         }
         else {
@@ -402,107 +389,117 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
             passwordAlert.message = NSLocalizedString("passwordMismatchDialogMsg", comment: "")
             passwordAlert.addAction(UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: nil))
             self.present(passwordAlert, animated: true, completion: nil)
-            print("passwords dont match")
             return
         }
         
-        //Show activity indicator
-        let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-        present(activityAlert, animated: false, completion: nil)
-        
-        let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
-        let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
-        
-        let user = User.getUser()
-        
-        var shareInfo = 0
-        
-        if inputActivity.isOn {
-            shareInfo = 1
-        }
-        
-        //Upload updated user to Hana
-        var numberDouble = wheelSizeInput.text!.doubleValue
-        if numberDouble == nil {
-            numberDouble = 0.0
-        }
-        
-        var co2Type = ""
-        
-        switch user.co2Type! {
-        case User.co2ComparedObject.car:
-            co2Type = "car"
-        case User.co2ComparedObject.bus:
-            co2Type = "bus"
-        case User.co2ComparedObject.train:
-            co2Type = "train"
-        default:
-            co2Type = "car"
-        }
-
-        
-        let number = Int(numberDouble! * 10)
-        let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type]
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
-        
-        //Try update user profile
-        ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
-            if error == nil {
-                
-                switch httpCode! {
-                case 200: //User successfully updated
-                    
-                    //Save email and password in KeyChain
-                    if let mail = self.inputEmail.text as NSString? {
-                        KeychainService.saveEmail(token: mail)
-                    }
-                    if let password = self.inputPassword.text as NSString? {
-                        KeychainService.savePassword(token: password)
-                    }
-                    
-                    //Update User class
-                    let user = User.getUser()
-                    user.surname = surname.text!
-                    user.firstName = firstname.text!
-                    user.userWeight = Int(self.weightInput.text!)
-                    user.userWheelSize = number
-                    
-                    user.shareInfo = shareInfo
-                    
-                    if let tmpImage = self.imageBG.image {
-                        user.profilePicture = UIImageJPEGRepresentation(tmpImage, 1.0)
-                    }
-                    
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
-                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                        (action) -> Void in self.navigationController?.popViewController(animated: true)
-                    })
-                    alert.addAction(gotItAction)
-                    self.present(alert, animated: true, completion: nil)
-                    break
-                default: //For http error codes: 500
-                    //Dismiss activity indicator
-                    activityAlert.dismiss(animated: false, completion: nil)
-                    
-                    let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                    let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                        (action) -> Void in self.navigationController?.popViewController(animated: true)
-                    })
-                    alert.addAction(gotItAction)
-                    self.present(alert, animated: true, completion: nil)
-                }
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        } else {
+            //Show activity indicator
+            let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+            present(activityAlert, animated: false, completion: nil)
+            
+            let firstname = self.userBarViewController?.view.viewWithTag(5) as! UITextField
+            let surname = self.userBarViewController?.view.viewWithTag(4) as! UITextField
+            
+            let user = User.getUser()
+            
+            var shareInfo = 0
+            
+            if inputActivity.isOn {
+                shareInfo = 1
             }
-            else
-            {
-                //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
-                
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            
+            //Upload updated user to Hana
+            var numberDouble = wheelSizeInput.text!.doubleValue
+            if numberDouble == nil {
+                numberDouble = 0.0
+            }
+            
+            var co2Type = ""
+            
+            switch user.co2Type! {
+            case User.co2ComparedObject.car:
+                co2Type = "car"
+            case User.co2ComparedObject.bus:
+                co2Type = "bus"
+            case User.co2ComparedObject.train:
+                co2Type = "train"
+            default:
+                co2Type = "car"
+            }
+            
+            var tmpImage : Data?
+            if let ti = self.imageBG.image {
+                tmpImage = ti.shrinkedJpeg(1125)
+            }
+            
+            // TODO: insert image in request
+            // tmpImage
+            
+            let number = Int(numberDouble! * 10)
+            let uploadData : [String: Any] = ["email" : inputEmail.text!, "password" : inputPassword.text!, "firstname" : firstname.text!, "lastname" : surname.text! , "allowShare" : shareInfo, "wheelsize" : number, "weight" : Int(weightInput.text!)!, "burgersburned" : user.burgersBurned!, "wheelrotation" : user.wheelRotation!, "distancemade" : user.distanceMade!, "co2Type" : co2Type, "image": tmpImage?.base64EncodedString() ?? ""]
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: uploadData)
+            
+            //Try update user profile
+            ClientService.postUser(scriptName: "updateUser.xsjs", userData: jsonData) { (httpCode, error) in
+                if error == nil {
+                    
+                    switch httpCode! {
+                    case 200: //User successfully updated
+                        
+                        //Save email and password in KeyChain
+                        if let mail = self.inputEmail.text as NSString? {
+                            KeychainService.saveEmail(token: mail)
+                        }
+                        if let password = self.inputPassword.text as NSString? {
+                            KeychainService.savePassword(token: password)
+                        }
+                        
+                        //Update User class
+                        let user = User.getUser()
+                        user.surname = surname.text!
+                        user.firstName = firstname.text!
+                        user.userWeight = Int(self.weightInput.text!)
+                        user.userWheelSize = number
+                        user.shareInfo = shareInfo
+                        
+                        if tmpImage != nil  {
+                            user.profilePicture = tmpImage
+                        }
+                        
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("userUpdatedDialogTitle", comment: ""), message: NSLocalizedString("userUpdatedDialogMsg", comment: ""))
+                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                            (action) -> Void in self.navigationController?.popViewController(animated: true)
+                        })
+                        alert.addAction(gotItAction)
+                        self.present(alert, animated: true, completion: nil)
+                        break
+                    default: //For http error codes: 500
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                            (action) -> Void in self.navigationController?.popViewController(animated: true)
+                        })
+                        alert.addAction(gotItAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                else
+                {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
             }
         }
     }

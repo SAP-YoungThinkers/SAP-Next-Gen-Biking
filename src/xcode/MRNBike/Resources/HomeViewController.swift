@@ -5,7 +5,7 @@ import CoreLocation
 
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var wheelRotationValue: UILabel!
     @IBOutlet weak var wheelRotationLabel: UILabel!
@@ -38,11 +38,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var DayFive_Weather: UILabel!
     @IBOutlet weak var DaySix_Weather: UILabel!
     @IBOutlet weak var CurrentDate_Pic: UIImageView!
-
+    
     
     
     var locationManager: CLLocationManager = CLLocationManager()
-
+    
     /* Weather */
     @IBOutlet weak var actualWeather: UILabel!
     
@@ -92,13 +92,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
         let dayName2 = getDayName(fromDate: date3)
         DayFour_Text.text = dayName2
-
+        
         guard let date4 = addDayToDate(today: date3) else {
             return
         }
         let dayName3 = getDayName(fromDate: date4)
         DayFive_Text.text = dayName3
-
+        
         
         guard let date5 = addDayToDate(today: date4) else {
             return
@@ -134,12 +134,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         updateUI()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -158,10 +158,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func currentWeather(lat: String, long: String) {
-        print("weather: ---------")
+        
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
-        print(requestURL)
+        
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest as URLRequest) {
@@ -171,12 +171,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let statusCode = httpResponse.statusCode
             
             if (statusCode == 200) {
-                print("JSON Downloaded Sucessfully.")
-                
                 do {
-                    
                     let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
-                    print(jsonData)
                     
                     for (key, value) in jsonData as! [String: Any] {
                         if(key == "main") {
@@ -185,12 +181,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                     self.actualWeather.text = String(self.convertKtoC(subvalue as! Double))
                                     break
                                 }
-
-                                
                             }
                         }
                         if (key == "cod") {
-                           
+                            
                             switch value as! Int {
                                 
                             case 200...299, 300...399,500...599, 906: //Rain
@@ -208,10 +202,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                 
                             default:
                                 self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
-
+                                
                             }
                             
-
+                            
                         }
                     }
                     
@@ -233,12 +227,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         task.resume()
     }
     
-
     func forecastWeather(lat: String, long: String) {
-        print("weather: ---------")
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(lat)&lon=\(long)&appid=\(appKey)&cnt=6")!
-        print(requestURL)
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest as URLRequest) {
@@ -248,13 +239,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let statusCode = httpResponse.statusCode
             
             if (statusCode == 200) {
-                print("JSON Downloaded Sucessfully.")
-                
                 do {
-                    
                     let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
-                    print(jsonData)
-                    
                     for (key, value) in jsonData as! [String: Any] {
                         if(key == "list") {
                             let list = value as! [[String: Any]]
@@ -284,7 +270,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                 let weatherArray = subkey["weather"] as! [Any]
                                 let dictionaryData = weatherArray[0] as! [String : Any]
                                 let valueFinally = dictionaryData["main"]!
-
+                                
                                 if index == 0 {
                                     self.DayOne_Pic.image = self.getImage(forName: valueFinally as! String)
                                 } else if index == 1 {
@@ -300,28 +286,18 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                                 }
                             }
                         }
-                        // ...
                     }
-                    
-                    
                 }
-                    
                 catch {
                     print("Error with Json: \(error)")
                 }
-                
             }
             else {
                 print("error: \(statusCode)")
             }
-            
-            
         }
-        
         task.resume()
     }
-    
-    
     
     func getImage(forName imageName: String) -> UIImage {
         
@@ -339,9 +315,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             return UIImage(named: "rainy")!
             
         }
-      return UIImage(named: "cloudy-sunny")!
+        return UIImage(named: "cloudy-sunny")!
     }
-
+    
     
     func convertKtoC(_ f: Double) -> Int {
         return Int(f-273.15)

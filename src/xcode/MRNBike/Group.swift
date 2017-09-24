@@ -3,14 +3,26 @@ import UIKit
 class Group: NSObject {
     //MARK: Properties
     
-    var name: String
-    var time: String
+    var id = 0
+    var name = ""
+    var datum = ""
+    var startLocation = ""
+    var destination = ""
+    var text = ""
+    var owner = ""
+    var privateGroup = 0
+    var members = [GroupMember]()
     
-    //MARK: Initialization
-    
-    init?(name: String, time: String) {
+    init?(id: Int, name: String, datum: String, startLocation: String, destination: String, text: String, owner: String, privateGroup: Int, members: [GroupMember]) {
         // Initialize stored properties.
+        self.id = id
         self.name = name
-        self.time = time
+        self.datum = datum
+        self.startLocation = startLocation
+        self.destination = destination
+        self.text = text
+        self.owner = owner
+        self.privateGroup = privateGroup
+        self.members = members
     }
 }

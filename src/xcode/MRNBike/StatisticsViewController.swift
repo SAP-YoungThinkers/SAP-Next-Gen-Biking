@@ -130,7 +130,14 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             // same month or not?
             if dateForm.string(from: week[0]) == dateForm.string(from: week[1]) {
                 // JUNI 17-24
-                dateForm.dateFormat = "MMMM dd"
+                // adaptive
+                switch UIScreen.main.bounds.width {
+                case 0...340:
+                    dateForm.dateFormat = "MMM dd"
+                    break
+                default:
+                    dateForm.dateFormat = "MMMM dd"
+                }
                 title = dateForm.string(from: week[0])+"-"
                 dateForm.dateFormat = "dd"
                 title += dateForm.string(from: week[1])
@@ -204,7 +211,9 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         caloriesTab.title = NSLocalizedString("caloriesTitle", comment: "")
         totalWheelsLabel.text = NSLocalizedString("totalWheelsTitle", comment: "")
         let user = User.getUser()
-        totalWheels.text = String(user.wheelRotation!)
+        if let rotations = user.wheelRotation {
+            totalWheels.text = String(rotations)
+        }
         
         /*  ------------------------ *\
          *      DESIGN
@@ -315,6 +324,11 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         x.labelFont = UIFont(name: "Montserrat-Regular", size: 13) ?? UIFont.systemFont(ofSize: 15)
         
         setChartData(currentPage: pagingMenuController!.currentPage)
+        
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -338,6 +352,14 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
         shadowImageView?.isHidden = true
     }
     
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if(tabBar.selectedItem == distanceTab) {
+            distancePressed()
+        } else if (tabBar.selectedItem == caloriesTab){
+            caloriesPressed()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -345,26 +367,33 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
     }
     
     func setChartData(currentPage: Int) {
-        self.currentWeekStart = self.weekIntervals[currentPage][0]
-        let z = self.weekKeys[currentPage]
-        var statValues = Array(repeating: 0, count: 7)
-        var labels = [""]
-        if let stats = self.stats?[selectedUnit] as? [Int] {
-            // stats not empty
-            for i in 0...6 {
-                switch z[i] {
-                case let x where x >= 0:
-                    statValues[i] = stats[x]
-                    labels.append("\n\(stats[x])")
-                default:
-                    // day not in statistics data base
-                    labels.append("\n-")
+        if userRoutesKeys.count != 0 {
+            self.currentWeekStart = self.weekIntervals[currentPage][0]
+            let z = self.weekKeys[currentPage]
+            var statValues = Array(repeating: 0, count: 7)
+            var labels = [""]
+            if let stats = self.stats?[selectedUnit] as? [Int] {
+                // stats not empty
+                for i in 0...6 {
+                    switch z[i] {
+                    case let x where x >= 0:
+                        statValues[i] = stats[x]
+                        labels.append("\n\(stats[x])")
+                    default:
+                        // day not in statistics data base
+                        labels.append("\n-")
+                    }
                 }
             }
+            let x = chartView.xAxis
+            x.valueFormatter = IndexAxisValueFormatter(values: labels)
+            self.chart(withData: [[1, statValues[0]], [2, statValues[1]], [3, statValues[2]], [4, statValues[3]], [5, statValues[4]], [6, statValues[5]], [7, statValues[6]]])
+        } else {
+            // everything zero because of no routes
+            let x = chartView.xAxis
+            x.valueFormatter = IndexAxisValueFormatter(values: ["","\n-","\n-","\n-","\n-","\n-","\n-","\n-"])
+            self.chart(withData: [[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]])
         }
-        let x = chartView.xAxis
-        x.valueFormatter = IndexAxisValueFormatter(values: labels)
-        self.chart(withData: [[1, statValues[0]], [2, statValues[1]], [3, statValues[2]], [4, statValues[3]], [5, statValues[4]], [6, statValues[5]], [7, statValues[6]]])
     }
     
     func statisticsDataBase() {

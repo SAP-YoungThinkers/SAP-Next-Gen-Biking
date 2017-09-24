@@ -12,7 +12,7 @@ class TermConditionsViewController: UIViewController {
         super.viewDidLoad()
 
         //Set text
-        termsConditionLabel.text = "termConditionHeader".localized
+        termsConditionLabel.text = NSLocalizedString("termTitle", comment: "")
 
         if let path = Bundle.main.path(forResource: "conditions", ofType: "txt") {
             if let content = try? String(contentsOfFile: path as String, encoding: String.Encoding.utf8) {

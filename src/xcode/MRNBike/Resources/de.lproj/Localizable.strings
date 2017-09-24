@@ -2,6 +2,7 @@
 "takeTourHeader"="Radle • Gewinne • Schütze";
 "takeTourDescription"="Mit unserer App trägst du dazu bei, Fahrradfahren für alle angenehmer zu machen. Erhalte Auszeichnungen für das Erreichen von Zielen und schone unsere Umwelt!";
 "startRidingButton"="Los geht's";
+"ErrorNoInternetConnection"="Bitte stellen Sie sicher, dass Ihr Handy über Internetzugriff verfügt.";
 //Take Tour Scene
 "start"="START";
 "takeTour"="Mache einen Rundgang";
@@ -59,24 +60,13 @@
 "dialogActionGotIt"="Verstanden!";
 
 //Term Scene
-"termConditionHeader"="Generic Terms and Conditions of MRN Bike mobile application";
-
-// The original repo contains the right terms and conditions
-"termConditionText"="Terms and Conditions (\"Terms\") Last updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this)  (\"us\", \"we\", or \"our\"). Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service. By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Links To Other Web Sites Our Service may contain links to third-party web sites or services that are not owned or controlled by  My Company (change this). My Company (change this)  has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that  My Company (change this)  shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services. Changes We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 3  0 (change this)  days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. Contact Us If you have any questions about these Terms, please contact us.";
-"agreeButton"="ICH STIMME ZU";
-"disagreeButton"="ICH LEHNE AB";
-
-"dismissConfDialogTitle"="Verwerfen";
-"dismissConfDialogMsg"="Wenn du den Nutzungsbedingungen nicht zustimmst, kannst du die App nicht verwenden und der aktuelle Fortschritt geht verloren. Bist du sicher?";
-
-"dialogActionNo"="Fortfahren";
-"termAlertAction"="Verwerfen";
+"termTitle"="AGB";
 
 //Tracking Scene
 "wheelRotation"="RADUMDREHUNGEN";
 "burgers"="BURGER";
 "distance"="DISTANZ";
-"co2Saved"="CO2 GESPART";
+"co2Saved"="CO2 GESPART (kg)";
 "saveRoute"="Route speichern";
 "dismiss"="Verwerfen";
 "reportLocation"="Stelle melden";
@@ -84,6 +74,7 @@
 "routeUploadDialogTitle"="Route hochladen";
 "routeUploadDialogMsgPositive"="Route erfolgreich hochgeladen";
 "routeUploadDialogMsgNegative"="Fehler beim Hochladen der Route";
+"errorLocationServicesNotALlowed"="Bitte stellen Sie sicher, dass diese App auf Ihren Standort zugreifen kann.";
 
 //Marks & Routes Scene
 "marksAndRoutesTitle"="Routen und Anmerkungen";
@@ -137,6 +128,17 @@
 "friendDeletedTitle"="Freundschaft beendet";
 "friendDeletedMsg"="Du hast die Freundschaft beendet!";
 
+"unassignGroupTitle"="Austreten";
+"unassignGroupMsg"="Du möchtest aus der Gruppe austreten?";
+
+"unassignedTitle"="Ausgetreten";
+"unassignedMsg"="Du hast die Gruppe verlassen.";
+
+"groupUpdatedTitle"="Gruppe aktualisiert";
+"groupUpdatedMsg"="Gruppeninformationen wurden aktualisiert!";
+
+"groupCreatedTitle"="Gruppe erstellt";
+"groupCreatedMsg"="Gruppe wurde erfolgreich erstellt!";
 
 //Social Scene
 "socialFriendsTitle"="Freunde & Gruppen";
@@ -150,4 +152,18 @@
 "addFriend"="Freund hinzufügen";
 "enterEmail"="E-Mail eingeben:";
 "emailPlaceholder"="E-Mail...";
-
+"groupDetailsTitle"="Gruppendetails";
+"groupName"="Name:";
+"journeyTime"="Startzeit:";
+"startLocation"="Treffpunkt:";
+"destination"="Zielort:";
+"description"="Beschreibung:";
+"memberList"="Teilnehmer:";
+"createGroupTitle"="Neue Gruppe";
+"groupNamePlaceholder"="Wochenendtour...";
+"timeLocationPlaceholder"="Freitag...";
+"groupStartLocationPlaceholder"="Basel...";
+"groupDestinationPlaceholder"="Mannheim...";
+"groupDescriptionPlaceholder"="Dieses Wochenende...";
+"addGroupMembersTitle"="Freunde hinzufügen";
+"privateGroup"="Private Gruppe:";

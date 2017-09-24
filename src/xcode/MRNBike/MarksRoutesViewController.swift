@@ -22,7 +22,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     var annotations : [RouteReport]? = [RouteReport]()
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     
-    // My Routes
+    //My Routes
     var userRoutes : [String: Any]? = nil
     var userRoutesKeys = [Int]()
 
@@ -38,8 +38,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                 self.myRoutesList.frame.size = CGSize(width: sizes.width, height: CGFloat(self.minSize))
                 self.myRoutesList.layoutIfNeeded()
             })
-        }
-        else {
+        } else {
             // maximize
             let yPos = myRoutesList.frame.origin.y
             let sizes = myRoutesList.frame.size
@@ -155,7 +154,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             userRoutesKeys.append(contentsOf: keys)
             userRoutesKeys.sort(by: >)
         }
-        print(userRoutesKeys)
         
         // request and handling
         if(userRoutesKeys.count != 0) {
@@ -169,85 +167,99 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
             present(activityAlert, animated: false, completion: nil)
             
-            do {
+            if !(Reachability.isConnectedToNetwork()) {
+                // no Internet connection
                 
-                let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
-                
-                ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
-                    
-                    if error == nil {
-                        
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        self.userRoutes = routes
-                        
-                        // not asynchronous because of handling (see below)!
-                        self.myRoutesTable.reloadData()
-                        
-                        // create each route (with sorted keys)
-                        for key in self.userRoutesKeys {
-                            
-                            var coorArray = [CLLocationCoordinate2D]()
-                            var isFirstPoint = true
-                            var minDate2 = Date()
-                            var maxDate = Date()
-                            var cc = CLLocationCoordinate2D()
-                            var ct = String()
-                            
-                            // for every point in that sorted array
-                            for obj in ((self.userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                                return self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-                            })) {
-                                coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
-                                if(isFirstPoint) {
-                                    // create annotation at first point of each route
-                                    cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
-                                    minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
-                                    ct = obj["timestamp"] as! String
-                                }
-                                isFirstPoint = false
-                                maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
-                            }
-                            let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
-                            let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
-                            self.mapView.addAnnotation(pin)
-                            let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
-                            x.title = String(key)
-                            self.mapView.add(x)
-                            
-                        }
-                        
-                        // zoom out to everything
-                        var firstRect = MKMapRectNull
-                        for overlay in self.mapView.overlays {
-                            firstRect = MKMapRectUnion(firstRect, overlay.boundingMapRect)
-                        }
-                        self.mapView.setVisibleMapRect(firstRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
-                        
-                        // set first as selected
-                        let currentPath = IndexPath(row: 0, section: 0)
-                        self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
-                        
-                        
-                    } else {
-                        
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
-                        
-                        //An error occured in the app
-                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                    }
-                }
-            } catch {
                 //Dismiss activity indicator
-                activityAlert.dismiss(animated: false, completion: nil)
+                activityAlert.dismiss(animated: false) {
+                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                }
                 
-                //An error occured in the app
-                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+            } else {
+                
+                // good internet
+                do {
+                    
+                    let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
+                    
+                    ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
+                        
+                        if error == nil {
+                            
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            self.userRoutes = routes
+                            
+                            // not asynchronous because of handling (see below)!
+                            self.myRoutesTable.reloadData()
+                            
+                            // create each route (with sorted keys)
+                            for key in self.userRoutesKeys {
+                                
+                                var coorArray = [CLLocationCoordinate2D]()
+                                var isFirstPoint = true
+                                var minDate2 = Date()
+                                var maxDate = Date()
+                                var cc = CLLocationCoordinate2D()
+                                var ct = String()
+                                
+                                // for every point in that sorted array
+                                for obj in ((self.userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
+                                    return self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
+                                })) {
+                                    coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
+                                    if(isFirstPoint) {
+                                        // create annotation at first point of each route
+                                        cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
+                                        minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                                        ct = obj["timestamp"] as! String
+                                    }
+                                    isFirstPoint = false
+                                    maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                                }
+                                let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
+                                let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
+                                self.mapView.addAnnotation(pin)
+                                let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
+                                x.title = String(key)
+                                self.mapView.add(x)
+                                
+                            }
+                            
+                            // zoom out to everything
+                            var firstRect = MKMapRectNull
+                            for overlay in self.mapView.overlays {
+                                firstRect = MKMapRectUnion(firstRect, overlay.boundingMapRect)
+                            }
+                            self.mapView.setVisibleMapRect(firstRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
+                            
+                            // set first as selected
+                            let currentPath = IndexPath(row: 0, section: 0)
+                            self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
+                            
+                            
+                        } else {
+                            
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    }
+                } catch {
+                    //Dismiss activity indicator
+                    activityAlert.dismiss(animated: false, completion: nil)
+                    
+                    //An error occured in the app
+                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                }
+                
             }
-            }
-            else {
-                print("no own routes.")
-            }
+            
+
+        } else {
+            print("no own routes.")
+        }
 
     }
 
@@ -287,53 +299,65 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
 
-        //Update annotations
-        ClientService.getReports { (result, error) in
-
-            if error == nil {
-
-                if let reports = result?["records"] as? [[String: AnyObject]] {
-
-                    var description : String
-                    var type : String
-                    var lat : String
-                    var long : String
-                    var latitude : Double
-                    var longitude : Double
-                    var pin : RouteReport
-
-                    for report in reports {
-                        description = (report["description"] as? String)!
-                        type = (report["type"] as? String)!
-                        lat = (report["latitude"] as? String)!
-                        long = (report["longitude"] as? String)!
-
-                        latitude = Double(lat)!
-                        longitude = Double(long)!
-
-                        pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-                        self.annotations?.append(pin)
+        
+        if !(Reachability.isConnectedToNetwork()) {
+            // no Internet connection
+            
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+            
+        } else {
+            
+            //Update annotations
+            ClientService.getReports { (result, error) in
+                
+                if error == nil {
+                    
+                    if let reports = result?["records"] as? [[String: AnyObject]] {
+                        
+                        var description : String
+                        var type : String
+                        var lat : String
+                        var long : String
+                        var latitude : Double
+                        var longitude : Double
+                        var pin : RouteReport
+                        
+                        for report in reports {
+                            description = (report["description"] as? String)!
+                            type = (report["type"] as? String)!
+                            lat = (report["latitude"] as? String)!
+                            long = (report["longitude"] as? String)!
+                            
+                            latitude = Double(lat)!
+                            longitude = Double(long)!
+                            
+                            pin = RouteReport(title: type, message: description, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                            self.annotations?.append(pin)
+                        }
+                        
+                        self.mapView.addAnnotations(self.annotations!)
+                        
+                        //Dismiss activity indicator
+                        //activityAlert.dismiss(animated: false, completion: nil)
+                        
+                        //center map around points
+                        let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
+                        self.mapView.setRegion(region, animated: true)
                     }
-
-                    self.mapView.addAnnotations(self.annotations!)
-
+                } else {
                     //Dismiss activity indicator
                     //activityAlert.dismiss(animated: false, completion: nil)
-
-                    //center map around points
-                    let region = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: self.config.zoomLevel, longitudeDelta: self.config.zoomLevel))
-                    self.mapView.setRegion(region, animated: true)
-                }
-            } else {
-                //Dismiss activity indicator
-                //activityAlert.dismiss(animated: false, completion: nil)
-
-                //An error occured in the app
-                DispatchQueue.main.async {
-                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    
+                    //An error occured in the app
+                    DispatchQueue.main.async {
+                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                    }
                 }
             }
+            
         }
+        
+
     }
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

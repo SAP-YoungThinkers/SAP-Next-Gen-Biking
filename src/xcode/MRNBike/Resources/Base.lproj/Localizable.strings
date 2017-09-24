@@ -2,6 +2,7 @@
 "takeTourHeader"="Ride • Award • Protect";
 "takeTourDescription"="With our App you will not only ride bike for yourself, but even to make riding more comfortable for all of us. Award by reaching goals, protect our enironment!";
 "startRidingButton"="START RIDING";
+"ErrorNoInternetConnection"="Please make sure your phone is connected to the internet!";
 //Take Tour Scene
 "start"="START";
 "takeTour"="TAKE THE TOUR";
@@ -59,23 +60,13 @@
 "dialogActionGotIt"="Got it!";
 
 //Term Scene
-"termConditionHeader"="Terms & Conditions";
-"termConditionText"="Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobile application (the \"Service\") operated by  My Company (change this) Terms and Conditions (\"Terms\") \nLast updated:  (add date) Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the ) websiteandtheM yMobileApp(change this) mobil";
-
-"agreeButton"="I AGREE";
-"disagreeButton"="I DISAGREE";
-
-"dismissConfDialogTitle"="Dismiss conformation";
-"dismissConfDialogMsg"="If you disagree with the terms and conditions, you can't continue working with the app and your current progress will be lost. Are you sure about this?";
-
-"dialogActionNo"="No";
-"termAlertAction"="Dismiss";
+"termTitle"="Terms & Conditions";
 
 //Tracking Scene
 "wheelRotation"="WHEEL ROTATIONS";
 "burgers"="BURGERS";
 "distance"="DISTANCE";
-"co2Saved"="CO2 SAVED";
+"co2Saved"="CO2 SAVED (kg)";
 "saveRoute"="Save Route";
 "dismiss"="Dismiss";
 "reportLocation"="Report Location";
@@ -83,6 +74,7 @@
 "routeUploadDialogTitle"="Route Upload";
 "routeUploadDialogMsgPositive"="Route uploaded successfully.";
 "routeUploadDialogMsgNegative"="Uploading route failed.";
+"errorLocationServicesNotALlowed"="Please allow and enable location service, otherwise we cannot record your tracking!";
 
 //Marks & Routes Scene
 "marksAndRoutesTitle"="Marks & Routes";
@@ -135,6 +127,18 @@
 "friendDeletedTitle"="Friend deleted";
 "friendDeletedMsg"="Friend was successfully deleted.";
 
+"unassignGroupTitle"="Unassign";
+"unassignGroupMsg"="Are you sure you want to unassign?";
+
+"unassignedTitle"="Unassigned";
+"unassignedMsg"="You left the group.";
+
+"groupUpdatedTitle"="Group Updated";
+"groupUpdatedMsg"="Group was successfully updated!";
+
+"groupCreatedTitle"="Group Created";
+"groupCreatedMsg"="Group was successfully created!";
+
 //Social Scene
 "socialFriendsTitle"="Social";
 "frindsTabBarItem"="FRIENDS";
@@ -147,6 +151,18 @@
 "addFriend"="Add Friend";
 "enterEmail"="Enter email:";
 "emailPlaceholder"="email...";
-
-
-
+"groupDetailsTitle"="Group Details";
+"groupName"="Name:";
+"journeyTime"="Start Time:";
+"startLocation"="Start Location:";
+"destination"="Destination:";
+"description"="Description:";
+"memberList"="Memberlist:";
+"createGroupTitle"="Create Group";
+"groupNamePlaceholder"="Weekend tour...";
+"timeLocationPlaceholder"="Friday...";
+"groupStartLocationPlaceholder"="New York...";
+"groupDestinationPlaceholder"="San Diego...";
+"groupDescriptionPlaceholder"="This weekend...";
+"addGroupMembersTitle"="Add Friends";
+"privateGroup"="Private Group:";
