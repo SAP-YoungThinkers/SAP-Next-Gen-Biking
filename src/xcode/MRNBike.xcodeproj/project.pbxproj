@@ -57,7 +57,6 @@
 		491EC51B1DE441430077BF82 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC51A1DE441430077BF82 /* MapKit.framework */; };
 		4E044F431F6EC60D00AAD861 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */; };
 		4E046DDA1EFC77F100187B23 /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E046DD91EFC77F100187B23 /* Routes.storyboard */; };
-		4E0D16251F745F9D0028344D /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E0D16241F745F9D0028344D /* Credentials.json */; };
 		4E209F6E1F534E9700A4773B /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */; };
 		4E5657DA1F6D1036007032BD /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5657D91F6D1036007032BD /* GroupMember.swift */; };
 		4E578A7C1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */; };
@@ -76,6 +75,7 @@
 		4EE308081F706A3300E084EC /* AddGroupMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308071F706A3300E084EC /* AddGroupMemberTableViewCell.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
+		A6A706E81F792DF100C71162 /* Credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = A6A706E71F792DF100C71162 /* Credentials.json */; };
 		D20CB72B1EBE25930029007C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CB72A1EBE25930029007C /* TabBarViewController.swift */; };
 		D25AB5F41F65395D0046D220 /* AddFriendPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */; };
 		D25F5ACE1EAFF5C900850388 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25F5ACD1EAFF5C900850388 /* Home.storyboard */; };
@@ -143,7 +143,6 @@
 		493173F51DEDA5D2007D4A74 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		4E046DD91EFC77F100187B23 /* Routes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
-		4E0D16241F745F9D0028344D /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credentials.json; sourceTree = "<group>"; };
 		4E209F6D1F534E9700A4773B /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4E5657D91F6D1036007032BD /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
 		4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMemberTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +161,7 @@
 		4EE308071F706A3300E084EC /* AddGroupMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupMemberTableViewCell.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		A6A706E71F792DF100C71162 /* Credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Credentials.json; path = MRNBike/Credentials.json; sourceTree = SOURCE_ROOT; };
 		BAE0D720096135AB1467DB8D /* Pods-MRNBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRNBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRNBike/Pods-MRNBike.release.xcconfig"; sourceTree = "<group>"; };
 		D20CB72A1EBE25930029007C /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Resources/TabBarViewController.swift; sourceTree = "<group>"; };
 		D25AB5F31F65395D0046D220 /* AddFriendPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendPopupViewController.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 				0137F14D1EA2778100FCA949 /* InfoPlist.strings */,
 				0137F15A1EA2778100FCA949 /* Localizable.strings */,
 				017A79B01EE6DE8A00AA5588 /* conditions.txt */,
-				4E0D16241F745F9D0028344D /* Credentials.json */,
+				A6A706E71F792DF100C71162 /* Credentials.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -502,7 +502,7 @@
 				0137F1741EA2778100FCA949 /* Localizable.strings in Resources */,
 				0137F1791EA2778100FCA949 /* ConfigList.plist in Resources */,
 				019FF7191EE817A90061F8B7 /* Launch Screen.storyboard in Resources */,
-				4E0D16251F745F9D0028344D /* Credentials.json in Resources */,
+				A6A706E81F792DF100C71162 /* Credentials.json in Resources */,
 				37B601F31EB0B68000870844 /* Montserrat-Black.otf in Resources */,
 				37B601F91EB0B68000870844 /* Montserrat-Regular.otf in Resources */,
 				37B601FB1EB0B68000870844 /* Montserrat-Thin.otf in Resources */,
