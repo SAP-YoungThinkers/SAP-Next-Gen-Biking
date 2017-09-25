@@ -27,6 +27,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
+        friendsTableView.contentInset = UIEdgeInsets(top: 15,left: 0,bottom: 0,right: 0)
         
         loadFriends()
         

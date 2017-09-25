@@ -26,6 +26,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        groupTableView.contentInset = UIEdgeInsets(top: 15,left: -10,bottom: 0,right: -5)
         
         loadGroups()
         

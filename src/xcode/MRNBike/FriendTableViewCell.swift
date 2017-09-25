@@ -21,9 +21,9 @@ class FriendTableViewCell: UITableViewCell {
                 return
             }
         }
-        
+    
         friendImage.layer.cornerRadius = friendImage.bounds.height / 2
-        //friendImage.clipsToBounds = true
+        friendImage.clipsToBounds = true
         friendImage.borderWidth = 1
         friendImage.borderColor = UIColor(hexString: orangeColor)
     }
@@ -33,5 +33,4 @@ class FriendTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
