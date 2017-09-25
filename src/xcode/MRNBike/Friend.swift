@@ -4,7 +4,7 @@ class Friend {
     
     //MARK: Properties
     
-    var eMail: String
+    var email: String
     var firstname: String
     var lastname: String
     var photo: Data? // as JPEG data stream of UIImage
@@ -13,7 +13,7 @@ class Friend {
     
     init?(email: String, firstname: String, lastname: String, photo: Data) {
         // Initialize stored properties.
-        self.eMail = email
+        self.email = email
         self.firstname = firstname
         self.lastname = lastname
         self.photo = photo

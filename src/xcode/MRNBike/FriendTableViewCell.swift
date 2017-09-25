@@ -9,7 +9,23 @@ class FriendTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        //Read ConfigList.plist
+        var orangeColor = String()
+        if let url = Bundle.main.url(forResource:"ConfigList", withExtension: "plist") {
+            do {
+                let data = try Data(contentsOf:url)
+                let swiftDictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                orangeColor = swiftDictionary["orange"] as! String
+            } catch {
+                return
+            }
+        }
+        
+        friendImage.layer.cornerRadius = friendImage.bounds.height / 2
+        //friendImage.clipsToBounds = true
+        friendImage.borderWidth = 1
+        friendImage.borderColor = UIColor(hexString: orangeColor)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

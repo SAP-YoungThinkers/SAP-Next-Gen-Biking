@@ -835,7 +835,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lk8-tz-v6K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lk8-tz-v6K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

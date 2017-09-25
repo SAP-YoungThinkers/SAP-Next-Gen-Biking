@@ -9,6 +9,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(FriendListViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -88,10 +89,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     // no Internet connection
                     self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
                 } else {
-                    //Put your delete code here!
-                    ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].eMail, completion: { (httpCode, error) in
+                    ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].email, completion: { (httpCode, error) in
                         if error == nil {
                             if(httpCode == 200) {
+                                self.friends.remove(at: indexPath.row)
+                                tableView.deleteRows(at: [indexPath], with: .automatic)
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: "")), animated: true, completion: nil)
                             } else {
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -100,8 +102,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     })
-                    self.friends.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
             }))
             
