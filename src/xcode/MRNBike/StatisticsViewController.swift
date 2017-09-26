@@ -372,13 +372,13 @@ class StatisticsViewController: UIViewController, UITabBarDelegate {
             let z = self.weekKeys[currentPage]
             var statValues = Array(repeating: 0, count: 7)
             var labels = [""]
-            if let stats = self.stats?[selectedUnit] as? [Int] {
+            if let stats = self.stats?[selectedUnit] as? [Double] {
                 // stats not empty
                 for i in 0...6 {
                     switch z[i] {
                     case let x where x >= 0:
-                        statValues[i] = stats[x]
-                        labels.append("\n\(stats[x])")
+                        statValues[i] = Int(stats[x])
+                        labels.append("\n\(Int(stats[x]))")
                     default:
                         // day not in statistics data base
                         labels.append("\n-")
