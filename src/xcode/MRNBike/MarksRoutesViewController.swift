@@ -65,6 +65,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
 
         topBar.delegate = self
         topBar.selectedItem = routeInformation
+        self.navigationItem.rightBarButtonItem?.isEnabled = true;
 
         //Mark: - Authorization
         locationManager.delegate = self
@@ -133,9 +134,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         if(topBar.selectedItem == myRoutes) {
             // MY ROUTES
             myRoutesContent()
+            self.navigationItem.rightBarButtonItem?.isEnabled = false;
         } else {
             // ROUTES INFORMATION
             routesInfoContent()
+            self.navigationItem.rightBarButtonItem?.isEnabled = true;
         }
     }
 
@@ -366,12 +369,12 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         if(topBar.selectedItem == myRoutes) {
             // MY ROUTES
             myRoutesContent()
-
+            self.navigationItem.rightBarButtonItem?.isEnabled = false;
 
         } else {
             // ROUTES INFORMATION
             routesInfoContent()
-
+            self.navigationItem.rightBarButtonItem?.isEnabled = true;
         }
 
     }
