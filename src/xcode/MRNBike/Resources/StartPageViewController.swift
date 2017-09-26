@@ -1,9 +1,25 @@
 import UIKit
 
-class StartPageViewController: UIViewController {
+class StartPageViewController: UIViewController, PushViewControllerDelegate {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var takeTourButton: UIButton!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tourModal" {
+            let controller = segue.destination as! TourViewController
+            controller.delegate = self
+        }
+    }
+    
+    func dismissViewController(_ controller: UIViewController) {
+        print("function wurde aufgerufen")
+        controller.dismiss(animated: true) { () -> Void in
+            // push to login
+            self.performSegue(withIdentifier: "fromStartToLogin", sender: nil)
+            print("\n\n\n\n\nyes it worked!!!!!\n\n\n\n\n")
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,9 +42,6 @@ class StartPageViewController: UIViewController {
         
         if rememberMe == "no" {
             let controller = TourViewController()
-            controller.startRidingAction = {
-                self.performSegue(withIdentifier: "segSignIn", sender: self)
-            }
         } else {
             // user exists
             if let userMail = KeychainService.loadEmail() as String? {

@@ -1,14 +1,19 @@
 
 import UIKit
 
+protocol PushViewControllerDelegate: class {
+    func dismissViewController(_ controller: UIViewController)
+}
+
 class TourViewController: UIViewController {
-    var startRidingAction: (() -> ())?
     
-   /* @IBAction func startRidingPressed(_ sender: Any) {
-        startRidingAction?()
-        self.close()
-  }*/
-    
+    var delegate: PushViewControllerDelegate!
+    @IBAction func startRidingPressed(_ sender: UIButton) {
+        print("pressed.....")
+        if self.delegate != nil {
+            self.delegate.dismissViewController(self)
+        }
+    }
     
     @IBOutlet weak var wv: UIWebView!
     @IBOutlet weak var startRidingButton: UIButton!
@@ -37,4 +42,9 @@ class TourViewController: UIViewController {
     }
     
     
+}
+
+
+protocol View1Delegate: class {
+    func dismissViewController(controller: UIViewController)
 }
