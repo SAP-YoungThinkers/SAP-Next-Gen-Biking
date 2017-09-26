@@ -109,12 +109,6 @@
 "userUpdatedDialogTitle"="Profile Updated";
 "userUpdatedDialogMsg"="Profile was successfully updated!";
 
-"noFriendsDialogTitle"="No friends found";
-"noFriendsDialogMsg"="Please add friends!";
-
-"noGroupsDialogTitle"="No groups found";
-"noGroupsDialogMsg"="Create your own group!";
-
 "addedSuccessfullyTitle"="Success";
 "addedSuccessfulyMsg"="Friend has been added successfully.";
 
@@ -164,7 +158,7 @@
 "groupStartLocationPlaceholder"="New York...";
 "groupDestinationPlaceholder"="San Diego...";
 "groupDescriptionPlaceholder"="This weekend...";
-"addGroupMembersTitle"="Add Friends";
+"addGroupMembersTitle"="Add Friends:";
 "privateGroup"="Private Group:";
 "selectMembers"="Select Members:";
 "segmentShowMemberTitle"="Show";

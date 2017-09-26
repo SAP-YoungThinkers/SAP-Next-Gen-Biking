@@ -192,12 +192,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
                         if error == ClientServiceError.notFound {
                             //Dismiss activity indicator
                             activityAlert.dismiss(animated: false, completion: nil)
-                            /*
-                             //No groups found
-                             DispatchQueue.main.async {
-                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noGroupsDialogTitle", comment: ""), message: NSLocalizedString("noGroupsDialogMsg", comment: "")), animated: true, completion: nil)
-                             }
-                             */
+                            
                         } else {
                             //Dismiss activity indicator
                             activityAlert.dismiss(animated: false, completion: nil)

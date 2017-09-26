@@ -110,12 +110,6 @@
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
 
-"noFriendsDialogTitle"="Keine Freunde gefunden";
-"noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
-
-"noGroupsDialogTitle"="Keine Gruppen gefunden";
-"noGroupsDialogMsg"="Erstelle deine eigene Gruppe!";
-
 "addedSuccessfullyTitle"="Hinzufügen erfolgreich";
 "addedSuccessfulyMsg"="Ein neuer Freund wurde hinzugefügt.";
 
@@ -149,7 +143,7 @@
 "yes"="Ja";
 "cancel"="Abbrechen";
 "add"="Adden";
-"addFriend"="Freund hinzufügen";
+"addFriend"="Freunde hinzufügen:";
 "enterEmail"="E-Mail eingeben:";
 "emailPlaceholder"="E-Mail...";
 "groupDetailsTitle"="Gruppendetails";
