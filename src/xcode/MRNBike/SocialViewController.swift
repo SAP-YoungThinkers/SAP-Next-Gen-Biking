@@ -16,6 +16,8 @@ class SocialViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        
         //Set text
         self.navigationItem.title = NSLocalizedString("socialFriendsTitle", comment: "")
         friendsBarItem.title = NSLocalizedString("frindsTabBarItem", comment: "")

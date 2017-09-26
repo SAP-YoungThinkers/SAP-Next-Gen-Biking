@@ -63,6 +63,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationItem.title = NSLocalizedString("groupDetailsTitle", comment: "")
         
         groupNameLabel.text = NSLocalizedString("groupName", comment: "")
+        timeLabel.text = NSLocalizedString("journeyTime", comment: "")
         startLocationLabel.text = NSLocalizedString("startLocation", comment: "")
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
@@ -123,9 +124,11 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Delegate for hiding keyboard
         groupNameTextfield.delegate = self
+        timeTextfield.delegate = self
         startLocationTextfield.delegate = self
         destinationTextfield.delegate = self
         descriptionTextview.delegate = self
+        
         
         //Hide Keyboard Extension
         self.hideKeyboardWhenTappedAround()
@@ -337,7 +340,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             
             do {
                 let id = group?.id
-                let data : [String: Any] = ["groupId": id!, "name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup]
+                let data : [String: Any] = ["groupId": id!, "name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup, "members": friendsSelected]
                 
                 jsonData = try JSONSerialization.data(withJSONObject: data)
             } catch {
