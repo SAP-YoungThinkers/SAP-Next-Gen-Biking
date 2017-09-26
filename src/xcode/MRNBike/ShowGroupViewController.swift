@@ -38,8 +38,27 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set friend list and group member list
         let user = User.getUser()
         friends = user.friendList
+        groupMembers = (group?.members)!
+        
+        //Remove already group members from local friendlist to avoid duplicates
+        var seen = Set<String>()
+        var unique = [Friend]()
+        
+        for member in groupMembers {
+            seen.insert(member.email)
+        }
+        
+        for friend in friends {
+            if !seen.contains(friend.email) {
+                unique.append(friend)
+                seen.insert(friend.email)
+            }
+        }
+        
+        friends = unique
         
         self.navigationItem.title = NSLocalizedString("groupDetailsTitle", comment: "")
         
@@ -117,8 +136,6 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         destinationTextfield.addTarget(self, action:#selector(ShowGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         privateGroupSwitch.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
         
-        groupMembers = (group?.members)!
-        
         //Read ConfigList.plist
         if let url = Bundle.main.url(forResource:"ConfigList", withExtension: "plist") {
             do {
@@ -129,6 +146,29 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                 return
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+  
+        let user = User.getUser()
+        friends = user.friendList
+        //Remove already group members from local friendlist to avoid duplicates
+        var seen = Set<String>()
+        var unique = [Friend]()
+        
+        for member in groupMembers {
+            seen.insert(member.email)
+        }
+        
+        for friend in friends {
+            if !seen.contains(friend.email) {
+                unique.append(friend)
+                seen.insert(friend.email)
+            }
+        }
+        
+        friends = unique
     }
     
     //Check if inputs are syntactically valid
@@ -282,6 +322,15 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             
             if privateGroupSwitch.isOn {
                 privateGroup = 1
+            }
+            
+            var friendsSelected = [String]()
+            
+            if addFriendsTable.indexPathsForSelectedRows != nil {
+                let selectedRows = addFriendsTable.indexPathsForSelectedRows
+                for indexPath in selectedRows! {
+                    friendsSelected.append(friends[indexPath.row].email)
+                }
             }
             
             var jsonData = Data()

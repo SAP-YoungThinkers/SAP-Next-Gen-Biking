@@ -110,6 +110,14 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let user = User.getUser()
+        friends = user.friendList
+    }
+
+    
     //Check if inputs are syntactically valid
     func checkInput() {
         var valid = false
