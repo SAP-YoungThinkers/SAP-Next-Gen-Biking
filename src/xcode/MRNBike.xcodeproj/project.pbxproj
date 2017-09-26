@@ -71,7 +71,6 @@
 		4EAF10B61F531F410000B70D /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B51F531F410000B70D /* SocialViewController.swift */; };
 		4EAF10B81F5323300000B70D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF10B71F5323300000B70D /* Friend.swift */; };
 		4EDDE2551F10DA9E00AFB0FA /* UIAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */; };
-		4EE308061F70609300E084EC /* AddGroupMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308051F70609300E084EC /* AddGroupMemberViewController.swift */; };
 		4EE308081F706A3300E084EC /* AddGroupMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308071F706A3300E084EC /* AddGroupMemberTableViewCell.swift */; };
 		4EE64FA41F04579E00758004 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA31F04579E00758004 /* SessionFactory.swift */; };
 		4EE64FA61F04583A00758004 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE64FA51F04583A00758004 /* ClientService.swift */; };
@@ -157,7 +156,6 @@
 		4EAF10B51F531F410000B70D /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		4EAF10B71F5323300000B70D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		4EDDE2541F10DA9E00AFB0FA /* UIAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertCreator.swift; sourceTree = "<group>"; };
-		4EE308051F70609300E084EC /* AddGroupMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupMemberViewController.swift; sourceTree = "<group>"; };
 		4EE308071F706A3300E084EC /* AddGroupMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupMemberTableViewCell.swift; sourceTree = "<group>"; };
 		4EE64FA31F04579E00758004 /* SessionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		4EE64FA51F04583A00758004 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
@@ -391,7 +389,6 @@
 				4E5657D91F6D1036007032BD /* GroupMember.swift */,
 				4E578A7B1F6E7E1900BA3189 /* GroupMemberTableViewCell.swift */,
 				4E044F421F6EC60D00AAD861 /* CreateGroupViewController.swift */,
-				4EE308051F70609300E084EC /* AddGroupMemberViewController.swift */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -579,7 +576,6 @@
 			files = (
 				10B9D4D31EC6144100CC7027 /* TourViewController.swift in Sources */,
 				108D1CC71F2569E100023F2D /* CreateProfileController.swift in Sources */,
-				4EE308061F70609300E084EC /* AddGroupMemberViewController.swift in Sources */,
 				0137F16C1EA2778100FCA949 /* Configurator.swift in Sources */,
 				D29A94671ED0D06E002F619D /* HomeViewController.swift in Sources */,
 				4E7DEA471F6AF2C400FB5C6E /* ShowGroupViewController.swift in Sources */,

@@ -187,7 +187,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "AddFriendTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
@@ -211,6 +210,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         return cell
     }
     
+    //Get friend list from user
     private func loadFriends() {
         
         if let userMail = KeychainService.loadEmail() as String? {

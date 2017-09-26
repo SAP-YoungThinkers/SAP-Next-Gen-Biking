@@ -168,3 +168,5 @@
 "addGroupMembersTitle"="Freunde hinzufügen";
 "privateGroup"="Private Gruppe:";
 "selectMembers"="Mitglieder auswählen:";
+"segmentShowMemberTitle"="Anzeigen";
+"segmentAddMemberTitle"="Hinzufügen";

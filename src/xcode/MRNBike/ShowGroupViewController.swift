@@ -3,9 +3,14 @@ import UIKit
 class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
     //MARK: Properties
+    //Tables
     @IBOutlet weak var groupMemberTableView: UITableView!
+    @IBOutlet weak var addFriendsTable: UITableView!
+    
+    //Buttons and other controls
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var privateGroupSwitch: UISwitch!
+    @IBOutlet weak var changeTableSegment: UISegmentedControl!
     
     //Label
     @IBOutlet weak var groupNameLabel: UILabel!
@@ -14,7 +19,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var privateGroupLabel: UILabel!
-    @IBOutlet weak var membersLabel: UILabel!
+    @IBOutlet weak var addMemberLabel: UILabel!
     
     //Textfields, textview
     @IBOutlet weak var groupNameTextfield: UITextField!
@@ -25,11 +30,16 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var group: Group?
     var groupMembers = [GroupMember]()
+    var friends = [Friend]()
     var datePickerValue = Date()
+    var orangeColor = String()
+    var greyColor = String()
     
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadFriends()
         
         self.navigationItem.title = NSLocalizedString("groupDetailsTitle", comment: "")
         
@@ -38,7 +48,9 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
         privateGroupLabel.text = NSLocalizedString("privateGroup", comment: "")
-        membersLabel.text = NSLocalizedString("memberList", comment: "")
+        addMemberLabel.text = NSLocalizedString("memberList", comment: "")
+        changeTableSegment.setTitle(NSLocalizedString("segmentShowMemberTitle", comment: ""), forSegmentAt: 0)
+        changeTableSegment.setTitle(NSLocalizedString("segmentAddMemberTitle", comment: ""), forSegmentAt: 1)
         
         groupNameTextfield.text = group?.name
         timeTextfield.text = group?.datum
@@ -54,14 +66,14 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         let inte = Int((group?.datum)!)
         let timeInterval = Double(inte!)
         let date = Date(timeIntervalSince1970: timeInterval)
- 
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.short
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+02")
         timeTextfield.text = dateFormatter.string(from: date)
         datePickerValue = date
- 
+        
         groupNameTextfield.textColor = UIColor.lightGray
         timeTextfield.textColor = UIColor.lightGray
         startLocationTextfield.textColor = UIColor.lightGray
@@ -78,12 +90,19 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             descriptionTextview.isUserInteractionEnabled = false
             saveButton.tintColor = UIColor.clear
             privateGroupSwitch.isEnabled = false
+            changeTableSegment.isEnabled = false
         }
         
+        //Tables
         groupMemberTableView.dataSource = self
         groupMemberTableView.delegate = self
+        addFriendsTable.dataSource = self
+        addFriendsTable.delegate = self
+        addFriendsTable.isHidden = true
+        addFriendsTable.allowsMultipleSelectionDuringEditing = true;
+        addFriendsTable.setEditing(true, animated: false)
         
-        // delegate for hiding keyboard
+        //Delegate for hiding keyboard
         groupNameTextfield.delegate = self
         startLocationTextfield.delegate = self
         destinationTextfield.delegate = self
@@ -99,6 +118,18 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         privateGroupSwitch.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
         
         groupMembers = (group?.members)!
+        
+        //Read ConfigList.plist
+        if let url = Bundle.main.url(forResource:"ConfigList", withExtension: "plist") {
+            do {
+                let data = try Data(contentsOf:url)
+                let swiftDictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                orangeColor = swiftDictionary["orange"] as! String
+                greyColor = swiftDictionary["greyBackground"] as! String
+            } catch {
+                return
+            }
+        }
     }
     
     //Check if inputs are syntactically valid
@@ -163,32 +194,150 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         timeTextfield.text = dateFormatter.string(from: sender.date)
         datePickerValue = sender.date
     }
-        
+    
     //MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupMembers.count
+        if tableView == self.groupMemberTableView {
+            return groupMembers.count
+        } else {
+            return friends.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "GroupMemberTableViewCell"
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GroupMemberTableViewCell  else {
-            fatalError("Fatal Error")
+        if tableView == self.groupMemberTableView {
+            let cellIdentifier = "GroupMemberTableViewCell"
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GroupMemberTableViewCell  else {
+                fatalError("Fatal Error")
+            }
+            
+            let group = groupMembers[indexPath.row]
+            
+            let name = group.firstname + ", " + group.lastname
+            cell.groupMemberLabel.text = name
+            
+            return cell
+        } else {
+            let cellIdentifier = "AddFriendTableViewCell"
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
+                fatalError("Fatal Error")
+            }
+            
+            // Fetches the appropriate friend for the data source layout.
+            let friend = friends[indexPath.row]
+            
+            cell.firstnameLabel.text = friend.firstname
+            cell.lastnameLabel.text = friend.lastname
+            
+            //Set user image
+            if let image = friend.photo {
+                let img = UIImage(data: image)
+                cell.friendImage.image = img
+            }
+            
+            cell.tintColor = UIColor(hexString: orangeColor)
+            
+            return cell
         }
+    }
+    
+    //Get friend list from user
+    private func loadFriends() {
         
-        let group = groupMembers[indexPath.row]
-        
-        let name = group.firstname + ", " + group.lastname
-        cell.groupMemberLabel.text = name
-        
-        return cell
+        if let userMail = KeychainService.loadEmail() as String? {
+            
+            if !(Reachability.isConnectedToNetwork()) {
+                // no Internet connection
+                self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+            } else {
+                //Show activity indicator
+                let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
+                present(activityAlert, animated: false, completion: nil)
+                
+                ClientService.getFriendList(mail: userMail, completion: { (data, error) in
+                    if error == nil {
+                        
+                        //Clear friends array
+                        self.friends.removeAll()
+                        
+                        guard let responseData = data else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            //An error occured
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            return
+                        }
+                        
+                        //Construct friends array
+                        if let friendList = responseData["friendList"] as? [[String: AnyObject]] {
+                            for friend in friendList {
+                                
+                                var img: Data?
+                                if let image = friend["image"] as? String {
+                                    img = Data(base64Encoded: image)
+                                }
+                                
+                                guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: img!) else {
+                                    
+                                    activityAlert.dismiss(animated: false, completion: nil)
+                                    //An error occured
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                    return
+                                }
+                                self.friends.append(friendEntity)
+                            }
+                        }
+                        
+                        self.addFriendsTable.reloadData()
+                        //Dismiss activity indicator
+                        activityAlert.dismiss(animated: false, completion: nil)
+                    } else {
+                        if error == ClientServiceError.notFound {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            DispatchQueue.main.async {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noFriendsDialogTitle", comment: ""), message: NSLocalizedString("noFriendsDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
+                        } else {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            DispatchQueue.main.async {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
+                        }
+                    }
+                })
+            }
+        }
     }
     
     //MARK: Actions
+    //Switch tables action
+    @IBAction func indexChangedSegment(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex
+        {
+        case 0:
+            groupMemberTableView.isHidden = false
+            addFriendsTable.isHidden = true
+        case 1:
+            groupMemberTableView.isHidden = true
+            addFriendsTable.isHidden = false
+        default:
+            break
+        }
+    }
+    
+    //Upload changes to backend
     @IBAction func saveChanges(_ sender: Any) {
         if !(Reachability.isConnectedToNetwork()) {
             // no Internet connection

@@ -167,3 +167,5 @@
 "addGroupMembersTitle"="Add Friends";
 "privateGroup"="Private Group:";
 "selectMembers"="Select Members:";
+"segmentShowMemberTitle"="Show";
+"segmentAddMemberTitle"="Add";
