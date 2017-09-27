@@ -1,5 +1,9 @@
 import UIKit
 
+protocol CredentialsHandoverDelegate: class {
+    func handOverData() -> [String?]
+}
+
 class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var userEmailTextField: UITextField!
@@ -10,6 +14,8 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
     @IBOutlet weak var rememberPasswordLabel: UILabel!
     @IBOutlet weak var rememberSwitch: UISwitch!
     @IBOutlet weak var registerButton: UIButton!
+    
+    var delegate: CredentialsHandoverDelegate!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,6 +48,15 @@ class FirstLogInViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         // Change title color and font
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "Montserrat-Regular", size: 20)!, NSForegroundColorAttributeName : UIColor.black]
+        
+        let receivedCreds = delegate.handOverData()
+        if let userMail = receivedCreds[0] {
+            userEmailTextField.text = userMail
+        }
+        if let userPassword = receivedCreds[1] {
+            userPasswordTextField.text = userPassword
+        }
+        checkRegEx()
     }
     
     //Check if email and password are syntactically valid

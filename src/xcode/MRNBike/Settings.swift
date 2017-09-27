@@ -110,7 +110,7 @@ class SettingsViewController: UIViewController {
         //Remove user singleton
         User.deleteSingleton()
         
-        KeychainService.saveRemember(token: "no" as NSString)
+        KeychainService.saveLoginStatus(token: "false")
         
         let storyboard = UIStoryboard(name: "StartPage", bundle: nil)
         let controller = storyboard.instantiateInitialViewController()!

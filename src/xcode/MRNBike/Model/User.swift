@@ -92,6 +92,8 @@ class User {
         if User.isSingleton != true {
             let user = User(userData: userData)
             User.singletonUser = user
+            // now logged in!
+            KeychainService.saveLoginStatus(token: "true")
         }
     }
     
