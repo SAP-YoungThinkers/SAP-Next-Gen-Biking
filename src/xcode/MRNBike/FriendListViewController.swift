@@ -60,8 +60,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Fetches the appropriate friend for the data source layout.
         let friend = friends[indexPath.row]
         
-        cell.firstnameLabel.text = friend.firstname
-        cell.lastnameLabel.text = friend.lastname
+        cell.firstnameLabel.text = "\(friend.firstname) \(friend.lastname)"
         
         //Set user image
         if let image = friend.photo {

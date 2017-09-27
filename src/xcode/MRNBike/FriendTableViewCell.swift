@@ -21,11 +21,13 @@ class FriendTableViewCell: UITableViewCell {
                 return
             }
         }
-    
-        friendImage.layer.cornerRadius = friendImage.bounds.height / 2
-        friendImage.clipsToBounds = true
-        friendImage.borderWidth = 1
-        friendImage.borderColor = UIColor(hexString: orangeColor)
+        
+        // Blur Effect of Image Background
+        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+        blurEffectView.frame = friendImage.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.7
+        friendImage.addSubview(blurEffectView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
