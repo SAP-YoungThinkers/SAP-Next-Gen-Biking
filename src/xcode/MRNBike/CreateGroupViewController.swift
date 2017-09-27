@@ -172,7 +172,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         return true
     }
     
-    @IBAction func timeTextFieldEditing(_ sender: UITextField) {
+    @IBAction func openDatePicker(_ sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
@@ -223,6 +223,9 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     //MARK: Actions
     @IBAction func createGroup(_ sender: Any) {
+        
+        var jsonData = Data()
+        
         let name: String = groupNameTextfield.text!
         //let datum: String = groupNameTextfield.text!
         let startLocation: String = startLocationTextfield.text!
@@ -231,8 +234,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         let timeInterval = datePickerValue.timeIntervalSince1970
         let timestamp = String(Int(timeInterval))
-        
-        var jsonData = Data()
         
         var privateGroup = 0
         

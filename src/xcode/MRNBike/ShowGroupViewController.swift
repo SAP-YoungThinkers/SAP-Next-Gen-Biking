@@ -228,7 +228,7 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         return true
     }
     
-    @IBAction func timeTextFieldEditing(_ sender: UITextField) {
+    @IBAction func openDatePicker(_ sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
