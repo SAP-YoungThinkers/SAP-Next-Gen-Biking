@@ -4,7 +4,7 @@ class GroupTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLocationLabel: UILabel!
-    
+    @IBOutlet weak var privateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
