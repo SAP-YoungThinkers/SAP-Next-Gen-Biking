@@ -70,6 +70,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         let subTitle = dateFormatter.string(from: date) + " - " + group.startLocation
         cell.timeLocationLabel.text = subTitle
         
+        cell.privateLabel.text = NSLocalizedString("privateGroupHint", comment: "")
+        
+        if group.privateGroup == 0 {
+            cell.privateLabel.isHidden = true
+        }
+        
         return cell
     }
     
