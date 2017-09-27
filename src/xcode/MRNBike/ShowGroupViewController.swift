@@ -100,17 +100,25 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         destinationTextfield.textColor = UIColor.lightGray
         descriptionTextview.textColor = UIColor.lightGray
         
-        saveButton.isEnabled = false
+        groupNameTextfield.isUserInteractionEnabled = false
+        timeTextfield.isUserInteractionEnabled = false
+        startLocationTextfield.isUserInteractionEnabled = false
+        destinationTextfield.isUserInteractionEnabled = false
+        descriptionTextview.isUserInteractionEnabled = false
+        privateGroupSwitch.isEnabled = false
+        changeTableSegment.isEnabled = false
+        
+        let barButton = saveButton
+        barButton?.title = "Edit"
+        barButton?.tintColor = UIColor.black
+        navigationItem.rightBarButtonItem = barButton
         
         if(group?.owner != KeychainService.loadEmail()! as String){
-            groupNameTextfield.isUserInteractionEnabled = false
-            timeTextfield.isUserInteractionEnabled = false
-            startLocationTextfield.isUserInteractionEnabled = false
-            destinationTextfield.isUserInteractionEnabled = false
-            descriptionTextview.isUserInteractionEnabled = false
-            saveButton.tintColor = UIColor.clear
-            privateGroupSwitch.isEnabled = false
-            changeTableSegment.isEnabled = false
+            if !privateGroupSwitch.isOn {
+                saveButton.isEnabled = true
+            } else {
+                saveButton.tintColor = UIColor.clear
+            }
         }
         
         //Tables
@@ -128,7 +136,6 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         startLocationTextfield.delegate = self
         destinationTextfield.delegate = self
         descriptionTextview.delegate = self
-        
         
         //Hide Keyboard Extension
         self.hideKeyboardWhenTappedAround()
@@ -308,82 +315,67 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //Upload changes to backend
     @IBAction func saveChanges(_ sender: Any) {
-        if !(Reachability.isConnectedToNetwork()) {
-            // no Internet connection
-            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
-        } else {
-            let name: String = groupNameTextfield.text!
-            //let datum: String = groupNameTextfield.text!
-            let startLocation: String = startLocationTextfield.text!
-            let destination: String = destinationTextfield.text!
-            let text: String = descriptionTextview.text!
-            
-            let timeInterval = datePickerValue.timeIntervalSince1970
-            let timestamp = String(Int(timeInterval))
-            
-            var privateGroup = 0
-            
-            if privateGroupSwitch.isOn {
-                privateGroup = 1
-            }
-            
-            var friendsSelected = [String]()
-            
-            if addFriendsTable.indexPathsForSelectedRows != nil {
-                let selectedRows = addFriendsTable.indexPathsForSelectedRows
-                for indexPath in selectedRows! {
-                    friendsSelected.append(friends[indexPath.row].email)
+        if (saveButton.title == "Edit") {
+            if(group?.owner != KeychainService.loadEmail()! as String){
+                if !privateGroupSwitch.isOn {
+                    let barButton = saveButton
+                    barButton?.title = "Save"
+                    barButton?.tintColor = UIColor(hexString: "27AE60")
+                    navigationItem.rightBarButtonItem = barButton
+                    
+                    changeTableSegment.isEnabled = true
                 }
-            }
-            
-            var jsonData = Data()
-            
-            do {
-                let id = group?.id
-                let data : [String: Any] = ["groupId": id!, "name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup, "members": friendsSelected]
+            } else {
+                let barButton = saveButton
+                barButton?.title = "Save"
+                barButton?.tintColor = UIColor(hexString: "27AE60")
+                navigationItem.rightBarButtonItem = barButton
                 
-                jsonData = try JSONSerialization.data(withJSONObject: data)
-            } catch {
-                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                    (action) -> Void in
-                    self.navigationController?.popViewController(animated: true)
-                    self.dismiss(animated: true, completion: nil)
-                })
-                alert.addAction(gotItAction)
-                self.present(alert, animated: true, completion: nil)
+                groupNameTextfield.isUserInteractionEnabled = true
+                timeTextfield.isUserInteractionEnabled = true
+                startLocationTextfield.isUserInteractionEnabled = true
+                destinationTextfield.isUserInteractionEnabled = true
+                descriptionTextview.isUserInteractionEnabled = true
+                privateGroupSwitch.isEnabled = true
+                changeTableSegment.isEnabled = true
             }
-            
-            ClientService.postGroup(scriptName: "updateGroup.xsjs", groupData: jsonData) { (httpCode, error) in
-                if error == nil {
-                    switch httpCode! {
-                    case 200: //Successful
-                        self.saveButton.isEnabled = false
-                        
-                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("groupUpdatedTitle", comment: ""), message: NSLocalizedString("groupUpdatedMsg", comment: ""))
-                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                            (action) -> Void in
-                            self.navigationController?.popViewController(animated: true)
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alert.addAction(gotItAction)
-                        self.present(alert, animated: true, completion: nil)
-                        break
-                    default: //For http error codes: 500
-                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
-                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
-                            (action) -> Void in
-                            self.navigationController?.popViewController(animated: true)
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alert.addAction(gotItAction)
-                        self.present(alert, animated: true, completion: nil)
-                        return
+        } else {
+            if !(Reachability.isConnectedToNetwork()) {
+                // no Internet connection
+                self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+            } else {
+                let name: String = groupNameTextfield.text!
+                //let datum: String = groupNameTextfield.text!
+                let startLocation: String = startLocationTextfield.text!
+                let destination: String = destinationTextfield.text!
+                let text: String = descriptionTextview.text!
+                
+                let timeInterval = datePickerValue.timeIntervalSince1970
+                let timestamp = String(Int(timeInterval))
+                
+                var privateGroup = 0
+                
+                if privateGroupSwitch.isOn {
+                    privateGroup = 1
+                }
+                
+                var friendsSelected = [String]()
+                
+                if addFriendsTable.indexPathsForSelectedRows != nil {
+                    let selectedRows = addFriendsTable.indexPathsForSelectedRows
+                    for indexPath in selectedRows! {
+                        friendsSelected.append(friends[indexPath.row].email)
                     }
                 }
-                else
-                {
-                    //An error occured in the app
+                
+                var jsonData = Data()
+                
+                do {
+                    let id = group?.id
+                    let data : [String: Any] = ["groupId": id!, "name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "privateGroup": privateGroup, "members": friendsSelected]
+                    
+                    jsonData = try JSONSerialization.data(withJSONObject: data)
+                } catch {
                     let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
                     let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
                         (action) -> Void in
@@ -393,6 +385,48 @@ class ShowGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                     alert.addAction(gotItAction)
                     self.present(alert, animated: true, completion: nil)
                 }
+                
+                ClientService.postGroup(scriptName: "updateGroup.xsjs", groupData: jsonData) { (httpCode, error) in
+                    if error == nil {
+                        switch httpCode! {
+                        case 200: //Successful
+                            self.saveButton.isEnabled = false
+                            
+                            let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("groupUpdatedTitle", comment: ""), message: NSLocalizedString("groupUpdatedMsg", comment: ""))
+                            let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                                (action) -> Void in
+                                self.navigationController?.popViewController(animated: true)
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                            alert.addAction(gotItAction)
+                            self.present(alert, animated: true, completion: nil)
+                            break
+                        default: //For http error codes: 500
+                            let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                            let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                                (action) -> Void in
+                                self.navigationController?.popViewController(animated: true)
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                            alert.addAction(gotItAction)
+                            self.present(alert, animated: true, completion: nil)
+                            return
+                        }
+                    }
+                    else
+                    {
+                        //An error occured in the app
+                        let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: ""))
+                        let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                            (action) -> Void in
+                            self.navigationController?.popViewController(animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(gotItAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
             }
         }
     }

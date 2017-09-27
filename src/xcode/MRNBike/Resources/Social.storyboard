@@ -135,7 +135,7 @@
                                         <rect key="frame" x="0.0" y="1" width="768" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="qgc-l2-qyE" id="1gc-Ag-bdP">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="xw7-sp-3nE">
@@ -250,7 +250,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2j-R5-Uev">
-                                        <rect key="frame" x="117.5" y="22" width="106" height="21"/>
+                                        <rect key="frame" x="117" y="22" width="106" height="21"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -286,13 +286,13 @@
                                 <rect key="frame" x="0.0" y="64" width="340" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER E-MAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAn-sx-Ezv">
-                                        <rect key="frame" x="10" y="10" width="107.5" height="18.5"/>
+                                        <rect key="frame" x="10" y="10" width="108" height="19"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqM-GU-iNU">
-                                        <rect key="frame" x="10" y="53.5" width="322" height="47"/>
+                                        <rect key="frame" x="10" y="54" width="322" height="47"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type e-mail here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2o6-Vk-Fk1">
                                                 <rect key="frame" x="0.0" y="0.0" width="322" height="47"/>
@@ -557,7 +557,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="737" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaB-L0-Kvb" id="rAK-wj-IiN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="737" height="39.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="737" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyw-Vy-HVL">
@@ -591,7 +591,7 @@
                                                 <rect key="frame" x="0.0" y="1" width="737" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="UKV-f5-1SC" id="9Om-ja-pKS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="737" height="89.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="737" height="89"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QMe-8t-ggE">
@@ -737,7 +737,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="1cw-Ka-ITs">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kf7-yg-ooQ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="kf7-yg-ooQ">
                             <color key="tintColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveChanges:" destination="cOi-aQ-xkX" id="Swf-cH-gC5"/>
@@ -790,7 +790,7 @@
                                         <rect key="frame" x="0.0" y="1" width="768" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tpk-dl-JtR" id="Pgt-HU-eDr">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELZ-iv-REL">
@@ -1031,7 +1031,7 @@
                                                 <rect key="frame" x="0.0" y="1" width="732" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="s5D-PF-eh2" id="FU9-qG-IiL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="732" height="89.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="732" height="89"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="UCO-jF-TGY">
