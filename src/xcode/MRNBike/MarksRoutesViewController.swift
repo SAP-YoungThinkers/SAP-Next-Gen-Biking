@@ -192,8 +192,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             activityAlert.dismiss(animated: false, completion: nil)
                             self.userRoutes = routes
                             
-                            DispatchQueue.global(qos: .background).async {
-                                
+                            DispatchQueue.main.async {
                                 
                                 // create each route (with sorted keys)
                                 for key in self.userRoutesKeys {
@@ -240,9 +239,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                                 self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
                                 
                                 
-                                DispatchQueue.main.async {
-                                    self.myRoutesTable.reloadData()
-                                }
+                                self.myRoutesTable.reloadData()
                             }
                             
                             
