@@ -575,39 +575,37 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="289" height="89"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QMe-8t-ggE">
-                                                            <rect key="frame" x="23" y="12" width="65" height="65"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="65" id="zZM-aU-ugx"/>
-                                                            </constraints>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QMe-8t-ggE">
+                                                            <rect key="frame" x="19" y="0.0" width="270" height="89"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNj-8x-gaw">
-                                                            <rect key="frame" x="109" y="8" width="171" height="30"/>
+                                                            <rect key="frame" x="34" y="8" width="246" height="30"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="LhC-9n-46i"/>
+                                                                <constraint firstAttribute="height" constant="30" id="xPL-cq-atj"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsZ-b3-bVB">
-                                                            <rect key="frame" x="109" y="51" width="171" height="30"/>
+                                                            <rect key="frame" x="34" y="51" width="246" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="UsZ-b3-bVB" firstAttribute="bottom" secondItem="9Om-ja-pKS" secondAttribute="bottomMargin" id="2aB-0J-A5A"/>
-                                                        <constraint firstItem="QMe-8t-ggE" firstAttribute="leading" secondItem="9Om-ja-pKS" secondAttribute="leadingMargin" constant="15" id="58T-SA-Osl"/>
-                                                        <constraint firstItem="QMe-8t-ggE" firstAttribute="top" secondItem="9Om-ja-pKS" secondAttribute="topMargin" constant="4" id="6GJ-dy-pcn"/>
-                                                        <constraint firstItem="UsZ-b3-bVB" firstAttribute="top" secondItem="wNj-8x-gaw" secondAttribute="bottom" constant="13" id="9DI-sq-g7H"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="wNj-8x-gaw" secondAttribute="trailing" constant="1" id="ICv-TB-Nfa"/>
-                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="top" secondItem="9Om-ja-pKS" secondAttribute="topMargin" id="OdO-Nc-Cch"/>
-                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="leading" secondItem="UsZ-b3-bVB" secondAttribute="leading" id="i6e-Si-Lfj"/>
-                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="trailing" secondItem="UsZ-b3-bVB" secondAttribute="trailing" id="kbc-eT-Y8x"/>
-                                                        <constraint firstItem="QMe-8t-ggE" firstAttribute="centerY" secondItem="9Om-ja-pKS" secondAttribute="centerY" id="mIB-KS-MYo"/>
-                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="leading" secondItem="QMe-8t-ggE" secondAttribute="trailing" constant="21" id="v9q-5i-FsL"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="wNj-8x-gaw" secondAttribute="trailing" constant="1" id="3ii-Mm-NdE"/>
+                                                        <constraint firstItem="QMe-8t-ggE" firstAttribute="leading" secondItem="9Om-ja-pKS" secondAttribute="leadingMargin" constant="11" id="6aU-vh-XXW"/>
+                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="top" secondItem="9Om-ja-pKS" secondAttribute="topMargin" id="FXd-dV-0gc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="QMe-8t-ggE" secondAttribute="bottom" id="FXu-ze-6aF"/>
+                                                        <constraint firstItem="UsZ-b3-bVB" firstAttribute="bottom" secondItem="9Om-ja-pKS" secondAttribute="bottomMargin" id="Gj7-23-98z"/>
+                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="leading" secondItem="9Om-ja-pKS" secondAttribute="leadingMargin" constant="26" id="IEm-5h-8oS"/>
+                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="trailing" secondItem="UsZ-b3-bVB" secondAttribute="trailing" id="Kvn-O3-i5z"/>
+                                                        <constraint firstItem="wNj-8x-gaw" firstAttribute="leading" secondItem="UsZ-b3-bVB" secondAttribute="leading" id="VIS-Uk-yQ2"/>
+                                                        <constraint firstItem="UsZ-b3-bVB" firstAttribute="top" secondItem="wNj-8x-gaw" secondAttribute="bottom" constant="13" id="iex-LH-Vbo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QMe-8t-ggE" secondAttribute="trailing" id="ig8-GI-qnV"/>
+                                                        <constraint firstItem="QMe-8t-ggE" firstAttribute="top" secondItem="9Om-ja-pKS" secondAttribute="top" id="wm4-ML-6IY"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -748,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s8-Cx-Hto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2102.34375" y="1038.28125"/>
+            <point key="canvasLocation" x="2101.875" y="1037.323943661972"/>
         </scene>
         <!--Group List View Controller-->
         <scene sceneID="9T2-Bb-jhV">
