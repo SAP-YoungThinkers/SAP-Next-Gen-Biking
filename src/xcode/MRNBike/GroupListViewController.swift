@@ -70,10 +70,10 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         let subTitle = dateFormatter.string(from: date) + " - " + group.startLocation
         cell.timeLocationLabel.text = subTitle
         
-        cell.privateLabel.text = NSLocalizedString("privateGroupHint", comment: "")
+        cell.groupOwnerLabel.text = NSLocalizedString("groupOwnerHint", comment: "")
         
-        if group.privateGroup == 0 {
-            cell.privateLabel.isHidden = true
+        if group.owner != KeychainService.loadEmail() as String? {
+            cell.groupOwnerLabel.isHidden = true
         }
         
         return cell
@@ -94,40 +94,79 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let deleteAction = UITableViewRowAction(style: .default, title: " X        ", handler: { (action, indexPath) in
             
-            //Delete Alert
-            let deleteAlert = UIAlertController(title: NSLocalizedString("unassignGroupTitle", comment: ""), message: NSLocalizedString("unassignGroupMsg", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-            
-            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+            if(self.groups[indexPath.row].owner != KeychainService.loadEmail()! as String) {
+                 //Unassign from group
+                 let deleteAlert = UIAlertController(title: NSLocalizedString("unassignGroupTitle", comment: ""), message: NSLocalizedString("unassignGroupMsg", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                 
+                 deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                 
+                 let id = String(self.groups[indexPath.row].id)
+                 
+                 if !(Reachability.isConnectedToNetwork()) {
+                 // no Internet connection
+                 self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                 } else {
+                 ClientService.deleteUserFromGroup(userId: (KeychainService.loadEmail() ?? "") as String, groupId: id, completion: { (httpCode, error) in
+                 if error == nil {
+                 if(httpCode == 200) {
+                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("unassignedTitle", comment: ""), message: NSLocalizedString("unassignedMsg", comment: "")), animated: true, completion: nil)
+                 } else {
+                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                 }
+                 } else {
+                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                 }
+                 })
+                 
+                 self.groups.remove(at: indexPath.row)
+                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                 }
+                 }))
+                 
+                 deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                 
+                 }))
+                 
+                 self.present(deleteAlert, animated: true, completion: nil)
                 
-                let id = String(self.groups[indexPath.row].id)
-                
-                if !(Reachability.isConnectedToNetwork()) {
-                    // no Internet connection
-                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
                 } else {
-                    ClientService.deleteUserFromGroup(userId: (KeychainService.loadEmail() ?? "") as String, groupId: id, completion: { (httpCode, error) in
-                        if error == nil {
-                            if(httpCode == 200) {
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("unassignedTitle", comment: ""), message: NSLocalizedString("unassignedMsg", comment: "")), animated: true, completion: nil)
+                
+                //Dissolve group as owner
+                let deleteAlert = UIAlertController(title: NSLocalizedString("deleteGroupTitle", comment: ""), message: NSLocalizedString("deleteGroupMsg", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                
+                deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                    
+                    if !(Reachability.isConnectedToNetwork()) {
+                        // no Internet connection
+                        self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                    } else {
+                        
+                        let groupId = String(self.groups[indexPath.row].id)
+                        
+                        ClientService.deleteGroup(groupId: groupId, completion: { (httpCode, error) in
+                            if error == nil {
+                                if(httpCode == 200) {
+                                    
+                                    self.groups.remove(at: indexPath.row)
+                                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                                    
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("deletedGroupTitle", comment: ""), message: NSLocalizedString("deletedGroupMsg", comment: "")), animated: true, completion: nil)
+                                } else {
+                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                }
                             } else {
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                             }
-                        } else {
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
-                        }
-                    })
-                    
-                    self.groups.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }
-            }))
-            
-            deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                        })
+                    }
+                }))
                 
-            }))
-            
-            self.present(deleteAlert, animated: true, completion: nil)
-            
+                deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                
+                self.present(deleteAlert, animated: true, completion: nil)
+                }
         })
         deleteAction.backgroundColor = UIColor(red: 190/255, green: 51/255, blue: 43/255, alpha: 1)
         

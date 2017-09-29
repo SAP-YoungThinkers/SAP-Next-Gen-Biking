@@ -127,6 +127,12 @@
 "unassignedTitle"="Unassigned";
 "unassignedMsg"="You left the group.";
 
+"deleteGroupTitle"="Dissolve Group";
+"deleteGroupMsg"="Are you sure you want to dissolve this group?";
+
+"deletedGroupTitle"="Dissolved";
+"deletedGroupMsg"="You dissolved the group.";
+
 "groupUpdatedTitle"="Group Updated";
 "groupUpdatedMsg"="Group was successfully updated!";
 
@@ -163,4 +169,4 @@
 "selectMembers"="Select Members:";
 "segmentShowMemberTitle"="Show";
 "segmentAddMemberTitle"="Add";
-"privateGroupHint"="Private";
+"groupOwnerHint"="Owner";
