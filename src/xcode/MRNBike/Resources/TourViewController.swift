@@ -28,7 +28,7 @@ class TourViewController: UIViewController {
         takeTourText.text = NSLocalizedString("takeTourDescription", comment: "")
         startRidingButton.setTitle(NSLocalizedString("startRidingButton", comment: ""), for: .normal)
         //the youtube code of the video, will be changed later
-        loadYoutube(videoID: "7iT9fueKCJM")
+        loadYoutube(videoID: "qlrtUahVBNY")
     }
     
     override func didReceiveMemoryWarning() {
