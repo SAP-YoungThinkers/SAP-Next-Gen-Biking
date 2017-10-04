@@ -199,6 +199,8 @@ class EditProfileViewController : UIViewController, UIScrollViewDelegate, UIText
         firstname.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
         inputPassword.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
         inputPasswordRepeat.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        weightInput.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
+        wheelSizeInput.addTarget(self, action:#selector(EditProfileViewController.checkInput), for:UIControlEvents.editingChanged)
         
         
         /* Password Hints */
