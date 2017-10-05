@@ -65,6 +65,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
 
         topBar.delegate = self
         topBar.selectedItem = routeInformation
+        self.navigationItem.rightBarButtonItem?.isEnabled = true;
 
         //Mark: - Authorization
         locationManager.delegate = self
@@ -133,9 +134,11 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         if(topBar.selectedItem == myRoutes) {
             // MY ROUTES
             myRoutesContent()
+            self.navigationItem.rightBarButtonItem?.isEnabled = false;
         } else {
             // ROUTES INFORMATION
             routesInfoContent()
+            self.navigationItem.rightBarButtonItem?.isEnabled = true;
         }
     }
 
@@ -189,52 +192,55 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             activityAlert.dismiss(animated: false, completion: nil)
                             self.userRoutes = routes
                             
-                            // not asynchronous because of handling (see below)!
-                            self.myRoutesTable.reloadData()
-                            
-                            // create each route (with sorted keys)
-                            for key in self.userRoutesKeys {
+                            DispatchQueue.main.async {
                                 
-                                var coorArray = [CLLocationCoordinate2D]()
-                                var isFirstPoint = true
-                                var minDate2 = Date()
-                                var maxDate = Date()
-                                var cc = CLLocationCoordinate2D()
-                                var ct = String()
-                                
-                                // for every point in that sorted array
-                                for obj in ((self.userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                                    return self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-                                })) {
-                                    coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
-                                    if(isFirstPoint) {
-                                        // create annotation at first point of each route
-                                        cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
-                                        minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
-                                        ct = obj["timestamp"] as! String
+                                // create each route (with sorted keys)
+                                for key in self.userRoutesKeys {
+                                    
+                                    var coorArray = [CLLocationCoordinate2D]()
+                                    var isFirstPoint = true
+                                    var minDate2 = Date()
+                                    var maxDate = Date()
+                                    var cc = CLLocationCoordinate2D()
+                                    var ct = String()
+                                    
+                                    // for every point in that sorted array
+                                    for obj in ((self.userRoutes?[String(key)] as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
+                                        return self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
+                                    })) {
+                                        coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
+                                        if(isFirstPoint) {
+                                            // create annotation at first point of each route
+                                            cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
+                                            minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                                            ct = obj["timestamp"] as! String
+                                        }
+                                        isFirstPoint = false
+                                        maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
                                     }
-                                    isFirstPoint = false
-                                    maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                                    let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
+                                    let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
+                                    self.mapView.addAnnotation(pin)
+                                    let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
+                                    x.title = String(key)
+                                    self.mapView.add(x)
+                                    
                                 }
-                                let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
-                                let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
-                                self.mapView.addAnnotation(pin)
-                                let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
-                                x.title = String(key)
-                                self.mapView.add(x)
                                 
+                                // zoom out to everything
+                                var firstRect = MKMapRectNull
+                                for overlay in self.mapView.overlays {
+                                    firstRect = MKMapRectUnion(firstRect, overlay.boundingMapRect)
+                                }
+                                self.mapView.setVisibleMapRect(firstRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
+                                
+                                // set first as selected
+                                let currentPath = IndexPath(row: 0, section: 0)
+                                self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
+                                
+                                
+                                self.myRoutesTable.reloadData()
                             }
-                            
-                            // zoom out to everything
-                            var firstRect = MKMapRectNull
-                            for overlay in self.mapView.overlays {
-                                firstRect = MKMapRectUnion(firstRect, overlay.boundingMapRect)
-                            }
-                            self.mapView.setVisibleMapRect(firstRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
-                            
-                            // set first as selected
-                            let currentPath = IndexPath(row: 0, section: 0)
-                            self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
                             
                             
                         } else {
@@ -366,12 +372,12 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         if(topBar.selectedItem == myRoutes) {
             // MY ROUTES
             myRoutesContent()
-
+            self.navigationItem.rightBarButtonItem?.isEnabled = false;
 
         } else {
             // ROUTES INFORMATION
             routesInfoContent()
-
+            self.navigationItem.rightBarButtonItem?.isEnabled = true;
         }
 
     }

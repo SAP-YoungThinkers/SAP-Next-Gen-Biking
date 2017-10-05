@@ -15,6 +15,7 @@ let emailKey = "KeyForEmail"
 let passwordKey = "KeyForPassword"
 let routeKey = "KeyForRouteIDs"
 let rememberMeKey = "no"
+let loginstatusKey = "KeyForLoginStatus"
 
 
 // Arguments for the keychain queries
@@ -58,6 +59,14 @@ public class KeychainService: NSObject {
     
     public class func loadRemember() -> NSString? {
         return self.load(service: rememberMeKey as NSString)
+    }
+    
+    public class func saveLoginStatus(token: NSString) {
+        self.save(service: loginstatusKey as NSString, data: token)
+    }
+    
+    public class func loadLoginStatus() -> NSString? {
+        return self.load(service: loginstatusKey as NSString)
     }
     
     //IDs

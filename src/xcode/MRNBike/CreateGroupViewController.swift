@@ -1,11 +1,10 @@
 import UIKit
 import PopupDialog
 
-class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: Properties
     @IBOutlet weak var createGroupButton: UIBarButtonItem!
-    @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var privateGroupSwitch: UISwitch!
     
     //Labels
@@ -15,6 +14,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var privateGroupLabel: UILabel!
+    @IBOutlet weak var addMemberLabel: UILabel!
     
     //Textfields, textview
     @IBOutlet weak var groupNameTextfield: UITextField!
@@ -23,12 +23,23 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var destinationTextfield: UITextField!
     @IBOutlet weak var descriptionTextview: UITextView!
     
+    //Table
+    @IBOutlet weak var addFriendsTable: UITableView!
+    
+    var friends = [Friend]()
     var groupMembers = [String]()
     var datePickerValue = Date()
+    var orangeColor = String()
+    var greyColor = String()
     
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Get friend list from singleton user and copy to friends array
+        let user = User.getUser()
+        friends = user.friendList
+        
         self.navigationItem.title = NSLocalizedString("createGroupTitle", comment: "")
         
         //Labeltext
@@ -38,7 +49,7 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         destinationLabel.text = NSLocalizedString("destination", comment: "")
         descriptionLabel.text = NSLocalizedString("description", comment: "")
         privateGroupLabel.text = NSLocalizedString("privateGroup", comment: "")
-        addFriendsButton.setTitle(NSLocalizedString("addGroupMembersTitle", comment: ""), for: .normal)
+        addMemberLabel.text = NSLocalizedString("addGroupMembersTitle", comment: "")
         
         //Textfield text color
         groupNameTextfield.textColor = UIColor.lightGray
@@ -79,7 +90,33 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         groupNameTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         startLocationTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
         destinationTextfield.addTarget(self, action:#selector(CreateGroupViewController.checkInput), for:UIControlEvents.editingChanged)
+        
+        //Table delegate
+        addFriendsTable.dataSource = self
+        addFriendsTable.delegate = self
+        addFriendsTable.allowsMultipleSelectionDuringEditing = true;
+        addFriendsTable.setEditing(true, animated: false)
+        
+        //Read ConfigList.plist
+        if let url = Bundle.main.url(forResource:"ConfigList", withExtension: "plist") {
+            do {
+                let data = try Data(contentsOf:url)
+                let swiftDictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                orangeColor = swiftDictionary["orange"] as! String
+                greyColor = swiftDictionary["greyBackground"] as! String
+            } catch {
+                return
+            }
+        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let user = User.getUser()
+        friends = user.friendList
+    }
+
     
     //Check if inputs are syntactically valid
     func checkInput() {
@@ -134,8 +171,8 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.view.endEditing(true)
         return true
     }
-
-    @IBAction func timeTextFieldEditing(_ sender: UITextField) {
+    
+    @IBAction func openDatePicker(_ sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
@@ -150,9 +187,45 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         timeTextfield.text = dateFormatter.string(from: sender.date)
         datePickerValue = sender.date
     }
-   
+    
+    //MARK: - Table view data source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return friends.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "AddFriendTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
+            fatalError("Fatal Error")
+        }
+        
+        // Fetches the appropriate friend for the data source layout.
+        let friend = friends[indexPath.row]
+        
+        cell.firstnameLabel.text = friend.firstname
+        cell.lastnameLabel.text = friend.lastname
+        
+        //Set user image
+        if let image = friend.photo {
+            let img = UIImage(data: image)
+            cell.friendImage.image = img
+        }
+        
+        cell.tintColor = UIColor(hexString: orangeColor)
+        
+        return cell
+    }
+    
     //MARK: Actions
     @IBAction func createGroup(_ sender: Any) {
+        
+        var jsonData = Data()
+        
         let name: String = groupNameTextfield.text!
         //let datum: String = groupNameTextfield.text!
         let startLocation: String = startLocationTextfield.text!
@@ -162,8 +235,6 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         let timeInterval = datePickerValue.timeIntervalSince1970
         let timestamp = String(Int(timeInterval))
         
-        var jsonData = Data()
-        
         var privateGroup = 0
         
         if privateGroupSwitch.isOn {
@@ -172,6 +243,13 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         do {
             groupMembers.append(KeychainService.loadEmail()! as String)
+            
+            if addFriendsTable.indexPathsForSelectedRows != nil {
+                let selectedRows = addFriendsTable.indexPathsForSelectedRows
+                for indexPath in selectedRows! {
+                    groupMembers.append(friends[indexPath.row].email)
+                }
+            }
             
             let data : [String: Any] = ["name": name, "datum": timestamp, "startLocation": startLocation, "destination": destination, "description": text, "owner": KeychainService.loadEmail()! as String, "privateGroup": privateGroup, "members": groupMembers]
             
@@ -224,18 +302,5 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
                 self.present(alert, animated: true, completion: nil)
             }
         }
-    }
-    
-    @IBAction func openAddFriendsDialog(_ sender: UIButton) {
-        /*
-        let storyboard = UIStoryboard(name: "Social", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "AddGroupMember")
-        
-        // Create the dialog
-        let popup = PopupDialog(viewController: viewController, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: false)
-        
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
- */
     }
 }

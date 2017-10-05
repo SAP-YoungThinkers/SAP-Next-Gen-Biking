@@ -9,6 +9,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(FriendListViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -26,6 +27,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
         friendsTableView.allowsMultipleSelectionDuringEditing = false;
+        friendsTableView.contentInset = UIEdgeInsets(top: 15,left: 0,bottom: 0,right: 0)
         
         loadFriends()
         
@@ -58,8 +60,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Fetches the appropriate friend for the data source layout.
         let friend = friends[indexPath.row]
         
-        cell.firstnameLabel.text = friend.firstname
-        cell.lastnameLabel.text = friend.lastname
+        cell.firstnameLabel.text = "\(friend.firstname) \(friend.lastname)"
         
         //Set user image
         if let image = friend.photo {
@@ -88,10 +89,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     // no Internet connection
                     self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
                 } else {
-                    //Put your delete code here!
-                    ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].eMail, completion: { (httpCode, error) in
+                    ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].email, completion: { (httpCode, error) in
                         if error == nil {
                             if(httpCode == 200) {
+                                self.friends.remove(at: indexPath.row)
+                                tableView.deleteRows(at: [indexPath], with: .automatic)
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: "")), animated: true, completion: nil)
                             } else {
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
@@ -100,8 +102,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     })
-                    self.friends.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
             }))
             
@@ -126,24 +126,35 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         if let userMail = KeychainService.loadEmail() as String? {
             
             if !(Reachability.isConnectedToNetwork()) {
-                // no Internet connection
-                self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                //An error occured in the app
+                DispatchQueue.main.async {
+                    // no Internet connection
+                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+                }
             } else {
                 //Show activity indicator
                 let activityAlert = UIAlertCreator.waitAlert(message: NSLocalizedString("pleaseWait", comment: ""))
-                present(activityAlert, animated: false, completion: nil)
-                
+                DispatchQueue.main.async {
+                    self.present(activityAlert, animated: false, completion: nil)
+                }
                 ClientService.getFriendList(mail: userMail, completion: { (data, error) in
                     if error == nil {
                         
+                        let user = User.getUser()
+                        
                         //Clear friends array
                         self.friends.removeAll()
+                        user.friendList.removeAll()
                         
                         guard let responseData = data else {
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-                            //An error occured
-                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                            }
+                            //An error occured in the app
+                            DispatchQueue.main.async {
+                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                            }
                             return
                         }
                         
@@ -158,30 +169,37 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                                 
                                 guard let friendEntity = Friend(email: (friend["eMail"] as? String)!, firstname: (friend["firstname"] as? String)!, lastname: (friend["lastname"] as? String)!, photo: img!) else {
                                     
-                                    activityAlert.dismiss(animated: false, completion: nil)
-                                    //An error occured
-                                    self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                    DispatchQueue.main.async {
+                                        //Dismiss activity indicator
+                                        activityAlert.dismiss(animated: false, completion: nil)
+                                    }
+                                    //An error occured in the app
+                                    DispatchQueue.main.async {
+                                        self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                                    }
                                     return
                                 }
                                 self.friends.append(friendEntity)
+                                user.friendList.append(friendEntity)
                             }
                         }
                         
                         self.friendsTableView.reloadData()
-                        //Dismiss activity indicator
-                        activityAlert.dismiss(animated: false, completion: nil)
+                        DispatchQueue.main.async {
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                        }
                     } else {
                         if error == ClientServiceError.notFound {
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
-                            
-                            //An error occured in the app
                             DispatchQueue.main.async {
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("noFriendsDialogTitle", comment: ""), message: NSLocalizedString("noFriendsDialogMsg", comment: "")), animated: true, completion: nil)
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
                             }
                         } else {
-                            //Dismiss activity indicator
-                            activityAlert.dismiss(animated: false, completion: nil)
+                            DispatchQueue.main.async {
+                                //Dismiss activity indicator
+                                activityAlert.dismiss(animated: false, completion: nil)
+                            }
                             
                             //An error occured in the app
                             DispatchQueue.main.async {

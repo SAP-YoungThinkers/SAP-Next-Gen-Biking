@@ -24,6 +24,8 @@ class User {
         static let train = 0.065
     }
     
+    var friendList = [Friend]()
+    
     /*
      CO2 values from http://www.co2nnect.org/help_sheets/?op_id=602&opt_id=98
      values mean: only DIRECT emissions, without fuel / food / production
@@ -90,6 +92,8 @@ class User {
         if User.isSingleton != true {
             let user = User(userData: userData)
             User.singletonUser = user
+            // now logged in!
+            KeychainService.saveLoginStatus(token: "true")
         }
     }
     

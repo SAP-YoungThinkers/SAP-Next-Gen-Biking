@@ -4,6 +4,7 @@ class GroupTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLocationLabel: UILabel!
+    @IBOutlet weak var groupOwnerLabel: UILabel!
     
     
     override func awakeFromNib() {

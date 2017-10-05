@@ -162,141 +162,159 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(appKey)")!
         
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest as URLRequest) {
-            (data, response, error) -> Void in
+        
+        if Reachability.isConnectedToNetwork() {
             
-            let httpResponse = response as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                do {
-                    let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+            let session = URLSession.shared
+            let task = session.dataTask(with: urlRequest as URLRequest) {
+                (data, response, error) -> Void in
+                
+                if let httpResponse = response as? HTTPURLResponse {
                     
-                    for (key, value) in jsonData as! [String: Any] {
-                        if(key == "main") {
-                            for (subkey, subvalue) in value as! [String: Any] {
-                                if (subkey == "temp") {
-                                    self.actualWeather.text = String(self.convertKtoC(subvalue as! Double))
-                                    break
+                    let statusCode = httpResponse.statusCode
+                    
+                    if (statusCode == 200) {
+                        do {
+                            let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+                            
+                            for (key, value) in jsonData as! [String: Any] {
+                                if(key == "main") {
+                                    for (subkey, subvalue) in value as! [String: Any] {
+                                        if (subkey == "temp") {
+                                            self.actualWeather.text = String(self.convertKtoC(subvalue as! Double))
+                                            break
+                                        }
+                                    }
+                                }
+                                if (key == "cod") {
+                                    
+                                    switch value as! Int {
+                                        
+                                    case 200...299, 300...399,500...599, 906: //Rain
+                                        self.CurrentDate_Pic.image = UIImage(named:"big_rainy-1x")!
+                                        
+                                    case 700...799, 802,803,804,900,901,902,903,905,951...962: //Clouds
+                                        self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-1x")!
+                                        
+                                    case  800,904: //Sunny
+                                        self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
+                                        
+                                    case 801: //Overcast
+                                        
+                                        self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-sunny-1x")!
+                                        
+                                    default:
+                                        self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
+                                        
+                                    }
                                 }
                             }
                         }
-                        if (key == "cod") {
-                            
-                            switch value as! Int {
-                                
-                            case 200...299, 300...399,500...599, 906: //Rain
-                                self.CurrentDate_Pic.image = UIImage(named:"big_rainy-1x")!
-                                
-                            case 700...799, 802,803,804,900,901,902,903,905,951...962: //Clouds
-                                self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-1x")!
-                                
-                            case  800,904: //Sunny
-                                self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
-                                
-                            case 801: //Overcast
-                                
-                                self.CurrentDate_Pic.image = UIImage(named:"big_cloudy-sunny-1x")!
-                                
-                            default:
-                                self.CurrentDate_Pic.image = UIImage(named:"big_sunny-1x")!
-                                
-                            }
-                            
-                            
+                        catch {
+                            print("Error with Json: \(error)")
                         }
                     }
-                    
-                    
-                }
-                    
-                catch {
-                    print("Error with Json: \(error)")
+                    else {
+                        print("error: \(statusCode)")
+                    }
+                } else {
+                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
                 }
                 
-            }
-            else {
-                print("error: \(statusCode)")
+                
             }
             
+            task.resume()
             
         }
+        else {
+            // no internet
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
+        }
         
-        task.resume()
     }
     
     func forecastWeather(lat: String, long: String) {
         let appKey = "f65a7da957a554bd4dd2632dbe32d69b"
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(lat)&lon=\(long)&appid=\(appKey)&cnt=6")!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest as URLRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                do {
-                    let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
-                    for (key, value) in jsonData as! [String: Any] {
-                        if(key == "list") {
-                            let list = value as! [[String: Any]]
-                            
-                            for index in 0..<list.count {
-                                let subkey = list[index]
-                                let subValue = "\(((subkey["temp"] as! [String: Any])["day"]!))"
-                                let doubleValue = Double(subValue)
-                                let textValue = String(self.convertKtoC(doubleValue!))
-                                if index == 0 {
-                                    self.DayOne_Weather.text = textValue
-                                } else if index == 1 {
-                                    self.DayTwo_Weather.text = textValue
-                                } else if index == 2 {
-                                    self.DayThree_Weather.text = textValue
-                                } else if index == 3 {
-                                    self.DayFour_Weather.text = textValue
-                                } else if index == 4 {
-                                    self.DayFive_Weather.text = textValue
-                                } else if index == 5 {
-                                    self.DaySix_Weather.text = textValue
-                                }
-                            }
-                            
-                            for index in 0..<list.count {
-                                let subkey = list[index]
-                                let weatherArray = subkey["weather"] as! [Any]
-                                let dictionaryData = weatherArray[0] as! [String : Any]
-                                let valueFinally = dictionaryData["main"]!
-                                
-                                if index == 0 {
-                                    self.DayOne_Pic.image = self.getImage(forName: valueFinally as! String)
-                                } else if index == 1 {
-                                    self.DayTwo_Pic.image = self.getImage(forName: valueFinally as! String)
-                                } else if index == 2 {
-                                    self.DayThree_Pic.image = self.getImage(forName: valueFinally as! String)
-                                } else if index == 3 {
-                                    self.DayFour_Pic.image = self.getImage(forName: valueFinally as! String)
-                                } else if index == 4 {
-                                    self.DayFive_Pic.image = self.getImage(forName: valueFinally as! String)
-                                } else if index == 5 {
-                                    self.DaySix_Pic.image = self.getImage(forName: valueFinally as! String)
+        
+        if Reachability.isConnectedToNetwork() {
+            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+            let session = URLSession.shared
+            let task = session.dataTask(with: urlRequest as URLRequest) {
+                (data, response, error) -> Void in
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    
+                    let statusCode = httpResponse.statusCode
+                    if (statusCode == 200) {
+                        do {
+                            let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+                            for (key, value) in jsonData as! [String: Any] {
+                                if(key == "list") {
+                                    let list = value as! [[String: Any]]
+                                    
+                                    for index in 0..<list.count {
+                                        let subkey = list[index]
+                                        let subValue = "\(((subkey["temp"] as! [String: Any])["day"]!))"
+                                        let doubleValue = Double(subValue)
+                                        let textValue = String(self.convertKtoC(doubleValue!))
+                                        if index == 0 {
+                                            self.DayOne_Weather.text = textValue
+                                        } else if index == 1 {
+                                            self.DayTwo_Weather.text = textValue
+                                        } else if index == 2 {
+                                            self.DayThree_Weather.text = textValue
+                                        } else if index == 3 {
+                                            self.DayFour_Weather.text = textValue
+                                        } else if index == 4 {
+                                            self.DayFive_Weather.text = textValue
+                                        } else if index == 5 {
+                                            self.DaySix_Weather.text = textValue
+                                        }
+                                    }
+                                    
+                                    for index in 0..<list.count {
+                                        let subkey = list[index]
+                                        let weatherArray = subkey["weather"] as! [Any]
+                                        let dictionaryData = weatherArray[0] as! [String : Any]
+                                        let valueFinally = dictionaryData["main"]!
+                                        
+                                        if index == 0 {
+                                            self.DayOne_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        } else if index == 1 {
+                                            self.DayTwo_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        } else if index == 2 {
+                                            self.DayThree_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        } else if index == 3 {
+                                            self.DayFour_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        } else if index == 4 {
+                                            self.DayFive_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        } else if index == 5 {
+                                            self.DaySix_Pic.image = self.getImage(forName: valueFinally as! String)
+                                        }
+                                    }
                                 }
                             }
                         }
+                        catch {
+                            print("Error with Json: \(error)")
+                        }
                     }
-                }
-                catch {
-                    print("Error with Json: \(error)")
+                    else {
+                        print("error: \(statusCode)")
+                    }
+                } else {
+                    // no internet
+                    self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
                 }
             }
-            else {
-                print("error: \(statusCode)")
-            }
+            task.resume()
+        } else {
+            // no internet
+            self.present(UIAlertCreator.infoAlert(title: "", message: NSLocalizedString("ErrorNoInternetConnection", comment: "")), animated: true, completion: nil)
         }
-        task.resume()
     }
     
     func getImage(forName imageName: String) -> UIImage {

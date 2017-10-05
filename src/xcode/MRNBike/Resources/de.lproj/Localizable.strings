@@ -110,12 +110,6 @@
 "userUpdatedDialogTitle"="Profil aktualisiert";
 "userUpdatedDialogMsg"="Profil wurde erfolgreich aktualisiert.";
 
-"noFriendsDialogTitle"="Keine Freunde gefunden";
-"noFriendsDialogMsg"="Bitte füge Freunde hinzu!";
-
-"noGroupsDialogTitle"="Keine Gruppen gefunden";
-"noGroupsDialogMsg"="Erstelle deine eigene Gruppe!";
-
 "addedSuccessfullyTitle"="Hinzufügen erfolgreich";
 "addedSuccessfulyMsg"="Ein neuer Freund wurde hinzugefügt.";
 
@@ -134,6 +128,12 @@
 "unassignedTitle"="Ausgetreten";
 "unassignedMsg"="Du hast die Gruppe verlassen.";
 
+"deleteGroupTitle"="Gruppe auflösen";
+"deleteGroupMsg"="Du möchtest die Gruppe auflösen?";
+
+"deletedGroupTitle"="Gruppe aufgelöst";
+"deletedGroupMsg"="Du hast die Gruppe aufgelöst.";
+
 "groupUpdatedTitle"="Gruppe aktualisiert";
 "groupUpdatedMsg"="Gruppeninformationen wurden aktualisiert!";
 
@@ -149,7 +149,7 @@
 "yes"="Ja";
 "cancel"="Abbrechen";
 "add"="Adden";
-"addFriend"="Freund hinzufügen";
+"addFriend"="Freunde hinzufügen:";
 "enterEmail"="E-Mail eingeben:";
 "emailPlaceholder"="E-Mail...";
 "groupDetailsTitle"="Gruppendetails";
@@ -167,3 +167,7 @@
 "groupDescriptionPlaceholder"="Dieses Wochenende...";
 "addGroupMembersTitle"="Freunde hinzufügen";
 "privateGroup"="Private Gruppe:";
+"selectMembers"="Mitglieder auswählen:";
+"segmentShowMemberTitle"="Anzeigen";
+"segmentAddMemberTitle"="Hinzufügen";
+"groupOwnerHint"="Admin";
