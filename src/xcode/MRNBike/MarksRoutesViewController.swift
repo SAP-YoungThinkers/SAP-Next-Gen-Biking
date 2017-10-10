@@ -121,10 +121,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         myRoutesTable.separatorInset = UIEdgeInsets.zero
         myRoutesTable.layoutMargins = UIEdgeInsets.zero
 
-        DispatchQueue.main.async {
-            self.myRoutesTable.reloadData()
-        }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -192,6 +188,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             activityAlert.dismiss(animated: false, completion: nil)
                             self.basicData = routes
                             
+                            DispatchQueue.main.async {
+                                self.myRoutesTable.reloadData()
+                            }
+                            
                         } else {
                             
                             //Dismiss activity indicator
@@ -201,7 +201,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     }
-                    self.myRoutesTable.reloadData()
                     
                 } catch {
                     //Dismiss activity indicator
@@ -563,10 +562,10 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
                             let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
                             self.mapView.addAnnotation(pin)
-                            self.mapView.selectAnnotation(pin, animated: true)
                             let x = MKPolyline(coordinates: UnsafeMutablePointer(mutating: coorArray), count: coorArray.count)
                             x.title = String(indexPath.row)
                             self.mapView.add(x)
+                            self.mapView.selectAnnotation(pin, animated: true)
                             
                             // zoom out to everything
                             var firstRect = MKMapRectNull
