@@ -547,21 +547,22 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             var isFirstPoint = true
                             
                             // for every point in that sorted array
-                            if let objList = self.basicData![0] as? [[String: AnyObject]] {
-                                for obj in objList["\(indexPath.row)"].sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                                    return self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-                                    }) {
-                                        coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
-                                        if(isFirstPoint) {
-                                            // create annotation at first point of each route
-                                            cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
-                                            minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
-                                            ct = obj["timestamp"] as! String
-                                        }
-                                        isFirstPoint = false
-                                        maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                            print(self.selectedRoute!)
+                            
+                            for (_, route) in (routes!) {
+                                for obj in (route as? [[String: Any]])! {
+                                    coorArray.append(CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!))
+                                    if(isFirstPoint) {
+                                        // create annotation at first point of each route
+                                        cc = CLLocationCoordinate2D(latitude: Double(obj["latitude"] as! String)!, longitude: Double(obj["longitude"] as! String)!)
+                                        minDate2 = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
+                                        ct = obj["timestamp"] as! String
+                                    }
+                                    isFirstPoint = false
+                                    maxDate = self.formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: obj["timestamp"] as! String)
                                 }
                             }
+                            
                             let timeDifference = Calendar.current.dateComponents([.hour, .minute], from: minDate2, to: maxDate)
                             let pin = RouteLineAnnotation(title: "\(self.formatTwo(timeDifference.hour!)):\(self.formatTwo(timeDifference.minute!))", message: self.formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: ct), coordinate: cc)
                             self.mapView.addAnnotation(pin)
