@@ -23,7 +23,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     let primaryColor = UIColor(red: (192/255.0), green: (57/255.0), blue: (43/255.0), alpha: 1.0)
     
     //My Routes
-    var selectedRoute : [String: Any]? = nil
     var userRoutesKeys = [Int]()
     var basicData : [String: Any]? = nil
 
@@ -529,13 +528,14 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             // good internet
             do {
                 
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                
                 let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
                 ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
                     
                     if error == nil {
                         
                         activityAlert.dismiss(animated: false, completion: nil)
-                        self.selectedRoute = routes
                         
                         DispatchQueue.main.async {
                             
@@ -545,9 +545,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             var cc = CLLocationCoordinate2D()
                             var ct = String()
                             var isFirstPoint = true
-                            
-                            // for every point in that sorted array
-                            print(self.selectedRoute!)
                             
                             for (_, route) in (routes!) {
                                 for obj in (route as? [[String: Any]])! {
@@ -578,13 +575,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             }
                             self.mapView.setVisibleMapRect(firstRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
                             
-                            // set first as selected
-                            let currentPath = IndexPath(row: 0, section: 0)
-                            self.tableView(self.myRoutesTable, didSelectRowAt: currentPath)
-                            
-                            
-                            self.myRoutesTable.reloadData()
-                            self.selectedRoute?.removeAll()
                         }
                         
                         
