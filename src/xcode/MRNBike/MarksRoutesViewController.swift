@@ -191,8 +191,6 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                         if error == nil {
                             
                             activityAlert.dismiss(animated: false, completion: nil)
-                            self.userRoutes = routes
-                            
                             self.basicData = routes
                             
                         } else {
@@ -204,6 +202,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
                     }
+                    self.myRoutesTable.reloadData()
                     
                     /*
                     ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
@@ -516,8 +515,8 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteTableCell", for: indexPath) as! RouteTableCell
 
         print("userRoutesKeys.count \(userRoutesKeys.count)")
- 
-        if (userRoutesKeys.count > 0) {
+
+        if basicData != nil {
             
             // for every point in that sorted array
             for route in self.basicData?["routesInfo"] as! [[String: Any]] {
