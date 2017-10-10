@@ -25,6 +25,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     //My Routes
     var userRoutes : [String: Any]? = nil
     var userRoutesKeys = [Int]()
+    var basicData : [String: Any]? = nil
 
     @IBAction func minimizePressed(_ sender: UIButton) {
         if(myRoutesList.frame.size.height > CGFloat(minSize)) {
@@ -185,6 +186,26 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                     
                     let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
                     
+                    ClientService.getBasicRoutesInfo(routeKeys: jsonData) { (routes, error) in
+                        
+                        if error == nil {
+                            
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            self.userRoutes = routes
+                            
+                            self.basicData = routes
+                            
+                        } else {
+                            
+                            //Dismiss activity indicator
+                            activityAlert.dismiss(animated: false, completion: nil)
+                            
+                            //An error occured in the app
+                            self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
+                        }
+                    }
+                    
+                    /*
                     ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
                         
                         if error == nil {
@@ -251,7 +272,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
                             //An error occured in the app
                             self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                         }
-                    }
+                        }*/
                 } catch {
                     //Dismiss activity indicator
                     activityAlert.dismiss(animated: false, completion: nil)
@@ -488,43 +509,39 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if userRoutes != nil {
-            return userRoutes!.count
-        }
-        return 0
+        return userRoutesKeys.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteTableCell", for: indexPath) as! RouteTableCell
 
-
-        if (userRoutes != nil) {
-
-            // get element according to current row (indexpath) and provide its value
-            let item = userRoutes![String(userRoutesKeys[indexPath.row])]
-
-            var minDate1 = ""
-            var minDate2 = ""
-            var maxDate = ""
-
-            var isFirstPoint = true
-            // for first point in that sorted array
-            for obj in ((item as! [[String: Any]]).sorted(by: { (a: [String : Any], b: [String : Any]) -> Bool in
-                return formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: a["timestamp"] as! String) < formatDateAsObject(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timestamp: b["timestamp"] as! String)
-            })) {
-                if(isFirstPoint) {
-                    minDate1 = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: obj["timestamp"] as! String)
-                    minDate2 = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "HH:mm a", timestamp: obj["timestamp"] as! String)
+        print("userRoutesKeys.count \(userRoutesKeys.count)")
+ 
+        if (userRoutesKeys.count > 0) {
+            
+            // for every point in that sorted array
+            for route in self.basicData?["routesInfo"] as! [[String: Any]] {
+                if userRoutesKeys[indexPath.row] == Int(route["id"] as! String) {
+                    // correct route
+                    
+                    var minDate1 = ""
+                    var minDate2 = ""
+                    var maxDate = ""
+                    
+                    minDate1 = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "MMMM dd", timestamp: route["startTime"] as! String)
+                    minDate2 = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "HH:mm a", timestamp: route["startTime"] as! String)
+                    maxDate = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "HH:mm a", timestamp: route["endTime"] as! String)
+                    
+                    // Format for left label
+                    cell.rtDate.text = minDate1
+                    
+                    // Format for right label
+                    cell.rtTime.text = "\(minDate2) - \(maxDate)"
+                    
                 }
-                isFirstPoint = false
-                maxDate = formatDateAsString(sourceFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", targetFormat: "HH:mm a", timestamp: obj["timestamp"] as! String)
             }
 
-            // Format for left label
-            cell.rtDate.text = minDate1
-
-            // Format for right label
-            cell.rtTime.text = "\(minDate2) - \(maxDate)"
+     
 
         }
 
