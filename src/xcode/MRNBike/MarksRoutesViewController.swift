@@ -528,6 +528,7 @@ class MarksRoutesViewController: UIViewController, MKMapViewDelegate, CLLocation
             do {
                 
                 self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.removeOverlays(self.mapView.overlays)
                 
                 let jsonData = try JSONSerialization.data(withJSONObject: requestIDs, options: [])
                 ClientService.getRoutes(routeKeys: jsonData) { (routes, error) in
