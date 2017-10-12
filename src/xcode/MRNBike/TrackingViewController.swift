@@ -397,7 +397,9 @@ class TrackingViewController: UIViewController, CLLocationManagerDelegate {
 
 extension TrackingViewController: LocationManagerDelegate {
     func didUpdateLocation(_ location: CLLocationCoordinate2D) {
-        let timestamp = Date().timeIntervalSince1970 * 1000 //this one is for HANA
+        var timestamp = Date().timeIntervalSince1970 * 1000 //this one is for HANA
+        timestamp = timestamp + (2*60*60)
+        
         let currentTrackPoint = TrackPoint(point: location, timestamp: Int64(timestamp))
         
         trackPointsArray.append(currentTrackPoint)

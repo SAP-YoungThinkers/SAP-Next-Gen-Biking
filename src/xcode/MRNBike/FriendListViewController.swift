@@ -92,9 +92,16 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                     ClientService.deleteFriend(userId: (KeychainService.loadEmail() ?? "") as String, friendId: self.friends[indexPath.row].email, completion: { (httpCode, error) in
                         if error == nil {
                             if(httpCode == 200) {
-                                self.friends.remove(at: indexPath.row)
-                                tableView.deleteRows(at: [indexPath], with: .automatic)
-                                self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: "")), animated: true, completion: nil)
+                                let alert = UIAlertCreator.infoAlertNoAction(title: NSLocalizedString("friendDeletedTitle", comment: ""), message: NSLocalizedString("friendDeletedMsg", comment: ""))
+                                let gotItAction = UIAlertAction(title: NSLocalizedString("dialogActionGotIt", comment: ""), style: .default, handler: {
+                                    (action) -> Void in
+                                    self.friends.remove(at: indexPath.row)
+                                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                                    self.loadFriends()
+                                    self.friendsTableView.reloadData()
+                                })
+                                alert.addAction(gotItAction)
+                                self.present(alert, animated: true, completion: nil)
                             } else {
                                 self.present(UIAlertCreator.infoAlert(title: NSLocalizedString("errorOccuredDialogTitle", comment: ""), message: NSLocalizedString("errorOccuredDialogMsg", comment: "")), animated: true, completion: nil)
                             }
