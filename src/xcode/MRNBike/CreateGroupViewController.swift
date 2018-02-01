@@ -304,3 +304,4 @@ class CreateGroupViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
     }
 }
+

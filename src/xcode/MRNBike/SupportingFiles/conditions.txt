@@ -1,0 +1,68 @@
+Datenschutzerklärung
+Wir legen sehr großen Wert auf den korrekten Umgang mit Deinen Daten. Ansprechpartner zum Thema Datenschutz für das Projekt „bedarfsgerechte Radnetzplanung“ ist:
+Hartmut Gündra
+Netzwerk Geoinformation der Metropolregion Rhein-Neckar e.V. (GeoNet.MRN)
+P7, 20-21
+68161 Mannheim
+E-Mail: hguendra@geonet-mrn.de
+1 Durchsetzung und Einhaltung dieser Datenschutzerklärung
+Wir, das Netzwerk Geoinformation der Metropolregion Rhein-Neckar e.V., P7, 20-21, 68161 Mannheim (nachfolgend „wir“ oder „GeoNet.MRN“), stellen dir eine Smartphone-Applikation (nachfolgend „App“) zur Verfügung, über die du (nachfolgend auch „Nutzer/in“) kostenfrei deine Bewegungen und dein Mobilitätsverhalten im Alltag nachverfolgen und weitere Services von GeoNet.MRN in Anspruch nehmen kannst (nachfolgend insgesamt den „Service“). Da uns der Schutz deiner persönlichen Daten – vor allem in Bezug auf Wahrung des Persönlichkeitsrechts bei der Erhebung, Verarbeitung und Nutzung von Daten – wichtig ist, informieren wir dich über datenschutzrelevante Aspekte bei der Nutzung.
+Bevor du der Nutzung unseres Services zustimmst, lies dir bitte aufmerksam unsere Informationen zum Datenschutz durch. GeoNet.MRN verpflichtet sich, die im Folgenden genannten Punkte in Bezug auf den Datenschutz wie beschrieben einzuhalten.
+2 Zweck der Erhebung
+Bisher weiß man recht viel über das Mobilitätsverhalten von Autofahren. Für den Fahrradverkehr gilt dies nicht. Planungen müssen bisher mit punktuelle erfassten Daten vorliebnehmen. Inhaltlich geht es darum, Mobilitätsdaten des Radverkehrs mit Hilfe von Apps zu sammeln und dieses für Planungsaufgaben zur Verfügung zu stellen. So sollen u.a. Fragen beantwortet werden, wie z.B. welche Strecken werden besonders häufig befahren? Welchen Strecken fallen durch häufige Stops und langsames Vorankommen auf? Auch Fragen, wie der Weg zur Arbeit, Schule oder Universität mit dem Rad sicherer gemacht werden kann oder wie man den Anteil des Fahrradverkehrs am Modal-Split erhöhen kann, sollen aufgegriffen werden. Diese Auswertungen erfolgen nur auf Basis anonymer Daten, welche keine Rückschlüsse auf Einzelpersonen zulassen.
+Die Erhebung der Daten erfolgt im Rahmen des SAP Next Generation Consulting-Projektes „Bedarfsgerechte Radnetzplanung“. Mehr Informationen zum Projekt und den beteiligten Partnern findest Du unter www.noch-festzulegen.de
+
+3 Beschreibung des Service
+Mit dem GeoNet.MRN Service sollen neue Einblicke in das Mobilitätsverhalten gewonnen werden. Die Bereitstellung der App ist unser Beitrag zum Jubiläum 200 Jahre Fahrrad. Wir bitte um Deine Unterstützung beim Sammeln von Mobilitätsdaten, um:
+•    praxisorientierte, studienbegleitende Wissensvermittlung zu ermöglichen,
+•    in der universitären Ausbildung, unternehmerischen Geist zu entwickeln,
+•    Schüler und Studierende für neue Technologien zu begeistern,
+•    Mobilitätsdaten und Erkenntnisse zu gewinnen, die im Rahmen der Mobilitätsplanung zur Verbesserung des Radnetzes und darüber hinaus in der Forschung Verwendung finden,
+•    via Smartphone Apps Mobilitätsdaten zu sammeln und relevante Kennziffern wie beispielsweise der Modal Split oder die Verkehrsleistung zu ermitteln
+•    Nutzungsschwerpunkte des Radverkehrs (Hot Spots) zu identifizieren
+•    den Ausbau und die Sicherheit des Radnetzes zu verbessern.
+4 Erhebungsmethoden
+4.1 Bewegungsdaten
+Mit Hilfe der App erheben wir deine Bewegungsdaten (nachfolgend „Bewegungsdaten“). Auf Basis dieser Bewegungsdaten führen wir Analysen durch. Dies dient dem Ableiten von mobilitätsbezogenen Kennziffern (bspw. Modal- Split). Des Weiteren werden Wegezwecke anhand der tagesübergreifenden Aufenthaltsmuster bestimmt und räumliche Analysen vorgenommen.
+Die App erfasst anonymisiert das Mobilitätsverhalten. Sobald du die Aufzeichnung in der App startest, werden Datenpunkte erhoben, die räumliche Koordinaten, Zeitpunkte und Bewegungszustände beinhalten. Die Algorithmen zur Auswertung greifen dabei nur auf einzelne Routen zurück, da nicht mehr nachvollziehbar ist, wer welche Route gefahren ist.
+Auch wenn die Bewegungsprofile anonymisiert erhoben werden, können durch wiederkehrende Aufenthaltsorte Rückschlüsse auf Wohn- und Arbeitsort und damit auf einzelne Personen gezogen werden. Auch wenn keine Identifikation der Teilnehmer vorgenommen wird, handelt es sich um personenbeziehbare Daten. Dementsprechend werden diese genauso sensibel behandelt wie deine persönlichen Anmeldedaten (Nutzername, E-Mail-Adresse). Die Personenbeziehbarkeit der Daten wird dadurch erschwert oder unmöglich gemacht, dass die App die ersten 100 Meter nach Start- und Ende einer Wegstrecke nicht übermittelt werden.
+Sowohl die App für das iOS-, als auch für das Android-Betriebssystem übermitteln die unter 4.2 aufgelisteten Daten. Alle weiteren Attribute wie das genutzte Verkehrsmittel oder der Wegezweck werden anhand von Algorithmen auf Basis dieser Eingangsdaten sowie durch einen Abgleich mit Geodaten (Geomatching) berechnet. Die Geodaten beinhalten Daten des OpenStreetMap-Projekts und weitere interne, nicht personenbeziehbare Daten.
+4.2 Art und Umfang der erhobenen Daten
+Im Folgenden werden die erhobenen Daten zusammenfassend dargestellt:
+Primäre Identifikationsdaten
+•    E-Mail-Adresse zur Kontaktaufnahme, Rekrutierung und ggf. Incentivierung
+•    Name und Vorname für Gruppenfeatures
+•    Anmeldeinformationen zur Anmeldung über die App
+•    Radgröße
+
+Smartphone-Applikation
+•    Zeitpunkt der Lokalisierung
+•    Geo-Koordinaten und Genauigkeit (vom GPS-Chip ermittelt)
+•    Erkennungssicherheit (Konfidenz) der Bewegungsaktivität
+4.3 Verarbeitung der Bewegungsdaten
+Nach der Aufzeichnung mit der App werden die Daten bei WLAN-Verbindung oder, falls eingeschaltet, über mobile Daten an unseren Server in einem ISO-zertifizierten Rechenzentrum übertragen und dort in einer Datenbank gespeichert. Die Übertragung der durch die App erhobenen Daten erfolgt ausschließlich über kryptografisch gesicherte Verschlüsselungsverfahren. Auf unserem Server werden die Rohdaten mit Hilfe der oben beschriebenen Analysen verarbeitet.
+Die übertragenen Daten werden analysiert und anonymisiert aggregiert. Aus den erhobenen Daten wird ein Gesamtdatensatz entwickelt, der nicht personenbeziehbar ist und der unter einer Open Data Lizenz der für Forschungszwecke genutzt werden kann. Zu diesem Zweck werden alle Bewegungsdaten von (Teil-)Wegstrecken gelöscht, die von weniger als fünf Personen/Geräten zurückgelegt wurden.
+Weiterhin wird keine Verbindung zwischen persönlichen Daten (Name, E-Mail, etc.) und Bewegungsdaten hergestellt.
+4.4 Speicherung von Daten in der App
+In der App wird, neben den erhobenen Datenpunkten selbst nur die E-Mail-Adresse für den Login der letzten Nutzung gespeichert. Dies vereinfacht den erneuten Login, da die E-Mail-Adresse nicht erneut eingegeben werden muss. Im Anschluss an die Übertragung der Datenpunkte an den Server werden diese in der App gelöscht / je nach Benutzereinstellung gelöscht oder nicht gelöscht.
+4.5 Kontaktaufnahme
+Wir werden Deine E-Mail-Adresse nicht zur persönlichen Kontaktaufnahme nutzen. Uns kannst Du über die hier angegebenen Kontaktinformationen erreichen.
+5 Weitergabe an Dritte
+Deine personenbezogenen Daten werden grundsätzlich nicht an Dritte außerhalb des Projektes „Bedarfsgerechte Radnetzplanung“ weitergegeben.
+Ein nach den Angaben in Kapitel 4.3 anonymisierter, aggregierter Datensatz soll unter einer Open Data Lizenz (CC-BY-SA 3.0) der Öffentlichkeit zugänglich und genutzt werden können.
+6 Speicherung und Löschung von Bewegungsdaten
+Du hast jederzeit die Möglichkeit, die Sperrung oder Löschung deiner gesamten Bewegungsdaten-Daten zu veranlassen. Dazu wird in der nächsten Beta-Version das Feature „Lösche meine Daten“ hinzukommen.
+7 Widerspruchshinweis
+Der Verwendung deiner E-Mail-Adresse kannst du jederzeit für die Zukunft widersprechen. Dazu erreichst du uns per E-Mail unter bewegungsdaten@geonet-mrn.de oder unter den untenstehenden Kontaktdaten.
+8 Kontakt
+Hartmut Gündra
+Netzwerk Geoinformation der Metropolregion Rhein-Neckar e.V. (GeoNet.MRN)
+P7, 20-21
+68161 Mannheim
+URL: www.geonet-mrn.de
+E-Mail: hguendra@geonet-mrn.de
+Facebook: https://www.facebook.com/geonetmrn
+Twitter: #geonetmrn
+
+Tel.: +49 (621) 10708-101
+Mobil: +49 (151) 54282534

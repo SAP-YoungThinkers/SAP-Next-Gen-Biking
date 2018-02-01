@@ -333,7 +333,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             return UIImage(named: "rainy")!
             
         }
-        return UIImage(named: "cloudy-sunny")!
+        return UIImage(named: "cloudy-sunny-1x")!
     }
     
     
